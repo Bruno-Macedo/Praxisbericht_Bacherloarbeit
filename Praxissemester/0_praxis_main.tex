@@ -1,0 +1,45 @@
+\input{head}
+\makeglossaries
+\loadglsentries{6_Glossar}
+
+% &as_qdr=y2 (find date)
+
+\fancypagestyle{lscape}{
+\fancyhf{} %Clears the header/footer
+\fancyfoot{% Footer
+\makebox[\textwidth][r]{% Right
+  \rlap{\hspace{1cm}% Push out of margin by \footskip
+    \smash{% Remove vertical height
+      \raisebox{4.87in}{% Raise vertically
+        \rotatebox{90}{\thepage}}}}}}% Rotate counter-clockwise
+\renewcommand{\headrulewidth}{0pt}% No header rule
+\renewcommand{\footrulewidth}{0pt}% No footer rule
+}
+
+\begin{document}
+  \include{1_titelblat}
+  \tableofcontents
+  %\newpage
+  %\addcontentsline{toc}{section}{\listfigurename}
+  %\listoffigures
+  \clearpage
+  \printglossary[title=Glossary,toctitle=Glossary]
+  \clearpage
+  \newpage
+  \clearpage
+  \printglossary[type=acronym,title=Abbreviations,toctitle=Abbreviations]
+  \clearpage
+  \include{2_Einleitung}
+  \include{3_Anwendungsdomaene}
+  \include{4_Durchfuehrung}
+  \include{5_Fazit}
+  \nocite{*}
+  \begingroup
+    \setlength{\bibsep}{4pt}
+    \setstretch{1}
+    \bibliography{7_Referenzen}
+    \endgroup
+  \bibliographystyle{apalike}
+  %\newpage
+    
+\end{document}

@@ -1,0 +1,12 @@
+\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
+\begin{theglossary}\glossaryheader
+\glsgroupheading{A}\relax \glsresetentrylist %
+\glossentry{API}{\glossaryentrynumbers{\relax 
+		\glsseeformat[Glossary:]{\gls {API2}}{Z}}}\glsgroupskip
+\glsgroupheading{M}\relax \glsresetentrylist %
+\glossentry{MVC}{\glossaryentrynumbers{\relax 
+		\glsseeformat[Glossary:]{\gls {MVC2}}{Z}}}\glsgroupskip
+\glsgroupheading{S}\relax \glsresetentrylist %
+\glossentry{SLA}{\glossaryentrynumbers{\relax 
+		\glsseeformat[Glossary:]{\gls {SLA2}}{Z}}}%
+\end{theglossary}\glossarypostamble
