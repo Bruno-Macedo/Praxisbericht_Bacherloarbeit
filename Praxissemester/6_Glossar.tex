@@ -58,6 +58,21 @@
 }
 % =====
 
+%=====
+\newglossaryentry{ROE2}{
+    name=\glslink{ROE}{Rules of Engagement (\gls{ROE})},
+    description={Bezieht sich auf ein vertragliches Dokument, der zwischen Kunden und Tester geschlossen wird, um den Umfang und die Rahmenbedingungen des Testes festzulegen. In diesem Dokument steht under anderen folgenden Informationen: Umgang mit sensitiven Daten, Notfallkontakten, Identifikation der zu testenden Objekten und Einschränkungen des Testobjekte \cite{Triaxiom_ROE}}
+}
+
+\newglossaryentry{ROE}{
+    type=\acronymtype,
+    name=ROE,
+    first={Rules of Engagemente (ROE)\glsadd{ROE2}},
+    see=[Glossary:]{\gls{ROE2}}, 
+    description=\glslink{ROE2}{Rules of Engagement}
+}
+% =====
+
 \newglossaryentry{FPO}{
     type=\acronymtype,
     name=FPO,
