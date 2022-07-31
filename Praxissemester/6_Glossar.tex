@@ -1,48 +1,97 @@
-% =====
 % here goes to the description
-\newglossaryentry{SLA2}{
-    name=\glslink{SLA}{Service Level Agreement (\gls{SLA})},
-    description={Contract between a service provider and a consumer regarding the expected level of service that is accepted.
-    This contract is based on defined metrics, measures to remediate occurring problems and penalties if the contracted
-    level is not achieved [\cite{refmisc:SOSLA}] }
+\newglossaryentry{CIA2}{
+    name=\glslink{CIA}{Confidentiality, Integrity and Availability (\gls{CIA})},
+    description={Beschreibt die drei wichtigsten Schutzziele der IT-Sicherheit, und zwar Vertraulichkeit, Integrität und Verfügbarkeit \cite{Wendzel_It-Sicherheit} }
 }
-
 % here goes to the acronym
-\newglossaryentry{SLA}{
+\newglossaryentry{CIA}{
     type=\acronymtype,
-    name=SLA,
-    first={Service Level Agreement (SLA)\glsadd{SLA2}},
-    see=[Glossary:]{\gls{SLA2}}, 
-    description=\glslink{SLA2}{Service Level Agreement}
-}
-
-% =====
-\newglossaryentry{API2}{
-    name=\glslink{API}{Application Programming Interface (\gls{API})},
-    plural={APIs},
-    description={Software intermediary that promotes the communication between different systems/applications/
-    softwares [\cite{refonline:MSAPI}]}
-}
-
-\newglossaryentry{API}{
-    type=\acronymtype,
-    name=API,
-    first={Application Programming Interface (API)\glsadd{API2}},
-    see=[Glossary:]{\gls{API2}}, 
-    description=\glslink{API2}{Application Programming Interface}
+    name=CIA,
+    first={Confidentiality, Integrity and Availability (CIA)\glsadd{CIA2}},
+    see=[Glossary:]{\gls{CIA2}}, 
+    description=\glslink{CIA2}{Confidentiality, Integrity and Availability}
 }
 % =====
-\newglossaryentry{MVC2}{
-    name=\glslink{MVC}{Model-View-Controller  (\gls{MVC})},
-    description={Pattern used in software architecture for the development of user interfaces. In this pattern information
-    is presented to the user differently from how it is show internally \cite{refmisc:wikimvc,} }
+
+%=====
+\newglossaryentry{NIST2}{
+    name=\glslink{NIST}{National Institute of Standards and Technology (\gls{NIST})},
+    description={USA-Behörden dafür zuständig, Reglungen im Bereich Informationstechnologie zu vereinheitlichen und voranzutreiben \cite{Hochschule_Worms_FPO} }
 }
 
-\newglossaryentry{MVC}{
+\newglossaryentry{NIST}{
     type=\acronymtype,
-    name=MVC,
-    first={Model-View-Controller (MVC)\glsadd{MVC2}},
-    see=[Glossary:]{\gls{MVC2}}, 
-    description=\glslink{MVC2}{Model-View-Controller}
+    name=NIST,
+    first={National Institute of Standards and Technology (NIST)\glsadd{NIST2}},
+    see=[Glossary:]{\gls{NIST2}}, 
+    description=\glslink{NIST2}{National Institute of Standards and Technology}
 }
+% =====
+
+%=====
+\newglossaryentry{CVSS2}{
+    name=\glslink{CVSS}{Common Vulnerability Scoring System (\gls{CVSS})},
+    description={Internationale Standards für die Bewertung von Verwundbarkeiten von IT-Systemen. Es wurde im Jahr 2005 von dem National Infrastructure Advisory Councils entstanden und ist heute von dem Forum of Incident Response and Security Teams  verwaltet \cite{SecInsider_CVSS} }
+}
+
+\newglossaryentry{CVSS}{
+    type=\acronymtype,
+    name=CVSS,
+    first={Common Vulnerability Scoring System (CVSS)\glsadd{CVSS2}},
+    see=[Glossary:]{\gls{CVSS2}}, 
+    description=\glslink{CVSS2}{Common Vulnerability Scoring System}
+}
+% =====
+
+%=====
+\newglossaryentry{OSINT2}{
+    name=\glslink{OSINT}{Open-source intelligence (\gls{OSINT})},
+    description={Datenerhebung und Sammlung aus offenen Quellen, wie von Online-Repositories, Nachrichten, sozialen Netzwerken, wissenschaftliche Texten unter anderen öffentlichen Quellen. In diesem Fall gibt es keine direkte Kontakte mit dem Ziel. Es kann passive Reconnaissance genannt werden \cite{Abel_OSINT}}
+}
+
+\newglossaryentry{OSINT}{
+    type=\acronymtype,
+    name=OSINT,
+    first={Open-source intelligence (OSINT)\glsadd{OSINT2}},
+    see=[Glossary:]{\gls{OSINT2}}, 
+    description=\glslink{OSINT2}{Open-source intelligence}
+}
+% =====
+
+\newglossaryentry{FPO}{
+    type=\acronymtype,
+    name=FPO,
+    first={Fachspezifische Prüfungsordnung (FPO)\glsadd{FPO}},
+    see=[Glossary:]{\gls{FPO}}, 
+    description=\glslink{FPO}{Fachspezifische Prüfungsordnung}
+}
+
+\newglossaryentry{Cyberangriff} {
+    name={Cyberangriff},
+    plural={Cyberangriffe},
+    description={Angriffe, die über den Cyberspace stattfinden. Solche Angriffe zielen Unternehmen und deren Infrastrukturen, um sie zu zerstören, sie zu lähmen, sie zu kontrollieren oder die Integrität deren Daten zu stehlen oder zu dominieren \cite{NIST_Definitionen}}
+}
+
+\newglossaryentry{Cybersicherheit} {
+    name={Cybersicherheit},
+    description={Dieser Domäne umfasst Kenntnisse und Methode für den Schutz, für die Prävention, für die Wiederherstellung von elektronischen Kommunikationsmittel und dessen Inhalt. Es konzentriert sich in ihrer Verfügbarkeit, Integrität, Authentizität, Vertraulichkeit und Verbindlichkeit \cite{NIST_Definitionen}}
+}
+
+\newglossaryentry{Verwundbarkeit} {
+    name={Verwundbarkeit},
+    plural={Verwundbarkeiten},
+    description={Oder als \textit{vulnerability} gekannt. Es beschreibt eine von Angreifer ausnutzbare Schwachstelle \cite{Wendzel_It-Sicherheit}}
+}
+
+\newglossaryentry{Schwachstelle} {
+    name={Schwachstelle},
+    plural={Schwachstellen},
+    description={Schwäche eines Systems \cite{Wendzel_It-Sicherheit}}
+}
+
+% \newglossaryentry{Schwachstelle} {
+%     name={Schwachstelle},
+%     plural={Schwachstellen}
+%     description={Schwäche eines Systems \cite{Wendzel_It-Sicherheit}}
+% }
     
