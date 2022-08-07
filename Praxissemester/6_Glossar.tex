@@ -71,7 +71,7 @@
     see=[Glossary:]{\gls{ROE2}}, 
     description=\glslink{ROE2}{Rules of Engagement}
 }
-% =====
+%=====
 
 \newglossaryentry{FPO}{
     type=\acronymtype,
@@ -103,6 +103,37 @@
     plural={Schwachstellen},
     description={Schwäche eines Systems \cite{Wendzel_It-Sicherheit}}
 }
+
+\newglossaryentry{Webanwendung} {
+    name={Webanwendung},
+    plural={Webanwendungen},
+    description={Internetseite, die eine Interaktion ermöglichen. Diese Interaktion kann beispielsweise Login, Einkauf, Erstellung und Manipulation von Daten. Die meisten Webanwendungen sind an einem Datenbank verbunden. Webseite sind seinerseits statische Seite, dessen Inhalt nicht dynamisch aktualisiert sind \cite{Essential_Desigs_Seite_x_Anwendung}}
+}
+
+\newglossaryentry{Pentester} {
+    name={Pentester},
+    plural={Pentester},
+    description={Auch Ethical Hacker genannt ist ein Sicherheitsanalyst, der sich damit beschäftigt, \glsplural{Schwachstelle}  von IT-Systemen zu finden\cite{pentester}}   
+}
+
+\newglossaryentry{burp} {
+    name={Burp Suite},
+    description={Oder nur Burp genannt ist eine von der Firma PortSwigger in Java-Programmiersprache entwickelte Anwendungen dafür geeignet, Sicherheitstests durchzuführen. Mit verschiedenen Modulen unterstützt Anwendungen unterstützt während allen Phasen eines Penetration Testings von Reconnaissance bis zum Angriff \cite{burp}}   
+}
+%=====
+\newglossaryentry{OWASP2}{
+    name=\glslink{OWASP}{Open Web Application Security Project\textregistered (\gls{OWASP})},
+    description={Non-Profit Organisation, die sich darauf fokussiert, die Sicherheit in dem Umgang mit Webanwendungen zu gewährleisten. Die Organisation verteilt Open-Source Informationen über sichere Entwicklung, Dokumentation, Best-Practices zu dem sicheren Umgang in dem Internet und Bildung. \cite{Triaxiom_ROE}}
+}
+
+\newglossaryentry{OWASP}{
+    type=\acronymtype,
+    name=OWASP\textregistered,
+    first={Open Web Application Security Project\textregistered (OWASP\textregistered)\glsadd{OWASP2}},
+    see=[Glossary:]{\gls{OWASP2}}, 
+    description=\glslink{OWASP2}{Open Web Application Security Project\textregistered}
+}
+%=====
 
 % \newglossaryentry{Schwachstelle} {
 %     name={Schwachstelle},

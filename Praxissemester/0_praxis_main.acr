@@ -18,7 +18,10 @@
 \glsgroupheading{O}\relax \glsresetentrylist %
 \glossentry{OSINT}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{8}\delimN 
-		\glsseeformat[Glossary:]{\gls {OSINT2}}{Z}}}\glsgroupskip
+		\glsseeformat[Glossary:]{\gls {OSINT2}}{Z}}}%
+\glossentry{OWASP}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{9}\delimN 
+		\glsseeformat[Glossary:]{\gls {OWASP2}}{Z}}}\glsgroupskip
 \glsgroupheading{R}\relax \glsresetentrylist %
 \glossentry{ROE}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{8}\delimN 
