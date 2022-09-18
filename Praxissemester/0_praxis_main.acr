@@ -7,6 +7,10 @@
 \glossentry{CVSS}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{8}\delimN 
 		\glsseeformat[Glossary:]{\gls {CVSS2}}{Z}}}\glsgroupskip
+\glsgroupheading{D}\relax \glsresetentrylist %
+\glossentry{dvwa}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{12\delimN 13}\delimN 
+		\glsseeformat[Glossary:]{\gls {dvwa2}}{Z}}}\glsgroupskip
 \glsgroupheading{F}\relax \glsresetentrylist %
 \glossentry{FPO}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{4\delimN 5}\delimN 
