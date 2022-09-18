@@ -159,6 +159,12 @@
     description={sind Anwendungen, die mit Brute Force, versuchen, Dateien und Verzeichnisse innerhalb Webanwendungen zu finden \citep{kalitools}}   
 }
 
+\newglossaryentry{javascript} {
+    name={Javascript},
+    description={ist ein Programmiersprache, die in Webanwendungen verwendet wird, um komplexe Strukturen wie Animationen, Bilder, Tun und Interaktionen zu implementieren. \citep{javascriptdefinition}}   
+}
+
+
 %=====
 \newglossaryentry{OWASP2}{
     name=\glslink{OWASP}{Open Web Application Security Project\textregistered (\gls{OWASP})},
@@ -187,10 +193,37 @@
     see=[Glossary:]{\gls{dvwa2}}, 
     description=\glslink{dvwa2}{Damn Vulnerable Web Application }
 }
-
-
-
 % =====
+
+%=====
+\newglossaryentry{xss2}{
+    name=\glslink{xss}{Cross-Site Scripting (\gls{xss})},
+    description={ist ein Angriff, wo bösartige Code in eine Webanwendung absichtlich hinzugefügt wird, um Anmeldedaten oder Sitzungen-Informationen zu fangen. In diesem Fall Ziel des Angriffes ist es, eine legitime Nutzung der Anwendung vorzutäuschen, um Informationen zu stehlen (wie Passwörter, persönliche oder finanzielle Daten) oder die Anwendung zu beschädigen \citep{xssliteratur} }
+}
+
+\newglossaryentry{xss}{
+    type=\acronymtype,
+    name=DVWA,
+    first={Cross-Site Scripting (XSS)\glsadd{xss2}},
+    see=[Glossary:]{\gls{xss2}}, 
+    description=\glslink{xss2}{Cross-Site Scripting}
+}
+% =====
+
+
+%=====
+\newglossaryentry{pof2}{
+    name=\glslink{pof}{Proof of Concept (\gls{pof})},
+    description={ist eine Demonstration, dass eine Methode funktioniert. In dem Sicherheitsbereich zeigt, dass eine Schwachstelle ausnutzbar ist. \citep{proofofconcept}}
+}
+
+\newglossaryentry{pof}{
+    type=\acronymtype,
+    name=PoF,
+    first={Proof of Concept (PoF)\glsadd{pof2}},
+    see=[Glossary:]{\gls{pof2}}, 
+    description=\glslink{pof2}{Proof of Concept}
+}
 
 % \newglossaryentry{Schwachstelle} {
 %     name={Schwachstelle},

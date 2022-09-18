@@ -6,6 +6,8 @@
 \glossaryentry{FPO?\glossentry{FPO}|glsseeformat[Glossary:]{"\gls {FPO}}}{Z}
 \glossaryentry{OWASP"\textregistered ?\glossentry{OWASP}|glsseeformat[Glossary:]{"\gls {OWASP2}}}{Z}
 \glossaryentry{DVWA?\glossentry{dvwa}|glsseeformat[Glossary:]{"\gls {dvwa2}}}{Z}
+\glossaryentry{DVWA?\glossentry{xss}|glsseeformat[Glossary:]{"\gls {xss2}}}{Z}
+\glossaryentry{PoF?\glossentry{pof}|glsseeformat[Glossary:]{"\gls {pof2}}}{Z}
 \glossaryentry{CIA?\glossentry{CIA}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{CIA?\glossentry{CIA}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{CVSS?\glossentry{CVSS}|setentrycounter[]{page}"\glsnumberformat}{3}
@@ -20,6 +22,10 @@
 \glossaryentry{ROE?\glossentry{ROE}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{DVWA?\glossentry{dvwa}|setentrycounter[]{page}"\glsnumberformat}{4}
 \glossaryentry{DVWA?\glossentry{dvwa}|setentrycounter[]{page}"\glsnumberformat}{4}
+\glossaryentry{PoF?\glossentry{pof}|setentrycounter[]{page}"\glsnumberformat}{4}
+\glossaryentry{PoF?\glossentry{pof}|setentrycounter[]{page}"\glsnumberformat}{4}
+\glossaryentry{DVWA?\glossentry{xss}|setentrycounter[]{page}"\glsnumberformat}{4}
+\glossaryentry{DVWA?\glossentry{xss}|setentrycounter[]{page}"\glsnumberformat}{4}
 \glossaryentry{FPO?\glossentry{FPO}|setentrycounter[]{page}"\glsnumberformat}{7}
 \glossaryentry{FPO?\glossentry{FPO}|setentrycounter[]{page}"\glsnumberformat}{8}
 \glossaryentry{FPO?\glossentry{FPO}|setentrycounter[]{page}"\glsnumberformat}{8}
@@ -35,3 +41,6 @@
 \glossaryentry{DVWA?\glossentry{dvwa}|setentrycounter[]{page}"\glsnumberformat}{15}
 \glossaryentry{DVWA?\glossentry{dvwa}|setentrycounter[]{page}"\glsnumberformat}{16}
 \glossaryentry{CIA?\glossentry{CIA}|setentrycounter[]{page}"\glsnumberformat}{18}
+\glossaryentry{DVWA?\glossentry{xss}|setentrycounter[]{page}"\glsnumberformat}{18}
+\glossaryentry{PoF?\glossentry{pof}|setentrycounter[]{page}"\glsnumberformat}{20}
+\glossaryentry{CVSS?\glossentry{CVSS}|setentrycounter[]{page}"\glsnumberformat}{21}
