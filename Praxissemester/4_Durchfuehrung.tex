@@ -1,15 +1,15 @@
 \section{Durchführung der Aufgabe}
 
-In diesem Kapitel beschreiben wir konkret, wie die Arbeit während meines Praxissemesters sich entwickelte. Die ersten zwei Wochen dienten als Einarbeitung und Einstieg. Nach dieser Phasen bekam ich langsam und unter Betreuung mehr Verantwortlichkeit und mehr Freiheit, um die Arbeit durchzuführen. In der folgenden Tabellen wird der Ablauf systematisch und ohne Einzelheit beschrieben. In dem zweiten Teil dieses Kapitels geben wir eine ausführliche Beschreibung eines Projekts.
+In diesem Kapitel beschreiben wir konkret, wie die Arbeit während meines Praxissemesters sich entwickelte. Die ersten zwei Wochen dienten als Einarbeitung und Einstieg. Nach dieser Phase bekam ich langsam und unter Betreuung mehr Verantwortung und mehr Freiheit, um die Arbeit durchzuführen. In der folgenden Tabellen wird der Ablauf systematisch und ohne Einzelheit beschrieben. In dem zweiten Teil dieses Kapitels geben wir eine ausführliche Beschreibung eines Projekts.
 
 Jedes Projekt besitzt innerhalb von Wallsec einen festgelegten Aufbau. Dieser kann in den folgenden Punkten zusammengefasst werden:
 
 \begin{enumerate} \label{Projektablauf}
-    \item \textit{Kick-off Meeting} mit den Kunden, um grundsätzliche Information über die Anwendung zu bekommen
-    \item Definition der Umfang des Tests, wie Anmeldedaten, Rolle der zu getestete Nutzer, \glsplural{Tennant} und Einschränkungen
-    \item Durchführung von Tests nach einem vorgegebenen Checklist
-    \item Dokumentation der durchgeführten Testen, dessen gefundene \glsplural{Schwachstelle} und Vorschläge zur Härtung der Anwendung
-    \item Abschlussmeeting mit dem Kunden, um die \glsplural{Schwachstelle} und deren Ausnutzung zu präsentieren und zu demonstrieren
+    \item \textit{Kick-off Meeting} mit den Kunden, um grundsätzliche Informationen über die Anwendung zu bekommen
+    \item Definition des Testumfangs, wie Anmeldedaten, Rolle der Nutzer, \glsplural{Tennant} und Einschränkungen
+    \item Durchführung von Tests nach einer vorgegebenen Checklist
+    \item Dokumentation der durchgeführten Testen, deren gefundene \glsplural{Schwachstelle} und Vorschläge zur Härtung der Anwendung
+    \item Abschlussmeeting mit den Beauftragten, um die \glsplural{Schwachstelle} und deren Ausnutzung zu präsentieren und zu demonstrieren
 \end{enumerate} 
 
 \section{Wöchentliche Zusammenfassung meines Praxissemesters}
@@ -49,11 +49,11 @@ Jedes Projekt besitzt innerhalb von Wallsec einen festgelegten Aufbau. Dieser ka
 
     \hline
 
-    13 - 14      &  Start, Durchführung und Abschluss eines Pentesting bei einem umfangreichen Webanwendung mit verschiedenen \glsplural{Tennant} und Nutzungsrolle für die Verwaltung von Business-Processes. \\
+    11  	    &  Start, Durchführung und Abschluss eines Pentesting bei einem umfangreichen Webanwendung mit verschiedenen \glsplural{Tennant} und Nutzungsrolle für die Verwaltung von Business-Processes. \\
 
     \hline
 
-    15 - 16      &  xxxxxx \\
+    11 - 12      &  Start, Durchführung und Abschluss eines Pentesting bei dessen Aufbau auf HTTP2 \textbf{GLOSSARhier} und \textbf{Graphisql}. Da diese Element mir ganz fremd waren, habe ich viel während der Testes davon gelernt, wie sie ausgenutzt werden können und deren Sicherheitslücke. \\
 
 
     \hline
@@ -77,7 +77,7 @@ Da dieses Bericht eingeschränkte Platz hat und das dieses Thema sehr umfangreic
 
 \subsection{Sammlung von Informationen von dem Zielsystem}
 
-Obwohl jede Webanwendungen ihre eigene Eingenschaften und Ziele haben, besitzen fast alle eine ähnliche Struktur und Aufbau. Beim jeden Test fangen wir damit an, diese gemeinsame Struktur zu erkennen, indem wir nach öffentlichen Informationen suchen. Viele kritische Informationen, wie Username, Passwörter, Versionen, Systemen verbundenen IP-Adressen, lassen sich sehr leicht nach einer Online-Suche finden. Auch mit eingebauten Tools eines Betriebssystems können wir auf solche Informationen zugreifen. Dieses Verfahren nennen wir Banner Grabbing. Das folgende Bild zeigt ein Beispiel von einer einfachen Durchführung von Banner Grabbing:
+Obwohl jede Webanwendungen ihre eigene Eingenschaften und Ziele haben, besitzen fast alle eine ähnliche Struktur und Aufbau. Beim jeden Test fangen wir damit an, diese gemeinsame Struktur zu erkennen, indem wir nach öffentlichen Informationen suchen. Viele kritische Informationen, wie Username, Passwörter, Versionen, Systemen verbundenen IP-Adressen, lassen sich nach einer Online-Suche finden. Auch mit eingebauten Tools eines Betriebssystems können wir auf solche Informationen zugreifen. Dieses Verfahren nennen wir Banner Grabbing. Das folgende Bild zeigt ein Beispiel von einer einfachen Durchführung von Banner Grabbing:
 
 \begin{figure}[H]
     \centering
@@ -86,7 +86,7 @@ Obwohl jede Webanwendungen ihre eigene Eingenschaften und Ziele haben, besitzen 
     \centering
 \end{figure}
 
-Eine Webanwendung ist eine Gruppierung von verschiedene Verzeichnisse. Jedes Verzeichnis soll den Nutzer eine Information oder Interaktion anbieten. Manche sind aber nicht für Nutzer gedacht und dient hauptsächlich dazu, Einstellungen zu verwalten. Da solche Verzeichnisse nicht dazu konzipiert, direkt aufrufbar zu sein, benutzen wir Testers andere Methode, um zu finden, was die Entwickler im Hintergrund beibehalten wollte. Es gibt verschiedene Tools, die mithilfe von sogenannten \textit{wordlists}, viele Anfrage an eine Anwendung schickt, um herauszufinden, was nicht direkt von dem Browser aufrufbar ist. Solche \textit{wordlists} sind Textdateien, die häufige verwendete Wörter beinhalten, die für Webanwendungen, für Nutzername oder für Passwörter verwendet werden. Da viele Webanwendungen ähnliche Strukturen haben, ist auch meistens erwartet, dass gewöhnliche Wörter auch zu finden sind. Das nächste Beispiel zeigt uns, dieses Entdeckungsverfahren auf unserem Ziel, \gls{dvwa} Tool. Hier benutzen wir das Tool \gls{dirb}, um herauszufinden, welche Verzeichnisse in dieser Anwendung existieren. Dieses und andere Tool arbeiten mit der Brute-Force Methode. In diesem Fall werden verschiedene Anfrage geschickt, jede mit einem verschiedenen Wort, um zu sehen, welche positive Antworten liefern. Das folgende Bild zeigt die Durchführung und das Ergebnis des Scanverfahren mithilfe des Tools \gls{dirb}:
+Eine Webanwendung ist eine Gruppierung von verschiedene Verzeichnisse. Jedes Verzeichnis soll den Nutzer eine Information oder Interaktion anbieten. Manche sind aber nicht für Nutzer gedacht und dient zur Verwaltung von Einstellungen. Da solche Verzeichnisse nicht direkt aufrubar sind  benutzen wir Testers andere Methode, um zu finden, was die Entwickler im Hintergrund beibehalten wollte. Es gibt verschiedene Tools, die mithilfe von sogenannten \textit{wordlists}, viele Anfrage an eine Anwendung schickt, um herauszufinden, was nicht direkt von dem Browser aufrufbar ist. Solche \textit{wordlists} sind Textdateien, die häufige verwendete Wörter beinhalten, die für Webanwendungen, für Nutzername oder für Passwörter verwendet werden. Da viele Webanwendungen ähnliche Strukturen haben, ist auch meistens erwartet, dass gewöhnliche Wörter auch zu finden sind. Das nächste Beispiel zeigt uns, dieses Entdeckungsverfahren auf unserem Ziel, \gls{dvwa} Tool. Hier benutzen wir das Tool \gls{dirb}, um herauszufinden, welche Verzeichnisse in dieser Anwendung existieren. In diesem Fall werden verschiedene Anfrage geschickt, jede mit einem verschiedenen Wort, um zu sehen, welche positive Antworten liefern. Das folgende Bild zeigt die Durchführung und das Ergebnis des Scanverfahren mithilfe des Tools \gls{dirb}:
 
 \begin{figure}[H]
     \centering
@@ -97,7 +97,7 @@ Eine Webanwendung ist eine Gruppierung von verschiedene Verzeichnisse. Jedes Ver
 
 Der nächste Schritte wäre eine manuelle Beobachtung der entdeckten Material, um zu finden, ob irgendwelche sensitiven Information ausgelieferte wurde. Falls ja, wurden wir dann versuchen diese \gls{Schwachstelle}, zu erkennen und auszunutzen.
 
-Ein Netzwerk-Scan ist auch eine häufige verwendete Methode, um zu finden, auf welche Dienste oder Anwendungen unser Ziel gebaut ist. Dieses Scan schickt an dem Ziel verschiedene Anfrage, damit wir das Reaktion des Zielsystems beobachten können. Während bei dem ersten Scan wir uns auf der Webanwendung fokussierten, hier bearbeiten wir eine Ebene, die nicht für normale Nutzung gezielt ist. Unser Fokus hier liegt auf dem Server, wo die Anwendung läuft. Dafür testen wir die sogenannte \gls{port}. Aus diesem Scan lassen sich meistens viele nützliche Informationen herausfinden, wie Betriebssystems, wo die Webanwendung läuft, Name und Versionen der existierenden Dienste. Mit dieser Information ist es möglich dann zielgerichtete Angriffe vorzubereiten, um \glsplural{Schwachstelle} auszunutzen.
+Ein Netzwerk-Scan ist auch eine häufige verwendete Methode, um Dienste innerhalb des testenden Objekts zu finden. Dieser Scan schickt an das Ziel verschiedene Anfrage, damit wir das Reaktion des Zielsystems beobachten können. Während bei dem ersten Scan wir uns auf der Webanwendung fokussierten, bearbeiten wir hier eine Ebene, die nicht für normale Nutzung gezielt ist. Unser Fokus liegt auf dem Server, wo die Anwendung läuft. Dafür testen wir die sogenannte \gls{port}. Aus diesem Scan lassen sich meistens viele nützliche Informationen herausfinden, wie Betriebssystems, wo die Webanwendung läuft, Name und Versionen der existierenden Dienste. Mit dieser Information ist es möglich dann zielgerichtete Angriffe vorzubereiten, um \glsplural{Schwachstelle} auszunutzen.
 
 Das nächste Bild zeigt das Ergebnis der Durchführung von \gls{nmap} gegen das Testziel \textit{scanme.nmap.org}:
 
@@ -112,9 +112,9 @@ Aus diesem Scan erfahren wir welche Betriebssystem und welche Version der Webanw
 
 \subsection{Ausnutzung der Zielanwendung}
 
-Nachdem die vorherigen Scans durchgeführt wurde und öffentliche und Serverseite Informationen gesammelt wurden, fangen wir damit an, die Webanwendung direkt zu testen. In diesem Fall ist es unser Ziel zu wissen, welche versteckte Daten oder unerlaubte Aktionen ein Angreifer durchführen kann, um die \gls{CIA} der Anwendung zu verletzen. Für die folgenden Tests benutzen wir unter anderen auch das Tool \gls{burp}.
+Nachdem die vorherigen Scans durchgeführt wurden und öffentliche Serverseite Informationen gesammelt wurden, fangen wir mit den Tests auf der Webanwendung an. In diesem Fall ist es unser Ziel zu wissen, welche versteckte Daten oder unerlaubte Aktionen ein Angreifer durchführen kann, um die \gls{CIA} der Anwendung zu verletzen. Für die folgenden Tests benutzen wir unter anderen auch das Tool \gls{burp}.
 
-Unser erster Test will überprüfen, ob es möglich ist, in ein Eingabefeld Daten einzutragen und das normale Verhalten der Anwendung zu ändern. Wir wollen eigenen Code hinzuführen und in dem Falle, dass es uns gelingt, das zu tun, können wir dann weitere Code hinzufügen, um Daten von Nutzer zu stehlen oder das normale Verhalten der Anwendung beschädigen. Wir prüfen hier, ob die gegen \glsfirst{xss} anfällig ist. Um diesen Test durchzuführen, fügen wir erwartete Daten hinzu, um das Verhalten der Anwendung zu beobachten. Nachdem wir das normale Verhalten erkannt haben, versuchen wir eigenen Code hinzufügen und beobachten, ob wir die Anwendung ausnutzen können. 
+Unser erster Test will überprüfen, ob es möglich ist, in ein Eingabefeld Daten einzutragen und das normale Verhalten der Anwendung zu ändern. Wir wollen eigenen Code hinzuführen und in dem Falle, dass es uns gelingt, das zu tun, können wir dann weitere Code hinzufügen, um Daten von Nutzer zu stehlen oder das normale Verhalten der Anwendung beschädigen. Wir prüfen hier, ob die Anwendung gegen \glsfirst{xss} anfällig ist. Um diesen Test durchzuführen, fügen wir erwartete Daten hinzu, um das Verhalten der Anwendung zu beobachten. Nachdem wir das normale Verhalten erkannt haben, versuchen wir eigenen Code hinzufügen und beobachten, ob wir die Anwendung ausnutzen können. 
 
 \begin{figure}[H]
     \centering
@@ -139,6 +139,6 @@ Für diesen Test haben wir den Code \textit{<img src=0 onerror='alert(``XXS'')'\
 
 \subsection{Kundebericht}
 
-Je nachdem wie lange das Projekt läuft, können wir mehr oder weniger zeitintensive Tests durchführen. Am Ende des Projekts präsentieren wir unseren Kunde in einem Meeting unser Ergebnis und liefern wir ein Bericht mit detaillierte Informationen über die gefundenen \glsplural{Schwachstelle} und die dazu verwendete Methode, um sie zu finden. Dieses Bericht wird so geschrieben, damit auch solche, die nicht aus dem Sicherheitsbereich hingehören verstehen können. 
+Je nachdem wie lange das Projekt läuft, können wir mehr oder weniger zeitintensive Tests durchführen. Am Ende des Projekts präsentieren wir dem Beauftragten in einem Meeting unser Ergebnis und liefern wir ein Bericht mit detaillierte Informationen über die gefundenen \glsplural{Schwachstelle} und die dazu verwendete Methode, um sie zu finden. Dieses Bericht wird so geschrieben, damit non-native Nutzer es verstehen können. 
 
 In den ersten Abschnitten erklären wir mit weniger technischen Begriffe, wie was für Tests durchgeführt wurden. In den folgenden Kapitel erklären wir mit mehr Einzelheiten und technische Details, wie wir zu unserem Ergebnis kamen. Anschließend geben wir Vorschläge für die Verbesserung der Sicherheit der Webanwendung und am Ende geben wir mithilfe von \gls{CVSS} oder von den Kunden ausgewählten Metrik eine allgemeine Bewertung.
