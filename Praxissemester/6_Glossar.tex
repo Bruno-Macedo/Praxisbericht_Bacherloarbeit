@@ -161,7 +161,13 @@
 
 \newglossaryentry{javascript} {
     name={Javascript},
-    description={ist ein Programmiersprache, die in Webanwendungen verwendet wird, um komplexe Strukturen wie Animationen, Bilder, Tun und Interaktionen zu implementieren. \citep{javascriptdefinition}}   
+    description={ist ein Programmiersprache, die in Webanwendungen verwendet wird, um komplexe Strukturen wie Animationen, Bilder, Tun und Interaktionen zu implementieren \citep{javascriptdefinition}}   
+}
+
+
+\newglossaryentry{Graphql} {
+    name={GraphQL},
+    description={eine von Facebook entwickelte Sprache für die Kommunikation zwischen Anwendungen, um die genau angefragte Information zu bekommen \citep{GraphQL}}   
 }
 
 
@@ -223,6 +229,20 @@
     first={Proof of Concept (PoF)\glsadd{pof2}},
     see=[Glossary:]{\gls{pof2}}, 
     description=\glslink{pof2}{Proof of Concept}
+}
+
+%=====
+\newglossaryentry{http2}{
+    name=\glslink{http}{Hypertext Transfer Protocol (\gls{http})},
+    description={ein in 1989 entwickelter Model für die Übertragung von Dateien in dem Internet. Die neue Version, HTTP/2, sollte mehr Sicherheit und Leistung mit wenigen Datennutzung anbieten \citep{http_protocol}}
+}
+
+\newglossaryentry{http}{
+    type=\acronymtype,
+    name=HTTP,
+    first={Hypertext Transfer Protocol (HTTP)\glsadd{http2}},
+    see=[Glossary:]{\gls{http2}}, 
+    description=\glslink{http2}{Hypertext Transfer Protocol}
 }
 
 % \newglossaryentry{Schwachstelle} {

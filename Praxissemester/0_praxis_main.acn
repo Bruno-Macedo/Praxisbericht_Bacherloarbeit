@@ -8,6 +8,7 @@
 \glossaryentry{DVWA?\glossentry{dvwa}|glsseeformat[Glossary:]{"\gls {dvwa2}}}{Z}
 \glossaryentry{DVWA?\glossentry{xss}|glsseeformat[Glossary:]{"\gls {xss2}}}{Z}
 \glossaryentry{PoF?\glossentry{pof}|glsseeformat[Glossary:]{"\gls {pof2}}}{Z}
+\glossaryentry{HTTP?\glossentry{http}|glsseeformat[Glossary:]{"\gls {http2}}}{Z}
 \glossaryentry{CIA?\glossentry{CIA}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{CIA?\glossentry{CIA}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{CVSS?\glossentry{CVSS}|setentrycounter[]{page}"\glsnumberformat}{3}
@@ -22,6 +23,8 @@
 \glossaryentry{ROE?\glossentry{ROE}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{DVWA?\glossentry{dvwa}|setentrycounter[]{page}"\glsnumberformat}{4}
 \glossaryentry{DVWA?\glossentry{dvwa}|setentrycounter[]{page}"\glsnumberformat}{4}
+\glossaryentry{HTTP?\glossentry{http}|setentrycounter[]{page}"\glsnumberformat}{4}
+\glossaryentry{HTTP?\glossentry{http}|setentrycounter[]{page}"\glsnumberformat}{4}
 \glossaryentry{PoF?\glossentry{pof}|setentrycounter[]{page}"\glsnumberformat}{4}
 \glossaryentry{PoF?\glossentry{pof}|setentrycounter[]{page}"\glsnumberformat}{4}
 \glossaryentry{DVWA?\glossentry{xss}|setentrycounter[]{page}"\glsnumberformat}{4}
@@ -38,6 +41,7 @@
 \glossaryentry{OSINT?\glossentry{OSINT}|setentrycounter[]{page}"\glsnumberformat}{11}
 \glossaryentry{OWASP"\textregistered ?\glossentry{OWASP}|setentrycounter[]{page}"\glsnumberformat}{12}
 \glossaryentry{OWASP"\textregistered ?\glossentry{OWASP}|setentrycounter[]{page}"\glsnumberformat}{12}
+\glossaryentry{HTTP?\glossentry{http}|setentrycounter[]{page}"\glsnumberformat}{14}
 \glossaryentry{DVWA?\glossentry{dvwa}|setentrycounter[]{page}"\glsnumberformat}{15}
 \glossaryentry{DVWA?\glossentry{dvwa}|setentrycounter[]{page}"\glsnumberformat}{16}
 \glossaryentry{CIA?\glossentry{CIA}|setentrycounter[]{page}"\glsnumberformat}{18}
