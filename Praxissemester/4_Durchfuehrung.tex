@@ -69,13 +69,13 @@ Jedes Projekt besitzt innerhalb von Wallsec einen festgelegten Aufbau. Dieser ka
     \end{tabularx}
 \end{table}
 
-\section{Ausführliche Beschreibung eines Penetration Testing innerhalb des Praxissemesters}
+\subsection{Ausführliche Beschreibung eines Penetration Testing innerhalb des Praxissemesters}
 
 Vor der Durchführung jedes Tests sind Wallsec und ihre Mitarbeiter dazu verpflichtet, eine Vertraulichkeitserklärung zu unterschreiben. Keine Informationen weder über die Firma noch über die verwendeten Methoden dürfen in irgendeiner Form veröffentlicht werden. Aus diesem Grund werden die hier demonstrierten Methoden und Tests in der Test- und Lernumgebung \glsfirst{dvwa} gezeigt. In den realen Tests verwenden wir ähnliche Methoden, manchmal mit mehr oder weniger Details, um die Sicherheit der Anwendungen zu überprüfen. 
 
 Da dieser Bericht eingeschränkten Platz hat und dieses Thema zudem sehr umfangreich ist, demonstrieren wir in den nächsten zwei Unterkapiteln einige Methoden, die wir verwenden, um die Zielanwendung in ihrer Struktur zu kennen und auszunutzen.
 
-\subsection{Sammlung von Informationen von dem Zielsystem}
+\subsubsection{Sammlung von Informationen von dem Zielsystem}
 
 Obwohl jede Webanwendungen ihre eigenen Eingenschaften und Ziele haben, besitzen fast alle eine ähnliche Struktur und Aufbau. Beim jedem Test fangen wir damit an, diese gemeinsame Struktur zu erkennen, indem wir nach öffentlichen Informationen suchen. Viele kritische Informationen, wie Username, Passwörter, Versionen, Systemen verbundenen IP-Adressen, lassen sich nach einer Online-Suche finden. Auch mit eingebauten Tools eines Betriebssystems können wir auf solche Informationen zugreifen. Dieses Verfahren nennen wir Banner Grabbing. Das folgende Bild zeigt ein Beispiel von einer einfachen Durchführung von Banner Grabbing:
 
@@ -110,7 +110,7 @@ Das nächste Bild zeigt das Ergebnis der Durchführung von \gls{nmap} gegen das 
 
 Aus diesem Scan erfahren wir welches Betriebssystem und welche Version die Webanwendung benutzt. Auch wenn solche Versionen gegen Angriffe geschützt sind, ist es unsere Aufgabe den Kunden zu informieren, dass sensitive Informationen für alle sichtbar sind. Ein bösartiger Nutzer könnte diese Informationen nutzen, um eine \glsplural{Schwachstelle} für diese Anwendungen zu finden und dann auszunutzen.
 
-\subsection{Ausnutzung der Zielanwendung}
+\subsubsection{Ausnutzung der Zielanwendung}
 
 Nachdem die vorherigen Scans durchgeführt wurden und öffentliche Serverseite Informationen gesammelt wurden, fangen wir mit den Tests auf der Webanwendung an. In diesem Fall ist es unser Ziel zu wissen, welche versteckten Daten oder unerlaubten Aktionen ein Angreifer durchführen kann, um die \gls{CIA} der Anwendung zu verletzen. Für die folgenden Tests benutzen wir unter anderen auch das Tool \gls{burp}.
 
@@ -129,7 +129,7 @@ Das Bild \ref{fig:xssnormal} zeigt den ersten Test. Aus dieser Aufnahme der Anfr
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{/home/bruno/git/Praxisbericht_Bacherloarbeit/Praxissemester/assets/xss.png}
-    \caption{Einführung von bösartigen Code und Beobachtung der Reaktion der Anwendung.}
+    \caption{Einführung von bösartigem Code und Beobachtung der Reaktion der Anwendung.}
     \label{fig:xssexecuted}
     \centering
 \end{figure}
@@ -137,8 +137,8 @@ Das Bild \ref{fig:xssnormal} zeigt den ersten Test. Aus dieser Aufnahme der Anfr
 Für diesen Test haben wir den Code \textit{<img src=0 onerror='alert(``XXS'')'\textbackslash>} hinzugefügt. Das Ziel dieses Codes ist ein nicht existierendes Bild hinzuzufügen, um einen absichtlichen Fehler zu provozieren. Dieser Fehler zeigt ein kleines Fenster in der Anwendung mit dem Text ```XSS'''. Eine geschützte Anwendung würde entweder den Code und ihren Zeichen ``< >'' ignorieren oder diese zu anderen übersetzen. Es kann auch sein, dass die Anwendung dem Nutzer sagt, dass die eingegebenen Zeichen nicht erlaubt nicht. Aus dem Bild sehen wir aber, dass die Anwendung alle Zeichen akzeptiert und sogar erlaubt, dass der Code ausgeführt wird. Aus dieser Situation hätten wir einen \glsfirst{pof}, dass die Anwendung gegen diese Art von Angriff anfällig ist.
 
 
-\subsection{Kundebericht}
+\subsubsection{Kundebericht}
 
 Je nachdem wie lange das Projekt läuft, können wir mehr oder weniger zeitintensive Tests durchführen. Am Ende des Projekts präsentieren wir dem Beauftragten in einem Meeting unser Ergebnis und liefern ein Bericht mit detaillierten Informationen über die gefundenen \glsplural{Schwachstelle} und die dazu verwendeten Methoden, um sie zu finden. Dieser Bericht wird so geschrieben, damit non-native Nutzer es verstehen können. 
 
-In den ersten Abschnitten erklären wir mit weniger technischen Begriffen, wie und was für Tests durchgeführt wurden. In den folgenden Kapitel erklären wir mit mehr Einzelheiten und technischen Details, wie wir zu unserem Ergebnis kamen. Anschließend geben wir Vorschläge für die Verbesserung der Sicherheit der Webanwendung und am Ende geben wir mithilfe von \gls{CVSS} oder von den Kunden ausgewählten Metrik eine allgemeine Bewertung.
+In den ersten Abschnitten erklären wir mit wenigen technischen Begriffen, wie und was für Tests durchgeführt wurden. In den folgenden Kapiteln erklären wir mit mehr Einzelheiten und technischen Details, wie wir zu unserem Ergebnis kamen. Anschließend geben wir Vorschläge für die Verbesserung der Sicherheit der Webanwendung und am Ende geben wir mithilfe von \gls{CVSS} oder von den Kunden ausgewählten Metrik eine allgemeine Bewertung.
