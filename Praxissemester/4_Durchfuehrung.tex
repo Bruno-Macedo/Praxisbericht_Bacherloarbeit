@@ -12,7 +12,7 @@ Bei WALLSEC hat jedes Projekt  einen festgelegten Aufbau. Dieser kann in den fol
     \item Abschlussmeeting mit dem Auftraggebern, um die \glsplural{Schwachstelle} und deren Ausnutzung zu demonstrieren
 \end{enumerate} 
 
-\section{Wöchentliche Zusammenfassung meines Praxissemesters}
+\subsection{Wöchentliche Zusammenfassung meines Praxissemesters}
 
 \begin{table}[H]
     \setstretch{1.0}
@@ -58,7 +58,7 @@ Bei WALLSEC hat jedes Projekt  einen festgelegten Aufbau. Dieser kann in den fol
 
     \hline
 
-    15      &  Weiterarbeit an das Projekt mit \gls{TheHive} und \gls{Cortex}, indem verschiedene Skripte in Python geschrieben wurden, um Kommunikation zwischen \gls{TheHive} und \gls{Cortex} und anderen Anwendungen aufzubauen. Diese Skripte sollten auch Daten zu den Anwendungen importieren und exportieren.\\
+    15      &  Weiterarbeit an das Projekt mit \gls{TheHive} und \gls{Cortex}, indem verschiedene \glsplural{Skript} in \gls{python} geschrieben wurden, um Kommunikation zwischen \gls{TheHive} und \gls{Cortex} und anderen Anwendungen aufzubauen. Diese \glsplural{Skript} sollten auch Daten zu den Anwendungen importieren und exportieren.\\
 
 %    \hline
 
@@ -112,9 +112,9 @@ Aus diesem Scan erfahren wir welches Betriebssystem und welche Version die Weban
 
 \subsubsection{Ausnutzung der Zielanwendung}
 
-Nachdem die vorherigen Scans durchgeführt wurden und öffentliche Serverseite Informationen gesammelt wurden, fangen wir mit den Tests auf der Webanwendung an. In diesem Fall ist es unser Ziel zu wissen, welche versteckten Daten oder unerlaubten Aktionen ein Angreifer durchführen kann, um die \gls{CIA} der Anwendung zu verletzen. Für die folgenden Tests benutzen wir unter anderen auch das Tool \gls{burp}.
+Nachdem die vorherigen Scans durchgeführt und öffentliche Serverseite-Informationen gesammelt wurden, fangen wir mit den Tests auf der Webanwendung an. In diesem Fall ist es unser Ziel zu wissen, welche versteckten Daten oder unerlaubten Aktionen ein Angreifer durchführen kann, um die \gls{CIA} der Anwendung zu verletzen. Für die folgenden Tests benutzen wir unter anderem auch das Tool \gls{burp}.
 
-Unser erster Test soll überprüfen, ob es möglich ist, in ein Eingabefeld Daten einzutragen und das normale Verhalten der Anwendung zu ändern. Wir wollen eigenen Code hinzuführen und in dem Falle, dass es uns gelingt, das zu tun, können wir dann weiteren Code hinzufügen, um Daten von Nutzer zu stehlen oder das normale Verhalten der Anwendung beschädigen. Wir prüfen hier, ob die Anwendung gegen \glsfirst{xss} anfällig ist. Um diesen Test durchzuführen, fügen wir erwartete Daten hinzu, um das Verhalten der Anwendung zu beobachten. Nachdem wir das normale Verhalten erkannt haben, versuchen wir eigenen Code hinzufügen und beobachten, ob wir die Anwendung ausnutzen können. 
+Unser erster Test soll überprüfen, ob es möglich ist, in ein Eingabefeld Daten einzutragen und das normale Verhalten der Anwendung zu ändern. Wir versuchen eigenen Code hinzuzufügen und wenn uns das gelingt, fügen wir weiteren Code hinzu, um Daten von Nutzer zu stehlen oder das normale Verhalten der Anwendung zubeschädigen. Wir prüfen hier, ob die Anwendung gegen \glsfirst{xss} anfällig ist. Um diesen Test durchzuführen, fügen wir erwartete Daten hinzu, um das Verhalten der Anwendung zu beobachten. Nachdem wir das normale Verhalten erkannt haben, versuchen wir eigenen Code hinzufügen und beobachten, ob wir die Anwendung ausnutzen können. 
 
 \begin{figure}[H]
     \centering
@@ -124,21 +124,21 @@ Unser erster Test soll überprüfen, ob es möglich ist, in ein Eingabefeld Date
     \centering
 \end{figure}
 
-Das Bild \ref{fig:xssnormal} zeigt den ersten Test. Aus dieser Aufnahme der Anfrage können wir sehen, dass die Nutzereingabe direkt in dem Browser stattfindet. Wir sehen in der Antwort Informationen über den Aufbau der Anwendung und wie sie auf unsere Anfrage reagiert. Auf dem nächsten Bild versuchten wir bösartigen Code hinzuzufügen, um den normalen Ablauf der Anwendung zu verletzten. Dafür verwenden wir \gls{javascript} Code. Wir können unseren Code direkt in die Anwendung, in einen selbst gebastelte Request oder in \gls{burp} eingeben:
+Abbildung \ref{fig:xssnormal} zeigt den ersten Test. Aus dieser Aufnahme der Anfrage können wir sehen, dass die Nutzereingabe direkt in dem Browser stattfindet. In der Antwort sehen wir Informationen über den Aufbau der Anwendung und wie sie auf unsere Anfrage reagiert. Auf dem nächsten Bild versuchten wir bösartigen Code hinzuzufügen, um den normalen Ablauf der Anwendung zu verletzen. Dafür verwendeten wir \gls{javascript} Code. Wir konnten unseren Code direkt in die Anwendung, in einen selbst gebastelte Request oder in \gls{burp} eingeben:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{/home/bruno/git/Praxisbericht_Bacherloarbeit/Praxissemester/assets/xss.png}
-    \caption{Einführung von bösartigem Code und Beobachtung der Reaktion der Anwendung.}
+    \caption{Einführung vom bösartigem Code und Beobachtung der Reaktion der Anwendung.}
     \label{fig:xssexecuted}
     \centering
 \end{figure}
 
-Für diesen Test haben wir den Code \textit{<img src=0 onerror='alert(``XXS'')'\textbackslash>} hinzugefügt. Das Ziel dieses Codes ist ein nicht existierendes Bild hinzuzufügen, um einen absichtlichen Fehler zu provozieren. Dieser Fehler zeigt ein kleines Fenster in der Anwendung mit dem Text ```XSS'''. Eine geschützte Anwendung würde entweder den Code und ihren Zeichen ``< >'' ignorieren oder diese zu anderen übersetzen. Es kann auch sein, dass die Anwendung dem Nutzer sagt, dass die eingegebenen Zeichen nicht erlaubt nicht. Aus dem Bild sehen wir aber, dass die Anwendung alle Zeichen akzeptiert und sogar erlaubt, dass der Code ausgeführt wird. Aus dieser Situation hätten wir einen \glsfirst{pof}, dass die Anwendung gegen diese Art von Angriff anfällig ist.
+Für diesen Test haben wir den Code \textit{<img src=0 onerror='alert(``XXS'')'\textbackslash>} hinzugefügt. Das Ziel dieses Codes ist ein nicht existierendes Bild hinzuzufügen, um einen absichtlichen Fehler zu provozieren. Dieser Fehler zeigt ein kleines Fenster in der Anwendung mit dem Text ```XSS'''. Eine geschützte Anwendung würde entweder den Code und ihren Zeichen ``< >'' ignorieren oder diese zu anderen übersetzen. Es kann auch sein, dass die Anwendung dem Nutzer zeigt, dass die eingegebenen Zeichen nicht erlaubt nicht. Aus dem Bild sehen wir aber, dass die Anwendung alle Zeichen akzeptiert und sogar erlaubt, dass der Code ausgeführt wird. Aus dieser Situation hätten wir einen \glsfirst{pof}, dass die Anwendung gegen diese Art von Angriff anfällig ist.
 
 
 \subsubsection{Kundebericht}
 
-Je nachdem wie lange das Projekt läuft, können wir mehr oder weniger zeitintensive Tests durchführen. Am Ende des Projekts präsentieren wir dem Beauftragten in einem Meeting unser Ergebnis und liefern ein Bericht mit detaillierten Informationen über die gefundenen \glsplural{Schwachstelle} und die dazu verwendeten Methoden, um sie zu finden. Dieser Bericht wird so geschrieben, damit non-native Nutzer es verstehen können. 
+Je nachdem wie lange das Projekt läuft, können wir mehr oder weniger zeitintensive Tests durchführen. Am Ende des Projekts präsentieren wir dem Auftraggeber in einem Meeting unser Ergebnis und liefern einen Bericht mit detaillierten Informationen über die gefundenen \glsplural{Schwachstelle} und die dazu verwendeten Methoden. Dieses Bericht wird so geschrieben, dass die Nichtfachleute es verstehen können. 
 
-In den ersten Abschnitten erklären wir mit wenigen technischen Begriffen, wie und was für Tests durchgeführt wurden. In den folgenden Kapiteln erklären wir mit mehr Einzelheiten und technischen Details, wie wir zu unserem Ergebnis kamen. Anschließend geben wir Vorschläge für die Verbesserung der Sicherheit der Webanwendung und am Ende geben wir mithilfe von \gls{CVSS} oder von den Kunden ausgewählten Metrik eine allgemeine Bewertung.
+In den ersten Abschnitten erklären wir mit wenigen technischen Begriffen, welche Tests durchgeführt wurden. In den folgenden Kapiteln erklären wir mit mehr Einzelheiten und technischen Details, wie wir zu unserem Ergebnis kamen. Anschließend geben wir Vorschläge für die Verbesserung der Sicherheit der Webanwendung und zum Schluss geben wir mithilfe von \gls{CVSS} oder einer anderen von dem Kunden ausgewählter Metrik eine allgemeine Bewertung.
