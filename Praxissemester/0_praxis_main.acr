@@ -11,7 +11,8 @@
 		\glsseeformat[Glossary:]{\gls {CVSS2}}{Z}}}\glsgroupskip
 \glsgroupheading{D}\relax \glsresetentrylist %
 \glossentry{dvwa}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{12\delimN 13}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{12}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{14}\delimN 
 		\glsseeformat[Glossary:]{\gls {dvwa2}}{Z}}}\glsgroupskip
 \glsgroupheading{F}\relax \glsresetentrylist %
 \glossentry{FPO}{\glossaryentrynumbers{\relax 
@@ -42,6 +43,6 @@
 		\glsseeformat[Glossary:]{\gls {ROE2}}{Z}}}\glsgroupskip
 \glsgroupheading{X}\relax \glsresetentrylist %
 \glossentry{xss}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{15}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{16}\delimN 
 		\glsseeformat[Glossary:]{\gls {xss2}}{Z}}}%
 \end{theglossary}\glossarypostamble
