@@ -1,0 +1,13 @@
+\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
+\begin{theglossary}\glossaryheader
+\glsgroupheading{C}\relax \glsresetentrylist %
+\glossentry{CIA}{\glossaryentrynumbers{\relax 
+		\glsseeformat[Glossary:]{\gls {CIA2}}{Z}}}\glsgroupskip
+\glsgroupheading{F}\relax \glsresetentrylist %
+\glossentry{FPO}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{4}\delimN 
+		\glsseeformat[Glossary:]{\gls {FPO}}{Z}}}\glsgroupskip
+\glsgroupheading{N}\relax \glsresetentrylist %
+\glossentry{NIST}{\glossaryentrynumbers{\relax 
+		\glsseeformat[Glossary:]{\gls {NIST2}}{Z}}}%
+\end{theglossary}\glossarypostamble
