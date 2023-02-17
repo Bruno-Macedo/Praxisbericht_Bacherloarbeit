@@ -16,12 +16,12 @@
 \newglossaryentry{Cyberangriff} {
     name={Cyberangriff},
     plural={Cyberangriffe},
-    description={Angriffe, die über den Cyberspace stattfinden. Solche Angriffe zielen auf Unternehmen und deren Infrastrukturen, um sie zu zerstören, lähmen, kontrollieren oder die Integrität deren Daten zu stehlen oder zu dominieren \citep{NIST_Definitionen}}
+    description={Angriffe, die über den Cyberspace stattfinden. Solche Angriffe zielen auf Unternehmen und deren Infrastrukturen, um sie zu zerstören, lähmen, kontrollieren oder die Integrität deren Daten zu stehlen oder zu dominieren \citep{NIST_CyberAttack}}
 }
 
 \newglossaryentry{Cybersicherheit} {
     name={Cybersicherheit},
-    description={Diese Domäne umfasst Kenntnisse und Methoden für den Schutz, Prävention, Wiederherstellung von elektronischen Kommunikationsmittel und deren Inhalt. Es konzentriert sich auf ihrer Verfügbarkeit, Integrität, Authentizität, Vertraulichkeit und Verbindlichkeit \citep{NIST_Definitionen}}
+    description={Diese Domäne umfasst Kenntnisse und Methoden für den Schutz, Prävention, Wiederherstellung von elektronischen Kommunikationsmittel und deren Inhalt. Es konzentriert sich auf ihrer Verfügbarkeit, Integrität, Authentizität, Vertraulichkeit und Verbindlichkeit \citep{NIST_CyberSecurity}}
 }
 
 \newglossaryentry{FPO}{
@@ -32,15 +32,10 @@
     description=\glslink{FPO}{Fachspezifische Prüfungsordnung}
 }
 
-\newglossaryentry{hyperscale} {
-    name={Hyperscale},
-    description={bezieht sich auf die automatische Skalierbarkeit von Architekturen je nach Bedarf \citep{Wikipedia_Hyperscale}}
-}
-
 %=====
 \newglossaryentry{NIST2}{
     name=\glslink{NIST}{National Institute of Standards and Technology (\gls{NIST})},
-    description={Eine US-Behörden, die für die Reglungen, Vereinheitlichung und Weiterentwicklung im Bereich Informationstechnologie zuständig \citep{Hochschule_Worms_FPO} }
+    description={US-Behörden, die für die Reglungen, Vereinheitlichung und Weiterentwicklung im Bereich Informationstechnologie zuständig ist \citep{Hochschule_Worms_FPO} }
 }
 
 \newglossaryentry{NIST}{
@@ -52,10 +47,25 @@
 }
 % =====
 
+\newglossaryentry{Open Source} {
+    name={Open Source},
+    description={beschreibt Code, die jeder zugreifen, modifiziren und verbreiten können, ohne dafür Lizenzen bezahlen zu müssen \citep{OpenSource_Def}}
+}
+
+
 \newglossaryentry{port} {
     name={Port},
     plural={Ports},
     description={ist eine Zahl, die ein Dienst oder eine Verbindung identifiziert. Es geht hier um eine logische Adressierung zur Identifizierung eines oder mehrere Prozessen \citep{Tanembaum_CN}}
+}
+
+\newglossaryentry{SIEM}{
+    type=\acronymtype,
+    name=SIEM,
+    first={Security Information and Event Management (SIEM)\glsadd{SIEM}},
+    plural={SIEMs}
+    see=[Glossary:]{\gls{SIEM}}, 
+    description=\glslink{SIEM}{Security Information and Event Management}
 }
 
 \newglossaryentry{Schwachstelle} {

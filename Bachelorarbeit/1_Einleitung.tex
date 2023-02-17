@@ -1,16 +1,18 @@
 \section{Einleitung}
 
-Cloud-Computing entwickelte sich in den letzten Jahren rasch. Die Idee von einer Auslagerung von Rechenzentren zog viele Firmen an, ihre gesamte Struktur umzubauen \citep{Alalawi_CCR}. 
+Der Netzwerkverkehr wuchs in den letzten 20 Jahre mehr als 100\% \citep{Roser_I}. Das Internet wird heutzutage für fast alle unsere alltägliche Tätigkeit verwendet:  Sozialenetzwerke, Video und Audio-Streaming, Einkauf, behördliche Angelegenheit und viele andere. So viel Verkehr generiert eine unermessliche Menge von Daten, die alle mögliche Inhalte beinhalten, von unschuldigen Anfragen nach dem eigenen Kontostand bis zu der Ausführung von bösewichten Anfragen, um Systemen lahmzumachen. Um das erste von der zweiten zu Unterscheiden verwenden vielen Firmen die sogennanten \glsfirst*{SIEM}.
 
-Eine Cloud-Umgebung bietet Flexibilität und Skalierbarkeit an, ohne dass mehr Investitionen in Hardware-Komponenten oder in physikalische Elementen benötigt wird \citep{Obrutsky_CSAD}. Die Firmen können schnell entscheiden und implementieren, ob sie mehr oder weniger Ressource einzusetzen brauchen. Zusätzlich ist die gesamte Verwaltung des Rechenzentrums unkomplizierter und kostengünstiger, da die sie sich auf ihre eigenen Produkte konzentrieren können, während der Cloud-Anbieter dazu pflichtig ist, die Struktur verfügbar und sicher laufen zu lassen.
+Die \glsfirst{NIST} definiert \acrshort{SIEM} als Anwendung, die dafür zustäntig ist, Sicherheitsdaten von anderen Systemen zu sammeln und diese verständlich und lesbar als Information zu liefern. Mit diesem Ergebnis können Aktionen und durchgeführt werden können \citep{NIST_SIEM}. Die Bewertung dieser Daten spielt eine wesentliche Rolle bei solchen Anwendungen, da es entscheidend ist, ob es um eine oder viele normale Anfrage oder um einen \gls{Cyberangriff} geht.
 
-Besonders kleine und mittlere Unternehmen können von der Umwandeln zum Cloud-Struktur profitieren \citep{Khalid_CCAI}. Unter den vielen Vorteilen spielt die niedrigere Investitionen im Vergleich zu physikalischen Struktur eine wichtige Rolle, da die Firmen sich auf ihre Endprodukte fokussieren können \citep{Donnery_CCSB}.
+In diesem Projekt wollen wir über eine existierende \gls{Open Source} \gls{SIEM}-Anwendung recherchieren und ihre Extrahierung und Bewertung von Daten analysieren, sodass wir schließlich eine einige Lösung für die Identifizierung von spezifische \glsplural{Cyberangriff} entwerfen können.
 
-Von einer Seite gehört die Skalierbarkeit von Cloud-Computing zu einem des wichtigsten Vorteil dieses Struktur, von anderer Seite kann die Verwaltung von zuwachsenden viele Ressource unübersichtlich sein. Mit dieser Arbeit wollen wir die Verwaltung von wachsenden Cloud-Computer in einer Azure Umgebung verstehen und verbessern, so dass wir einen optimierten Vorschlag für die Implementierung anbieten können. Damit wir zu unserem Ziel kommen, wird sich diese Arbeit mit folgenden Themen auseinandersetzen:
+Diese Arbeit wird in folgende Teile geteilt:
 
-\begin{itemize}
-   \item Definition von Cloud-Computing
-   \item Arten von existierenden Cloud-Umgebung
-   \item Verwaltung von Cloud-Infrastruktur
-   \item Sicherheitsstandards in dem Cloud-Computing Umgebung
+\begin{itemize}[noitemsep]
+   \item Beschreibung von existierenden \glspl{SIEM} und Vergleich zwischen privaten Anbieter und eine \gls{Open Source} Lösung
+   \item Analyse der Funktionalität einer \gls{Open Source} \gls{SIEM}
+   \item Definition von zwei spezifische \glsplural{Cyberangriff}
+   \item Empfang und Bearbeitung der Daten von den vorher beschriebenen Angriffe
+   \item Entwicklung einer Regel für die Erkennung eines \gls{Cyberangriff}
+   \item Analyse und Bewertung der Arbeit
 \end{itemize}

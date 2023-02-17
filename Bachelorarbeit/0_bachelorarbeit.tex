@@ -19,23 +19,23 @@
 \begin{document}
   \include{0.1_titelblat}
   \tableofcontents
-  %\newpage
-  %\addcontentsline{toc}{section}{\listfigurename}
-  %\listoffigures
+  \newpage
+  \phantomsection
+  \addcontentsline{toc}{section}{Abstract}
+  \include{0.3_Abstract}
+  \addcontentsline{toc}{section}{\listfigurename}
+  \listoffigures
   \clearpage
   \printglossary[title=Glossar,toctitle=Glossar]
   \clearpage
   \newpage
   \clearpage
-  \printglossary[type=acronym,title=Abkürzungen,toctitle=Abkürzungen]
+  \begin{singlespacing}
+    \printglossary[type=acronym,title=Abkürzungsverzeichnis,toctitle=Abkürzungsverzeichnis, nonumberlist, nogroupskip]
+  \end{singlespacing}
   \clearpage
   \include{1_Einleitung}
   \include{2_Problemstellung}
-  \include{3_Zielsetzung}
-  \include{4_Vorgehensweise}
-  \include{5_Cloud_Computing}
-  \include{6_Provisionierung_und_Deployment}
-  \include{7_Umgebung_dieser_Arbeit}
   \include{8_Fazit}
   \nocite{*}
   \begingroup

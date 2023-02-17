@@ -5,9 +5,13 @@
 		\glsseeformat[Glossary:]{\gls {CIA2}}{Z}}}\glsgroupskip
 \glsgroupheading{F}\relax \glsresetentrylist %
 \glossentry{FPO}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{4}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{6}\delimN 
 		\glsseeformat[Glossary:]{\gls {FPO}}{Z}}}\glsgroupskip
 \glsgroupheading{N}\relax \glsresetentrylist %
 \glossentry{NIST}{\glossaryentrynumbers{\relax 
-		\glsseeformat[Glossary:]{\gls {NIST2}}{Z}}}%
+		\setentrycounter[]{page}\glsnumberformat{7}\delimN 
+		\glsseeformat[Glossary:]{\gls {NIST2}}{Z}}}\glsgroupskip
+\glsgroupheading{S}\relax \glsresetentrylist %
+\glossentry{SIEM}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{6\delimR 8}}}%
 \end{theglossary}\glossarypostamble
