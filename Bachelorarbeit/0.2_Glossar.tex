@@ -1,3 +1,11 @@
+
+\newglossaryentry{Cyberangriff} {
+    name={Cyberangriff},
+    plural={Cyberangriffe},
+    description={Angriffe, die über den Cyberspace stattfinden. Solche Angriffe zielen auf Unternehmen und deren Infrastrukturen, um sie zu zerstören, lähmen, kontrollieren oder die Integrität deren Daten zu stehlen oder zu dominieren \citep{NIST_CyberAttack}}
+}
+
+
 % here goes to the description
 \newglossaryentry{CIA2}{
     name=\glslink{CIA}{Confidentiality, Integrity and Availability (\gls{CIA})},
@@ -13,11 +21,6 @@
 }
 % =====
 
-\newglossaryentry{Cyberangriff} {
-    name={Cyberangriff},
-    plural={Cyberangriffe},
-    description={Angriffe, die über den Cyberspace stattfinden. Solche Angriffe zielen auf Unternehmen und deren Infrastrukturen, um sie zu zerstören, lähmen, kontrollieren oder die Integrität deren Daten zu stehlen oder zu dominieren \citep{NIST_CyberAttack}}
-}
 
 \newglossaryentry{Cybersicherheit} {
     name={Cybersicherheit},
@@ -32,12 +35,27 @@
     description=\glslink{FPO}{Fachspezifische Prüfungsordnung}
 }
 
+% here goes to the description
+\newglossaryentry{KI2}{
+    name=\glslink{KI}{Künstliche Intelligenz (\gls{KI})},
+    description={Der Konzept, dass Maschine kognitive menschliche Fähigkeit entwickeln können, wie Verständnis, Entscheitungstreffen, Lernen, Problemlösung und \citep{Collins_KI}}
+}
+% here goes to the acronym
+\newglossaryentry{KI}{
+    type=\acronymtype,
+    name=KI,
+    first={Künstliche Intelligenz (KI)\glsadd{KI2}},
+    see=[Glossary:]{\gls{KI2}}, 
+    description=\glslink{KI2}{Künstliche Intelligenz}
+}
+% =====
+
+
 %=====
 \newglossaryentry{NIST2}{
     name=\glslink{NIST}{National Institute of Standards and Technology (\gls{NIST})},
     description={US-Behörden, die für die Reglungen, Vereinheitlichung und Weiterentwicklung im Bereich Informationstechnologie zuständig ist \citep{Hochschule_Worms_FPO} }
 }
-
 \newglossaryentry{NIST}{
     type=\acronymtype,
     name=NIST,
@@ -73,7 +91,6 @@
     plural={Schwachstellen},
     description={Schwäche eines Systems \citep{Wendzel_IS}}
 }
-
 
 \newglossaryentry{Verwundbarkeit} {
     name={Verwundbarkeit},
