@@ -16,3 +16,26 @@ Diese Arbeit wird in folgende Teile geteilt:
    \item Entwicklung einer Regel für die Erkennung eines \gls{Cyberangriff}
    \item Analyse und Bewertung der Arbeit
 \end{itemize}
+
+\subsection{Problemstellung}
+Während der Entwicklung dieser Arbeit wollen wir uns mit folgenden Fragen beschäftigen:
+
+\begin{itemize}
+   \item Welche Information-Muster muss von dem \gls{SIEM} extrahiert werden, um Angriff\_1 und Angriff\_2 zu erkennen?
+   \item Wie sollen aussagenkräftige Use-Cases / Regel sein, um Angriff\_2 und Angriff\_2 richtig zu erkennen zu erkennen?
+   \item Wie sollen Server-Logs aussehen, damit sie von \glsplural{SIEM} bearbeiten werden können.
+   \item Was bringt \glsfirst{KI} zu der Zukunft von \glspl{SIEM} ?
+\end{itemize}
+
+Note: Für Angriffe habe ich an DoS und Brute-Force (Password Spraying/Dictionary) gedacht.
+
+Note 2: Punkt 3 wäre eher theoretisch, um zu recherchieren, was es schon gibt und was schon darüber geschrieben wurde.
+
+\subsection{Vorgehensweise}
+Um diese obengenannten Ziele zu erreichen, verwenden wir folgenden Methode:
+
+\begin{itemize}[noitemsep]
+   \item Installation von virtuellen Maschinen zur Nutzung von der ausgewählten \gls{SIEM} und zur Generierung von Server-Logs
+   \item Nutzung von Container zur Installation von \gls{SIEM}
+\end{itemize}
+
