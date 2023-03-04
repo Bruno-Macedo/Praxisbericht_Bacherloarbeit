@@ -5,7 +5,6 @@
     description={Angriffe, die über den Cyberspace stattfinden. Solche Angriffe zielen auf Unternehmen und deren Infrastrukturen, um sie zu zerstören, lähmen, kontrollieren oder die Integrität deren Daten zu stehlen oder zu dominieren \citep{NIST_CyberAttack}}
 }
 
-
 % here goes to the description
 \newglossaryentry{CIA2}{
     name=\glslink{CIA}{Confidentiality, Integrity and Availability (\gls{CIA})},
@@ -24,6 +23,24 @@
 \newglossaryentry{Cybersicherheit} {
     name={Cybersicherheit},
     description={Diese Domäne umfasst Kenntnisse und Methoden für den Schutz, Prävention, Wiederherstellung von elektronischen Kommunikationsmittel und deren Inhalt. Es konzentriert sich auf ihrer Verfügbarkeit, Integrität, Authentizität, Vertraulichkeit und Verbindlichkeit \citep{NIST_CyberSecurity}}
+}
+
+\newglossaryentry{IDS}{
+    type=\acronymtype,
+    name=IDS,
+    first={Intrusion Detection System (IDS)\glsadd{IDS}},
+    plural={IDSs}
+    see=[Glossary:]{\gls{IDS}}, 
+    description=\glslink{IDS}{Intrusion Detection System }
+}
+
+\newglossaryentry{IPS}{
+    type=\acronymtype,
+    name=IPS,
+    first={Intrusion Prevention System (IPS)\glsadd{IPS}},
+    plural={IPSs}
+    see=[Glossary:]{\gls{IPS}}, 
+    description=\glslink{IPS}{Intrusion Prevention System }
 }
 
 \newglossaryentry{FPO}{
@@ -67,6 +84,34 @@
     description={beschreibt Code, die jeder zugreifen, modifiziren und verbreiten können, ohne dafür Lizenzen bezahlen zu müssen \citep{OpenSource_Def}}
 }
 
+%=====
+\newglossaryentry{PCIDSS2}{
+    name=\glslink{PCDISS}{Payment Card Industry Data Security Standard (\gls{PCDISS})},
+    description={Sicherheitstandards, die Unternehmen, die Kreditkarte akzeptieren, bearbeiten, speichern oder übertragen, anwenden müssen \citep{Compliance_PCI} }
+}
+\newglossaryentry{PCDISS}{
+    type=\acronymtype,
+    name=PCDI DSS,
+    first={Payment Card Industry Data Security Standard (PCDI DSS)\glsadd{PCIDSS2}},
+    see=[Glossary:]{\gls{PCIDSS2}}, 
+    description=\glslink{PCIDSS2}{Payment Card Industry Data Security Standard}
+}
+% =====
+
+%=====
+\newglossaryentry{HIPAA2}{
+    name=\glslink{HIPAA}{Health Insurance Portability and Accountability Act (\gls{HIPAA})},
+    description={US-Bundesgesetz über den Schutz von sensitiven personenbezogenen Gesundheitsdaten \citep{HHS_PCI} }
+}
+\newglossaryentry{HIPAA}{
+    type=\acronymtype,
+    name=HIPAA,
+    first={Health Insurance Portability and Accountability Act(HIPAA)\glsadd{HIPAA2}},
+    see=[Glossary:]{\gls{HIPAA2}}, 
+    description=\glslink{HIPAA2}{Health Insurance Portability and Accountability Act}
+}
+% =====
+
 \newglossaryentry{port} {
     name={Port},
     plural={Ports},
@@ -82,9 +127,18 @@
     type=\acronymtype,
     name=SIEM,
     first={Security Information and Event Management (SIEM)\glsadd{SIEM}},
-    plural={SIEMs}
+    plural={SIEMs},
     see=[Glossary:]{\gls{SIEM}}, 
     description=\glslink{SIEM}{Security Information and Event Management}
+}
+
+\newglossaryentry{SEM}{
+    type=\acronymtype,
+    name=SEM,
+    first={Security Event Management (SEM)\glsadd{SEM}},
+    plural={SEMs},
+    see=[Glossary:]{\gls{SEM}}, 
+    description=\glslink{SEM}{Security Event Management}
 }
 
 \newglossaryentry{SIM}{
@@ -96,19 +150,29 @@
     description=\glslink{SIM}{Security Information Management}
 }
 
-\newglossaryentry{SEM}{
-    type=\acronymtype,
-    name=SEM,
-    first={Security Event Management (SEM)\glsadd{SEM}},
-    plural={SEMs}
-    see=[Glossary:]{\gls{SEM}}, 
-    description=\glslink{SEM}{Security Event Management}
+%=====
+\newglossaryentry{SOC2}{
+    name=\glslink{SOC}{Security Operations Center (\gls{SOC})},
+    description={zentraliserter Bereich eines Unternehmens dafür zuständig, Sicherheitsvorfälle zu überwachen, zu identifizeren, zu bewerten und dazu zu reagieren  \citep{Vielberth_SOC} }
 }
+\newglossaryentry{SOC}{
+    type=\acronymtype,
+    name=SOC,
+    first={Security Operations Center  (SOC)\glsadd{SOC2}},
+    see=[Glossary:]{\gls{SOC2}}, 
+    description=\glslink{SOC2}{Security Operations Center}
+}
+% =====
 
 \newglossaryentry{Schwachstelle} {
     name={Schwachstelle},
     plural={Schwachstellen},
     description={Schwäche eines Systems \citep{Wendzel_IS}}
+}
+
+\newglossaryentry{IT-Sicherheitsgesetz 2.0} {
+    name={Zweites Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme (IT-Sicherheitsgesetz 2.0)},
+    description={im Jahr 2021 verabschiedetes Bundesgesetz zur Erhöhung von Sicherheit Informationstechnische Systemen besonders solchen von den kritischen Ifrastrukturen  \citep{Harmes_ITSG}}
 }
 
 \newglossaryentry{Verwundbarkeit} {
