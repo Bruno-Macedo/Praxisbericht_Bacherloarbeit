@@ -34,12 +34,12 @@ Die existierenden \glsplural{SIEM} Lösungen können in zwei Kategorie getrennt 
 
 \begin{itemize}[noitemsep]
    \item Prelude
-   \item AlienVault
+   \item AlienVault \glsfirst{OSSIM}
    \item ELK Stack
 \end{itemize}
 
 \subsubsection{Prelude}
-Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere freigegebene Tool Prelude zählt zu gehört zu einer europäischen \gls{Open Source} \gls{SIEM} Lösung. Laut dem Anbieter verfügt Prelude unter anderen folgenden Funktionalitäten \citep{Prelude_WhatSIEM}:
+Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere freigegebene Tool Prelude zählt zu gehört zu einer europäischen \gls{Open Source} \gls{SIEM} Lösung. Laut dem Anbieter verfügt Prelude unter anderen folgenden Funktionalitäten \citep{Prelude_SIEM}:
 
 \begin{itemize}[noitemsep]
    \item Informationszentralisierung
@@ -48,7 +48,29 @@ Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere freigegebene Tool Prelud
    \item Datennormalisierung
 \end{itemize}
 
-Die Anwendung besteht aus 4 Module: Warnmeldung, Archivierung, Analyse und Verwaltung. Das erste gehört zu der zentrallen Aufgabe dieser Lösung, es ist dafür zuständig, Daten zu empfangen, zu normalisieren, Zusammenhang zu machen und Meldungen zu generieren. Das zweite Modul, Archivierung, konzentriert sich auf die Speicherung und Verfügbarkeit der Daten. Zu der Analyse-Modul gehören statistische Aufgabe und Darstellung in verschiedenen Formaten. Das letzte Modul dient dazu, die Anwendung zu steuern, Nutzer zu erstellen dessen Rechts zu konfigurieren \citep{Prelude_SIEM}.
+Die Anwendung besteht aus verschiedenen unabhängige Modulen. Unter denen highlighten wir folgende: Warnmeldung, Archivierung, Analyse und Verwaltung. Das erste gehört zu der zentrallen Aufgabe dieser Lösung, es ist dafür zuständig, Daten zu empfangen, zu normalisieren, Zusammenhang zu machen und Meldungen zu generieren. Das zweite Modul, Archivierung, konzentriert sich auf die Speicherung und Verfügbarkeit der Daten. Zu der Analyse-Modul gehören statistische Aufgabe und Darstellung in verschiedenen Formaten. Das letzte Modul dient dazu, die Anwendung zu steuern, Nutzer zu erstellen dessen Rechts zu konfigurieren \citep{EC_Prelude}.
+
+Die wissenschaftliche Literatur über Prelude ist sehr eingeschränkt. Wenige Publikationen fokussieren sich auf die Entwicklung, Implementation und unternehmerische Anwendung dieses Tools. Eine Studie von 2021 versuchte dieses und zwei andere Tools (AlienVault und Cyberoam iView) anhand technischer und nutzerfreundliche Kriterien zu vergleichen. Unter diese Kriterien highlighten wir folgende \citep{Grammatikis_Prelude}:
+
+\begin{itemize}[noitemsep]
+   \item \textbf{technische Kriterien}
+   \begin{itemize}[noitemsep]
+      \item Real-time performance, 
+      \item Range and flexibility of reporting
+      \item Alert correlation
+   \end{itemize}
+
+   \item \textbf{nutzerfreundliche Kriterien}
+   \begin{itemize}[noitemsep]
+      \item Documentation comprehensiveness
+      \item Complexity of the installation process
+      \item Complexity of the system configuration
+   \end{itemize}
+\end{itemize}
+
+In den technische Kriterien lag Prelude an dritten Platz und in den nutzerfreundliche Kriterien bekam Prelude den ersten Platz. 
+
+Auch in den nicht wissenschaftlichen Publikationen existieren begrenzte Anzahl von Texten über Preludes. Die existierenden kommentieren ganz zusammenfassend über die ausreichende Dokumentation und heben hervor, dass es eher eine in Europa konzentrierte Lösung.
 
 \subsubsection{AlienVault OSSIM}
 AlienVault OSSIM ist eine im Jahr 2007 entwickelte \gls{Open Source} SIEM Lösung. Im Jahr 2018 wurde sie von der Firma AT\&T Communication gekauft \citep{CBN_AV}. In der Beschreibung des Anbieters steht, dass sie auch dabei untersützt, Daten zu sammeln, zu normalisieren und zu bewerten. Er behaupt auch, dass sein Tool in der Lage ist, Schwachstelle und Angriffe zu erkennen, Verhältnis zu beobachten und Datenzusammenhang durchzuführen \citep{ATT_AVO}.
@@ -57,33 +79,21 @@ Laut der Website Comparitech steht AlienVault in der 13ten Platz von den besten 
 
 Die Anwendung bietet konsitente Datenzusammenhang von Daten und vermeidet den Auftauch von \gls{falsch positiv}. AlienVault kommt auch mit vordefinierten Use-Cases, die dabei unterstützen gewöhnlichen Angriffsszenario zu erkennen. Die Installation, die Einstellung und die Integration mit anderen Tools ist auch benutzerfreundlich \citep{Gomes_AV}. Aus einer anderen wissenschaftlicher Quelle fanden wir heraus, dass es für viele  Quelle eine manuelle Normalisierung der Logdatein notwendig ist \cite{Nabil_AV}. Die Anwendunt hat aber einen zuverlässigen Berichtsmechanismus.
 
-
 \subsubsection{ELK Stack}
 cccccccccc
 
 \subsubsection{Zusammenfassender Vergleich}
 ddddddddd
 
-\subsection{Existierende SIEM Lösungen}
-eeeeeeeee
+\subsection{Auswahlkrietieren}
+Für diese haben entschieden wir uns für die XXXXX \gls{SIEM} Lösung aus folgenden Grunden:
 
-listen wir hier einige recherchierte Tools und präs
+\begin{itemize}[noitemsep]
+   \item eingeschränkte Ressource für die Entwicklung dieser Arbeit
+   \item bbbbbbbbbbbbbbb
+   \item ccccccccccccccc
+   \item ddddddddddddddd
+   \item eeeeeeeeeeeeeee
+\end{itemize}
 
-%https://community.microfocus.com/cyberres/b/sws-22/posts/sim-sem-and-siem-definitions-and-choosing-the-right-enterprise-solution
-
-
-
-
-
-- Architektur %https://www.spiceworks.com/it-security/vulnerability-management/articles/what-is-siem/
-
-- Anpassung %file:///C:/Users/bruno/Downloads/Security_Information_and_Event_Management_SIEM_Ana.pdf
-
-
-
-
-
-
-
-
-
+Demnächst fokussieren wir uns in der Installation, Konfiguration und Implementation von XXXXXX. Danach werden wir spezifische Logdateiein der Hochschule importieren, normalisieren und diese anhand Angriff1 und Angriff2 beobachten.
