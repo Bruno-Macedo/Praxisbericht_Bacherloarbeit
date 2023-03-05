@@ -4,9 +4,9 @@
 
 In dem Universum von \glsfirst{SOC} mischen sich verschiedenen Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutung und Verantwortung haben. \glsfirst{IDS}, \glsfirst{IPS} und \glsfirst{SIEM} werden von \textit{nonnative users} und sogar von Spezialisten oft verwechselt, da ihre Aufgabe mehr Zusammenhang als Unterschied haben. Um Umfang dieser Arbeit wegen der zeitlichen Einschränkungen zu verringen, fassen wir kurz die Unterschiede zwischen ihnen zusammen und legen wir unsere Grenze auf den \glspl{SIEM} Lösungen fest.
 
-\glsfirst{IDS} sind Software oder Hardware die \glsplural{Cyberangriff} identifzieren und berichten. Sie haben eine passive Rolle, weil sie die \glsplural{Cyberangriff} weder stoppen noch verhindern können. \glsfirst{IPS} seinerseits haben eine aktive Haltung gegenüber \glsplural{Cyberangriff}, die können automatisch behandeln, indem sie Blocking-Mechanismus einschalten, um den Angriff zu stoppen \citep{Wendzel_IS}. Wie \gls{IDS}, kann der \gls{IPS} auch Logdateien generieren, die eine \gls{SIEM} Lösung sammeln kann. 
+\glsfirst{IDS} sind Software oder Hardware die \glsplural{Cyberangriff} identifzieren und berichten. Sie haben eine passive Rolle, weil sie die \glsplural{Cyberangriff} weder stoppen noch verhindern können. \glsfirst{IPS} seinerseits haben eine aktive Haltung gegenüber \glsplural{Cyberangriff}, die können automatisch behandeln, indem sie Blocking-Mechanismus einschalten, um den Angriff zu stoppen \citep{Wendzel_IS}. Wie \gls{IDS}, kann der \gls{IPS} auch Logdateien generieren, die von einer \gls{SIEM} Lösung gesammelt werden kann. 
 
-Die beiden ersten können innerhalb eines Unternehmen coexistieren, müssen aber nicht. Die Datenquellen von \glsplural{SIEM} können, unter anderen, von diesen beiden Elementen entstehen. Die folgenden Abbildung stellt didaktisch, wie sich \glsplural{SIEM} in diesem Landschaft integrieren lassen: 
+Die beiden ersten können innerhalb eines Unternehmen coexistieren, müssen aber nicht. Die Datenquellen von \glsplural{SIEM} können, unter anderen, von diesen beiden Tools entstehen. Die folgenden Abbildung stellt didaktisch, wie sich \glsplural{SIEM} in diesem Landschaft integrieren lassen: 
 
 \begin{figure}[H]
    \centering
@@ -15,7 +15,7 @@ Die beiden ersten können innerhalb eines Unternehmen coexistieren, müssen aber
    \centering
 \end{figure}
 
-Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisierung von Sicherheitsdaten zuständig ist. Diese werden dann bearbeitet und in einem oder mehreren Berichten dargestellt, damit das \gls{SOC}-Team schnellere und effektive Entscheidungen treffen können. Der Informationsfluss einer \gls{SIEM} Lösung können wirder folgenden Abbildung darstellen:
+Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisierung von Sicherheitsdaten zuständig ist. Diese werden dann bearbeitet und in einem oder mehreren Berichten dargestellt, damit das \gls{SOC}-Team schnellere und effektive Entscheidungen treffen können. Der Informationsfluss einer \gls{SIEM} Lösung können wirder in der folgenden Abbildung darstellen:
 
 \begin{figure}[H]
    \centering
@@ -24,7 +24,7 @@ Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisie
    \centering
 \end{figure}
 
-\gls{SIEM} ist aber viel mehr als eine Sammlung von Logdateien. Das Ziel dieser Software ist die automatische Analyse zu ermöglichen, indem Daten kombiniert bewertet werden können. In vielen Bereiche, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verplichtet das \gls{IT-Sicherheitsgesetz 2.0} Organisationen mit kritischen Infrastrukturen die Anwendungen von solche Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}.
+\gls{SIEM} ist aber viel mehr als eine Sammlung von Logdateien. Das Ziel dieser Software ist die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereiche, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verplichtet das \gls{IT-Sicherheitsgesetz 2.0} Organisationen mit kritischen Infrastrukturen die Anwendungen von solche Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}.
 
 \subsection{Existierende SIEM Lösungen}
 
@@ -41,8 +41,8 @@ Die existierenden \glsplural{SIEM} Lösungen können in zwei Kategorie getrennt 
 \subsubsection{Prelude}
 aaaaaaa
 
-\subsubsection{AlienVault}
-bbbbbbb
+\subsubsection{AlienVault OSSIM}
+AlienVault OSSIM ist eine \gls{Open Source} SIEM Lösung, die von der Firma AT\&T Communication im Jahr 2018 gekauft wurde. In der Beschreibung des Anbieters steht, dass sie auch dabei untersützt, Daten zu sammeln, zu normalisieren und zu bewerten. Er behaupt auch, dass sein Tool in der Lage ist, Schwachstelle und Angriffe zu erkennen, Verhältnis zu beobachten und Datenzusammenhang durchzuführen \citep{ATT_AVO}.
 
 \subsubsection{ELK Stack}
 cccccccccc

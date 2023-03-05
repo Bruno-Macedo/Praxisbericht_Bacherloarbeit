@@ -4,7 +4,7 @@ Der heutige Netzwerkverkehr ist fast tausendfach größer als vor 20 Jahre \cite
 
 Die \glsfirst{NIST} definiert \acrshort{SIEM} als Anwendung, die dafür zustäntig ist, Sicherheitsdaten von anderen Systemen zu sammeln und diese verständlich und lesbar als Information zu liefern. Mit diesem Ergebnis können Aktionen und durchgeführt werden können \citep{NIST_SIEM}. Die Bewertung dieser Daten spielt eine wesentliche Rolle bei solchen Anwendungen, da es entscheidend ist, ob es um eine oder viele normale Anfrage oder um einen \gls{Cyberangriff} geht.
 
-In diesem Projekt wollen wir über eine existierende \gls{Open Source} \gls{SIEM}-Anwendung recherchieren und ihre Extrahierung und Bewertung von Daten analysieren. Am Ende wollen wir uns für eine der gefundenen Lösung entscheiden, sodass spezifische Logdateien bewertet und bearbeitet werden können.
+In diesem Projekt wollen wir über eine existierende \gls{Open Source} \gls{SIEM}-Anwendung recherchieren und ihre Extrahierung und Bewertung von Daten analysieren. Am Ende wollen wir uns für eine der gefundenen Lösung entscheiden, sodass spezifische Logdateien der Hochschule Worms bewertet und bearbeitet werden können.
 
 Diese Arbeit wird in folgende Teile geteilt:
 
@@ -37,7 +37,6 @@ Das folgende Diagramm stellt den Aufbau dieser Arbeit dar:
    \centering
 \end{figure}
 
-
 \subsection{Problemstellung}
 Während der Entwicklung dieser Arbeit wollen wir uns mit folgenden Fragen beschäftigen:
 
@@ -55,7 +54,11 @@ Note 2: Punkt 3 wäre eher theoretisch, um zu recherchieren, was es schon gibt u
 Um diese obengenannten Ziele zu erreichen, verwenden wir folgenden Methode:
 
 \begin{itemize}[noitemsep]
-   \item Installation von virtuellen Maschinen zur Nutzung von der ausgewählten \gls{SIEM} und zur Generierung von Server-Logs
+   \item Recherche in der Fachliteratur über \glsplural{SIEM} Lösungen
+   \item Vergleich zwischen verschiedenen \gls{Open Source} \gls{SIEM} Tools
+   \item Installation von virtuellen Maschinen zur Nutzung von der ausgewählten \gls{SIEM} oder  
    \item Nutzung von Container zur Installation von \gls{SIEM}
+   \item Importieren von Logdateien in der ausgewählten \gls{SIEM} Lösung
+   \item Bewertung der ausgegebenen Daten
 \end{itemize}
 
