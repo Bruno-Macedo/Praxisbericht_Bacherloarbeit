@@ -50,6 +50,35 @@ Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere freigegebene Tool Prelud
 
 Die Anwendung besteht aus verschiedenen unabhängige Modulen. Unter denen highlighten wir folgende: Warnmeldung, Archivierung, Analyse und Verwaltung. Das erste gehört zu der zentrallen Aufgabe dieser Lösung, es ist dafür zuständig, Daten zu empfangen, zu normalisieren, Zusammenhang zu machen und Meldungen zu generieren. Das zweite Modul, Archivierung, konzentriert sich auf die Speicherung und Verfügbarkeit der Daten. Zu der Analyse-Modul gehören statistische Aufgabe und Darstellung in verschiedenen Formaten. Das letzte Modul dient dazu, die Anwendung zu steuern, Nutzer zu erstellen dessen Rechts zu konfigurieren \citep{EC_Prelude}.
 
+Die folgende Abbildung zeigt die Integration der verschiedenen Module von Prelude und wie sie sich kommunizieren, um Analyse, Meldung und Speicherung zu generieren:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/2_p3.png}
+   \caption{Integration zwischen den Modulen von Prelude \\Quelle: \citep{Prelude_MU} }
+   \centering
+\end{figure}
+
+Aus der Abbildung und der Dokumentation können wir folgende Informationsfluss: die Daten werden von Endanwendung genieriert und zum Loganalyzer (Prelude \glsfirst{LML}) geschickt, wo sie normalisiert und bewertet sind. Für solche Logs, wo es verdächtige Werte gibt, werden Warnmeldung genieriert. Diese Meldung wird zum Manager Module weitergeleitet. Der Correlator oben sucht nach Zusammenhang zwischen andere Daten. Das Ergebnis von Correlator ist wieder zum Manager geschicht und danach zu dem Datenbank. Schließlich stehen die Berichte in dem User-Interface zur Verfügung \citep{Prelude_Doc}.
+
+Die Architektur der Anwendung ermöglicht sowohl einen zentraliserter als auch einen desentralisierten Aufbau. In der nächsten Abbildung sehen wir eine einfache Implementation von Prelude: 
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/2_p4.png}
+   \caption{Einfache Architektur von Prelude \\Quelle: \citep{Prelude_MU} }
+   \centering
+\end{figure}
+
+In einer desentralisierte Umgebung werden Daten von verschiedenen und getrennte Quellen generiert und bearbeitet. Schließlich können die Nutzer auf diesen Daten unter einem \gls{GUI} zugreifen.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/2_p5.png}
+   \caption{Erweiterte Architektur von Prelude mit der Nutzung von dezentralisierten Datenquellen und Bearbeitung \\Quelle: \citep{Prelude_MU} }
+   \centering
+\end{figure}
+
 Die wissenschaftliche Literatur über Prelude ist sehr eingeschränkt. Wenige Publikationen fokussieren sich auf die Entwicklung, Implementation und unternehmerische Anwendung dieses Tools. Eine Studie von 2021 versuchte dieses und zwei andere Tools (AlienVault und Cyberoam iView) anhand technischer und nutzerfreundliche Kriterien zu vergleichen. Unter diese Kriterien highlighten wir folgende \citep{Grammatikis_Prelude}:
 
 \begin{itemize}[noitemsep]

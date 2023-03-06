@@ -39,6 +39,24 @@
     description={Eine aus einer fehlerhaften erkannten Verwundbarkeit Warnmeldung  \citep{NIST_FP}}
 }
 
+%===========
+\newglossaryentry{GUI2}{
+    name=\glslink{GUI}{Graphical user interface (\gls{GUI})},
+    description={eine Schnitstelle, die den Nutzer ermöglicht, mithilfe von Symbolen und visuellen Elementen mit der Anwendung zu interagieren \citep{Fu_GUI}}
+}
+
+% here goes to the acronym
+\newglossaryentry{GUI}{
+    type=\acronymtype,
+    name=GUI,
+    first={Graphical user interface (GUI)\glsadd{GUI2}},
+    see=[Glossary:]{\gls{GUI2}}, 
+    description=\glslink{GUI2}{Graphical user interface}
+}
+% =====
+
+
+
 \newglossaryentry{IPS}{
     type=\acronymtype,
     name=IPS,
@@ -90,6 +108,14 @@
     first={Open Threat Exchange(OTX)\glsadd{OTX}},
     see=[Glossary:]{\gls{OTX}}, 
     description=\glslink{OTX}{Open Threat Exchange}
+}
+
+\newglossaryentry{LML}{
+    type=\acronymtype,
+    name=LML,
+    first={Log Monitoring Lackey (LML)\glsadd{LML}},
+    see=[Glossary:]{\gls{LML}}, 
+    description=\glslink{LML}{Log Monitoring Lackey}
 }
 
 \newglossaryentry{Open Source} {
