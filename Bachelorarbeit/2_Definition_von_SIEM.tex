@@ -35,6 +35,7 @@ Die existierenden \glsplural{SIEM} Lösungen können in zwei Kategorie getrennt 
 \begin{itemize}[noitemsep]
    \item Prelude
    \item AlienVault \glsfirst{OSSIM}
+   \item FortiSIEM
    \item ELK Stack
 \end{itemize}
 
@@ -104,9 +105,45 @@ Auch in den nicht wissenschaftlichen Publikationen existieren begrenzte Anzahl v
 \subsubsection{AlienVault OSSIM}
 AlienVault OSSIM ist eine im Jahr 2007 entwickelte \gls{Open Source} SIEM Lösung. Im Jahr 2018 wurde sie von der Firma AT\&T Communication gekauft \citep{CBN_AV}. In der Beschreibung des Anbieters steht, dass sie auch dabei untersützt, Daten zu sammeln, zu normalisieren und zu bewerten. Er behaupt auch, dass sein Tool in der Lage ist, Schwachstelle und Angriffe zu erkennen, Verhältnis zu beobachten und Datenzusammenhang durchzuführen \citep{ATT_AVO}.
 
+AlienVault hat eine kostenpflichtige Version, die Alien Vault \glsfirst{USM} heißt. In der Webseite von AT\&T steht, dass es keine spezifische Dokumentation für die \gls{Open Source} Version, AlienVault OSSIM, gibt, weil viele Funktionalitäten von der anderer Version stammen \citep{ATT_AVO}. 
+
+Die folgende Abbildung zeigt das von dem Anbieter freigelegte Architektursdiagramm von der \gls{USM} Version:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/2_p6.png}
+   \caption{Architekturdiagram von AlienVaulkt \gls{USM} \\Quelle: \citep{ATT_AVO} }
+   \centering
+\end{figure}
+
 Laut der Website Comparitech steht AlienVault in der 13ten Platz von den besten bewerteten \gls{SIEM} Lösungen. Die Seite beschreibt auch, dass einen \gls{IDS}, Verhaltensüberwachungssystem und einen Schwacstellescanner integriert sind . Die Anwendung ist auch mit der Platform \gls{OTX} verbunden, diese ermöglicht die Teilung von Informationen über Schwachstelle. Comparitech highlighted, dass die Anwendung wegeren ihre nidriegen Kosten besser für kleine oder mittelständige Unternehmen geignet ist \citep{comparitech_SIEM}. 
 
-Die Anwendung bietet konsitente Datenzusammenhang von Daten und vermeidet den Auftauch von \gls{falsch positiv}. AlienVault kommt auch mit vordefinierten Use-Cases, die dabei unterstützen gewöhnlichen Angriffsszenario zu erkennen. Die Installation, die Einstellung und die Integration mit anderen Tools ist auch benutzerfreundlich \citep{Gomes_AV}. Aus einer anderen wissenschaftlicher Quelle fanden wir heraus, dass es für viele  Quelle eine manuelle Normalisierung der Logdatein notwendig ist \cite{Nabil_AV}. Die Anwendunt hat aber einen zuverlässigen Berichtsmechanismus.
+Die Anwendung soll konsitenten Datenzusammenhang anbienten und soll den Auftauch von \gls{falsch positiv} vermeiden. AlienVault kommt auch mit vordefinierten Use-Cases, die dabei unterstützen gewöhnlichen Angriffsszenario zu erkennen. Die Installation, die Einstellung und die Integration mit anderen Tools ist auch benutzerfreundlich \citep{Gomes_AV}. Aus einer anderen wissenschaftlicher Quelle fanden wir heraus, dass es für viele  Quelle eine manuelle Normalisierung der Logdatein notwendig ist \cite{Nabil_AV}. Die Anwendunt hat aber einen zuverlässigen Berichtsmechanismus.
+
+Während unserer Recherche gab es wenige wissenschaftliche Literatur, die sich um AlienVault OSSIM kümmert. Kommerzielle Publikationen waren auch viel auf die Firma AT\&T auf die kostenpflichtige Version des Tools konzentriert.
+
+\subsubsection{FortiSIEM}
+FortiSIEM ist eine US-amerikanische \gls{SIEM} Lösung von der Firma Fortinet. Fortinet kaufte im Jahr 2016 das Unternehmen AccelOps und dessen \gls{SIEM} Lösung und unbenant es zum FortSIEM \citep{Fortinet_Press}. 
+
+Laut dem Anbieter hat FortiSIEM eine robuste Integration mit anderen Tools und lässt sich leicht und einwandfrei skalieren. Andere Versionen des Tools sind mit Machine Learning integriert, sodass die Anwendung auch verhältnisanalyse durchführen kann \citep{Fortinet_Solutions}. Das Tool bietet auch eine extensive und ausführliche Dokumentation an. Die nächste Abbildung zeigt die skalierbare Architektur des Tools:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/2_p7.png}
+   \caption{Skalierbare Architektur von FortiSIEM \\Quelle: \citep{Fortinet_Arch} }
+   \centering
+\end{figure}
+
+Auch zu dieser \gls{SIEM} Lösung ist die wissenschaftliche Produktion eingeschränkt. Eine von der gefundenen Publikation betonnt, dass FortiSIEM eine schnelle Erkennung von Angriff anbietet und über \glsfirst{NOC} Funktionalitäten verfügt \citep{Ramires_fortisiem}. Wie andere \glspl{SIEM} Lösungen hat FortiSIEM folgende Funktionalitäten:
+
+\begin{itemize}[noitemsep]
+   \item Datensammlung und Normalisierung
+   \item Datenzusammenhang
+   \item Generierung von Berichten
+   \item Warnmeldungen
+   \item Datenbewertung
+\end{itemize}
+
 
 \subsubsection{ELK Stack}
 cccccccccc
@@ -115,6 +152,8 @@ cccccccccc
 ddddddddd
 
 \subsection{Auswahlkrietieren}
+Die wichtigste Kriteria für unsere Auswahl war, dass die Anwendung \gls{Open Source} sein sollte. Kostenpflichtige Versionen können wegen ihrem Preis und Komplexität besonders kleinere Unternehmen abschrecken und infolgendessen bleiben sie fern von einigen Sicherheitslösungen \citep{Bjork_OSSIEM}.
+
 Für diese haben entschieden wir uns für die XXXXX \gls{SIEM} Lösung aus folgenden Grunden:
 
 \begin{itemize}[noitemsep]

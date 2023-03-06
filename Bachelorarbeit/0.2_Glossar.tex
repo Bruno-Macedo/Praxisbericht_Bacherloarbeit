@@ -34,6 +34,11 @@
     description=\glslink{IDS}{Intrusion Detection System }
 }
 
+\newglossaryentry{IT-Sicherheitsgesetz 2.0} {
+    name={Zweites Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme (IT-Sicherheitsgesetz 2.0)},
+    description={im Jahr 2021 verabschiedetes Bundesgesetz zur Erhöhung von Sicherheit Informationstechnische Systemen besonders solchen von den kritischen Ifrastrukturen  \citep{Harmes_ITSG}}
+}
+
 \newglossaryentry{falsch positiv} {
     name={falsch positiv},
     description={Eine aus einer fehlerhaften erkannten Verwundbarkeit Warnmeldung  \citep{NIST_FP}}
@@ -54,8 +59,6 @@
     description=\glslink{GUI2}{Graphical user interface}
 }
 % =====
-
-
 
 \newglossaryentry{IPS}{
     type=\acronymtype,
@@ -159,6 +162,21 @@
 }
 % =====
 
+
+%=====
+\newglossaryentry{NOC2}{
+    name=\glslink{NOC}{Network Operations Center (\gls{NOC})},
+    description={zentraliserter Bereich eines Unternehmens dafür zuständig, Netzwerkaktivitäten zu überwachen und zu verwalten \citep{Mohammed_NOC} }
+}
+\newglossaryentry{NOC}{
+    type=\acronymtype,
+    name=NOC,
+    first={Network Operations Center (NOC)\glsadd{NOC2}},
+    see=[Glossary:]{\gls{NOC2}}, 
+    description=\glslink{NOC2}{Network Operations Center}
+}
+% =====
+
 \newglossaryentry{port} {
     name={Port},
     plural={Ports},
@@ -217,9 +235,12 @@
     description={Schwäche eines Systems \citep{Wendzel_IS}}
 }
 
-\newglossaryentry{IT-Sicherheitsgesetz 2.0} {
-    name={Zweites Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme (IT-Sicherheitsgesetz 2.0)},
-    description={im Jahr 2021 verabschiedetes Bundesgesetz zur Erhöhung von Sicherheit Informationstechnische Systemen besonders solchen von den kritischen Ifrastrukturen  \citep{Harmes_ITSG}}
+\newglossaryentry{USM}{
+    type=\acronymtype,
+    name=USM ,
+    first={Unified Security Management (USM)\glsadd{USM}},
+    see=[Glossary:]{\gls{USM}}, 
+    description=\glslink{USM}{Unified Security Management}
 }
 
 \newglossaryentry{Verwundbarkeit} {
