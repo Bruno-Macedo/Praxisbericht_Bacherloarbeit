@@ -85,16 +85,16 @@ Die wissenschaftliche Literatur über Prelude ist sehr eingeschränkt. Wenige Pu
 \begin{itemize}[noitemsep]
    \item \textbf{technische Kriterien}
    \begin{itemize}[noitemsep]
-      \item Real-time performance, 
-      \item Range and flexibility of reporting
-      \item Alert correlation
+      \item \textit{Real-time performance}, 
+      \item \textit{Range and flexibility of reporting}
+      \item \textit{Alert correlation}
    \end{itemize}
 
    \item \textbf{nutzerfreundliche Kriterien}
    \begin{itemize}[noitemsep]
-      \item Documentation comprehensiveness
-      \item Complexity of the installation process
-      \item Complexity of the system configuration
+      \item \textit{Documentation comprehensiveness}
+      \item \textit{Complexity of the installation process}
+      \item \textit{Complexity of the system configuration}
    \end{itemize}
 \end{itemize}
 
@@ -111,8 +111,8 @@ Die folgende Abbildung zeigt das von dem Anbieter freigelegte Architektursdiagra
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/2_p6.png}
-   \caption{Architekturdiagram von AlienVaulkt \gls{USM} \\Quelle: \citep{ATT_AVO} }
+   \includegraphics[width=0.6\textwidth]{assets/2_p6.png}
+   \caption{Architekturdiagram von AlienVault \gls{USM} \\Quelle: \citep{ATT_AVO} }
    \centering
 \end{figure}
 
@@ -129,7 +129,7 @@ Laut dem Anbieter hat FortiSIEM eine robuste Integration mit anderen Tools und l
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/2_p7.png}
+   \includegraphics[width=1\textwidth]{assets/2_p7.png}
    \caption{Skalierbare Architektur von FortiSIEM \\Quelle: \citep{Fortinet_Arch} }
    \centering
 \end{figure}
@@ -144,12 +144,41 @@ Auch zu dieser \gls{SIEM} Lösung ist die wissenschaftliche Produktion eingeschr
    \item Datenbewertung
 \end{itemize}
 
-
 \subsubsection{ELK Stack}
-cccccccccc
+ELK Stack stammt aus der Verbindung von drei \gls{Open Source} Tools: Elasticsearch, Logstash, and Kibana. Das erste ist eine Such- und Analysemaschine. Das zweite ist eine Server-Seite Anwendung zur Datenverarbeitung und -Weiterleitung. Schließlich Kibana ist dafür zuständig, visuelle Darstellung in Graphikformat auszugeben \citep{packt_elkstack}. Dieses Tool besitzt viele Eingeschaften von einer \gls{SIEM}-Lösung und ist von vielen \gls{SOC} verwendet, ist aber, für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungsystem, Datenzusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren. 
 
-\subsubsection{Zusammenfassender Vergleich}
-ddddddddd
+Das folgende Diagram stellt die Architektur von ELK Stack mit ihren integrierten Elementen  dar:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/2_p8.png}
+   \caption{Integration zwischen Elasticsearch, Logstash und Kibana\\Quelle: \citep{packt_elkstack} }
+   \centering
+\end{figure}
+
+Auf dem Bild werden auch Beats gezeigt. Diese Komponenten sind an der Endanwendung installiert und sie leiten Daten entweder zu Elasticsearch oder zu Logstash weiter, wo sie Schließlich bearbeitet werden \citep{Jain_LMELK}. 
+
+Ein Teil der wissenschaftlichen Literatur highlight die Logsanalyse-Funktionalitäten von ELK Stack und die Unterstützung bei Normalisierung und Indexierung von Daten für eine lesbare Ausgabe \citep{Advani_elkstakc}. Die starke Skalierbarkeit wurde auch bei einer Studie erwähnt, wo ELK Stack für Wi-Fi Logging eingesetzt wurde wurde \citep{Wang_elkwifi}.
+
+Die offiziele Dokumentation von ELK Stack betonnt, dass die Anwendung folgende Funktionalitäten besitzen:  mit der Anwendung folgendes möglich ist \citep{elastic_docs}:
+
+\begin{itemize}[noitemsep]
+   \item Datensuche, -Normalisierung, -Analyse und 
+   \item Speicherung
+   \item visuelle Ausgabe
+\end{itemize}
+
+Folgendes Diagram aus der offizielen Dokumentation zeigt die Aufteilung der Funktionalitäten por Element von ELK Stack:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/2_p9.png}
+   \caption{Aufteilung der Funktionalitäten zwischen den Komponenten\\Quelle: \citep{elastic_docs}}
+   \centering
+\end{figure}
+
+Die wissenschaftliche Publikation über ELK Stack ist vielfältiger als bei der anderen recherchierten Tools. Es ist aber wichtig, zu betonen, dass die Mehrheit von denen sich eher mit den Logging als mit den \gls{SIEM}-Eingeschaften der Anwendung beschäftigen.
+
 
 \subsection{Auswahlkrietieren}
 Die wichtigste Kriteria für unsere Auswahl war, dass die Anwendung \gls{Open Source} sein sollte. Kostenpflichtige Versionen können wegen ihrem Preis und Komplexität besonders kleinere Unternehmen abschrecken und infolgendessen bleiben sie fern von einigen Sicherheitslösungen \citep{Bjork_OSSIEM}.

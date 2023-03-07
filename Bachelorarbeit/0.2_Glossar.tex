@@ -35,8 +35,8 @@
 }
 
 \newglossaryentry{IT-Sicherheitsgesetz 2.0} {
-    name={Zweites Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme (IT-Sicherheitsgesetz 2.0)},
-    description={im Jahr 2021 verabschiedetes Bundesgesetz zur Erhöhung von Sicherheit Informationstechnische Systemen besonders solchen von den kritischen Ifrastrukturen  \citep{Harmes_ITSG}}
+    name={Zweites Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme},
+    description={ein im Jahr 2021 verabschiedetes Bundesgesetz zur Erhöhung von Sicherheit informationstechnischen Systemen besonders, solchen von den kritischen Infrastrukturen  \citep{Harmes_ITSG}}
 }
 
 \newglossaryentry{falsch positiv} {
@@ -59,7 +59,6 @@
     description=\glslink{GUI2}{Graphical user interface}
 }
 % =====
-
 \newglossaryentry{IPS}{
     type=\acronymtype,
     name=IPS,
@@ -76,6 +75,20 @@
     see=[Glossary:]{\gls{FPO}}, 
     description=\glslink{FPO}{Fachspezifische Prüfungsordnung}
 }
+
+%=====
+\newglossaryentry{HIPAA2}{
+    name=\glslink{HIPAA}{Health Insurance Portability and Accountability Act (\gls{HIPAA})},
+    description={US-Bundesgesetz über den Schutz von sensitiven personenbezogenen Gesundheitsdaten \citep{HHS_PCI} }
+}
+\newglossaryentry{HIPAA}{
+    type=\acronymtype,
+    name=HIPAA,
+    first={Health Insurance Portability and Accountability Act(HIPAA)\glsadd{HIPAA2}},
+    see=[Glossary:]{\gls{HIPAA2}}, 
+    description=\glslink{HIPAA2}{Health Insurance Portability and Accountability Act}
+}
+% =====
 
 % here goes to the description
 \newglossaryentry{KI2}{
@@ -149,21 +162,6 @@
 % =====
 
 %=====
-\newglossaryentry{HIPAA2}{
-    name=\glslink{HIPAA}{Health Insurance Portability and Accountability Act (\gls{HIPAA})},
-    description={US-Bundesgesetz über den Schutz von sensitiven personenbezogenen Gesundheitsdaten \citep{HHS_PCI} }
-}
-\newglossaryentry{HIPAA}{
-    type=\acronymtype,
-    name=HIPAA,
-    first={Health Insurance Portability and Accountability Act(HIPAA)\glsadd{HIPAA2}},
-    see=[Glossary:]{\gls{HIPAA2}}, 
-    description=\glslink{HIPAA2}{Health Insurance Portability and Accountability Act}
-}
-% =====
-
-
-%=====
 \newglossaryentry{NOC2}{
     name=\glslink{NOC}{Network Operations Center (\gls{NOC})},
     description={zentraliserter Bereich eines Unternehmens dafür zuständig, Netzwerkaktivitäten zu überwachen und zu verwalten \citep{Mohammed_NOC} }
@@ -176,6 +174,12 @@
     description=\glslink{NOC2}{Network Operations Center}
 }
 % =====
+
+\newglossaryentry{plugin} {
+    name={Plugin},
+    plural={Plugins},
+    description={optionale Software-Komponenten, die weitere Funktionalitäten zu einer Anwendung hinzufügen \citep{ITS_Network}}
+}
 
 \newglossaryentry{port} {
     name={Port},
