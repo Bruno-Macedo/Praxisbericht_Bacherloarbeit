@@ -27,7 +27,7 @@ Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisie
 \gls{SIEM} ist aber viel mehr als eine Sammlung von Logdateien. Das Ziel dieser Software ist die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereiche, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verplichtet das \gls{IT-Sicherheitsgesetz 2.0} Organisationen mit kritischen Infrastrukturen die Anwendungen von solche Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}.
 
 \subsection{Existierende SIEM Lösungen}
-
+% über Splunk schreiben, state of the art, nicht open source, aber andere müssen ähnliche funktionaliten haben
 Die existierenden \glsplural{SIEM} Lösungen können in zwei Kategorien getrennt werden: \textit{\gls{Proprietary}} und \textit{\gls{Open Source}}. Zu der ersten ist Splunk von dem Unternehmen Splunk Technology die meist verwendete Software \citep{Kazarov_Splunk}. Da unser Fokus hier auf \textit{\gls{Open Source}} Lösungen liegt, diskutieren wir hier demnächst über folgende Software:
 
 \textbf{\textcolor{red}{Wie konnte ich Grafana hier erwähnen? Grafane ist eher allgemein und nicht so zu Alert orientiert, habe ich hier gefunden: \href{https://www.metricfire.com/blog/grafana-vs-splunk/}{Splunk x Grafana} und hier \href{https://www.researchgate.net/publication/350730340_Implementation_of_Grafana_as_open_source_visualization_and_query_processing_platform_for_data_scientists_and_researchers}{What is Grafana}}  }
@@ -36,10 +36,25 @@ Die existierenden \glsplural{SIEM} Lösungen können in zwei Kategorien getrennt
    \item Prelude
    \item AlienVault \glsfirst{OSSIM}
    \item FortiSIEM
-   \item ELK Stack
+   \item ELK Stack ++ Mittre ATT&AT %(nein)
+   \item Grafana  %????? (ja)
 \end{itemize}
 
+% Regel von Mittre anhand einer SIEM Lösung an dem SIEM anpassen
+% Grafana: 
+% zeek: The Zeek Network Security Monitor => Tool ==> Verkehr umleiten und analysieren
+% mittre: https://attack.mitre.org/
+% https://socfortress.medium.com/part-6-best-open-source-siem-dashboards-5dad09fa4d0e
+% Own SIEM: chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://prof.msoltys.com/wp-content/uploads/2019/02/Donnelly-Gittins.pdf
+
+
+
+% 1 - zuerst Zugriffs auf Log von jeder anwendung
+% 2 -  danach Zugriffs auf Log von Zeek Nehmen (Zeek) 
+
 \subsubsection{Prelude}
+
+% suche nach Modulen, die man separat benutzen kann (Correlator)
 Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere freigegebene Tool Prelude zählt zu gehört zu einer europäischen \gls{Open Source} \gls{SIEM} Lösung. Laut dem Anbieter verfügt Prelude unter anderen folgenden Funktionalitäten \citep{Prelude_SIEM}:
 
 \begin{itemize}[noitemsep]
@@ -145,6 +160,9 @@ Auch zu dieser \gls{SIEM} Lösung ist die wissenschaftliche Produktion eingeschr
 \end{itemize}
 
 \subsubsection{ELK Stack}
+????? Einige nicht mehr OpenSource (ürsprünglich)
+
+
 ELK Stack stammt aus der Verbindung von drei \gls{Open Source} Tools: Elasticsearch, Logstash und Kibana. Das erste ist eine Such- und Analyse-Maschine. Das zweite ist eine Serverseitige Anwendung zur Datenverarbeitung und -Weiterleitung. Schließlich Kibana ist dafür zuständig, visuelle Darstellung in Grafik-Format auszugeben \citep{packt_elkstack}. Dieses Tool besitzt viele Eigenschaften von einer \gls{SIEM}-Lösung und ist von vielen \gls{SOC} verwendet, ist aber, für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungssystem, Daten Zusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren. 
 
 Das folgende Diagramm stellt die Architektur von ELK Stack mit ihren integrierten Elementen  dar:
