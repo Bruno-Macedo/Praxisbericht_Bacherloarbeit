@@ -1,10 +1,10 @@
 \section{Einleitung}
 
-Der heutige Netzwerkverkehr ist fast tausendfach größer als vor 20 Jahre \citep{Roser_I}. Das Internet wird heutzutage für fast alle unsere alltägliche Tätigkeit verwendet: Soziale Netzwerke, Video und Audio-Streaming, Einkauf, behördliche Angelegenheit und viele andere. So viel Verkehr generiert eine unermessliche Menge von Daten, die alle mögliche Inhalte beinhalten, von unschuldigen Anfragen nach dem eigenen Kontostand bis zu der Ausführung von bösewichten Anfragen, um Systemen lahmzumachen. Um das erste von der zweiten zu unterscheiden verwenden viele Firmen das sogenannte \glsfirst*{SIEM}.
+Der heutige Netzwerkverkehr ist fast tausendfach größer als vor 20 Jahre \citep{Roser_I}. Das Internet wird heutzutage für fast alle unsere alltägliche Tätigkeit verwendet: Soziale Netzwerke, Video und Audio-Streaming, Einkauf, behördliche Angelegenheit und viele andere. So viel Verkehr generiert eine unermessliche Menge von Daten, die alle mögliche Inhalte beinhalten, von unschuldigen Anfragen nach dem eigenen Kontostand bis zu der Ausführung von bösewichten Anfragen, um Systemen lahmzumachen. Um das erste von der zweiten zu unterscheiden verwenden viele Firmen das sogenannte \glsfirst*{SIEM} oder Log Analysis Tools.
 
 Das \glsfirst{NIST} definiert \acrshort{SIEM} als Anwendung, die dafür zuständig ist, Sicherheitsdaten von anderen Systemen zu sammeln und diese verständlich und lesbar als Information zu liefern. Mit diesem Ergebnis können Aktionen durchgeführt werden \citep{NIST_SIEM}. Die Bewertung dieser Daten spielt eine wesentliche Rolle bei solchen Anwendungen, da es entscheidend ist, ob es um eine oder viele normale Anfrage oder um einen \gls{Cyberangriff} geht.
 
-In diesem Projekt wollen wir über eine existierende \gls{Open Source} \gls{SIEM}-Anwendung recherchieren und ihre Extrahierung und Bewertung von Daten analysieren. Am Ende wollen wir uns für eine der gefundenen Lösungen entscheiden, sodass spezifische Logdateien der Hochschule Worms bewertet und bearbeitet werden können.
+In diesem Projekt wollen wir über eine existierende \gls{Open Source} \gls{SIEM}-Anwendung und Log Analysis Tools recherchieren und ihre Extrahierung und Bewertung von Daten analysieren. Am Ende wollen wir uns für eine der gefundenen Lösungen entscheiden, sodass spezifische Logdateien der Hochschule Worms bewertet und bearbeitet werden können.
 
 Diese Arbeit wird in folgende Teile geteilt:
 
@@ -20,8 +20,8 @@ Diese Arbeit wird in folgende Teile geteilt:
 % was machen sie konkrent? / Vergleich zwischen OpenSource/Proprietary/
 
 \begin{itemize}[noitemsep]
-   \item Beschreibung von existierenden \glspl{SIEM} und Vergleich zwischen privaten Anbieter und eine \gls{Open Source} Lösungen (Alienvault OSSIN, OpenSearch, MozDef, Wazuh, Preludes)
-   \item Analyse der Funktionalität einer \gls{Open Source} \gls{SIEM}
+   \item Beschreibung von existierenden \glspl{SIEM} und Log Analysis Tools. Vergleich zwischen privaten Anbieter und\gls{Open Source} Lösungen
+   \item Analyse der Funktionalität einer \gls{Open Source} \gls{SIEM} und Log Analysis Tools
    \item Definition von zwei spezifische \glsplural{Cyberangriff}
    \item Empfang und Bearbeitung der Daten von den vorher beschriebenen Angriffe
    \item Entwicklung einer Regel für die Erkennung eines \gls{Cyberangriff}
@@ -43,12 +43,9 @@ Das folgende Diagramm stellt den Aufbau dieser Arbeit dar:
 Während der Entwicklung dieser Arbeit wollen wir uns mit folgenden Fragen beschäftigen:
 
 % Regeln anhand mittre, automatisieren
-
-
 \begin{itemize}
-   \item Welche Information-Muster muss von dem \gls{SIEM} extrahiert werden, um Angriff\_1 und Angriff\_2 zu erkennen?
-   \item Wie sollen aussagekräftige Use-Cases / Regel sein, um Angriff\_2 und Angriff\_2 richtig zu erkennen zu erkennen?
-   \item Wie sollen Server-Logs aussehen, damit sie von \glsplural{SIEM} bearbeitet werden können.
+   \item Wie kann ein Log Analysis Tool so konfiguriert werden, dass Sie Angriffe nach der Beschreibung von der Mitre Att\&ck Matrix automatisch detektieren kann?
+   \item Wie kann Logs von verschiedenen Quellen angepassat werden, so dass sie von einem einzigen Log Analysis Tool bearbeitet und analysiert werden können?
 \end{itemize}
 
 \textcolor{red}{\textbf{Note: Für Angriffe habe ich an DoS und Brute-Force (Password Spraying/Dictionary) gedacht.}}
@@ -59,8 +56,8 @@ Während der Entwicklung dieser Arbeit wollen wir uns mit folgenden Fragen besch
 Um diese oben genannten Ziele zu erreichen, verwenden wir folgenden Methode:
 
 \begin{itemize}[noitemsep]
-   \item Recherche in der Fachliteratur über \glsplural{SIEM} Lösungen
-   \item Vergleich zwischen verschiedenen \gls{Open Source} \gls{SIEM} Tools
+   \item Recherche in der Fachliteratur über \glsplural{SIEM} und Log Analysis Tools Lösungen
+   \item Vergleich zwischen verschiedenen \gls{Open Source} \gls{SIEM} Tools und Log Analysis Tools
    \item Installation von virtuellen Maschinen zur Nutzung von der ausgewählten \gls{SIEM} oder  
    \item Nutzung von Container zur Installation von \gls{SIEM}
    \item Importieren von Logdateien in der ausgewählten \gls{SIEM} Lösung

@@ -1,17 +1,17 @@
-\section{Definition von SIEM}
+\section{Definition von SIEMs und Log Analysis Tools}
 
-\gls{SIEM} ist das Ergebnis von der Kombination zwischen \glsfirst{SEM} und \glsfirst{SIM} \citep{Dorigo_SIEM}. Das erste bezieht sich auf der Identifizierung, Bewertung, Beobachtung und Bericht von Sicherheitsvorfällen mithilfe von verschiedenen Log Dateien \citep{techopedia_SEM}. Das zweite ist ein Software, der bei der automatischen Sammlung von Loginformationen aus vielen Quellen, wie Firewall und Servers, unterstützt \citep{techopedia_SIM}. 
+\gls{SIEM} ist das Ergebnis von der Kombination zwischen \glsfirst{SEM} und \glsfirst{SIM} \citep{Dorigo_SIEM}. Das erste bezieht sich auf der Identifizierung, Bewertung, Beobachtung und Bericht von Sicherheitsvorfällen mithilfe von verschiedenen Log Dateien \citep{techopedia_SEM}. Das zweite ist ein Software, der bei der automatischen Sammlung von Loginformationen aus vielen Quellen, wie Firewall und Servers, unterstützt \citep{techopedia_SIM}. Da die meisten \gls{SIEM} Lösungen kostenpflichtig sind, existieren auch viele \gls{Open Source} Log Analysis Tools die eine ähnliche Aufgabe erledigen, ohne die Kernelementen von \gls{SIEM}.
 
-In dem Universum des  \glsfirst{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutung und Verantwortung haben. \glsfirst{IDS}, \glsfirst{IPS} und \glsfirst{SIEM} werden von \textit{nonnative users} und sogar von Spezialisten oft verwechselt, da ihre Aufgabe mehr Zusammenhang als Unterschied haben. Um den Umfang dieser Arbeit wegen der zeitlichen Einschränkungen zu verringern, fassen wir kurz die Unterschiede zwischen ihnen zusammen und legen unsere Grenze auf den \glspl{SIEM} Lösungen fest.
+In dem Universum des \glsfirst{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutung und Verantwortung haben. \glsfirst{IDS}, \glsfirst{IPS}, \glsfirst{SIEM} und Log Analysis Tools werden von \textit{nonnative users} und sogar von Spezialisten oft verwechselt, da ihre Aufgabe mehr Zusammenhang als Unterschied haben. Um den Umfang dieser Arbeit wegen der zeitlichen Einschränkungen zu verringern, fassen wir kurz die Unterschiede zwischen ihnen zusammen und legen unsere Grenze auf den \glspl{SIEM} Lösungen fest.
 
-\glsfirst{IDS} sind Software oder Hardware, die \glsplural{Cyberangriff} identifizieren und berichten. Sie haben eine passive Rolle, weil sie die \glsplural{Cyberangriff}n weder stoppen noch verhindern können. \glsfirst{IPS} seinerseits haben eine aktive Haltung gegenüber \glsplural{Cyberangriff}, die können automatisch behandeln können, indem sie Blocking-Mechanism einschalten, um den Angriff zu stoppen \citep{Wendzel_IS}. Wie \gls{IDS}, kann der \gls{IPS} auch Log Dateien  generieren, die von einer \gls{SIEM} Lösung gesammelt werden können. 
+\glsfirst{IDS} sind Software oder Hardware, die \glsplural{Cyberangriff} identifizieren und berichten. Sie haben eine passive Rolle, weil sie die \glsplural{Cyberangriff}n weder stoppen noch verhindern können. \glsfirst{IPS} seinerseits haben eine aktive Haltung gegenüber \glsplural{Cyberangriff}, die können automatisch behandeln können, indem sie Blocking-Mechanism einschalten, um den Angriff zu stoppen \citep{Wendzel_IS}. Wie \gls{IDS}, kann der \gls{IPS} auch Log Dateien generieren, die von einer \gls{SIEM} Lösung gesammelt werden können. 
 
 Die beiden ersten können innerhalb eines Unternehmens koexistieren, müssen aber nicht. Die Datenquellen von \glsplural{SIEM} können, unter anderen, von diesen beiden Tools entstehen. Die folgenden Abbildung stellt didaktisch, wie sich \glsplural{SIEM} in diesem Landschaft integrieren lassen: 
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p1.png}
-   \caption{Allgemeine Informationsfluss von \gls{SIEM} \\Quelle: \citep{Mohanan_What} }
+   \caption{Allgemeine Struktur von \gls{SIEM} \\Quelle: \citep{Mohanan_What} }
    \centering
 \end{figure}
 
@@ -24,22 +24,52 @@ Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisie
    \centering
 \end{figure}
 
+Die Kernfunktioliäten von \gls{SIEM} können folgende aufgelistet werden:
+\begin{itemize}[noitemsep]
+   \item aaaaaaaaaa
+   \item bbbbbbbbbbbbb
+   \item cccccccccccccc
+   \item dddddddddddd
+   \item eeeeeeeeee
+\end{itemize}
+
 \gls{SIEM} ist aber viel mehr als eine Sammlung von Logdateien. Das Ziel dieser Software ist die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereiche, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verplichtet das \gls{IT-Sicherheitsgesetz 2.0} Organisationen mit kritischen Infrastrukturen die Anwendungen von solche Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}.
 
-\subsection{Existierende SIEM Lösungen}
-% über Splunk schreiben, state of the art, nicht open source, aber andere müssen ähnliche funktionaliten haben
-Die existierenden \glsplural{SIEM} Lösungen können in zwei Kategorien getrennt werden: \textit{\gls{Proprietary}} und \textit{\gls{Open Source}}. Zu der ersten ist Splunk von dem Unternehmen Splunk Technology die meist verwendete Software \citep{Kazarov_Splunk}. Da unser Fokus hier auf \textit{\gls{Open Source}} Lösungen liegt, diskutieren wir hier demnächst über folgende Software:
+Auf den nächsten Abbildung zeigen wir eine allgemeine Darstellung von Log Analysis Tools:
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/2_p1.png}
+   \caption{Allgemeine Informationsfluss von Log Analysis Tool \\Quelle: \citep{Mohanan_What} }
+   \centering
+\end{figure}
 
-\textbf{\textcolor{red}{Wie konnte ich Grafana hier erwähnen? Grafane ist eher allgemein und nicht so zu Alert orientiert, habe ich hier gefunden: \href{https://www.metricfire.com/blog/grafana-vs-splunk/}{Splunk x Grafana} und hier \href{https://www.researchgate.net/publication/350730340_Implementation_of_Grafana_as_open_source_visualization_and_query_processing_platform_for_data_scientists_and_researchers}{What is Grafana}}  }
+Zu einer Log Analysis Tools gehören die nächsten Kernfunktionalitäten:
+\begin{itemize}[noitemsep]
+   \item aaaaaaaaaa
+   \item bbbbbbbbbbbbb
+   \item cccccccccccccc
+   \item dddddddddddd
+   \item eeeeeeeeee
+\end{itemize}
+
+
+\subsection{Existierende SIEMs Lösungen und Log Analysis Tools }
+% über Splunk schreiben, state of the art, nicht open source, aber andere müssen ähnliche funktionaliten haben
+Die existierenden \glsplural{SIEM} Lösungen können in zwei Kategorien getrennt werden: \textit{\gls{Proprietary}} und \textit{\gls{Open Source}}. Zu der ersten ist Splunk von dem Unternehmen Splunk Technology, die zu der meist verwendeten Software \citep{Kazarov_Splunk} gehört und als \textit{State of the art} für andere \glsplural{SIEM} gilt. In den folgenden Abschnitte präsentiere wir Splunk, damit wir einen Maßtab für unsere Auswahl haben und demnächst und beschreiben wir folgenden \textit{\gls{Open Source}} Tools:
 
 \begin{itemize}[noitemsep]
    \item Prelude
    \item AlienVault \glsfirst{OSSIM}
    \item FortiSIEM
    \item ELK Stack ++ Mittre ATT&AT %(nein)
-   \item Grafana  %????? (ja)
+   \item Grafana
 \end{itemize}
 
+\textbf{\textcolor{red}{Wie konnte ich Grafana hier erwähnen? Grafane ist eher allgemein und nicht so zu Alert orientiert, habe ich hier gefunden: \href{https://www.metricfire.com/blog/grafana-vs-splunk/}{Splunk x Grafana} und hier \href{https://www.researchgate.net/publication/350730340_Implementation_of_Grafana_as_open_source_visualization_and_query_processing_platform_for_data_scientists_and_researchers}{What is Grafana}}  }
+
+\subsubsection{Splunk}
+
+bbbbbbbbbbbbbbbbbbb
 % Regel von Mittre anhand einer SIEM Lösung an dem SIEM anpassen
 % Grafana: 
 % zeek: The Zeek Network Security Monitor => Tool ==> Verkehr umleiten und analysieren
@@ -196,6 +226,9 @@ Folgendes Diagramm aus der offiziellen Dokumentation zeigt die Aufteilung der Fu
 \end{figure}
 
 Die wissenschaftliche Publikation über ELK Stack ist vielfältiger als bei der anderen recherchierten Tools. Es ist aber wichtig, zu betonen, dass die Mehrheit von denen sich eher mit dem Logging als mit den \gls{SIEM}-Eingeschaften der Anwendung beschäftigt.
+
+\subsubsection{Grafana}
+AAAAAAAAAAAAAAAAAAAAAAAA
 
 
 \subsection{Auswahlkrietieren}
