@@ -1,43 +1,55 @@
+\newglossaryentry{bruteforce} {
+    name={Brute Force Angriffe},
+    description={Systematischer Versuch, Credentials oder andere sensitive Daten zu raten, indem verschiedenen Buchstaben, Ziffern und Symbolen kombiniert werden \citep{Sowmya_BruteForce}}}
+
 \newglossaryentry{BSI}{
     type=\acronymtype,
     name=BSI,
     first={Bundesamt für Sicherheit in der Informationstechnik (BSI)\glsadd{BSI}},
     see=[Glossary:]{\gls{BSI}}, 
-    description=\glslink{BSI}{Bundesamt für Sicherheit in der Informationstechnik}
-}
-
+    description=\glslink{BSI}{Bundesamt für Sicherheit in der Informationstechnik}}
 
 \newglossaryentry{Cyberangriff} {
     name={Cyberangriff},
     plural={Cyberangriffe},
-    description={Angriffe, die über Cyberspace stattfinden. Solche Angriffe zielen auf Unternehmen und deren Infrastrukturen, um sie zu zerstören, zu lähmen, zu kontrollieren oder die Integrität ihren Daten zu stehlen oder zu dominieren \citep{NIST_CyberAttack}}
-}
+    description={Angriffe, die über Cyberspace stattfinden. Solche Angriffe zielen auf Unternehmen und deren Infrastrukturen, um sie zu zerstören, zu lähmen, zu kontrollieren oder die Integrität ihren Daten zu stehlen oder zu dominieren \citep{NIST_Definitions}}}
 
 % here goes to the description
 \newglossaryentry{CIA2}{
     name=\glslink{CIA}{Confidentiality, Integrity and Availability (\gls{CIA})},
-    description={Beschreibt die drei wichtigsten Schutzziele der IT-Sicherheit: Vertraulichkeit, Integrität und Verfügbarkeit \citep{Wendzel_IS}}
-}
+    description={Beschreibt die drei wichtigsten Schutzziele der IT-Sicherheit: Vertraulichkeit, Integrität und Verfügbarkeit \citep{Wendzel_IS}}}
+
 % here goes to the acronym
 \newglossaryentry{CIA}{
     type=\acronymtype,
     name=CIA,
     first={Confidentiality, Integrity and Availability (CIA)\glsadd{CIA2}},
     see=[Glossary:]{\gls{CIA2}}, 
-    description=\glslink{CIA2}{Confidentiality, Integrity and Availability}
-}
+    description=\glslink{CIA2}{Confidentiality, Integrity and Availability}}
+% =====
+
+% here goes to the description
+\newglossaryentry{CKC2}{
+    name=\glslink{CKC}{Cyber Kill Chain\textregistered (\gls{CKC})},
+    description={Auch \textit{Cyberattack Lifecycle} genannt, bezieht sich auf eine Sicherheitsmodell für die Identifizierung, Analysis und Unterbrechung von fortgeschrittene Cyberangriffe. Dieses Model hat sieben festgelegte Phasen: \textit{Recoinnaissance}, \textit{Weaponization}, \textit{Delivery}, \textit{Exploitation}, \textit{Installation}, \textit{Command \& Control (C2)} und \textit{Actions on Objectives}} \citep{CyberKillChain_Definition}}
+
+% here goes to the acronym
+\newglossaryentry{CKC}{
+    type=\acronymtype,
+    name=CKC\textregistered,
+    first={Cyber Kill Chain (CKC\textregistered)\glsadd{CKC2}},
+    see=[Glossary:]{\gls{CKC2}}, 
+    description=\glslink{CKC2}{Cyber Kill Chain}}
 % =====
 
 \newglossaryentry{Cybersicherheit} {
     name={Cybersicherheit},
-    description={Diese Domäne umfasst Kenntnisse und Methoden für den Schutz, Prävention, Wiederherstellung von elektronischen Kommunikationsmittel und deren Inhalt. Es konzentriert sich auf ihrer Verfügbarkeit, Integrität, Authentizität, Vertraulichkeit und Verbindlichkeit \citep{NIST_CyberSecurity}}
-}
+    description={Diese Domäne umfasst Kenntnisse und Methoden für den Schutz, Prävention, Wiederherstellung von elektronischen Kommunikationsmittel und deren Inhalt. Es konzentriert sich auf ihrer Verfügbarkeit, Integrität, Authentizität, Vertraulichkeit und Verbindlichkeit \citep{NIST_Definitions}}}
 
 \newglossaryentry{Endpoint} {
     name={Endpoint},
     plural={Endpoints},
-    description={Bezieht sich auf Geräte oder Systemen, die in der Netzwerk verbunden sind. Diese können z.B. Handys, Servers, Computers, Sensoren sein. \citep{Microsoft_Endpoint}}
-}
+    description={Bezieht sich auf Geräte oder Systemen, die in der Netzwerk verbunden sind. Diese können z.B. Handys, Servers, Computers, Sensoren sein. \citep{Microsoft_Endpoint}}}
 
 \newglossaryentry{IDS}{
     type=\acronymtype,
@@ -45,24 +57,20 @@
     first={Intrusion Detection System (IDS)\glsadd{IDS}},
     plural={IDSs}
     see=[Glossary:]{\gls{IDS}}, 
-    description=\glslink{IDS}{Intrusion Detection System }
-}
+    description=\glslink{IDS}{Intrusion Detection System}}
 
 \newglossaryentry{IT-Sicherheitsgesetz 2.0} {
     name={Zweites Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme},
-    description={ein im Jahr 2021 verabschiedetes Bundesgesetz zur Erhöhung von Sicherheit informationstechnischen Systemen besonders, solche  von den kritischen Infrastrukturen  \citep{Harmes_ITSG}}
-}
+    description={ein im Jahr 2021 verabschiedetes Bundesgesetz zur Erhöhung von Sicherheit informationstechnischen Systemen besonders, solche  von den kritischen Infrastrukturen  \citep{Harmes_ITSG}}}
 
 \newglossaryentry{falsch positiv} {
     name={falsch positiv},
-    description={Eine aus einer fehlerhaften erkannten Verwundbarkeit Warnmeldung  \citep{NIST_FP}}
-}
+    description={Eine aus einer fehlerhaften erkannten Verwundbarkeit Warnmeldung \citep{NIST_Definitions}}}
 
 %===========
 \newglossaryentry{GUI2}{
     name=\glslink{GUI}{Graphical user interface (\gls{GUI})},
-    description={eine Schnittstelle, die den Nutzer ermöglicht, mithilfe von Symbolen und visuellen Elementen mit der Anwendung zu interagieren \citep{Fu_GUI}}
-}
+    description={eine Schnittstelle, die den Nutzer ermöglicht, mithilfe von Symbolen und visuellen Elementen mit der Anwendung zu interagieren \citep{Fu_GUI}}}
 
 % here goes to the acronym
 \newglossaryentry{GUI}{
@@ -70,8 +78,7 @@
     name=GUI,
     first={Graphical user interface (GUI)\glsadd{GUI2}},
     see=[Glossary:]{\gls{GUI2}}, 
-    description=\glslink{GUI2}{Graphical user interface}
-}
+    description=\glslink{GUI2}{Graphical user interface}}
 % =====
 \newglossaryentry{IPS}{
     type=\acronymtype,
@@ -79,57 +86,55 @@
     first={Intrusion Prevention System (IPS)\glsadd{IPS}},
     plural={IPSs}
     see=[Glossary:]{\gls{IPS}}, 
-    description=\glslink{IPS}{Intrusion Prevention System }
-}
+    description=\glslink{IPS}{Intrusion Prevention System}}
 
 \newglossaryentry{FPO}{
     type=\acronymtype,
     name=FPO,
     first={Fachspezifische Prüfungsordnung (FPO)\glsadd{FPO}},
     see=[Glossary:]{\gls{FPO}}, 
-    description=\glslink{FPO}{Fachspezifische Prüfungsordnung}
-}
+    description=\glslink{FPO}{Fachspezifische Prüfungsordnung}}
 
 %=====
 \newglossaryentry{HIPAA2}{
     name=\glslink{HIPAA}{Health Insurance Portability and Accountability Act (\gls{HIPAA})},
-    description={US-Bundesgesetz über den Schutz von sensitiven personenbezogenen Gesundheitsdaten \citep{HHS_PCI} }
+    description={US-Bundesgesetz über den Schutz von sensitiven personenbezogenen Gesundheitsdaten \citep{HHS_PCI}}
 }
 \newglossaryentry{HIPAA}{
     type=\acronymtype,
     name=HIPAA,
     first={Health Insurance Portability and Accountability Act (HIPAA)\glsadd{HIPAA2}},
     see=[Glossary:]{\gls{HIPAA2}}, 
-    description=\glslink{HIPAA2}{Health Insurance Portability and Accountability Act}
-}
+    description=\glslink{HIPAA2}{Health Insurance Portability and Accountability Act}}
 % =====
 
 % here goes to the description
 \newglossaryentry{KI2}{
     name=\glslink{KI}{Künstliche Intelligenz (\gls{KI})},
-    description={Der Konzept, dass Maschine kognitive menschliche Fähigkeit entwickeln können, wie Verständnis, Entscheitungstreffen, Lernen, Problemlösung und \citep{Collins_KI}}
-}
+    description={Der Konzept, dass Maschine kognitive menschliche Fähigkeit entwickeln können, wie Verständnis, Entscheitungstreffen, Lernen, Problemlösung und \citep{Collins_KI}}}
 % here goes to the acronym
 \newglossaryentry{KI}{
     type=\acronymtype,
     name=KI,
     first={Künstliche Intelligenz (KI)\glsadd{KI2}},
     see=[Glossary:]{\gls{KI2}}, 
-    description=\glslink{KI2}{Künstliche Intelligenz}
-}
+    description=\glslink{KI2}{Künstliche Intelligenz}}
+
+\newglossaryentry{mitre} {
+    name={Mitre ATT\&CK\textregistered},
+    description={Abkürzung für \textit{Adversarial Tactics, Techniques and Common Knowledge}. Es beziehit sich auf eine weltweit zugängliche Wissensbasis mit detallierter Beschreibung, Klazifizuerung und Bekämpfung von verschiedenen Angriffstechnike \citep{Mitre_Definition}}}
 
 %=====
 \newglossaryentry{NIST2}{
     name=\glslink{NIST}{National Institute of Standards and Technology (\gls{NIST})},
-    description={US-Behörden, die für die Reglungen, Vereinheitlichung und Weiterentwicklung im Bereich Informationstechnologie zuständig sind \citep{Hochschule_Worms_FPO} }
-}
+    description={US-Behörden, die für die Reglungen, Vereinheitlichung und Weiterentwicklung im Bereich Informationstechnologie zuständig sind \citep{NIST_AboutNist}}}
+
 \newglossaryentry{NIST}{
     type=\acronymtype,
     name=NIST,
     first={National Institute of Standards and Technology (NIST)\glsadd{NIST2}},
     see=[Glossary:]{\gls{NIST2}}, 
-    description=\glslink{NIST2}{National Institute of Standards and Technology}
-}
+    description=\glslink{NIST2}{National Institute of Standards and Technology}}
 % =====
 
 \newglossaryentry{OTX}{
@@ -137,74 +142,65 @@
     name=OTX,
     first={Open Threat Exchange(OTX)\glsadd{OTX}},
     see=[Glossary:]{\gls{OTX}}, 
-    description=\glslink{OTX}{Open Threat Exchange}
-}
+    description=\glslink{OTX}{Open Threat Exchange}}
 
 \newglossaryentry{LML}{
     type=\acronymtype,
     name=LML,
     first={Log Monitoring Lackey (LML)\glsadd{LML}},
     see=[Glossary:]{\gls{LML}}, 
-    description=\glslink{LML}{Log Monitoring Lackey}
-}
+    description=\glslink{LML}{Log Monitoring Lackey}}
 
 \newglossaryentry{Open Source} {
     name={Open Source},
-    description={beschreibt Code, die jeder zugreifen, modifizieren und verbreiten können, ohne dafür Lizenzen bezahlen zu müssen \citep{OpenSource_Def}}
-}
+    description={beschreibt Code, die jeder zugreifen, modifizieren und verbreiten können, ohne dafür Lizenzen bezahlen zu müssen \citep{OpenSource_Def}}}
 
 \newglossaryentry{OSSIM}{
     type=\acronymtype,
     name=OSSIM,
     first={Open Source Security Information Management (OSSIM)\glsadd{OSSIM}},
     see=[Glossary:]{\gls{OSSIM}}, 
-    description=\glslink{OSSIM}{Open Source Security Information Management }
-}
+    description=\glslink{OSSIM}{Open Source Security Information Management}}
 
 %=====
 \newglossaryentry{PCIDSS2}{
     name=\glslink{PCDISS}{Payment Card Industry Data Security Standard (\gls{PCDISS})},
-    description={Sicherheitsstandards, die Unternehmen, die Kreditkarte akzeptieren, bearbeiten, speichern oder übertragen, anwenden müssen \citep{Compliance_PCI} }
-}
+    description={Sicherheitsstandards, die Unternehmen, die Kreditkarte akzeptieren, bearbeiten, speichern oder übertragen, anwenden müssen \citep{Compliance_PCI}}}
+
 \newglossaryentry{PCDISS}{
     type=\acronymtype,
     name=PCDI DSS,
     first={Payment Card Industry Data Security Standard (PCDI DSS)\glsadd{PCIDSS2}},
     see=[Glossary:]{\gls{PCIDSS2}}, 
-    description=\glslink{PCIDSS2}{Payment Card Industry Data Security Standard}
-}
+    description=\glslink{PCIDSS2}{Payment Card Industry Data Security Standard}}
 % =====
 
 %=====
 \newglossaryentry{NOC2}{
     name=\glslink{NOC}{Network Operations Center (\gls{NOC})},
-    description={zentralisierter Bereich eines Unternehmens dafür zuständig, Netzwerkaktivitäten zu überwachen und zu verwalten \citep{Mohammed_NOC} }
-}
+    description={zentralisierter Bereich eines Unternehmens dafür zuständig, Netzwerkaktivitäten zu überwachen und zu verwalten \citep{Mohammed_NOC}}}
+
 \newglossaryentry{NOC}{
     type=\acronymtype,
     name=NOC,
     first={Network Operations Center (NOC)\glsadd{NOC2}},
     see=[Glossary:]{\gls{NOC2}}, 
-    description=\glslink{NOC2}{Network Operations Center}
-}
+    description=\glslink{NOC2}{Network Operations Center}}
 % =====
 
 \newglossaryentry{plugin} {
     name={Plugin},
     plural={Plugins},
-    description={optionale Software-Komponenten, die weitere Funktionalitäten zu einer Anwendung hinzufügen \citep{ITS_Network}}
-}
+    description={optionale Software-Komponenten, die weitere Funktionalitäten zu einer Anwendung hinzufügen \citep{ITS_Network}}}
 
 \newglossaryentry{port} {
     name={Port},
     plural={Ports},
-    description={ist eine Zahl, die ein Dienst oder eine Verbindung identifiziert. Es geht hier um eine logische Adressierung zur Identifizierung eines oder mehrere Prozessen \citep{Tanembaum_CN}}
-}
+    description={ist eine Zahl, die ein Dienst oder eine Verbindung identifiziert. Es geht hier um eine logische Adressierung zur Identifizierung eines oder mehrere Prozessen \citep{Tanembaum_CN}}}
 
 \newglossaryentry{Proprietary} {
     name={Proprietary},
-    description={bezieht sich auf Software, die einer Firma oder Person gehören. Für die Nutzung ist meisten den Kauf einer Lizenz notwendig. In diesem Fall haben den Kunden wenig oder kaum Zugang zu den originellen Code\citep{Nexcess_P}}
-}
+    description={bezieht sich auf Software, die einer Firma oder Person gehören. Für die Nutzung ist meisten den Kauf einer Lizenz notwendig. In diesem Fall haben den Kunden wenig oder kaum Zugang zu den originellen Code\citep{Nexcess_P}}}
 
 \newglossaryentry{SIEM}{
     type=\acronymtype,
@@ -212,8 +208,7 @@
     first={Security Information and Event Management (SIEM)\glsadd{SIEM}},
     plural={SIEMs},
     see=[Glossary:]{\gls{SIEM}}, 
-    description=\glslink{SIEM}{Security Information and Event Management}
-}
+    description=\glslink{SIEM}{Security Information and Event Management}}
 
 \newglossaryentry{SEM}{
     type=\acronymtype,
@@ -221,8 +216,7 @@
     first={Security Event Management (SEM)\glsadd{SEM}},
     plural={SEMs},
     see=[Glossary:]{\gls{SEM}}, 
-    description=\glslink{SEM}{Security Event Management}
-}
+    description=\glslink{SEM}{Security Event Management}}
 
 \newglossaryentry{SIM}{
     type=\acronymtype,
@@ -230,42 +224,43 @@
     first={Security Information Management (SIM)\glsadd{SIM}},
     plural={SIMs}
     see=[Glossary:]{\gls{SIM}}, 
-    description=\glslink{SIM}{Security Information Management}
-}
+    description=\glslink{SIM}{Security Information Management}}
 
 %=====
 \newglossaryentry{SOC2}{
     name=\glslink{SOC}{Security Operations Center (\gls{SOC})},
-    description={zentralisierter Bereich eines Unternehmens dafür zuständig, Sicherheitsvorfälle zu überwachen, zu identifizieren, zu bewerten und dazu zu reagieren  \citep{Vielberth_SOC} }
-}
+    description={zentralisierter Bereich eines Unternehmens dafür zuständig, Sicherheitsvorfälle zu überwachen, zu identifizieren, zu bewerten und dazu zu reagieren  \citep{Vielberth_SOC}}}
+
 \newglossaryentry{SOC}{
     type=\acronymtype,
     name=SOC,
     first={Security Operations Center  (SOC)\glsadd{SOC2}},
     see=[Glossary:]{\gls{SOC2}}, 
-    description=\glslink{SOC2}{Security Operations Center}
-}
+    description=\glslink{SOC2}{Security Operations Center}}
 % =====
 
 \newglossaryentry{Schwachstelle} {
     name={Schwachstelle},
     plural={Schwachstellen},
-    description={Schwäche eines Systems \citep{Wendzel_IS}}
-}
+    description={Schwäche eines Systems \citep{Wendzel_IS}}}
+
+\newglossaryentry{usecases} {
+    name={Use Case},
+    plural={Uses Cases},
+    description={beschreiben die Interaktion zwischen Systemen und Benutzer. Sie dienen zu der Anforderungserhebung eines Systems \citep{Savic_UseCase}}}
+
 
 \newglossaryentry{USM}{
     type=\acronymtype,
     name=USM ,
     first={Unified Security Management (USM)\glsadd{USM}},
     see=[Glossary:]{\gls{USM}}, 
-    description=\glslink{USM}{Unified Security Management}
-}
+    description=\glslink{USM}{Unified Security Management}}
 
 \newglossaryentry{Verwundbarkeit} {
     name={Verwundbarkeit},
     plural={Verwundbarkeiten},
-    description={Auch \textit{vulnerability} genannt. Es beschreibt eine von Angreifer ausnutzbare Schwachstelle \citep{Wendzel_IS}}
-}
+    description={Auch \textit{vulnerability} genannt. Es beschreibt eine von Angreifer ausnutzbare Schwachstelle \citep{Wendzel_IS}}}
 
 
 

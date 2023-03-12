@@ -4,6 +4,8 @@
 
 % &as_qdr=y2 (find date)
 
+\newcommand{\quotes}[1]{``#1''}
+
 \fancypagestyle{lscape}{
 \fancyhf{} %Clears the header/footer
 \fancyfoot{% Footer
@@ -23,7 +25,6 @@
   \phantomsection
   \addcontentsline{toc}{section}{Abstract}
   \include{0.3_Abstract}
-
   \newpage
   \phantomsection
   \addcontentsline{toc}{section}{\listfigurename}
@@ -41,7 +42,7 @@
   \include{2_Definition_von_SIEM}
   \include{3_Implementation}
   \include{4_Fazit}
-  \nocite{*}
+  %\nocite{*}
   \begingroup
     \setlength{\bibsep}{4pt}
     \setstretch{1}

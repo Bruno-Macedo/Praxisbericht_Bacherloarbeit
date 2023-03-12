@@ -4,7 +4,7 @@
 
 Log Analysis Tools sind meistens Anwendungen die Logdateien empfangen, speichern, bearbeiten und nach spezifisichen eigegenen Regeln bewerten. Diese Tools unterstützen Programmieren und Systemadministratoren bei der Überwachung des Zustands Systemen oder Software. Ein solches Tools kann Logdateien von verschiedenen \glsplural{Endpoint} und mit verschiedenen Formattierungen bekommen und editieren, so dass es schließlich ein Bericht oder Graphik erzeugt \citep{Korzeniowski_LATDef}. Die Nutzung dieser Tools schränkt sich nicht in dem Sicherheitsbereich ein, sondern kann für das gesamte Rechenzentren nützlich sein.
 
-In dem Universum des \glsfirst{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutung und Verantwortung haben. \glsfirst{IDS}, \glsfirst{IPS}, \glsfirst{SIEM} und Log Analysis Tools werden von \textit{nonnative users} und sogar von Spezialisten oft verwechselt, da ihre Aufgabe mehr Zusammenhang als Unterschied haben. Um den Umfang dieser Arbeit wegen der zeitlichen Einschränkungen zu verringern, fassen wir kurz die Unterschiede zwischen ihnen zusammen und legen unsere Grenze auf den \glspl{SIEM} Lösungen und auf Log Analysis Tools fest.
+In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutung und Verantwortung haben. \glsfirst{IDS}, \glsfirst{IPS}, \glsfirst{SIEM} und Log Analysis Tools werden von \textit{nonnative users} und sogar von Spezialisten oft verwechselt, da ihre Aufgabe mehr Zusammenhang als Unterschied haben. Um den Umfang dieser Arbeit wegen der zeitlichen Einschränkungen zu verringern, fassen wir kurz die Unterschiede zwischen ihnen zusammen und legen unsere Grenze auf den \glspl{SIEM} Lösungen und auf Log Analysis Tools fest.
 
 \newpage
 \glsfirst{IDS} sind Software oder Hardware, die \glsplural{Cyberangriff} identifizieren und berichten. Sie haben eine passive Rolle, weil sie die \glsplural{Cyberangriff}n weder stoppen noch verhindern können. \glsfirst{IPS} seinerseits haben eine aktive Haltung gegenüber \glsplural{Cyberangriff}, die können automatisch behandeln können, indem sie Blocking-Mechanism einschalten, um den Angriff zu stoppen \citep{Wendzel_IS}. Wie \gls{IDS}, kann der \gls{IPS} auch Logdateien generieren, die von einer \gls{SIEM} Lösung gesammelt werden können. \glsplural{SIEM} können seinerseits die Logdateien von diesen und von anderen \glsplural{Endpoint} bekommen und diese nach vordefierten Regeln bewerten, um dem \gls{SOC}-Team über Sicherheitsvorfälle zu informieren oder automatisch Maßnahmen zu greifen. Wie \glsplural{SIEM} bekommen Log Analysis Tools auch Logdateien, um Bericht oder Darstellung zu genieren, ihre Nutzung ist aber nicht so spezifisch wie von der \glsplural{SIEM}.
@@ -13,8 +13,9 @@ Die folgenden Abbildung stellt didaktisch eine allgemeine Struktur von \gls{SIEM
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.5\textwidth]{assets/2_p1.png}
+   \includegraphics[width=0.55\textwidth]{assets/2_p1.png}
    \caption{Allgemeine Struktur von \gls{SIEM} \\Quelle: \citep{Mohanan_What} }
+   \label{fig:SIEM_Allg_Struktur}
    \centering
 \end{figure}
 
@@ -25,6 +26,7 @@ Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisie
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p2.png}
    \caption{Allgemeine Informationsfluss von \gls{SIEM} \\Quelle: \citep{Granadillo_SIEM} }
+   \label{fig:SIEM_Allg_Informationsfluss}
    \centering
 \end{figure}
 
@@ -37,43 +39,53 @@ Die folgenden Abbildung stellen eine allgemeine Architektur von Log Analysis Too
    \centering
 \end{figure}
 
-\newpage
 Den Informationsfluss eines Log Analysys Tools zeigen auf dem folgenden Bild:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/2.2_p2.png}
+   \includegraphics[width=0.55\textwidth]{assets/2.2_p2.png}
    \caption{Allgemeine Informationsfluss von Log Analysys Tools\\Quelle: \citep{Neptune_LATInfoFluss} }
    \centering
 \end{figure}
 
-Aus den bisherigen Beschreibung stellen wir fest, dass \gls{SIEM} viel mehr als eine Sammlung von Logdateien sind. Das Ziel dieser Software ist die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereiche, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verplichtet das \gls{IT-Sicherheitsgesetz 2.0} Organisationen mit kritischen Infrastrukturen die Anwendungen von solche Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log Analysys Tools sind seinerseits allgemeine Tools zu der Speicherung, Anpassadung, Bewertung und Darstellung von Logdateien, ohne dass sie auf der Sicherheitsebenen fokussieren.
-
-
-
+Aus den bisherigen Beschreibung stellen wir fest, dass \gls{SIEM} viel mehr als eine Sammlung von Logdateien sind. Das Ziel dieser Software ist die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereiche, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verplichtet das \gls{IT-Sicherheitsgesetz 2.0} Organisationen mit kritischen Infrastrukturen die Anwendungen von solche Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log Analysis Tools sind seinerseits allgemeine Tools zu der Speicherung, Anpassadung, Bewertung und Darstellung von Logdateien, ohne dass sie auf der Sicherheitsebenen fokussieren.
 
 \subsection{Existierende SIEMs Lösungen und Log Analysis Tools }
 % über Splunk schreiben, state of the art, nicht open source, aber andere müssen ähnliche funktionaliten haben
-Die existierenden \glsplural{SIEM} Lösungen können in zwei Kategorien getrennt werden: \textit{\gls{Proprietary}} und \textit{\gls{Open Source}}. Zu der ersten ist Splunk von dem Unternehmen Splunk Technology, die zu der meist verwendeten Software \citep{Kazarov_Splunk} gehört und als \textit{State of the art} für andere \glsplural{SIEM} gilt. In den folgenden Abschnitte präsentiere wir Splunk, damit wir einen Maßtab für unsere Auswahl haben und demnächst und beschreiben wir folgenden \textit{\gls{Open Source}} Tools:
+Die existierenden \glsplural{SIEM} und Log Analysis Tools können in zwei Kategorien getrennt werden: \textit{\gls{Proprietary}} und \textit{\gls{Open Source}}. In den folgenden Abschnitte präsentieren wir die proprietäre \gls{SIEM} Splunk, um inen Maßtab für unsere Auswahl, wenn es um Funktionalitäten geht, zu haben und wir analysieren folgenden \glsplural{SIEM} und Log Analysis Tools:
 
 \begin{itemize}[noitemsep]
-   \item Prelude
-   \item AlienVault \glsfirst{OSSIM}
-   \item FortiSIEM
-   \item ELK Stack ++ Mittre ATT\&AT %(nein)
-   \item Grafana
+   \item Prelude %(nein)
+   \item AlienVault \glsfirst{OSSIM} %(nein)
+   \item FortiSIEM %(nein)
+   \item ELK Stack %(nein)
+   \item Grafana %(ja)
 \end{itemize}
 
-\textbf{\textcolor{red}{Wie konnte ich Grafana hier erwähnen? Grafane ist eher allgemein und nicht so zu Alert orientiert, habe ich hier gefunden: \href{https://www.metricfire.com/blog/grafana-vs-splunk/}{Splunk x Grafana} und hier \href{https://www.researchgate.net/publication/350730340_Implementation_of_Grafana_as_open_source_visualization_and_query_processing_platform_for_data_scientists_and_researchers}{What is Grafana}}  }
+%\textbf{\textcolor{red}{Wie konnte ich Grafana hier erwähnen? Grafane ist eher allgemein und nicht so zu Alert orientiert, habe ich hier gefunden: \href{https://www.metricfire.com/blog/grafana-vs-splunk/}{Splunk x Grafana} und hier \href{https://www.researchgate.net/publication/350730340_Implementation_of_Grafana_as_open_source_visualization_and_query_processing_platform_for_data_scientists_and_researchers}{What is Grafana}}  }
 
+\newpage
 \subsubsection{Splunk}
+Splunk von dem Unternehmen Splunk Technology wurde 2003 in den USA veröffentlich \citep{Splunk_splunk}. Er gehört weltweit zu der meist verwendeten \gls{SIEM} Software und gilt als \textit{State of the art} für andere ähnliche Lösungen \citep{Kazarov_Splunk}. Unter ihren Kunden stehen großen Konzerne wie Airbus, Coca-Cola, Intel und die Deutsche Bahn.
 
-bbbbbbbbbbbbbbbbbbb
-% Regel von Mittre anhand einer SIEM Lösung an dem SIEM anpassen
+Splunk bietet laut seiner Webseite folgenden Funktionalitäten an \citep{Splunk_SPE}:
+
+\begin{itemize}[noitemsep]
+   \item Skalierbare Datenplataform
+   \item Risk-based Warnmeldung 
+   \item Bedrohungserkennung mithilfe von Machine Learning 
+   \item Automatische Aktualisierung von der Bedrohungs- und Schachwasstelle-Database  
+   \item Unkomplizierte Installation und Anwendung
+\end{itemize}
+
+Die allgemeine Architektur und Informationsfluss von Splunk unterscheided sich nicht von den obigen dargestellten Struktur \ref{fig:SIEM_Allg_Struktur}, Seite \pageref{fig:SIEM_Allg_Struktur}, und Informationsfluss \ref{fig:SIEM_Allg_Informationsfluss}, Seite \pageref{fig:SIEM_Allg_Informationsfluss}. Da es sich hier um eine proprietäre Lösung geht, lässt sich Splunk mit vielen anderen Funktionaliäten verwalten und erweitern. 
+
+In Splunk funktioniert die Bedrohungserkennung mithilfe von \glsplural{usecases}. Laut der Dokumentation existieren sie in folgenden Szenarien: Überwachung, Untersuchung und Erkennung. Die Software ist sowohl mit \gls{mitre} als auch mit \glsfirst{CKC} für die Gestaltung ihrer \glsplural{usecases} integriert \citep{Splunk_usecases}. 
+
+In der wissenschaftlichen Literatur wird Splunk viel recherchiert. Verschiedene Arbeite beschäftigen sich mit der Integration und Nutzung dieser Anwendung. In einer spezifischen Arbeit wurden Angriffe auf einem System simuliert und schließlich mit Splunk analysiert, um Gefahren zu identifieren und diese im Voraus zu sehen \citep{Su_SplunkDDOS}. In anderer Arbeit beschrieben die Autoren, wie eine Splunk-Instanz installiert und konfiguriert wurden, um spezifische \gls{bruteforce} zu erkennen \citep{Selvaganesh_SplunkBruteForce}.       
+
 % Grafana: 
 % zeek: The Zeek Network Security Monitor => Tool ==> Verkehr umleiten und analysieren
-% mittre: https://attack.mitre.org/
-% https://socfortress.medium.com/part-6-best-open-source-siem-dashboards-5dad09fa4d0e
 % Own SIEM: chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://prof.msoltys.com/wp-content/uploads/2019/02/Donnelly-Gittins.pdf
 
 
@@ -82,7 +94,6 @@ bbbbbbbbbbbbbbbbbbb
 % 2 -  danach Zugriffs auf Log von Zeek Nehmen (Zeek) 
 
 \subsubsection{Prelude}
-
 % suche nach Modulen, die man separat benutzen kann (Correlator)
 Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere freigegebene Tool Prelude zählt zu gehört zu einer europäischen \gls{Open Source} \gls{SIEM} Lösung. Laut dem Anbieter verfügt Prelude unter anderen folgenden Funktionalitäten \citep{Prelude_SIEM}:
 
@@ -99,7 +110,7 @@ Die folgende Abbildung zeigt die Integration der verschiedenen Module von Prelud
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/2_p3.png}
+   \includegraphics[width=0.5\textwidth]{assets/2_p3.png}
    \caption{Integration zwischen den Modulen von Prelude \\Quelle: \citep{Prelude_MU} }
    \centering
 \end{figure}
@@ -151,6 +162,7 @@ AlienVault OSSIM ist eine im Jahr 2007 entwickelte \gls{Open Source} SIEM Lösun
 
 AlienVault hat eine kostenpflichtige Version, die Alien Vault \glsfirst{USM} heißt. In der Webseite von AT\&T steht, dass es keine spezifische Dokumentation für die \gls{Open Source} Version, AlienVault OSSIM, gibt, weil viele Funktionalitäten von der anderen Version stammen \citep{ATT_AVO}. 
 
+\newpage
 Die folgende Abbildung zeigt das von dem Anbieter freigelegte Architekturdiagramm von der \gls{USM} Version:
 
 \begin{figure}[H]
@@ -164,7 +176,7 @@ Laut der Website Comparitech steht AlienVault in der 13ten Platz von den besten 
 
 Die Anwendung soll konsistenten Daten Zusammenhang anbieten und soll das Auftauchen von \gls{falsch positiv} vermeiden. AlienVault kommt auch mit vordefinierten Use-Cases, die dabei unterstützen gewöhnlichen Angriffsszenario zu erkennen. Die Installation, die Einstellung und die Integration mit anderen Tools ist auch benutzerfreundlich \citep{Gomes_AV}. Aus einer anderen wissenschaftlichen Quelle fanden wir heraus, dass für viele  Quelle eine manuelle Normalisierung der Logdatein notwendig ist \cite{Nabil_AV}. Die Anwendung hat aber einen zuverlässigen Berichtsmechanismus.
 
-Während unserer Recherche gab es wenig wissenschaftliche Literatur, die sich um AlienVault OSSIM kümmert. Kommerzielle Publikationen waren auch viel auf die Firma AT\&T auf die kostenpflichtige Version des Tools konzentriert.
+Während unserer Recherche gab es wenig wissenschaftliche Literatur, die sich um AlienVault OSSIM kümmert. Die meisten Publikationen waren aus kommerziellen Quellen und diese konzentrierten sich auf das kostenpflichtigen \gls{SIEM} Lösung der Firma AT\&T.
 
 \subsubsection{FortiSIEM}
 FortiSIEM ist eine US-amerikanische \gls{SIEM} Lösung von der Firma Fortinet. Fortinet kaufte im Jahr 2016 das Unternehmen AccelOps und dessen \gls{SIEM} Lösung und benannte es zum FortSIEM \citep{Fortinet_Press}. 
@@ -178,6 +190,7 @@ Laut dem Anbieter hat FortiSIEM eine robuste Integration mit anderen Tools und l
    \centering
 \end{figure}
 
+\newpage
 Auch zu dieser \gls{SIEM} Lösung ist die wissenschaftliche Produktion eingeschränkt. Eine von der gefundenen Publikation betont, dass FortiSIEM eine schnelle Erkennung von Angriffen  anbietet und über \glsfirst{NOC} Funktionalitäten verfügt \citep{Ramires_fortisiem}. Wie andere \glspl{SIEM} Lösungen hat FortiSIEM folgende Funktionalitäten:
 
 \begin{itemize}[noitemsep]
@@ -191,6 +204,7 @@ Auch zu dieser \gls{SIEM} Lösung ist die wissenschaftliche Produktion eingeschr
 \subsubsection{ELK Stack}
 ELK Stack stammt aus der Verbindung von drei ürsprüngliche \gls{Open Source} Tools: Elasticsearch, Logstash und Kibana. Das erste ist eine Such- und Analyse-Maschine. Das zweite ist eine Serverseitige Anwendung zur Datenverarbeitung und -Weiterleitung. Schließlich Kibana ist dafür zuständig, visuelle Darstellung in Grafik-Format auszugeben \citep{packt_elkstack}. Dieses Tool besitzt viele Eigenschaften von einer \gls{SIEM}-Lösung und ist von vielen \gls{SOC} verwendet, ist aber, für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungssystem, Daten Zusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren. 
 
+\newpage
 Das folgende Diagramm stellt die Architektur von ELK Stack mit ihren integrierten Elementen  dar:
 
 \begin{figure}[H]
@@ -223,6 +237,7 @@ Folgendes Diagramm aus der offiziellen Dokumentation zeigt die Aufteilung der Fu
 
 Die wissenschaftliche Publikation über ELK Stack ist vielfältiger als bei der anderen recherchierten Tools. Es ist aber wichtig, zu betonen, dass die Mehrheit von denen sich eher mit dem Logging als mit den \gls{SIEM}-Eingeschaften der Anwendung beschäftigt.
 
+\newpage
 \subsubsection{Grafana}
 AAAAAAAAAAAAAAAAAAAAAAAA
 
