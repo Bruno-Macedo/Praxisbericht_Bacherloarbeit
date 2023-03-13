@@ -202,7 +202,7 @@ Auch zu dieser \gls{SIEM} Lösung ist die wissenschaftliche Produktion eingeschr
 \end{itemize}
 
 \subsubsection{ELK Stack}
-ELK Stack stammt aus der Verbindung von drei ürsprüngliche \gls{Open Source} Tools: Elasticsearch, Logstash und Kibana. Das erste ist eine Such- und Analyse-Maschine. Das zweite ist eine Serverseitige Anwendung zur Datenverarbeitung und -Weiterleitung. Schließlich Kibana ist dafür zuständig, visuelle Darstellung in Grafik-Format auszugeben \citep{packt_elkstack}. Dieses Tool besitzt viele Eigenschaften von einer \gls{SIEM}-Lösung und ist von vielen \gls{SOC} verwendet, ist aber, für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungssystem, Daten Zusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren. 
+ELK Stack stammt aus der Verbindung von drei ürsprüngliche \gls{Open Source} Tools: Elasticsearch, Logstash und Kibana. Das erste ist eine Such- und Analyse-Maschine. Das zweite ist eine Serverseitige Anwendung zur Datenverarbeitung und -Weiterleitung. Schließlich Kibana \label{kibana} ist dafür zuständig, visuelle Darstellung in Grafik-Format auszugeben \citep{packt_elkstack}. Dieses Tool besitzt viele Eigenschaften von einer \gls{SIEM}-Lösung und ist von vielen \gls{SOC} verwendet, ist aber, für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungssystem, Daten Zusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren. 
 
 \newpage
 Das folgende Diagramm stellt die Architektur von ELK Stack mit ihren integrierten Elementen  dar:
@@ -237,10 +237,28 @@ Folgendes Diagramm aus der offiziellen Dokumentation zeigt die Aufteilung der Fu
 
 Die wissenschaftliche Publikation über ELK Stack ist vielfältiger als bei der anderen recherchierten Tools. Es ist aber wichtig, zu betonen, dass die Mehrheit von denen sich eher mit dem Logging als mit den \gls{SIEM}-Eingeschaften der Anwendung beschäftigt.
 
-\newpage
 \subsubsection{Grafana}
-AAAAAAAAAAAAAAAAAAAAAAAA
+Von allen recherchierten Lösungen ist Grafana die einzige, die nicht als \gls{SIEM} dargestellt ist. Grafana wird aber als Platform für Visualisierung von Data beschrieben. Mit dem Tool ist es möglich Graphik zu erstellen und Meldungen zu definieren. Das Ziel der Anwendung ist, Information in einer einfachen und verständlichen Art und Weise zur Verfügung zu stehen \citep{redhat_grafana}.     
 
+Im Jahr 2014 wurde Grafana von der Firma Grafana Labs veröffentlicht. Das Tool ist auf Kibana3, \ref{kibana}, basiert. Ursprünglich sollte Grafana ein einfacheres Editingtool für Graphik sein und ermöglichen, Datenanfrage unkomplizierter zu machen. Die neuste Version, 9.4.3. wurde im März 2023 released und bietet viele Funktionalitäten. Es ist auch möglich das Tool mithilfe von \glsplural{plugin} zu erweitern \citep{Oedegaard_historyGrafana}. 
+
+In der Webseite highlighted der Anbieter, dass Grafana die Zentralisierung und Zugang von Daten vereinfachen. Alle Art von Daten lassen sich analysieren und darstellen, von der Leistung von Anvwendungen bis Verkaufsdaten und Krankheitsfällen. Die Anwendung soll auch den Zusammenhang von Daten ermöglichen, um wichtige Informationen herauszunehmen \citep{Grafana_Grafana}.
+
+Grafana ist auch mit dem Loggin Tool Loki integriert, sodass Logdateien aus unterschiedlichen Quellen sich integrieren lassen. Auf dem Folgenden Bild wird die Struktur von Grafana für Logging dargestellt:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/2_p10.png}
+   \caption{Integration von verschiedenen Log-Quellen mit Grafana Loki \\Quelle: \citep{Grafana_Logs}}
+   \centering
+\end{figure}
+
+Das Tool hat auch eine umfangreiche Dokumentation, die ausführlich erklärt, wie sie sich installieren, bedienen und mit anderen Tools integrieren lässt.  
+
+\newpage
+Obwohl Grafana nicht spezifisch für den Sicherheitsbereich konzipiert wurde, kann das Tool so eingerichtet werden, dass spezifische Logdateien gesammelt, bearbeitet und analyisiert werden. Die Warnmelund lässt sich auf mit Regeln oder Filter definieren. In einer Recherche von 2022 wurde Grafana dafür benutzt, Daten aus Netzwerkverkehr mithilfe von Grafana graphisch darzustellen \citep{Manases_grafananetwork}. 
+
+Die Literaturrecherche über Grafana konzentriert sich eher auf die Anwendung des Tool auf spezifischen Kontexten, z.B. Überwachung von Cloud-Based Systemen, von Netzwerkaktivitäten und Netzwerkverkehr. In dieser Hinsicht gibt es wenige Recherche, wo das Tool, sein Implementierung und Integration mit anderen Tools die Hauptfigur ist.
 
 \subsection{Auswahlkrietieren}
 Die wichtigste Kriteria für unsere Auswahl war, dass die Anwendung \gls{Open Source} sein sollte. Kostenpflichtige Versionen können wegen ihrem Preis und Komplexität besonders kleinere Unternehmen abschrecken und infolgedessen bleiben sie fern von einigen Sicherheitslösungen \citep{Bjork_OSSIEM}.
