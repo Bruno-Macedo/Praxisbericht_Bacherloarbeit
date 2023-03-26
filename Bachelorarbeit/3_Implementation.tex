@@ -20,6 +20,7 @@ Von unserem Aufbau zielen wir, die Aufnahmen und Anpassung der Logdateien für G
 \subsection{Angriffserkennung mithilfe von Mitre ATT\&CK Matrix\textregistered}
 Es gibt verschiedene Methode und Framework zur Vermeidung, Erkennung, und Unterbrechung von \glsplural{Cyberangriff}. \glsfirst{owasp}, \glsfirst{CKC} und \gls{mitre} Matrix sind einige Bespiele von denen, die \gls{SOC}-Teams verwenden, um Sicherheit von Systemen und/oder Netwerken zu gewährleisten. Da die Richtlinien und Fokus von diesen Frameworks sich unterscheiden können und deswegen anderen Aufbau von unserer Struktur verlangen wurden, entschieden wir uns für die Anwendung von der \gls{mitre} Matrix für die Erkennung der \glsplural{Cyberangriff} besonders, weil dieser Framework auch an Splunk integriert ist.
 
+\newpage
 Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 
 \begin{itemize}[noitemsep]
@@ -40,6 +41,7 @@ Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Techni
    \centering
 \end{figure}
 
+\newpage
 Die 14 Tactics sind folgende:
 \begin{itemize}[noitemsep]
    \item Informationssammlung für zukünftige Angriffe 
@@ -66,7 +68,10 @@ In dieser Arbeit beschäftigen wir uns mit Tactic "Zugang zu Anmeldedaten" und d
    \item \textit{\gls{stuffing}}
 \end{itemize}
 
-Um den Umfang dieser Arbeit an ihren Einschränkungen anzupassen, lassen wir unseren Fokus auf die Erkennung der Subtechnique Erraten von Anmeldedaten und \textit{\gls{stuffing}}, da diese Angriffe ähnliche Erkennungmethode besitzen. Wir schließen wir auch die anderen Maßnahmen aus:
+Um den Umfang dieser Arbeit an ihren Einschränkungen anzupassen, lassen wir unseren Fokus auf die Erkennung der Subtechnique Erraten von Anmeldedaten und \textit{\gls{stuffing}}, da diese Angriffe ähnliche Erkennungmethode haben. Hier schließen wir auch die anderen Maßnahmen aus.
+
+\newpage
+Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
 
 \begin{figure}[H]
    \centering
@@ -74,6 +79,20 @@ Um den Umfang dieser Arbeit an ihren Einschränkungen anzupassen, lassen wir uns
    \caption{Analysestruktur für diese Arbeit \glsplural{Cyberangriff} \\Quelle: Eigene Quelle und \citep{Mitre_t1110}}
    \centering
 \end{figure}
+
+\subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
+Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsversuchs erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir bearbeiten eine Situation, in der es keine Gegenmaßnahmen, wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Aktivitätsdiagramm stellt einen allgemeinen Ablauf eines Anmeldungsverfahrens dar:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/Anmeldeverfahren.drawio.png}
+   \caption{Allgemeiner Ablauf eines Anmeldungsverfahrens \\Quelle: Eigene Quelle und \citep{Selvaganesh_SplunkBruteForce}}
+   \centering
+\end{figure}
+
+\textcolor{red}{\textbf{Regel von SPLUNK hinzufügen, wie sollten unsere Regel aussehen=}}
+\textcolor{red}{\textbf{statische vs dinymische Regel}}
+
 
 
 
