@@ -1,6 +1,6 @@
 \newglossaryentry{bruteforce} {
     name={Brute-Force Angriffe},
-    description={systematischer Versuch, Credentials oder andere sensitive Daten zu raten, indem verschiedene Buchstaben, Ziefern und Symbolen kombiniert werden  \citep{Sowmya_BruteForce}}}
+    description={systematischer Versuch, Credentials oder andere sensitive Daten zu raten, indem verschiedene Buchstaben, Ziefern und Symbolen kombiniert werden \citep{Sowmya_BruteForce}}}
 
 \newglossaryentry{BSI}{
     type=\acronymtype,
@@ -8,6 +8,11 @@
     first={ - Bundesamt für Sicherheit in der Informationstechnik (BSI)\glsadd{BSI}},
     see=[Glossary:]{\gls{BSI}}, 
     description=\glslink{BSI}{Bundesamt für Sicherheit in der Informationstechnik}}
+
+\newglossaryentry{container} {
+    name={Container},
+    plural={Containers},
+    description={funktionieren ähnlich wie vm, mit dem Unterschied, dass Container ab dem Software-Ebene entstehen. Containers werden meisten für einzelne Anwendungen verwendet, sie benutzen die Resource der Host-Maschine, haben aber eine isolierte Umgebung mit den notwendigen Resource für den Lauf der ausgewählten Anwendung \citep{Douglis_Container}}}
 
 \newglossaryentry{Cyberangriff} {
     name={Cyberangriff},
@@ -51,6 +56,11 @@
     plural={Endpoints},
     description={bezieht sich auf Geräte oder Systeme, die mit dem Netzwerk verbunden sind. Diese können z.B. Handys, Servers, Computers, Sensoren sein \citep{Microsoft_Endpoint}}}
 
+\newglossaryentry{hash} {
+    name={Hashwerte},
+    plural={Hashwerte},
+    description={sind Zeichen, die aus der Ergebnis einer mathematischen Funktion (Hashfunktion) auf einem Text oder auf einer Datei entstehen. Die Wiederherstellung des originallen Objekts soll aber schwierig sein \citep{Wendzel_IS}}}
+
 \newglossaryentry{IDS}{
     type=\acronymtype,
     name=IDS,
@@ -61,7 +71,7 @@
 
 \newglossaryentry{IT-Sicherheitsgesetz 2.0} {
     name={Zweites Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme},
-    description={ist das zweite Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme wurde im Jahr 2021 als verabschiedetes Bundesgesetz zur Erhöhung der Sicherheit von informationstechnischen Systemen besonders von den kritischen Infrastrukturen  \citep{Harmes_ITSG}}}
+    description={ist das zweite Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme wurde im Jahr 2021 als verabschiedetes Bundesgesetz zur Erhöhung der Sicherheit von informationstechnischen Systemen besonders von den kritischen Infrastrukturen \citep{Harmes_ITSG}}}
 
 \newglossaryentry{falsch positiv} {
     name={Falsch Positiv},
@@ -123,7 +133,7 @@
 %=====
 \newglossaryentry{ML2}{
     name=\glslink{ML}{Machine Learning (\gls{ML})},
-    description={bezieht sich auf die Fähigkeit von Systemen, automatisch Probleme zu lösen und spezifische Aufgabe zu erledigen mithilfe von Datenbeziehung und Bearbeitung  \citep{Janiesch_ML}}}
+    description={bezieht sich auf die Fähigkeit von Systemen, automatisch Probleme zu lösen und spezifische Aufgabe zu erledigen mithilfe von Datenbeziehung und Bearbeitung \citep{Janiesch_ML}}}
 
 \newglossaryentry{ML}{
     type=\acronymtype,
@@ -135,7 +145,7 @@
 
 \newglossaryentry{mitre} {
     name={Mitre ATT\&CK\textregistered},
-    description={Abkürzung für \textit{Adversarial Tactics, Techniques and Common Knowledge}. Es bezieht sich auf eine weltweit zugängliche Wissensbasis mit detaillierter Beschreibung, Klassifizierung und Bekämpfung von verschiedenen Angriffstechniken  \citep{Mitre_Definition}}}
+    description={Abkürzung für \textit{Adversarial Tactics, Techniques and Common Knowledge}. Es bezieht sich auf eine weltweit zugängliche Wissensbasis mit detaillierter Beschreibung, Klassifizierung und Bekämpfung von verschiedenen Angriffstechniken \citep{Mitre_Definition}}}
 
 %=====
 \newglossaryentry{NIST2}{
@@ -175,6 +185,15 @@
     see=[Glossary:]{\gls{OSSIM}}, 
     description=\glslink{OSSIM}{Open Source Security Information Management}}
 
+\newglossaryentry{spraying} {
+    name={Password Spraying},
+    description={ist ein Angriff gegen Anmeldedaten, indem mögliche Passwörter gegen verschiedenen viele Benutzername verwendet werden. Das Ziel ist dieses Angriffs ist eine Kontosperrung zu vermeiden. \citep{Swathi_spraxy}}}
+
+\newglossaryentry{stuffing} {
+    name={Password Stuffing},
+    description={ist ein Angriff gegen Passwörten, indem schon bekannte Anmeldedaten von vorherigen Angriffen verwendet werden. Dieser Angriff basiert sich auf die Idee, dass Nutzer dasselbe Passwort für verschiedenen Systemen verwenden \citep{Nguyen_stuffing}}}
+    
+
 %=====
 \newglossaryentry{PCIDSS2}{
     name=\glslink{PCDISS}{Payment Card Industry Data Security Standard (\gls{PCDISS})},
@@ -200,6 +219,21 @@
     see=[Glossary:]{\gls{NOC2}}, 
     description=\glslink{NOC2}{Network Operations Center}}
 % =====
+
+%=====
+\newglossaryentry{owasp2}{
+    name=\glslink{owasp}{Open Web Application Security Project\textregistered (\gls{owasp})},
+    description={Eine Non-Profit Organisation, die sich darauf fokussiert, die Sicherheit in dem Umgang mit Webanwendungen zu gewährleisten. Die Organisation verteilt Open-Source Informationen über sichere Entwicklung, Dokumentation, Best-Practices zu dem sicheren Umgang mit dem Internet und Bildung \citep{owasp}}
+}
+
+\newglossaryentry{owasp}{
+    type=\acronymtype,
+    name=owasp\textregistered,
+    first={Open Web Application Security Project\textregistered (OWASP\textregistered)\glsadd{owasp}},
+    see=[Glossary:]{\gls{owasp2}}, 
+    description=\glslink{owasp2}{Open Web Application Security Project\textregistered}
+}
+%=====
 
 \newglossaryentry{plugin} {
     name={Plugin},
@@ -242,12 +276,12 @@
 %=====
 \newglossaryentry{SOC2}{
     name=\glslink{SOC}{Security Operations Center (\gls{SOC})},
-    description={ist ein zentralisierter Bereich eines Unternehmens und dafür zuständig, Sicherheitsvorfälle zu überwachen, zu identifizieren, zu bewerten und dazu zu reagieren  \citep{Vielberth_SOC}}}
+    description={ist ein zentralisierter Bereich eines Unternehmens und dafür zuständig, Sicherheitsvorfälle zu überwachen, zu identifizieren, zu bewerten und dazu zu reagieren \citep{Vielberth_SOC}}}
 
 \newglossaryentry{SOC}{
     type=\acronymtype,
     name=SOC,
-    first={Security Operations Center  (SOC)\glsadd{SOC2}},
+    first={Security Operations Center (SOC)\glsadd{SOC2}},
     see=[Glossary:]{\gls{SOC2}}, 
     description=\glslink{SOC2}{Security Operations Center}}
 % =====
@@ -262,7 +296,6 @@
     plural={Uses Cases},
     description={beschreiben die Interaktion zwischen Systemen und Benutzer. Sie dienen zu der Anforderungserhebung eines Systems \citep{Savic_UseCase}}}
 
-
 \newglossaryentry{USM}{
     type=\acronymtype,
     name=USM ,
@@ -275,8 +308,19 @@
     plural={Verwundbarkeiten},
     description={auch \textit{vulnerability} genannt. Es beschreibt eine von Angreifer ausnutzbare Schwachstelle \citep{Wendzel_IS}}}
 
+%=====
+\newglossaryentry{vm2}{
+    name=\glslink{vm}{virtuelle Maschine (\gls{vm})},
+    description={ist eine Kopie der Hardware-Struktur mit eigenen Aufteilung von Resources und mit eigenen Betriebssystem. In einer physikalischen Maschine, auch Host virtuelle Maschine genannt, kann mehreren von solchen VMs laufen. Sie emulieren ein echtes und unabhängiges System \citep{Tanembaum_MBS}}}
 
-
+\newglossaryentry{vm}{
+    type=\acronymtype,
+    name=VM,
+    plural=VMs,
+    first={virtuellen Maschine (VM) \glsadd{vm2}},
+    see=[Glossary:]{\gls{vm2}}, 
+    description=\glslink{vm2}{virtuelle Maschine}}
+% =====
 
 
 

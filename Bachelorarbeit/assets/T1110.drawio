@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net" modified="2023-03-26T17:55:30.814Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0 Viewer/97.9.1928.29" etag="Nnrz0T0ZGjHlMsZuoOzM" version="21.1.1" type="device">
+  <diagram name="Seite-1" id="CNnBG5rLwi0yiTOx3MyL">
+    <mxGraphModel dx="472" dy="781" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="uhHIPqMnpYcALIznxWBx-38" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="460.28000000000003" y="55" width="140.07" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-37" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="320.21000000000004" y="55" width="140.07" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-6" value="Brute Force" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FF9999;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="200" y="160.5" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-12" value="&lt;i&gt;Password Stuffing&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FF6666;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="343.25" y="180" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-15" value="Erkennung in den Logdateien hoher Anzahl von fehlgeschlagenen Anmeldungen" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FF3333;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="481.5" y="117" width="100.5" height="113" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-16" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="39.93" y="55" width="140.07" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-18" value="Zugang zu Anemdedaten" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFCCCC;fontStyle=0;fillStyle=solid;" vertex="1" parent="1">
+          <mxGeometry x="59" y="160.5" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-21" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;size=0.5;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="166" y="147" width="49" height="61" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-22" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;size=0.5;" vertex="1" parent="1">
+          <mxGeometry x="309.75" y="133" width="49" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-30" value="Erraten von Anmeldedaten&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FF6666;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="344.25" y="140.5" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-31" value="Tactic" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="79" y="295" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-32" value="Tecnique" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="223.38" y="295" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-33" value="Subtecnique" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="358.75" y="295" width="79.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-36" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="179.97" y="55" width="140.07" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-39" value="Erkennung" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="490.56" y="295" width="79.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uhHIPqMnpYcALIznxWBx-41" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;size=0.5;fontStyle=0;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="451.25" y="153.5" width="30.25" height="37" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

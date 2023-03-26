@@ -83,7 +83,7 @@ Splunk bietet laut seiner Webseite folgenden Funktionalitäten an \citep{Splunk_
 
 Die allgemeine Architektur und der Informationsfluss von Splunk unterscheiden sich nicht von den obigen dargestellten Struktur \ref{fig:SIEM_Allg_Struktur}, Seite \pageref{fig:SIEM_Allg_Struktur}, und Informationsfluss\ref{fig:SIEM_Allg_Informationsfluss}, Seite \pageref{fig:SIEM_Allg_Informationsfluss}. Da es sich hier um eine proprietäre Lösung handelt, lässt sich Splunk mit vielen anderen Funktionalitäten verwalten und erweitern. 
 
-In Splunk funktioniert die Bedrohungserkennung mithilfe von\glsplural{usecases}. Laut der Dokumentation existieren sie in folgenden Szenarien: Überwachung, Untersuchung und Erkennung. Die Software ist sowohl mit gls{mitre} als auch mit \glsfirst{CKC} für die Gestaltung ihrer \glsplural{usecases}  integriert \citep{Splunk_usecases}. 
+In Splunk funktioniert die Bedrohungserkennung mithilfe von\glsplural{usecases}. Laut der Dokumentation existieren sie in folgenden Szenarien: Überwachung, Untersuchung und Erkennung. Die Software ist sowohl mit gls{mitre} Matrix als auch mit \glsfirst{CKC} für die Gestaltung ihrer \glsplural{usecases} integriert \citep{Splunk_usecases}. 
 
 In einer spezifischen Arbeit wurden Angriffe auf einem System simuliert und schließlich mit Splunk analysiert, um Gefahren zu identifizieren und diese im Voraus zu sehen \citep{Su_SplunkDDOS}. In anderer Arbeit beschrieben die Autoren, wie eine Splunk-Instanz installiert und konfiguriert wurden, um spezifische \gls{bruteforce} zu erkennen \citep{Selvaganesh_SplunkBruteForce}.
  
@@ -265,7 +265,9 @@ Das Tool hat auch eine umfangreiche Dokumentation, die ausführlich erklärt, wi
 \newpage
 Obwohl Grafana nicht spezifisch für den Sicherheitsbereich konzipiert wurde, kann das Tool so eingerichtet werden, dass spezifische Logdateien gesammelt, bearbeitet und analysiert werden. Die Warnmeldung lässt sich mit Regeln oder Filter definieren. In einer Recherche von 2022 wurde Grafana dafür benutzt, Daten aus Netzwerkverkehr mithilfe von Grafana graphisch darzustellen \citep{Manases_grafananetwork}. 
 
+\textcolor{red}{\textbf{====================== Literatur ===============================}}
 Die Literaturrecherche über Grafana konzentriert sich eher auf die Anwendung des Tools auf spezifischen Kontexten, z.B. Überwachung von Cloud-Based Systemen, von Netzwerkaktivitäten und Netzwerkverkehr. In dieser Hinsicht gibt es wenige Recherche, wo das Tool, seine Implementierung und Integration mit anderen Tools die Hauptfigur ist.
+\textcolor{red}{\textbf{====================== Literatur ===============================}}
 
 \subsection{Auswahlkriterien}
 Eine umfangreiche \gls{SIEM} Software die viele automatische Lösung für die Erkennung und Bekämpfung von Cyberangriffe würde perfekt für jede Situation passen. Da solche Lösungen meistens (oder alle) \gls{Proprietary} sind und nur für teure Preise angeboten werden, entschieden wir uns für die Anpassung an einem \gls{Open Source}Tool, das zu unserem Kontext und Einschränkungen gehört. 
