@@ -4,11 +4,10 @@ Der heutige Netzwerkverkehr fast tausendfach größer als vor 20 Jahre \citep{Ro
 
 Das \glsfirst{NIST} definiert \gls{SIEM} als Software für die Sammlung, Anpassung, Analyse, Überwachung und Bedrohungserkennung von Sicherheitsdaten aus verschiedenen Quellen, damit das zuständige \glsfirst{SOC}  Maßnahmen ergreifen kann \citep{NIST_Definitions}. Die Bewertung dieser Daten spielt eine wesentliche Rolle bei solchen Anwendungen, da es entscheidend ist zu wissen, ob es sich um normale Anfrage oder um \glsplural{Cyberangriff} handelt. Log Analysis und Log Management beziehen sich auf die Sammlung, Bearbeitung, Speicherung und/oder Löschen, Weiterleitung und Überwachung von Loginformationen. In dieser Arbeit benutzen wir den Begriff \quotes{Log Analysis Tool}, um diese Systeme zu referenzieren.
 
-In diesem Projekt recherchieren und vergleichen wir existierende \gls{SIEM} und Log Analysis Tools. Danach entscheiden wir uns für eine \gls{Open Source} Lösung. Mit dem ausgewählten Tool wollen wir spezifische Logdateien analysieren und bewerten, damit wir demnächst potenzielle Angriffe erkennen können. Die Angriffserkennung soll automatisch mit der Eingabe von vordefinierten Regeln der \gls{mitre} Matrix stattfinden. 
+In diesem Projekt recherchieren und vergleichen wir existierende \gls{SIEM} und Log Analysis Tools. Danach entscheiden wir uns für eine \gls{opensource} Lösung. Mit dem ausgewählten Tool wollen wir spezifische Logdateien analysieren und bewerten, damit wir demnächst potenzielle Angriffe erkennen können. Die Angriffserkennung soll automatisch mit der Eingabe von vordefinierten Regeln der \gls{mitre} Matrix stattfinden. 
 
-\textcolor{red}{\textbf{=============================================================}}
-Unser Ziel ist eine umfangreiche \gls{Open Source} Lösung zu finden bzw. gesltaten, die uns ermöglichen, \glsplural{Cyberangriff} schnell und einfach zu detektieren. \gls{Proprietary} Lösungen gibt es viele auf dem Markt, sie kosten meisten sehr viel und verlangen spezielle Kenntnis für die Verwaltung. Da solche Lösungen eher an großen Unternehmen eingeschränkt sind, beschäftigen wir uns mit dem Aufbau und Strukturierung unser eigene Lösung 
-\textcolor{red}{\textbf{=============================================================}}
+\newpage
+Unser Ziel ist, eine umfangreiche \gls{opensource} Lösung zu finden bzw. gesltaten, die uns ermöglichen, \glsplural{Cyberangriff} schnell und einfach zu detektieren. \gls{Proprietary} Lösungen gibt es viele auf dem Markt. Sie kosten meisten sehr viel und verlangen spezielle Kenntnis für die Verwaltung. Da solche Lösungen eher an großen Unternehmen eingeschränkt sind, beschäftigen wir uns mit dem Aufbau und Strukturierung eine eigene Lösung mithilfe von \gls{opensource} Tools. 
 
 Diese Arbeit wird in folgende Teile geteilt: 
 
@@ -33,12 +32,14 @@ Diese Arbeit wird in folgende Teile geteilt:
    \item	Empfang, Bearbeitung und Eingabe in der ausgewählten Lösung der spezifischen Logdateien der Hochschule 
 \end{itemize}
 
+
+\newpage
 Das folgende Diagramm stellt den Aufbau dieser Arbeit dar:
 % Diagram anpassen mit korrenkten Zielen
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=1\textwidth]{assets/1_p1.jpg}
+   \includegraphics[width=0.9\textwidth]{assets/1_p1.jpg}
    \caption{Aufbau dieser wissenschaftlichen Recherche \gls{SIEM} \\Quelle: Eigene Darstellung }
    \centering
 \end{figure}
@@ -47,7 +48,7 @@ Das folgende Diagramm stellt den Aufbau dieser Arbeit dar:
 Während der Entwicklung dieser Arbeit wollen wir uns mit folgenden Fragen beschäftigen: 
 
 % Regeln anhand mittre, automatisieren
-\begin{itemize}
+\begin{itemize}[noitemsep]
    \item Wie können wir ein Log Analysis Tool so konfigurieren, dass es vordefinierten Angriffe nach der \gls{mitre} Matrix automatisch erkennen kann? 
    \item Wie können wir eine allgemeine \glsplural{usecases} definieren, sodass wir sie später für verschiedene Angriffsmuster nach \gls{mitre} Matrix leicht anpassen können?
 \end{itemize}
