@@ -17,8 +17,8 @@ Von unserem Aufbau zielen wir, die Aufnahmen und Anpassung der Logdateien für G
    \centering
 \end{figure}
 
-\subsection{Angriffserkennung anahnd der Mitre ATT\&CK Matrix\textregistered}
-Es gibt verschiedene Methode und Framework zur Vermeidung, Erkennung, und Unterbrechung von \glsplural{Cyberangriff}. \glsfirst{owasp}, \glsfirst{CKC} und \gls{mitre} Matrix sind einige Bespiele von denen, die \gls{SOC}-Teams verwenden, um Sicherheit von Systemen und/oder Netwerken zu gewährleisten. Da die Richtlinien und Fokus von diesen Frameworks sich unterscheiden können und deswegen anderen Aufbau von unserer Struktur verlangen wurden, entschieden wir uns für die Anwendung von der \gls{mitre} Matrix für die Erkennung der \glsplural{Cyberangriff} besonders, weil dieser Framework auch an Splunk integriert ist.
+\subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix\textregistered}
+Es gibt verschiedene Methode und Framework zur Vermeidung, Erkennung, und Unterbrechung von \glsplural{Cyberangriff}. \glsfirst{owasp}, \glsfirst{CKC} und \gls{mitre} Matrix sind einige Bespiele von denen, die \gls{SOC}-Teams verwenden, um Sicherheit von Systemen und/oder Netzwerken zu gewährleisten. Da die Richtlinien und Fokus von diesen Frameworks sich unterscheiden können und deswegen anderen Aufbau von unserer Struktur verlangen wurden, entschieden wir uns für die Anwendung von der \gls{mitre} Matrix für die Erkennung der \glsplural{Cyberangriff} besonders, weil dieser Framework auch an Splunk integriert ist.
 
 \newpage
 Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
@@ -30,9 +30,9 @@ Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
    \item	Systemhärtung und Verbesserung der Verteidigungsmaßnahmen
 \end{itemize}
 
-Die Matrix bietet eine umfangreiche Verwendung für Unternehmen und für \gls{SOC}-Team an, um ihre wertvollen Resource schützen und ihre Fachkenntnisse über \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. Hier konzentrieren wir uns auf die Entwicklung und auf die Implementierung einer Methode für die automatische Erkennung und Analyse von Angriffstechnique in Grafana.
+Die Matrix bietet eine umfangreiche Verwendung für Unternehmen und für \gls{SOC}-Team an, um ihre wertvollen Ressource schützen und ihre Fachkenntnisse über \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. Hier konzentrieren wir uns auf die Entwicklung und auf die Implementierung einer Methode für die automatische Erkennung und Analyse von Angriffstechnique in Grafana.
 
-Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Technique, die ihrerseits in Subtechniques aufgeteilt sind. Jede Subtechnique wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln dargestellt. Die Folgebende Abbildung zeigt, wie diese Struktur aufgebaut ist: 
+Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Technique, die ihrerseits in Subtechniques aufgeteilt sind. Jede Subtechnique wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln dargestellt. Die nächste Abbildung zeigt, wie diese Struktur aufgebaut ist: 
 
 \begin{figure}[H]
    \centering
@@ -54,7 +54,7 @@ Die 14 Tactics sind folgende:
    \item Zugang zu Anmeldedaten
    \item Umgebungserkennung
    \item Seitliche Bewegung zu anderem Systemen innerhalb des Angriffsziels
-   \item internet Informationssammlung
+   \item interne Informationssammlung
    \item Steuerung und Kontrolle (C2 - Command and Control im Original)
    \item Datenextrahierung 
    \item	Auswirkung auf die Integrität
@@ -85,7 +85,7 @@ Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
 
 \subsection{Installation und Erstellung von Logdateien}
 
-In diesem Abschnschnitt fokussieren wir uns folgenden Punkten:
+In diesem Abschnitt fokussieren wir uns folgenden Punkten:
 
 \begin{enumerate}[noitemsep]
    \item Installation von Grafana mit \gls{container}
@@ -100,13 +100,13 @@ Die Installation und Anwendung können entweder mit dem \gls{GUI} oder mit der K
    \item \textbf{[1] Installation von Grafana mit \gls{container}}
 \end{itemize}
 
-Grafana lässt sich mit einzelnen Kommando installieren und in Docker \gls{container} ausführen:
+Grafana lässt sich mit einem einzelnen Kommando installieren und in Docker \gls{container} ausführen:
 
 \begin{verbatim}
    docker run -d --name=grafana -p 3000:3000 grafana/grafana
 \end{verbatim}
 
-Für spezifische Versionen oder andere weitere Einstellungen bietet die Dokumentation  umfangreiche Möglichkeiten an \citep{Grafana_run}. Nach der Ausführung des Kommando ist die Anwendung schon benutzbar, wie in dem folgenden Screenshot:
+Für spezifische Versionen oder andere weitere Einstellungen bietet die Dokumentation  umfangreiche Möglichkeiten an \citep{Grafana_run}. Nach der Ausführung des Kommandos ist die Anwendung schon benutzbar, wie in dem folgenden Screenshot:
 
 \begin{figure}[H]
    \centering
@@ -132,7 +132,7 @@ Für den Angriff verwenden wir folgenden Tools:
    \item \gls{hydra}
 \end{itemize}
 
-In diesem Szenario schickt \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem. Das Tool verwendet ein sogennantes Wörterbuch mit verschiedenen Einträge, die als Passwörter dienen. Für unseren Test benutzen wir die bekannten Datei \gls{rockyou}. Das folgenden Diagrammen stellen unsere beiden Angriffe dar :
+In diesem Szenario schickt \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem. Das Tool verwendet ein sogenanntes  Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannten Datei \gls{rockyou}. Die folgenden Diagrammen stellen unsere beiden Angriffe dar:
 
 
 \begin{figure}[H]
