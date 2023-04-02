@@ -67,8 +67,9 @@ In dieser Arbeit beschäftigen wir uns mit dem Tactic \quotes{Zugang zu Anmelded
 \begin{itemize}[noitemsep]
    \item Erraten von Anmeldedaten 
    \item	Entschlüsselung von \glsplural{hash}
-   \item \textit{\gls{spraying}}
    \item \textit{\gls{stuffing}}
+   \item \textit{\gls{spraying}}
+
 \end{itemize}
 
 Da unser Ziel hier ist Grafana, zu benutzen, um Angriffe zu erkennen, entschieden wir uns für einen einfachen reproduzierbaren Angriff, die weniger Ressource verlangt. In diesem Fall, lässt sich \gls{bruteforce} einwandfrei mit zwei \glsplural{vm} darstellen. Für diesen Angriff benutzen wir die Subtechnique \quotes{Erraten von Anmeldedaten und \textit{\gls{stuffing}}}, da sie ähnliche Erkennungmethode haben. Hier schließen wir auch die anderen Maßnahmen aus.
@@ -110,7 +111,7 @@ Für spezifische Versionen oder andere weitere Einstellungen bietet die Dokument
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Installation_Grafana.png}
-   \caption{Screenshot der Willkommensseite von Grafana\\Quelle: Eigene Quelle \citep{Grafana_Logs}}
+   \caption{Screenshot der Willkommensseite von Grafana\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
    \centering
 \end{figure}
 
@@ -131,11 +132,23 @@ Für den Angriff verwenden wir folgenden Tools:
    \item \gls{hydra}
 \end{itemize}
 
-In diesem Szenario schickt \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem. Das Tool verwendet ein sogennantes Wörterbuch mit verschiedenen Einträge, die als Passwörter dienen. Für unseren Test benutzen wir die bekannten Datei \gls{rockyou}. Das folgende Diagramm stellt diesen Angriffs dar:
+In diesem Szenario schickt \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem. Das Tool verwendet ein sogennantes Wörterbuch mit verschiedenen Einträge, die als Passwörter dienen. Für unseren Test benutzen wir die bekannten Datei \gls{rockyou}. Das folgenden Diagrammen stellen unsere beiden Angriffe dar :
 
 
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/Stuffing.jpg}
+   \caption{\textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \centering
+\end{figure}
 
 
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/Spraying.jpg}
+   \caption{\textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
+   \centering
+\end{figure}
 
 
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
