@@ -12,7 +12,7 @@
 \newglossaryentry{container} {
     name={Container},
     plural={Containers},
-    description={funktionieren ähnlich wie vm, mit dem Unterschied, dass Container ab dem Software-Ebene entstehen. Containers werden meisten für einzelne Anwendungen verwendet, sie benutzen die Resource der Host-Maschine, haben aber eine isolierte Umgebung mit den notwendigen Resource für den Lauf der ausgewählten Anwendung \citep{Douglis_Container}}}
+    description={funktionieren ähnlich wie vm, mit dem Unterschied, dass Container ab dem Software-Ebene entstehen. Containers werden meisten für einzelne Anwendungen verwendet. Sie benutzen die Resource der Host-Maschine, haben aber eine isolierte Umgebung mit den notwendigen Resource für den Lauf der ausgewählten Anwendung \citep{Douglis_Container}. In dieser Arbeit benutzen wir Docker Container}}
 
 \newglossaryentry{Cyberangriff} {
     name={Cyberangriff},
@@ -105,6 +105,10 @@
     see=[Glossary:]{\gls{FPO}}, 
     description=\glslink{FPO}{Fachspezifische Prüfungsordnung}}
 
+\newglossaryentry{hydra} {
+    name={Hydra},
+    description={ist eine in Kali Native Open Source Tool für die Entdeckung von Anmeldedaten \citep{kali_hydra}}}
+
 %=====
 \newglossaryentry{HIPAA2}{
     name=\glslink{HIPAA}{Health Insurance Portability and Accountability Act (\gls{HIPAA})},
@@ -117,6 +121,10 @@
     see=[Glossary:]{\gls{HIPAA2}}, 
     description=\glslink{HIPAA2}{Health Insurance Portability and Accountability Act}}
 % =====
+
+\newglossaryentry{kali} {
+    name={Kali},
+    description={ist eine Open Source Linux-Distribution, die wegen spezifische Tools im Sicherheitsbereich für die Durchführung von Angriffe und Sicherheitstesten verwendet wird \citep{kali_docs}}}
 
 % here goes to the description
 \newglossaryentry{KI2}{
@@ -202,7 +210,7 @@
 
 \newglossaryentry{spraying} {
     name={Password Spraying},
-    description={ist ein Angriff gegen Anmeldedaten, indem mögliche Passwörter gegen verschiedenen viele Benutzername verwendet werden. Das Ziel ist dieses Angriffs ist eine Kontosperrung zu vermeiden. \citep{Swathi_spraxy}}}
+    description={ist ein Angriff gegen Anmeldedaten, indem mögliche Passwörter gegen verschiedenen viele Benutzername verwendet werden. Das Ziel dieses Angriffes ist eine Kontosperrung zu vermeiden, indem wenige Versuche pro Nutzer stattfindet \citep{Swathi_spraxy}}}
 
 \newglossaryentry{stuffing} {
     name={Password Stuffing},
@@ -264,6 +272,10 @@
     name={Proprietary},
     description={bezieht sich auf Software, die einer Firma oder Person gehören. Für die Nutzung ist meisten Kauf einer Lizenz notwendig. In diesem Fall haben Kunden wenig oder kaum Zugang zu einem originellen Code \citep{Nexcess_P}}}
 
+\newglossaryentry{rockyou} {
+    name={Rockyou},
+    description={ist eine Textdatei mit über 8 Millarden Passwörter im Klartext. Diese Datei entstammt aus einem im Jahr 2009 stattgefundenen Angriff gegen Yahoo und ist seitdem ständig aktualisiert \citep{Mikalauskas_rockyou}}}
+
 \newglossaryentry{SIEM}{
     type=\acronymtype,
     name=SIEM,
@@ -305,6 +317,23 @@
     name={Schwachstelle},
     plural={Schwachstellen},
     description={Schwäche eines Systems \citep{Wendzel_IS}}}
+
+%=====
+\newglossaryentry{ssh2}{
+    name=\glslink{ssh}{Secure Shell Protocol(\gls{ssh})},
+    description={ist ein Netzwerkprotokoll, das eine verschlüsselte Verbindung zwischen den Endpoints anbietet. SHH wird meistens für die Fernadministration von Rechner verwendet. Dieses Protokoll ermöglicht die Erstellung eine sichere Verbindung in einer unsicheren Umgebung \citep{Wendzel_IS}}}
+
+\newglossaryentry{ssh}{
+    type=\acronymtype,
+    name=SSH,
+    first={Secure Shell Protocol (SSH)\glsadd{ssh2}},
+    see=[Glossary:]{\gls{ssh2}}, 
+    description=\glslink{ssh2}{Secure Shell Protocol}}
+% =====
+
+\newglossaryentry{ubuntu} {
+    name={Ubuntu},
+    description={ist eine Open Source Linux-Distribution, die oft für Servers, Desktops und Internet of Things (IoT) verwendet wird \citep{Ubuntu_ubuntu}}}
 
 \newglossaryentry{usecases} {
     name={Use Cases},

@@ -1,0 +1,23 @@
+version: '3'
+services:
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    #environment:
+    #  GF_INSTALL_PLUGINS: grafana-piechart-panel,grafana-loki-datasource
+    #volumes:
+    #  - grafana-data:/var/lib/grafana
+  #loki:
+  #  image: grafana/loki
+  #  ports:
+  #    - "3100:3100"
+  #  volumes:
+  #    - loki-data:/loki/data
+#volumes:
+#  grafana-data:
+#  loki-data:
+
+  #docker-compose up -d
+  # source: https://earthly.dev/blog/running-grafana-in-docker/ && https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/
+  

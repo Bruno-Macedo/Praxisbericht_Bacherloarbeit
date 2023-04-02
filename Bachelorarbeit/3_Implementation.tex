@@ -17,7 +17,7 @@ Von unserem Aufbau zielen wir, die Aufnahmen und Anpassung der Logdateien für G
    \centering
 \end{figure}
 
-\subsection{Angriffserkennung mithilfe von Mitre ATT\&CK Matrix\textregistered}
+\subsection{Angriffserkennung anahnd der Mitre ATT\&CK Matrix\textregistered}
 Es gibt verschiedene Methode und Framework zur Vermeidung, Erkennung, und Unterbrechung von \glsplural{Cyberangriff}. \glsfirst{owasp}, \glsfirst{CKC} und \gls{mitre} Matrix sind einige Bespiele von denen, die \gls{SOC}-Teams verwenden, um Sicherheit von Systemen und/oder Netwerken zu gewährleisten. Da die Richtlinien und Fokus von diesen Frameworks sich unterscheiden können und deswegen anderen Aufbau von unserer Struktur verlangen wurden, entschieden wir uns für die Anwendung von der \gls{mitre} Matrix für die Erkennung der \glsplural{Cyberangriff} besonders, weil dieser Framework auch an Splunk integriert ist.
 
 \newpage
@@ -37,7 +37,7 @@ Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Techni
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Mitre_structure.drawio.png}
-   \caption{Struktur der Mitre Matrix \\Quelle: Eigene Quelle}
+   \caption{Struktur der Mitre Matrix \\Quelle: Eigene Quelle und \citep{Mitre_Started}}
    \centering
 \end{figure}
 
@@ -60,7 +60,10 @@ Die 14 Tactics sind folgende:
    \item	Auswirkung auf die Integrität
 \end{itemize}
 
-In dieser Arbeit beschäftigen wir uns mit Tactic "Zugang zu Anmeldedaten" und deren Technique \gls{bruteforce}. Diese Technique ist in vier Subtechnique aufteilt
+
+\subsection{Auswahl des Angriffes}
+In dieser Arbeit beschäftigen wir uns mit dem Tactic \quotes{Zugang zu Anmeldedaten} und deren Technique \gls{bruteforce}. Diese Technique ist in vier Subtechnique aufteilt:
+
 \begin{itemize}[noitemsep]
    \item Erraten von Anmeldedaten 
    \item	Entschlüsselung von \glsplural{hash}
@@ -68,9 +71,8 @@ In dieser Arbeit beschäftigen wir uns mit Tactic "Zugang zu Anmeldedaten" und d
    \item \textit{\gls{stuffing}}
 \end{itemize}
 
-Um den Umfang dieser Arbeit an ihren Einschränkungen anzupassen, lassen wir unseren Fokus auf die Erkennung der Subtechnique Erraten von Anmeldedaten und \textit{\gls{stuffing}}, da diese Angriffe ähnliche Erkennungmethode haben. Hier schließen wir auch die anderen Maßnahmen aus.
+Da unser Ziel hier ist Grafana, zu benutzen, um Angriffe zu erkennen, entschieden wir uns für einen einfachen reproduzierbaren Angriff, die weniger Ressource verlangt. In diesem Fall, lässt sich \gls{bruteforce} einwandfrei mit zwei \glsplural{vm} darstellen. Für diesen Angriff benutzen wir die Subtechnique \quotes{Erraten von Anmeldedaten und \textit{\gls{stuffing}}}, da sie ähnliche Erkennungmethode haben. Hier schließen wir auch die anderen Maßnahmen aus.
 
-\newpage
 Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
 
 \begin{figure}[H]
@@ -79,6 +81,62 @@ Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
    \caption{Analysestruktur für diese Arbeit \glsplural{Cyberangriff} \\Quelle: Eigene Quelle und \citep{Mitre_t1110}}
    \centering
 \end{figure}
+
+\subsection{Installation und Erstellung von Logdateien}
+
+In diesem Abschnschnitt fokussieren wir uns folgenden Punkten:
+
+\begin{enumerate}[noitemsep]
+   \item Installation von Grafana mit \gls{container}
+   \item	Installation von zwei \glsplural{vm}, eine für das Opfersystem und eine für den Angreifer
+   \item	Angrifsssimulation für die für die Generierung von Logdateien
+   \item Hochladen der Logdateien in Grafana
+\end{enumerate}
+
+Die Installation und Anwendung können entweder mit dem \gls{GUI} oder mit der Kommandozeilen durchgeführt werden. In dieser Arbeit benutzen wir die Kommandozeile. 
+
+\begin{itemize}[noitemsep]
+   \item \textbf{[1] Installation von Grafana mit \gls{container}}
+\end{itemize}
+
+Grafana lässt sich mit einzelnen Kommando installieren und in Docker \gls{container} ausführen:
+
+\begin{verbatim}
+   docker run -d --name=grafana -p 3000:3000 grafana/grafana
+\end{verbatim}
+
+Für spezifische Versionen oder andere weitere Einstellungen bietet die Dokumentation  umfangreiche Möglichkeiten an \citep{Grafana_run}. Nach der Ausführung des Kommando ist die Anwendung schon benutzbar, wie in dem folgenden Screenshot:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/Installation_Grafana.png}
+   \caption{Screenshot der Willkommensseite von Grafana\\Quelle: Eigene Quelle \citep{Grafana_Logs}}
+   \centering
+\end{figure}
+
+\begin{itemize}[noitemsep]
+   \item	\textbf{[2] Installation von zwei \glsplural{vm}, eine für das Opfersystem und eine für den Angreifer}
+\end{itemize}
+
+Die beiden \glsplural{vm} sind \quotes{\gls{kali} vorgebaute \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} in ihren standardmäßigen Einstellungen. Beiden Maschinen lassen sich aus der jeweiligen Schritte Dokumentation einwandfrei installieren \citep{kali_vm} und \citep{Ubuntu_server}. Für das Opfersystem entschieden wir uns für eins des zehn meisten verwendeten Passwort in Deutschland laut einer Umfrage \citep{silicon_passwort}: qwertz.  
+
+\begin{itemize}[noitemsep]
+   \item	\textbf{[3] Angrifsssimulation für die für die Generierung von Logdateien}
+\end{itemize}
+
+Für den Angriff verwenden wir folgenden Tools:
+
+\begin{itemize}[noitemsep]
+   \item	\glsfirst{ssh}
+   \item \gls{hydra}
+\end{itemize}
+
+In diesem Szenario schickt \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem. Das Tool verwendet ein sogennantes Wörterbuch mit verschiedenen Einträge, die als Passwörter dienen. Für unseren Test benutzen wir die bekannten Datei \gls{rockyou}. Das folgende Diagramm stellt diesen Angriffs dar:
+
+
+
+
+
 
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
 Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsversuchs erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir bearbeiten eine Situation, in der es keine Gegenmaßnahmen, wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Aktivitätsdiagramm stellt einen allgemeinen Ablauf eines Anmeldungsverfahrens dar:
@@ -90,9 +148,10 @@ Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsv
    \centering
 \end{figure}
 
-\textcolor{red}{\textbf{Regel von SPLUNK hinzufügen, wie sollten unsere Regel aussehen=}}
+\textcolor{red}{\textbf{Regel von SPLUNK hinzufügen, wie sollten unsere Regel aussehen}}
 
 \textcolor{red}{\textbf{statische vs dinymische Regel}}
+
 
 
 
