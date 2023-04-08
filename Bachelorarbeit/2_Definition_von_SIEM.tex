@@ -248,16 +248,16 @@ Die wissenschaftliche Publikation über ELK-Stack ist vielfältiger als bei ande
 \subsubsection{Grafana}
 Von allen recherchierten Lösungen ist Grafana die Einzige, die nicht als \gls{SIEM} dargestellt ist. Grafana wird aber als Plattform für Visualisierung von Data beschrieben. Mit dem Tool ist es möglich eine Graphik zu erstellen und Meldungen zu definieren. Das Ziel der Anwendung ist, Information in einer einfachen und verständlichen Art und Weise zur Verfügung zu stehen \citep{redhat_grafana}.  
 
-Im Jahr 2014 wurde Grafana von der Firma Grafana Labs veröffentlicht. Das Tool basiert auf Kibana3,\ref{kibana}. Ursprünglich sollte Grafana ein einfacheres Editingstool für Graphik sein und ermöglichen, Datenanfragen unkomplizierter zu machen. Die neuste Version, 9.4.3. wurde im März 2023 veröffentlicht und bietet viele Funktionalitäten an. Es ist auch möglich das Tool mithilfe von  \glsplural{plugin}  zu erweitern \citep{Oedegaard_historyGrafana}.. 
+Im Jahr 2014 wurde Grafana von der Firma Grafana Labs veröffentlicht. Das Tool basiert auf Kibana3,\ref{kibana}. Ursprünglich sollte Grafana ein einfacheres Editingstool für Graphik sein und ermöglichen, Datenanfragen unkomplizierter zu machen. Die neuste Version, 9.4.3. wurde im März 2023 veröffentlicht und bietet viele Funktionalitäten an. Es ist auch möglich das Tool mithilfe von  \glsplural{plugin} zu erweitern \citep{Oedegaard_historyGrafana}.. 
 
 In der Webseite betont der Anbieter, dass Grafana die Zentralisierung und Zugang von Daten vereinfachen. Alle Art von Daten lassen sich analysieren und darstellen, von der Leistung von Anwendungen bis Verkaufsdaten und Krankheitsfällen. Die Anwendung soll auch den Zusammenhang von Daten ermöglichen, um wichtige Informationen herauszunehmen \citep{Grafana_Grafana}.
 
-Grafana ist auch mit dem Loggin Tool Loki integriert, sodass sich Logdateien aus unterschiedlichen Quellen integrieren lassen. Auf dem Folgenden Bild wird die Struktur von Grafana für Logging dargestellt:
+Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig. Promptail wird an jeden \gls{Endpoint} installiert. In Loki werden diese Logdateien ohne Index für den schnellen Zugriff gespeichert. Diese Daten können dann in Grafana mithilfe der \gls{abfragesprache} LogQL aufgerufen werden. Schließlich können Warnmeldung mit spezfisichen Regel generiert werden, die in Loki eingeführt werden \citep{Grafana_loki}. Auf dem Folgenden Bild wird die Struktur von Grafana Loki  dargestellt:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p10.png}
-   \caption{Integration von verschiedenen Log-Quellen mit Grafana Loki \\Quelle: \citep{Grafana_Logs}}
+   \caption{Integration von verschiedenen Log-Quellen mit Grafana Loki und Promptail \\Quelle: \citep{Grafana_Logs}}
    \centering
 \end{figure}
 
