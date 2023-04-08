@@ -23,15 +23,16 @@ Der gewünschte Ablauf ist in dem folgenden Diagramm dargestellt:
 \subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix\textregistered}
 Es gibt verschiedene Methode und Framework zur Vermeidung, Erkennung, und Unterbrechung von \glsplural{Cyberangriff}. \glsfirst{owasp}, \glsfirst{CKC} und \gls{mitre} Matrix sind einige Bespiele von denen, die \gls{SOC}-Teams verwenden, um Sicherheit von Systemen und/oder Netzwerken zu gewährleisten. Da die Richtlinien und Fokus von diesen Frameworks sich unterscheiden können und deswegen anderen Aufbau von unserer Struktur verlangen wurden, entschieden wir uns für die Anwendung von der \gls{mitre} Matrix für die Erkennung der \glsplural{Cyberangriff} besonders, weil dieser Framework auch an Splunk integriert ist.
 
-\newpage
 Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 
+{\setstretch{1.5}
 \begin{itemize}[noitemsep]
    \item Erkennung und Analyse von Angriffstechnik
    \item	strukturierte Datensammlung über Bedrohungen
    \item	Emulieren von \glsplural{Cyberangriff} für die Anwendung an Angriffsübungen
    \item	Systemhärtung und Verbesserung der Verteidigungsmaßnahmen
 \end{itemize}
+}
 
 Die Matrix bietet eine umfangreiche Verwendung für Unternehmen und für \gls{SOC}-Team an, um ihre wertvollen Ressource schützen und ihre Fachkenntnisse über \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. Hier konzentrieren wir uns auf die Entwicklung und auf die Implementierung einer Methode für die automatische Erkennung und Analyse von Angriffstechnique in Grafana.
 
@@ -44,7 +45,7 @@ Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Techni
    \centering
 \end{figure}
 
-\newpage
+{\setstretch{1.5}
 Die 14 Tactics sind folgende:
 \begin{itemize}[noitemsep]
    \item Informationssammlung für zukünftige Angriffe 
@@ -62,17 +63,19 @@ Die 14 Tactics sind folgende:
    \item Datenextrahierung 
    \item	Auswirkung auf die Integrität
 \end{itemize}
-
+}
 
 \subsection{Auswahl des Angriffes}
 In dieser Arbeit beschäftigen wir uns mit dem Tactic \quotes{Zugang zu Anmeldedaten} und deren Technique \gls{bruteforce}. Diese Technique ist in vier Subtechnique aufteilt:
 
+{\setstretch{1.5}
 \begin{itemize}[noitemsep]
    \item Erraten von Anmeldedaten 
    \item	Entschlüsselung von \glsplural{hash}
    \item \textit{\gls{stuffing}}
    \item \textit{\gls{spraying}}
 \end{itemize}
+}
 
 Da unser Ziel hier ist Grafana, zu benutzen, um Angriffe zu erkennen, entschieden wir uns für einen einfachen reproduzierbaren Angriff, die weniger Ressource verlangt. In diesem Fall, lässt sich \gls{bruteforce} einwandfrei mit zwei \glsplural{vm} darstellen. Für diesen Angriff benutzen wir die Subtechnique \quotes{Erraten von Anmeldedaten und \textit{\gls{stuffing}}}, da sie ähnliche Erkennungmethode haben. Hier schließen wir auch die anderen Maßnahmen aus.
 
@@ -87,7 +90,6 @@ Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
 \subsection{Installation und Erstellung von Logdateien}
 In diesem Abschnitt fokussieren wir uns auf folgenden Punkten:
 
-\setlist{nolistsep}
 \begin{enumerate}[noitemsep]
    \item Installation von Grafana Loki mit \gls{container}
    \item	Einrichtung der \glsplural{vm} für Opfersystem und Angreifen
@@ -101,6 +103,7 @@ Die Installation und Anwendung können entweder mit dem \gls{GUI} oder mit der K
 \subsubsection{Installation von Grafana Loki mit \gls{container}}
 Grafana lässt sich mit folgenden Kommandos in Docker \gls{container} ausführen:
 
+{\setstretch{1.0}
 \begin{spverbatim}
 wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki/
 loki-local-config.yaml -O loki-config.yaml
@@ -114,6 +117,7 @@ wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/clients/cmd
 docker run -v <local-path>:/mnt/config -v /var/log:/var/log --link loki 
 grafana/promtail:2.8.0 --config.file=/mnt/config/promtail-config.yaml
 \end{spverbatim}
+}
 
 Die obigen Kommandos haben folgende Bedeutungen:
 \begin{enumerate}[noitemsep]
@@ -145,12 +149,14 @@ Die beiden \glsplural{vm} sind \quotes{\gls{kali} vorgebaute \glsfirst{vm}} und 
 Für das Opfersystem entschieden wir uns für das Passwort \quotes{qwertz}. Laut einer Umfrage gehört dieses Passwort zu den zehn meisten verwendeten Passwort in Deutschland \citep{silicon_passwort}.  
 
 Für die Durchführung von \gls{spraying} erstellen wir folgende Benutzer und Passwörterkombinationen:
+{\setstretch{1.0}
 \begin{verbatim}
    admin:123456
    user1:passwort
    user2:abc123
    user3:qwertyuiop
 \end{verbatim}
+}
 
 \subsubsection{Angrifsssimulation für die für die Generierung von Logdateien}
 Für den Angriff verwenden wir folgenden Tools:
@@ -166,40 +172,51 @@ Die nächste Abbildung zeigt, wie \gls{stuffing} abläuft:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/Stuffing.jpg}
+   \includegraphics[width=0.7\textwidth]{assets/Stuffing.jpg}
    \caption{\textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
    \centering
 \end{figure}
 
-Das folgende Kommando wurde gegen das Angreifersystem für \gls{stuffing} ausgeführt:
+Das folgende Kommando wurde gegen das Angreifersystem für \gls{stuffing} ausgeführt \citep{kali_hydra}:
+{\setstretch{1.0}
 \begin{spverbatim}
    hydra -l test -P rockyou.txt [Adresse von Opfersystem] ssh -V -t 4
-\end{spverbatim}
 
-Das gesamte Kommando lässt sich folgendes erklären \citep{kali_hydra}:
-\begin{spverbatim}
+   # Erklärung
    -l: Spefizikation der Benutzername, den wir Angreifen
    -P: Auswahl der Datei mit bekannten Passwörter
    ssh: Auswahl der Anwendung, die wir angreifen wollen
    -V: Ausgabe ausführlicher Information über die Durchführungen, wie Versuche, Fehlermeldungen und Erfolge
    -t 4: Anzahl von gleichzeitigen Verbindungen
 \end{spverbatim}
+}
 
-\newpage
-Für \gls{spraying} benutzen wir folgendes Kommando:
-\begin{verbatim}
-   hydra -L username.txt -P rockyou.txt [Adresse von Opfersystem] ssh -V -t 4
-\end{verbatim}
-
-Das \quotes{-L} (großes \quotes{L}) ist der einzige neue Parameter. Er dient für die Auswahl einer Textdatei mit einer Liste von Benutzername.
-
-Ein \gls{spraying} Angriff sie wie folgende aus:
+Das folgende Bild zeigt ein Teil der Ausgabe von \gls{hydra} bei der Ausführung von \gls{stuffing}:
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/Spraying.jpg}
+   \includegraphics[width=0.7\textwidth]{assets/stuffing_kali.png}
+   \caption{\textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \centering
+\end{figure}
+
+Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{assets/Spraying.jpg}
    \caption{\textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
    \centering
 \end{figure}
+
+Für diesen Angriff benutzen wir dasselbe Kommando wie vorher, mit einem \quotes{-L} (großen \quotes{L}) anstelle von \quotes{-l} (kleinen \quotes{L}). \quotes{-L} deutet darauf hin, dass wir eine Textdatei mit verschiedenen Benutzernamen verwenden 
+
+Der folgende Screenshot zeigt die Ausführung von \gls{spraying}:
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/Spraying_Kali.png}
+   \caption{Ausführung \textit{\gls{spraying}} in Kali Linux \\Quelle: Eigene Quelle}
+   \centering
+\end{figure}
+
 
 \subsubsection{Weiterleitung der Logdateien vom Opfersystem (\gls{Endpoint}) zu Grafana Loki}
 aaaaaaaaaaaaaaaaaaaaaa
@@ -213,6 +230,17 @@ Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsv
    \caption{Allgemeiner Ablauf eines Anmeldungsverfahrens \\Quelle: Eigene Quelle und \citep{Selvaganesh_SplunkBruteForce}}
    \centering
 \end{figure}
+
+Eine Erkennungsregel würde der unteren Logik folgen:
+{\setstretch{1.0}
+\begin{spverbatim}
+   # n = Grenze für gültige fehlgeschlagene Anmeldungsversuche
+   wenn Anmeldungsversuche >= n
+      Warnmeldung(Brutefoce)
+   sonst
+      weiterBeobachten()
+\end{spverbatim}
+}
 
 \textcolor{red}{\textbf{Regel von SPLUNK hinzufügen, wie sollten unsere Regel aussehen}}
 
