@@ -1,3 +1,4 @@
+---
 server:
   http_listen_port: 9080
   grpc_listen_port: 0
@@ -7,12 +8,14 @@ positions:
 
 clients:
   - url: http://loki:3100/loki/api/v1/push
+    tenant_id: tenant1
 
 scrape_configs:
-- job_name: system
+- job_name: Opfersystem
   static_configs:
   - targets:
-      - localhost
+      - loki
     labels:
       job: varlogs
-      __path__: /var/log/*log
+      __path__: /opt/*.log
+

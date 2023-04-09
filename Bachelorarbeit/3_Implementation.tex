@@ -91,57 +91,12 @@ Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
 In diesem Abschnitt fokussieren wir uns auf folgenden Punkten:
 
 \begin{enumerate}[noitemsep]
-   \item Installation von Grafana Loki mit \gls{container}
    \item	Einrichtung der \glsplural{vm} für Opfersystem und Angreifen
    \item	Angriffsssimulation für die für die Generierung von Logdateien
-   \item Weiterleitung der Logdateien vom Opfersystem (\gls{Endpoint}) zu Grafana Loki
+   \item Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}
 \end{enumerate}
 
 Die Installation und Anwendung können entweder mit dem \gls{GUI} oder mit der Kommandozeilen durchgeführt werden. In dieser Arbeit benutzen wir die Kommandozeile. 
-
-\newpage
-\subsubsection{Installation von Grafana Loki mit \gls{container}}
-Grafana lässt sich mit folgenden Kommandos in Docker \gls{container} ausführen:
-
-{\setstretch{1.0}
-\begin{spverbatim}
-wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki/
-loki-local-config.yaml -O loki-config.yaml
-
-docker run --name loki -v <local-path>:/mnt/config -p 3100:3100 
-grafana/loki:2.8.0 --config.file=/mnt/config/loki-config.yaml
-
-wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/clients/cmd
-/promtail/promtail-docker-config.yaml -O promtail-config.yaml
-
-docker run -v <local-path>:/mnt/config -v /var/log:/var/log --link loki 
-grafana/promtail:2.8.0 --config.file=/mnt/config/promtail-config.yaml
-\end{spverbatim}
-}
-
-Die obigen Kommandos haben folgende Bedeutungen:
-\begin{enumerate}[noitemsep]
-   \item Herunterladen der Konfigurationsdatei von Grafana Loki
-   \item Ausführung der Loki \gls{container}, Nutzung des lokalen und externen \glsplural{port} 3100 für die Netzwerkverbindung und Verwendung der heruntergeladenen Konfigurationsdatei
-   \item Herunterladen der Konfigurationsdatei von Promptail
-   \item Ausführung der Promptail \gls{container}, Verbindung zwischen diesen und den Loki \gls{container} und Verwendung der heruntergeladenen Konfigurationsdatei
-\end{enumerate}
-
-Für spezifische Versionen oder andere weitere Einstellungen bietet die Dokumentation umfangreiche Möglichkeiten an \citep{Grafana_run}.
-
-\newpage
-\thispagestyle{lscape}
-\begin{landscape}
-   Nach der Ausführung des Kommandos ist die Anwendung schon benutzbar, wie in dem folgenden Screenshot:
-   \begin{center}
-      \begin{figure}[H]
-         \centering
-         \includegraphics[width=1.3\textwidth]{assets/Installation_Grafana.png}.
-         \caption{Screenshot der Willkommensseite von Grafana Loki\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
-         \centering
-      \end{figure}
-   \end{center}
-\end{landscape}
 
 \subsubsection{Einrichtung der \glsplural{vm} für Opfersystem und Angreifen}
 Die beiden \glsplural{vm} sind \quotes{\gls{kali} vorgebaute \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} in ihren standardmäßigen Einstellungen. Beiden Maschinen lassen sich aus der jeweiligen Schritte Dokumentation einwandfrei installieren \citep{kali_vm} und \citep{Ubuntu_server}.
@@ -217,9 +172,57 @@ Der folgende Screenshot zeigt die Ausführung von \gls{spraying}:
    \centering
 \end{figure}
 
+\subsubsection{Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}}
+Die offizielle Dokumentation von Grafana war nicht immer über die Ausführung eindeutig, deshalb benutzten wir auch fremde Quellen verwendet, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unter befindet es sich die von Grafana zur Verfügung gestellte Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}. 
 
-\subsubsection{Weiterleitung der Logdateien vom Opfersystem (\gls{Endpoint}) zu Grafana Loki}
-aaaaaaaaaaaaaaaaaaaaaa
+{\setstretch{1.0}
+\begin{spverbatim}
+wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki
+/loki-local-config.yaml -O loki-config.yaml (die Datei wurde angepasst)
+
+wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/clients/
+cmd/promtail/promtail-docker-config.yaml -O promtail-config.yaml 
+(die Datei wurde angepasst)
+
+docker-compose -f docker-compose.yaml up 
+\end{spverbatim}
+}
+%docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
+%docker run --name loki -d -v $(pwd):/mnt/config -p 3100:3100 grafana/loki:2.8.0 -config.file=/mnt/config/loki-config.yaml
+
+%docker run --name promtail -d -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.8.0 -config.file=/mnt/config/promtail-config.yaml
+
+Im Anhang befinden sich die originalle und die angepassten Dateien.
+
+\textcolor{red}{\textbf{Anhänge hinzufügen}}te
+
+Die obigen Kommandos haben folgende Bedeutungen:
+\begin{enumerate}[noitemsep]
+   %\item Ausführung von Grafana und Nutzung des Nutzung des lokalen und externen \glsplural{port} 3000
+   \item Herunterladen der Konfigurationsdatei von Loki
+   %\item Ausführung der Loki \gls{container}, Nutzung des lokalen und externen \glsplural{port} 3100 für die Netzwerkverbindung und Verwendung der heruntergeladenen Konfigurationsdatei
+   \item Herunterladen der Konfigurationsdatei von Promptail
+   %\item Ausführung der Promptail \gls{container}, Verbindung zwischen diesen und den Loki \gls{container} und Verwendung der heruntergeladenen Konfigurationsdatei
+   \item Ausführung von den \glsplural{container}, indem beiden Konfigurationsdateien in einer eingepackt und angepasst wurden und schliesslich von der \gls{container}-Anwendung gelesen werden
+\end{enumerate}
+
+Für spezifische Versionen oder andere weitere Einstellungen bietet die Dokumentation umfangreiche Möglichkeiten an \citep{GrafanaLoki_run}.
+
+Für diesen ersten Test, wurden die Logdatei des Opfersystems manuell zu dem \gls{container} übertragen.
+
+\newpage
+\thispagestyle{lscape}
+\begin{landscape}
+   Nach der Ausführung des Kommandos ist die Anwendung schon benutzbar, wie in dem folgenden Screenshot:
+   \begin{center}
+      \begin{figure}[H]
+         \centering
+         \includegraphics[width=1.3\textwidth]{assets/Installation_Grafana.png}.
+         \caption{Screenshot der Willkommensseite von Grafana Loki\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
+         \centering
+      \end{figure}
+   \end{center}
+\end{landscape}
 
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
 Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsversuchs erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir bearbeiten eine Situation, in der es keine Gegenmaßnahmen, wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Aktivitätsdiagramm stellt einen allgemeinen Ablauf eines Anmeldungsverfahrens dar:
@@ -242,11 +245,19 @@ Eine Erkennungsregel würde der unteren Logik folgen:
 \end{spverbatim}
 }
 
-\textcolor{red}{\textbf{Regel von SPLUNK hinzufügen, wie sollten unsere Regel aussehen}}
+Im Grafana Loki lassen sich die Regel durch \glsfirst{RegExp} nach folgenden Muster aufbauen:
+{\setstretch{1.0}
+\begin{spverbatim}
+wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki
+Regel von Grafana einpacken
+\end{spverbatim}
+}
+
+\textcolor{red}{\textbf{Es sollte verbessern werden. Aber wie?}}te
+
+
 
 \textcolor{red}{\textbf{statische vs dinymische Regel}}
-
-
 
 
 
