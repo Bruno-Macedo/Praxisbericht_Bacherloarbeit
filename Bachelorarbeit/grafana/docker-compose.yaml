@@ -7,19 +7,19 @@ services:
   loki:
     image: grafana/loki:2.3.0
     volumes:
-      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/loki-config.yaml:/etc/loki/loki-config.yml
+      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/loki-config.yaml:/etc/loki/loki-config.yaml
     ports:
       - "3100:3100"
-    command: -config.file=/etc/loki/local-config.yml
+    command: -config.file=/etc/loki/local-config.yaml
     networks:
       - loki
 
   promtail:
     image: grafana/promtail:2.3.0
     volumes:
-      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/promtail-local-config.yaml:/etc/promtail/promtail-config.yml
+      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/promtail-local-config.yaml:/etc/promtail/promtail-config.yaml
       - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh.log:/opt/ssh.log
-    command: -config.file=/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/promtail-config.yaml
     networks:
       - loki
 
