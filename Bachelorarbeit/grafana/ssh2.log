@@ -1,0 +1,52 @@
+Apr  9 14:35:48 test systemd-logind[702]: New seat seat0.
+Apr  9 14:35:48 test systemd-logind[702]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  9 14:35:48 test systemd-logind[702]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  9 14:35:48 test systemd-logind[702]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+Apr  9 14:43:26 test login[734]: pam_unix(login:session): session opened for user test(uid=1000) by LOGIN(uid=0)
+Apr  9 14:43:26 test systemd-logind[702]: New session 1 of user test.
+Apr  9 14:43:26 test systemd: pam_unix(systemd-user:session): session opened for user test(uid=1000) by (uid=0)
+Apr  9 15:17:01 test CRON[1100]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Apr  9 15:17:01 test CRON[1100]: pam_unix(cron:session): session closed for user root
+Apr  9 18:21:13 test systemd-logind[698]: New seat seat0.
+Apr  9 18:21:14 test systemd-logind[698]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  9 18:21:14 test systemd-logind[698]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  9 18:21:14 test systemd-logind[698]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+Apr  9 18:21:14 test sshd[748]: Server listening on 0.0.0.0 port 22.
+Apr  9 18:21:14 test sshd[748]: Server listening on :: port 22.
+Apr  9 18:43:44 test login[722]: pam_unix(login:session): session opened for user test(uid=1000) by LOGIN(uid=0)
+Apr  9 18:43:44 test systemd-logind[698]: New session 1 of user test.
+Apr  9 18:43:44 test systemd: pam_unix(systemd-user:session): session opened for user test(uid=1000) by (uid=0)
+Apr  9 18:48:05 test sshd[1159]: Accepted password for test from 10.0.2.15 port 43770 ssh2
+Apr  9 18:48:05 test sshd[1159]: pam_unix(sshd:session): session opened for user test(uid=1000) by (uid=0)
+Apr  9 18:48:05 test systemd-logind[698]: New session 3 of user test.
+Apr  9 18:48:08 test sshd[1216]: Received disconnect from 10.0.2.15 port 43770:11: disconnected by user
+Apr  9 18:48:08 test sshd[1216]: Disconnected from user test 10.0.2.15 port 43770
+Apr  9 18:48:08 test sshd[1159]: pam_unix(sshd:session): session closed for user test
+Apr  9 18:48:08 test systemd-logind[698]: Session 3 logged out. Waiting for processes to exit.
+Apr  9 18:48:08 test systemd-logind[698]: Removed session 3.
+Apr  9 18:48:34 test sshd[1227]: Accepted password for test from 10.0.2.15 port 40094 ssh2
+Apr  9 18:48:34 test sshd[1227]: pam_unix(sshd:session): session opened for user test(uid=1000) by (uid=0)
+Apr  9 18:48:34 test systemd-logind[698]: New session 4 of user test.
+Apr  9 18:48:34 test sshd[1275]: Received disconnect from 10.0.2.15 port 40094:11: disconnected by user
+Apr  9 18:48:34 test sshd[1275]: Disconnected from user test 10.0.2.15 port 40094
+Apr  9 18:48:34 test sshd[1227]: pam_unix(sshd:session): session closed for user test
+Apr  9 18:48:34 test systemd-logind[698]: Session 4 logged out. Waiting for processes to exit.
+Apr  9 18:48:34 test systemd-logind[698]: Removed session 4.
+Apr  9 19:17:01 test CRON[1293]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Apr  9 19:17:01 test CRON[1293]: pam_unix(cron:session): session closed for user root
+Apr  9 20:17:01 test CRON[1335]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Apr  9 20:17:01 test CRON[1335]: pam_unix(cron:session): session closed for user root
+Apr  9 21:17:01 test CRON[1363]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Apr  9 21:17:01 test CRON[1363]: pam_unix(cron:session): session closed for user root
+Apr 10 07:49:22 test sshd[750]: Server listening on 0.0.0.0 port 22.
+Apr 10 07:49:22 test sshd[750]: Server listening on :: port 22.
+Apr 10 07:49:22 test systemd-logind[702]: New seat seat0.
+Apr 10 07:49:23 test systemd-logind[702]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 10 07:49:23 test systemd-logind[702]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 10 07:49:23 test systemd-logind[702]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+Apr 10 07:50:31 test login[732]: pam_unix(login:session): session opened for user test(uid=1000) by LOGIN(uid=0)
+Apr 10 07:50:31 test systemd-logind[702]: New session 1 of user test.
+Apr 10 07:50:31 test systemd: pam_unix(systemd-user:session): session opened for user test(uid=1000) by (uid=0)
+Apr 10 07:54:54 test sshd[1079]: Accepted password for test from 10.0.2.15 port 46544 ssh2
+Apr 10 07:54:54 test sshd[1079]: pam_unix(sshd:session): session opened for user test(uid=1000) by (uid=0)
+Apr 10 07:54:54 test systemd-logind[702]: New session 3 of user test.

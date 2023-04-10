@@ -234,24 +234,32 @@ Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsv
    \centering
 \end{figure}
 
-Eine Erkennungsregel würde der unteren Logik folgen:
+Eine Erkennungsregel würde folgender Logik folgen:
 {\setstretch{1.0}
 \begin{spverbatim}
-   # n = Grenze für gültige fehlgeschlagene Anmeldungsversuche
-   wenn Anmeldungsversuche >= n
+   # Gefundenen Wert in den Logdateien
+   # Av = Anzahl fehlgeschlagenen Anmeldungsversuche
+   # Ia = Intervallzeit zwischen fehlgeschlagenen Anmeldungsversuche
+
+   # Festgestellte Werte für legitime und bösartige Verbindungen
+   # Ga = Grenze zwischen legitimen und bösartigen Anmeldungsversuchen
+   # Nt = Intervallzeit zwischer legitime Anmeldungsversuche
+   wenn (Av >= Ga) und (Ia < Nt)
       Warnmeldung(Brutefoce)
    sonst
       weiterBeobachten()
 \end{spverbatim}
 }
 
-Im Grafana Loki lassen sich die Regel durch \glsfirst{RegExp} nach folgenden Muster aufbauen:
-{\setstretch{1.0}
-\begin{spverbatim}
-wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki
-Regel von Grafana einpacken
-\end{spverbatim}
-}
+Grafana Loki bietet einen Einstellungsmuster für die Eingabe und Darstellung von \gls{ssh} Logdateien an. In dieser Einstellung befinden sich schon Graphik und Regelsätze für eine umfangreiche Analyse dieser Daten \citep{VoidQuark_sshlogs}. Die extrahierte Logdateien werden mit folgenden Elementen gelesen und bearbeitet:
+
+\begin{table}[H]
+   \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
+   \caption{Allgemeiner Ablauf eines Anmeldungsverfahrens \\Quelle: Eigene Quelle und \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+\end{table}
+
+
+
 
 \textcolor{red}{\textbf{Es sollte verbessern werden. Aber wie?}}te
 

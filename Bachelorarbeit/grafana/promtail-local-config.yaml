@@ -16,6 +16,8 @@ scrape_configs:
   - targets:
       - loki
     labels:
+      instance: DESKTOP-LM6O0AE
+      env: voidquark
       job: varlogs
       __path__: /opt/*.log
 
