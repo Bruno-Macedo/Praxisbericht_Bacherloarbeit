@@ -96,10 +96,11 @@ In diesem Abschnitt fokussieren wir uns auf folgenden Punkten:
    \item Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}
 \end{enumerate}
 
-Die Installation und Anwendung können entweder mit dem \gls{GUI} oder mit der Kommandozeilen durchgeführt werden. In dieser Arbeit benutzen wir die Kommandozeile. 
+Die Installation und Anwendung können entweder mit dem \glsfirst{GUI} oder mit der Kommandozeilen durchgeführt werden. In dieser Arbeit benutzen wir die Kommandozeile. 
 
+\newpage
 \subsubsection{Einrichtung der \glsplural{vm} für Opfersystem und Angreifen}
-Die beiden \glsplural{vm} sind \quotes{\gls{kali} vorgebaute \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} in ihren standardmäßigen Einstellungen. Beiden Maschinen lassen sich aus der jeweiligen Schritte Dokumentation einwandfrei installieren \citep{kali_vm} und \citep{Ubuntu_server}.
+Die beiden \glsplural{vm} sind eine vorgebaute \quotes{\gls{kali} \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} in ihren standardmäßigen Einstellungen. Beiden Maschinen wurden nach der jeweiligen Dokumentation installiert \citep{kali_vm} und \citep{Ubuntu_server}.
 
 Für das Opfersystem entschieden wir uns für das Passwort \quotes{qwertz}. Laut einer Umfrage gehört dieses Passwort zu den zehn meisten verwendeten Passwort in Deutschland \citep{silicon_passwort}.  
 
@@ -120,7 +121,7 @@ Für den Angriff verwenden wir folgenden Tools:
    \item \gls{hydra}
 \end{itemize}
 
-In diesem Szenario schickt \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem, um eine \gls{ssh} Verbindung mit dem Opfersystem zu erstellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannten Datei \gls{rockyou} Datei. 
+In diesem Szenario schickte \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem, um eine \gls{ssh} Verbindung mit dem Opfersystem zu erstellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannten Datei \gls{rockyou} Datei. 
 
 \newpage
 Die nächste Abbildung zeigt, wie \gls{stuffing} abläuft:
@@ -173,7 +174,7 @@ Der folgende Screenshot zeigt die Ausführung von \gls{spraying}:
 \end{figure}
 
 \subsubsection{Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}}
-Die offizielle Dokumentation von Grafana war nicht immer über die Ausführung eindeutig, deshalb benutzten wir auch fremde Quellen verwendet, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unter befindet es sich die von Grafana zur Verfügung gestellte Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}. 
+Die offizielle Dokumentation von Grafana war nicht immer über die Ausführung eindeutig, deshalb benutzten wir auch fremde Quellen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unter befindet es sich die von Grafana zur Verfügung gestellte Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}. 
 
 {\setstretch{1.0}
 \begin{spverbatim}
@@ -192,7 +193,7 @@ docker-compose -f docker-compose.yaml up
 
 %docker run --name promtail -d -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.8.0 -config.file=/mnt/config/promtail-config.yaml
 
-Im Anhang befinden sich die originalle und die angepassten Dateien.
+Im Anhang befinden sich die originalle (Siehe \ref{appendix:orgGrafana}) und die angepassten Dateien (Siehe \ref{appendix:AngepasstGrafana}).
 
 \textcolor{red}{\textbf{Anhänge hinzufügen}}te
 
@@ -255,35 +256,31 @@ Grafana Loki bietet einen Einstellungsmuster für die Eingabe und Darstellung vo
 
 \begin{table}[H]
    \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
-   \caption{Allgemeiner Ablauf eines Anmeldungsverfahrens \\Quelle: Eigene Quelle und \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+   \caption{Kompenenten der von Grafana zur Verfügung gestellten Regelsätzen für die Darstellung von \gls{ssh} Logdateien  \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
 
+\subsection{Einrichtung des Warnmeldungskomponent}
+Über Alarmsignal zu schreiben
+
+%\textcolor{red}{\textbf{statische vs dinymische Regel}}
 
 
 
-\textcolor{red}{\textbf{Es sollte verbessern werden. Aber wie?}}te
+% \subsection{Bewertung der Daten in Grafana}
+% Hinzufügen der Logdateien und Erstellung von Regeln zur Erkennung des Angriffes
+% Diagramm der Nutzung von Grafana
+
+% \subsection{Normalisierung der Logdateien mit Zeek}
+% Diagramm der Nutzung von Grafana und Zeek
+
+% Hier werden die Schritte für die Installation und Sammeln von Daten beschrieben.
+
+% - Implementation in Container %https://rdr-it.com/elk-installation-configuration-un-siem-docker/
 
 
+% \subsection{Sammlung von Server-Log Dateien}
 
-\textcolor{red}{\textbf{statische vs dinymische Regel}}
-
-
-
-\subsection{Bewertung der Daten in Grafana}
-Hinzufügen der Logdateien und Erstellung von Regeln zur Erkennung des Angriffes
-Diagramm der Nutzung von Grafana
-
-\subsection{Normalisierung der Logdateien mit Zeek}
-Diagramm der Nutzung von Grafana und Zeek
-
-Hier werden die Schritte für die Installation und Sammeln von Daten beschrieben.
-
-- Implementation in Container %https://rdr-it.com/elk-installation-configuration-un-siem-docker/
-
-
-\subsection{Sammlung von Server-Log Dateien}
-
-\subsection{Normalisierung der Log-Dateien}
+% \subsection{Normalisierung der Log-Dateien}
 
 
 

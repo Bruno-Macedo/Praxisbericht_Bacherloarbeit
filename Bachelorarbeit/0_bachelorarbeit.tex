@@ -6,6 +6,19 @@
 
 \newcommand{\quotes}[1]{``#1''}
 
+% \newtcblisting{myverbatim}{
+%       arc=3mm,
+%       top=0mm,
+%       bottom=0mm,
+%       left=0mm,
+%       right=0mm,
+%       boxrule=0.5pt,
+%       colback=gray!30,
+%       listing only,
+%       hbox,
+%       breakable
+% }
+
 \fancypagestyle{lscape}{
 \fancyhf{} %Clears the header/footer
 \fancyfoot{% Footer
@@ -51,6 +64,10 @@
     \bibliography{9_Referenzen}
     \endgroup
   \bibliographystyle{apalike}
+  \begin{appendices}
+    \include{A_OrgGrafana}
+    \include{B_AngepasstGrafana} 
+  \end{appendices}
  % \setcitestyle{authoryear, open={\(},close={\)}
   %\newpage
     
