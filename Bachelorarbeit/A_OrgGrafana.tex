@@ -6,8 +6,8 @@ Unten befindet sich die originalle Konfigurationsdateien \citep{GrafanaLoki_run}
     \item \textbf{Grafana Loki} für die Speicherung und Bearbeitung der Logdateien
 \end{itemize}
 
-{\setstretch{1.0}
-\begin{spverbatim}
+{\setstretch{0.5}
+\begin{Verbatim}[frame=single]
     auth_enabled: false
 
     server:
@@ -46,27 +46,32 @@ Unten befindet sich die originalle Konfigurationsdateien \citep{GrafanaLoki_run}
     ruler:
       alertmanager_url: http://localhost:9093
     
-    # By default, Loki will send anonymous, but uniquely-identifiable usage and configuration
-    # analytics to Grafana Labs. These statistics are sent to https://stats.grafana.org/
-    #
-    # Statistics help us better understand how Loki is used, and they show us performance
-    # levels for most users. This helps us prioritize features and documentation.
+    # By default, Loki will send anonymous, but uniquely-identifiable 
+    usage and configuration
+    # analytics to Grafana Labs. These statistics are sent to 
+    # https://stats.grafana.org/
+    
+    # Statistics help us better understand how Loki is used, and they 
+    # show us performance levels for most users. This helps us
+   #  prioritize features and documentation.
+
     # For more information on what's sent, look at
     # https://github.com/grafana/loki/blob/main/pkg/usagestats/stats.go
     # Refer to the buildReport method to see what goes into a report.
-    #
-    # If you would like to disable reporting, uncomment the following lines:
-    #analytics:
+    
+    # If you would like to disable reporting, uncomment the following
+    # lines analytics:
     #  reporting_enabled: false
-\end{spverbatim}
+\end{Verbatim}
 }
 
+\newpage
 \begin{itemize}[noitemsep]
-    \item \textbf{Promtail} für die Sammlung der Logdateien
+    \item \textbf{Promtail} für die Sammlung der Logdateien 
 \end{itemize}
 
-{\setstretch{1.0}
-\begin{spverbatim}
+{\setstretch{0.5}
+\begin{Verbatim}[frame=single]
     server:
     http_listen_port: 9080
     grpc_listen_port: 0
@@ -86,5 +91,5 @@ Unten befindet sich die originalle Konfigurationsdateien \citep{GrafanaLoki_run}
         job: varlogs
         __path__: /var/log/*log
   
-\end{spverbatim}
+\end{Verbatim}
 }

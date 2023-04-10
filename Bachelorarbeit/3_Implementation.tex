@@ -105,13 +105,14 @@ Die beiden \glsplural{vm} sind eine vorgebaute \quotes{\gls{kali} \glsfirst{vm}}
 Für das Opfersystem entschieden wir uns für das Passwort \quotes{qwertz}. Laut einer Umfrage gehört dieses Passwort zu den zehn meisten verwendeten Passwort in Deutschland \citep{silicon_passwort}.  
 
 Für die Durchführung von \gls{spraying} erstellen wir folgende Benutzer und Passwörterkombinationen:
+
 {\setstretch{1.0}
-\begin{verbatim}
+\begin{Verbatim}[frame=single]
    admin:123456
    user1:passwort
    user2:abc123
    user3:qwertyuiop
-\end{verbatim}
+\end{Verbatim}
 }
 
 \subsubsection{Angrifsssimulation für die für die Generierung von Logdateien}
@@ -134,8 +135,9 @@ Die nächste Abbildung zeigt, wie \gls{stuffing} abläuft:
 \end{figure}
 
 Das folgende Kommando wurde gegen das Angreifersystem für \gls{stuffing} ausgeführt \citep{kali_hydra}:
+%Verbatim
 {\setstretch{1.0}
-\begin{spverbatim}
+\begin{Verbatim}[frame=single]
    hydra -l test -P rockyou.txt [Adresse von Opfersystem] ssh -V -t 4
 
    # Erklärung
@@ -144,7 +146,7 @@ Das folgende Kommando wurde gegen das Angreifersystem für \gls{stuffing} ausgef
    ssh: Auswahl der Anwendung, die wir angreifen wollen
    -V: Ausgabe ausführlicher Information über die Durchführungen, wie Versuche, Fehlermeldungen und Erfolge
    -t 4: Anzahl von gleichzeitigen Verbindungen
-\end{spverbatim}
+\end{Verbatim}
 }
 
 Das folgende Bild zeigt ein Teil der Ausgabe von \gls{hydra} bei der Ausführung von \gls{stuffing}:
@@ -177,7 +179,7 @@ Der folgende Screenshot zeigt die Ausführung von \gls{spraying}:
 Die offizielle Dokumentation von Grafana war nicht immer über die Ausführung eindeutig, deshalb benutzten wir auch fremde Quellen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unter befindet es sich die von Grafana zur Verfügung gestellte Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}. 
 
 {\setstretch{1.0}
-\begin{spverbatim}
+\begin{Verbatim}[frame=single]
 wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki
 /loki-local-config.yaml -O loki-config.yaml (die Datei wurde angepasst)
 
@@ -186,7 +188,7 @@ cmd/promtail/promtail-docker-config.yaml -O promtail-config.yaml
 (die Datei wurde angepasst)
 
 docker-compose -f docker-compose.yaml up 
-\end{spverbatim}
+\end{Verbatim}
 }
 %docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
 %docker run --name loki -d -v $(pwd):/mnt/config -p 3100:3100 grafana/loki:2.8.0 -config.file=/mnt/config/loki-config.yaml
@@ -194,8 +196,6 @@ docker-compose -f docker-compose.yaml up
 %docker run --name promtail -d -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.8.0 -config.file=/mnt/config/promtail-config.yaml
 
 Im Anhang befinden sich die originalle (Siehe \ref{appendix:orgGrafana}) und die angepassten Dateien (Siehe \ref{appendix:AngepasstGrafana}).
-
-\textcolor{red}{\textbf{Anhänge hinzufügen}}te
 
 Die obigen Kommandos haben folgende Bedeutungen:
 \begin{enumerate}[noitemsep]
@@ -237,7 +237,7 @@ Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsv
 
 Eine Erkennungsregel würde folgender Logik folgen:
 {\setstretch{1.0}
-\begin{spverbatim}
+\begin{Verbatim}[frame=single]
    # Gefundenen Wert in den Logdateien
    # Av = Anzahl fehlgeschlagenen Anmeldungsversuche
    # Ia = Intervallzeit zwischen fehlgeschlagenen Anmeldungsversuche
@@ -245,19 +245,49 @@ Eine Erkennungsregel würde folgender Logik folgen:
    # Festgestellte Werte für legitime und bösartige Verbindungen
    # Ga = Grenze zwischen legitimen und bösartigen Anmeldungsversuchen
    # Nt = Intervallzeit zwischer legitime Anmeldungsversuche
+
    wenn (Av >= Ga) und (Ia < Nt)
       Warnmeldung(Brutefoce)
    sonst
       weiterBeobachten()
-\end{spverbatim}
+\end{Verbatim}
 }
 
+\newpage
 Grafana Loki bietet einen Einstellungsmuster für die Eingabe und Darstellung von \gls{ssh} Logdateien an. In dieser Einstellung befinden sich schon Graphik und Regelsätze für eine umfangreiche Analyse dieser Daten \citep{VoidQuark_sshlogs}. Die extrahierte Logdateien werden mit folgenden Elementen gelesen und bearbeitet:
 
 \begin{table}[H]
    \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
    \caption{Kompenenten der von Grafana zur Verfügung gestellten Regelsätzen für die Darstellung von \gls{ssh} Logdateien  \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
+
+\newpage
+\thispagestyle{lscape}
+\begin{landscape}
+   Nachdem die \gls{ssh}-Logdateien gelesen und bearbeiten wurden, bekommen wir von Grafana Loki folgende Zasammenfasung der Ergebnissen:
+   \begin{center}
+      \begin{figure}[H]
+         \centering
+         \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_ssh.png}.
+         \caption{Bearbeitung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
+         \centering
+      \end{figure}
+   \end{center}
+\end{landscape}
+
+\newpage
+\thispagestyle{lscape}
+\begin{landscape}
+   Das nächste Bild gibt ausführliche Informationen der Logdateien:
+   \begin{center}
+      \begin{figure}[H]
+         \centering
+         \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_sshDetailed.png}.
+         \caption{Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
+         \centering
+      \end{figure}
+   \end{center}
+\end{landscape}
 
 \subsection{Einrichtung des Warnmeldungskomponent}
 Über Alarmsignal zu schreiben
