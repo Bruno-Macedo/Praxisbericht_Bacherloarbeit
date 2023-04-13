@@ -1,5 +1,5 @@
 \section{Implementation}
-In diesem Kapitel beschäftigen wir uns mit der Implementation und mit dem Aufbau von Grafana, sodass wir \gls{Cyberangriff} nach dem \gls{mitre} Matrix erkennen können. Wir gestalten unser Arbeitslabor mit \gls{container} und \glsfirst{vm}, wie in dem folgenden Diagramm:
+In diesem Kapitel beschäftigen wir uns mit der Implementation und mit dem Aufbau von Grafana, sodass wir \gls{Cyberangriff} nach dem \gls{mitre} Matrix erkennen können. Wir gestalten unser Arbeitslabor mit \gls{container} und \glsfirst{vm}, wie in dem folgenden Diagramm dargestellt:
 
 \begin{figure}[H]
    \centering
@@ -8,7 +8,7 @@ In diesem Kapitel beschäftigen wir uns mit der Implementation und mit dem Aufba
    \centering
 \end{figure}
 
-Von unserem Aufbau wollen wir folgende Ziele erreichen: Aufnahmen und Anpassung der Logdateien für Grafana, Musterkerennung für die ausgewählten \glsplural{Cyberangriff} und schließlich Warnmeldung für die Endnutzer, sodass sie sich für entsprechende Sicherheitsmßnahmen entscheiden können. 
+Von unserem Aufbau wollen wir folgende Ziele erreichen: Aufnahmen und Anpassung der Logdateien für Grafana, Musterkerennung für die ausgewählten \glsplural{Cyberangriff} und schließlich Warnmeldung für die Endnutzer, damit sie geeignete Sicherheitsmaßnahmen ergreifen können. 
 
 \newpage
 Der gezielte Ablauf ist in dem folgenden Diagramm dargestellt:
@@ -21,7 +21,7 @@ Der gezielte Ablauf ist in dem folgenden Diagramm dargestellt:
 \end{figure}
 
 \subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix\textregistered}
-Es gibt verschiedene Methode und Framework zur Vermeidung, Erkennung, und Unterbrechung von \glsplural{Cyberangriff}. \glsfirst{owasp}, \glsfirst{CKC} und \gls{mitre} Matrix sind einige Bespiele von denen, die \gls{SOC}-Teams verwenden, um Sicherheit von Systemen und/oder Netzwerken zu gewährleisten. Da die Richtlinien und Fokus von diesen Frameworks sich unterscheiden können und deswegen anderen Aufbau von unserer Struktur verlangen wurden, entschieden wir uns für die Anwendung von der \gls{mitre} Matrix für die Erkennung der \glsplural{Cyberangriff} besonders, weil dieser Framework auch an Splunk integriert ist.
+Es gibt verschiedene Methoden und Frameworks zur Vermeidung, Erkennung und Unterbrechung von \glsplural{Cyberangriff}. \glsfirst{owasp}, \glsfirst{CKC} und die \gls{mitre} Matrix sind einige Beispiele, die von \gls{SOC}-Teams verwendet werden, um die Sicherheit von Systemen und/oder Netzwerken zu gewährleisten. Da sich die Richtlinien und Schwerpunkte dieser Frameworks unterscheiden können und deshalb einen anderen Aufbau unserer Struktur erfordern könnten, haben wir uns für die Anwendung der \gls{mitre} Matrix zur Erkennung von \glsplural{Cyberangriff} entschieden, insbesondere weil dieser Framework auch in Splunk integriert ist.
 
 Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 
@@ -36,7 +36,7 @@ Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 
 Die Matrix bietet eine umfangreiche Verwendung für Unternehmen und für \gls{SOC}-Team an, um ihre wertvollen Ressource schützen und ihre Fachkenntnisse über \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. Hier konzentrieren wir uns auf die Entwicklung und auf die Implementierung einer Methode für die automatische Erkennung und Analyse von Angriffstechnique in Grafana.
 
-Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Technique, die ihrerseits in Subtechniques aufgeteilt sind. Jede Subtechnique wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln dargestellt. Die nächste Abbildung zeigt, wie diese Struktur aufgebaut ist: 
+Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Technique, die ihrerseits in Subtechniques aufgeteilt sind. Jede Subtechnique wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln dargestellt.
 
 \begin{figure}[H]
    \centering
@@ -122,7 +122,7 @@ Für den Angriff verwenden wir folgenden Tools:
    \item \gls{hydra}
 \end{itemize}
 
-In diesem Szenario schickte \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem, um eine \gls{ssh} Verbindung mit dem Opfersystem zu erstellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannten Datei \gls{rockyou} Datei. 
+In diesem Szenario schickt \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem, um eine \gls{ssh}-Verbindung mit dem Opfersystem herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannte \gls{rockyou}-Datei.
 
 \newpage
 Die nächste Abbildung zeigt, wie \gls{stuffing} abläuft:
@@ -165,7 +165,7 @@ Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
    \centering
 \end{figure}
 
-Für diesen Angriff benutzen wir dasselbe Kommando wie vorher, mit einem \quotes{-L} (großen \quotes{L}) anstelle von \quotes{-l} (kleinen \quotes{L}). \quotes{-L} deutet darauf hin, dass wir eine Textdatei mit verschiedenen Benutzernamen verwenden 
+Für diesen Angriff benutzen wir dasselbe Kommando wie vorher, mit einem \quotes{-L} (großen \quotes{L}) anstelle von \quotes{-l} (kleinen \quotes{L}). \quotes{-L} deutet darauf hin, dass wir eine Textdatei mit verschiedenen Benutzernamen verwenden .
 
 Der folgende Screenshot zeigt die Ausführung von \gls{spraying}:
 \begin{figure}[H]
