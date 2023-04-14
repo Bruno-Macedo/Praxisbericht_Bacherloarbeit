@@ -35,6 +35,7 @@ Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 
 Die Matrix bietet eine umfangreiche Verwendung für Unternehmen und für \gls{SOC}-Team an, um ihre wertvollen Ressource schützen und ihre Fachkenntnisse über \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. Hier konzentrieren wir uns auf die Entwicklung und auf die Implementierung einer Methode für die automatische Erkennung und Analyse von AngriffsTechnik in Grafana.
 
+\newpage
 Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Technik, die ihrerseits in SubTechniks aufgeteilt sind. Jede SubTechnik wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln dargestellt.
 
 \begin{figure}[H]
@@ -44,7 +45,7 @@ Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Techni
    \centering
 \end{figure}
 
-{\setstretch{1.5}
+{\setstretch{1}
 Die 14 Taktiks sind folgende:
 \begin{itemize}[noitemsep]
    \item Informationssammlung für zukünftige Angriffe 
@@ -67,7 +68,7 @@ Die 14 Taktiks sind folgende:
 \subsection{Auswahl des Angriffes}
 In dieser Arbeit beschäftigen wir uns mit dem Taktik \quotes{Zugang zu Anmeldedaten} und deren Technik \gls{bruteforce}. Diese Technik ist in vier SubTechnik aufteilt:
 
-{\setstretch{1.5}
+{\setstretch{1}
 \begin{itemize}[noitemsep]
    \item Erraten von Anmeldedaten 
    \item	Entschlüsselung von \glsplural{hash}
@@ -86,15 +87,18 @@ Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
    \centering
 \end{figure}
 
+\newpage
 \subsection{Installation und Erstellung von Logdateien}
 In diesem Abschnitt fokussieren wir uns auf folgenden Punkten:
 
+{\setstretch{1}
 \begin{enumerate}[noitemsep]
    \item	Einrichtung der \glsplural{vm} für Opfersystem und Angreifen
    \item	Angriffsssimulation für die für die Generierung von Logdateien
    \item Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}
    \item Weiterleitung der Logdateien zum Grafana
 \end{enumerate}
+}
 
 Die Installation und Anwendung können entweder mit dem \glsfirst{GUI} oder mit der Kommandozeilen durchgeführt werden. In dieser Arbeit benutzen wir die Kommandozeile. 
 
@@ -109,7 +113,7 @@ Für die Durchführung von \gls{spraying} erstellen wir folgende Benutzer und Pa
 \begin{Verbatim}[frame=single]
    Opfersystem 1          Opfersystem 2  
    admin:123456           bob:hallo
-   user1:passwort         alice:master
+   user1:passwort         master:alice
    user2:abc123           hans:daniel
    user3:qwertyuiop       bruno:super123
 \end{Verbatim}
@@ -118,10 +122,13 @@ Für die Durchführung von \gls{spraying} erstellen wir folgende Benutzer und Pa
 \newpage
 \subsubsection{Generierung von Logdateien mit der Angrifsssimulation}
 Für den Angriff verwenden wir folgenden Tools:
+
+{\setstretch{1.0}
 \begin{itemize}[noitemsep]
    \item	\glsfirst{ssh}
    \item \gls{hydra}
 \end{itemize}
+}
 
 In diesem Szenario schickt \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem, um eine \gls{ssh}-Verbindung mit dem Opfersystem herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannte \gls{rockyou}-Datei.
 
@@ -129,39 +136,47 @@ Die nächste Abbildung zeigt, wie \gls{stuffing} abläuft:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.7\textwidth]{assets/Stuffing.jpg}
+   \includegraphics[width=1\textwidth]{assets/Stuffing.jpg}
    \caption{\textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
    \centering
 \end{figure}
 
-Das folgende Kommando wurde gegen das Angreifersystem für \gls{stuffing} ausgeführt \citep{kali_hydra}:
+\gls{stuffing} wurde mit folgendem Kommando durchgeführt \citep{kali_hydra}:
 %Verbatim
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-   hydra -l test -P rockyou.txt [Opfersystem1] ssh -V -t 4
+   hydra -l [Benutzername] -P rockyou.txt [Opfersystem] ssh -V -t 4
 
    # Erklärung
    -l: Spefizikation der Benutzername, den wir Angreifen
    -P: Auswahl der Datei mit bekannten Passwörter
    ssh: Auswahl der Anwendung, die wir angreifen wollen
-   -V: Ausgabe ausführlicher Information über die Durchführungen, wie 
-   Versuche, Fehlermeldungen und Erfolge
+   -V: Ausführliche Ausgabe über Versuche, Fehler und Erfolg
    -t 4: Anzahl von gleichzeitigen Verbindungen
 \end{Verbatim}
 }
 
-Das folgende Bild zeigt ein Teil der Ausgabe von \gls{hydra} bei der Ausführung von \gls{stuffing}:
+Das folgende Bild zeigt ein Teil der Ausgabe von \gls{hydra} bei der Ausführung von \gls{stuffing} gegen das Opfersystem1:
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.7\textwidth]{assets/stuffing_kali.png}
-   \caption{\textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \includegraphics[width=1\textwidth]{assets/stuffing_kali.png}
+   \caption{\textit{\gls{stuffing}} gegen Opfersystem1\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
    \centering
 \end{figure}
 
+Und gegen Opfersystem2:
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1\textwidth]{assets/stuffing_kali2.png}
+   \caption{\textit{\gls{stuffing}} gegen Opfersystem2\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \centering
+\end{figure}
+
+\newpage
 Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.7\textwidth]{assets/Spraying.jpg}
+   \includegraphics[width=1\textwidth]{assets/Spraying.jpg}
    \caption{\textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
    \centering
 \end{figure}
@@ -178,22 +193,23 @@ Für diesen Angriff benutzen wir folgendes Kommando:
 
 In diesem Fall gehen wir davon aus, dass der Angreifer einige oder alle Benutzernamen schon kennen. Da es bei diesem Angriffe weniger Anmeldeversuche pro Nutzer stattfindet, benutzen wir eine selbsterstellte Datei mit weniger Passwörter als bei der \gls{rockyou}-Datei. Unsere Datei beinhalt die beliebigste Passwörter in Deutschland \citep{silicon_passwort}.  
 
-Der folgende Screenshot zeigt die Ausführung von \gls{spraying}:
+\newpage
+Die folgenden Screenshots zeigen die Ausführung von \gls{spraying}:
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/Spraying_Kali.png}
+   \includegraphics[width=1\textwidth]{assets/Spraying_Kali.png}
    \caption{Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1\\Quelle: Eigene Quelle}
    \centering
 \end{figure}
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/Spraying_Kali.png}
+   \includegraphics[width=1\textwidth]{assets/Spraying_Kali2.png}
    \caption{Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2\\Quelle: Eigene Quelle}
    \centering
 \end{figure}
 
-
+\newpage
 \subsubsection{Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}}
 Die offizielle Dokumentation von Grafana war nicht immer über die Ausführung eindeutig, deshalb benutzten wir auch fremde Quellen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unter befindet es sich die von Grafana zur Verfügung gestellte Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}. 
 

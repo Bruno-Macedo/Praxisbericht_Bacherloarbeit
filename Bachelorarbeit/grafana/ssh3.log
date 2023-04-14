@@ -1,0 +1,383 @@
+Apr 14 13:13:45 opfersystem2 useradd[648]: new group: name=administrator, GID=1000
+Apr 14 13:13:45 opfersystem2 useradd[648]: new user: name=administrator, UID=1000, GID=1000, home=/home/administrator, shell=/bin/bash, from=none
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to group 'adm'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to group 'cdrom'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to group 'sudo'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to group 'dip'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to group 'plugdev'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to group 'lxd'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to shadow group 'adm'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to shadow group 'cdrom'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to shadow group 'sudo'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to shadow group 'dip'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to shadow group 'plugdev'
+Apr 14 13:13:45 opfersystem2 useradd[648]: add 'administrator' to shadow group 'lxd'
+Apr 14 13:13:45 opfersystem2 systemd-logind[681]: New seat seat0.
+Apr 14 13:13:46 opfersystem2 systemd-logind[681]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 14 13:13:46 opfersystem2 systemd-logind[681]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 14 13:13:46 opfersystem2 systemd-logind[681]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+Apr 14 13:13:47 opfersystem2 sshd[792]: Server listening on 0.0.0.0 port 22.
+Apr 14 13:13:47 opfersystem2 sshd[792]: Server listening on :: port 22.
+Apr 14 13:13:56 opfersystem2 useradd[1133]: new user: name=lxd, UID=999, GID=100, home=/var/snap/lxd/common/lxd, shell=/bin/false, from=none
+Apr 14 13:14:01 opfersystem2 login[733]: pam_unix(login:auth): check pass; user unknown
+Apr 14 13:14:01 opfersystem2 login[733]: pam_unix(login:auth): authentication failure; logname=LOGIN uid=0 euid=0 tty=/dev/tty1 ruser= rhost= 
+Apr 14 13:14:04 opfersystem2 login[733]: FAILED LOGIN (1) on '/dev/tty1' FOR 'UNKNOWN', Authentication failure
+Apr 14 13:14:10 opfersystem2 login[733]: pam_unix(login:auth): check pass; user unknown
+Apr 14 13:14:12 opfersystem2 login[733]: FAILED LOGIN (2) on '/dev/tty1' FOR 'UNKNOWN', Authentication failure
+Apr 14 13:49:20 opfersystem2 login[733]: pam_unix(login:auth): check pass; user unknown
+Apr 14 13:49:20 opfersystem2 login[733]: pam_unix(login:auth): authentication failure; logname=LOGIN uid=0 euid=0 tty=/dev/tty1 ruser= rhost= 
+Apr 14 13:49:23 opfersystem2 login[733]: FAILED LOGIN (3) on '/dev/tty1' FOR 'UNKNOWN', Authentication failure
+Apr 14 13:49:44 opfersystem2 login[733]: pam_unix(login:session): session opened for user administrator(uid=1000) by LOGIN(uid=0)
+Apr 14 13:49:44 opfersystem2 systemd-logind[681]: New session 1 of user administrator.
+Apr 14 13:49:44 opfersystem2 systemd: pam_unix(systemd-user:session): session opened for user administrator(uid=1000) by (uid=0)
+Apr 14 13:50:00 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/bin/apt install net-tools -y
+Apr 14 13:50:00 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:50:13 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:50:21 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/bin/apt-get update
+Apr 14 13:50:21 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:50:27 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:50:39 opfersystem2 sshd[792]: Received signal 15; terminating.
+Apr 14 13:50:39 opfersystem2 sshd[2833]: Server listening on 0.0.0.0 port 22.
+Apr 14 13:50:39 opfersystem2 sshd[2833]: Server listening on :: port 22.
+Apr 14 13:50:44 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/bin/apt-get update
+Apr 14 13:50:44 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:50:47 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:50:55 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/bin/apt upgrade -y
+Apr 14 13:50:55 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:53:29 opfersystem2 sshd[2833]: Received signal 15; terminating.
+Apr 14 13:53:29 opfersystem2 sshd[15328]: Server listening on 0.0.0.0 port 22.
+Apr 14 13:53:29 opfersystem2 sshd[15328]: Server listening on :: port 22.
+Apr 14 13:53:31 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:53:37 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/sbin/reboot now
+Apr 14 13:53:37 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:53:37 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:54:16 opfersystem2 sshd[735]: Server listening on 0.0.0.0 port 22.
+Apr 14 13:54:16 opfersystem2 sshd[735]: Server listening on :: port 22.
+Apr 14 13:54:16 opfersystem2 systemd-logind[687]: New seat seat0.
+Apr 14 13:54:16 opfersystem2 systemd-logind[687]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 14 13:54:16 opfersystem2 systemd-logind[687]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 14 13:54:16 opfersystem2 systemd-logind[687]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+Apr 14 13:54:27 opfersystem2 login[722]: pam_unix(login:session): session opened for user administrator(uid=1000) by LOGIN(uid=0)
+Apr 14 13:54:28 opfersystem2 systemd-logind[687]: New session 1 of user administrator.
+Apr 14 13:54:28 opfersystem2 systemd: pam_unix(systemd-user:session): session opened for user administrator(uid=1000) by (uid=0)
+Apr 14 13:55:20 opfersystem2 sshd[1305]: Accepted password for administrator from 10.0.2.15 port 45234 ssh2
+Apr 14 13:55:20 opfersystem2 sshd[1305]: pam_unix(sshd:session): session opened for user administrator(uid=1000) by (uid=0)
+Apr 14 13:55:20 opfersystem2 systemd-logind[687]: New session 3 of user administrator.
+Apr 14 13:55:23 opfersystem2 sshd[1362]: Received disconnect from 10.0.2.15 port 45234:11: disconnected by user
+Apr 14 13:55:23 opfersystem2 sshd[1362]: Disconnected from user administrator 10.0.2.15 port 45234
+Apr 14 13:55:23 opfersystem2 sshd[1305]: pam_unix(sshd:session): session closed for user administrator
+Apr 14 13:55:23 opfersystem2 systemd-logind[687]: Session 3 logged out. Waiting for processes to exit.
+Apr 14 13:55:23 opfersystem2 systemd-logind[687]: Removed session 3.
+Apr 14 13:56:09 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/sbin/useradd bob
+Apr 14 13:56:09 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:56:09 opfersystem2 useradd[1375]: new group: name=bob, GID=1001
+Apr 14 13:56:09 opfersystem2 useradd[1375]: new user: name=bob, UID=1001, GID=1001, home=/home/bob, shell=/bin/sh, from=/dev/pts/0
+Apr 14 13:56:09 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:56:36 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/sbin/useradd master
+Apr 14 13:56:36 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:56:36 opfersystem2 useradd[1384]: new group: name=master, GID=1002
+Apr 14 13:56:36 opfersystem2 useradd[1384]: new user: name=master, UID=1002, GID=1002, home=/home/master, shell=/bin/sh, from=/dev/pts/0
+Apr 14 13:56:36 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:56:39 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/sbin/useradd pacoca
+Apr 14 13:56:39 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:56:39 opfersystem2 useradd[1393]: new group: name=pacoca, GID=1003
+Apr 14 13:56:39 opfersystem2 useradd[1393]: new user: name=pacoca, UID=1003, GID=1003, home=/home/pacoca, shell=/bin/sh, from=/dev/pts/0
+Apr 14 13:56:40 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:56:43 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/bin/passwd bob
+Apr 14 13:56:43 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:56:49 opfersystem2 passwd[1402]: pam_unix(passwd:chauthtok): password changed for bob
+Apr 14 13:56:49 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:56:54 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/bin/passwd master
+Apr 14 13:56:54 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:56:59 opfersystem2 passwd[1405]: pam_unix(passwd:chauthtok): password changed for master
+Apr 14 13:56:59 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:57:28 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/bin/passwd pacoca
+Apr 14 13:57:28 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:57:32 opfersystem2 passwd[1408]: pam_unix(passwd:chauthtok): password changed for pacoca
+Apr 14 13:57:32 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:57:46 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/sbin/useradd hans
+Apr 14 13:57:46 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:57:46 opfersystem2 useradd[1411]: new group: name=hans, GID=1004
+Apr 14 13:57:46 opfersystem2 useradd[1411]: new user: name=hans, UID=1004, GID=1004, home=/home/hans, shell=/bin/sh, from=/dev/pts/0
+Apr 14 13:57:46 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:57:51 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/bin/passwd hans
+Apr 14 13:57:51 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:57:54 opfersystem2 passwd[1420]: pam_unix(passwd:chauthtok): password changed for hans
+Apr 14 13:57:54 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:58:39 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/sbin/useradd bruno
+Apr 14 13:58:39 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:58:39 opfersystem2 useradd[1428]: new group: name=bruno, GID=1005
+Apr 14 13:58:39 opfersystem2 useradd[1428]: new user: name=bruno, UID=1005, GID=1005, home=/home/bruno, shell=/bin/sh, from=/dev/pts/0
+Apr 14 13:58:39 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:58:42 opfersystem2 sudo: administrator : TTY=tty1 ; PWD=/home/administrator ; USER=root ; COMMAND=/usr/bin/passwd bruno
+Apr 14 13:58:42 opfersystem2 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by administrator(uid=1000)
+Apr 14 13:58:48 opfersystem2 passwd[1437]: pam_unix(passwd:chauthtok): password changed for bruno
+Apr 14 13:58:48 opfersystem2 sudo: pam_unix(sudo:session): session closed for user root
+Apr 14 13:59:51 opfersystem2 sshd[1458]: Received disconnect from 10.0.2.15 port 60946:11: Bye Bye [preauth]
+Apr 14 13:59:51 opfersystem2 sshd[1458]: Disconnected from authenticating user bob 10.0.2.15 port 60946 [preauth]
+Apr 14 13:59:51 opfersystem2 sshd[1460]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=bob
+Apr 14 13:59:51 opfersystem2 sshd[1463]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=bob
+Apr 14 13:59:51 opfersystem2 sshd[1461]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=bob
+Apr 14 13:59:51 opfersystem2 sshd[1462]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=bob
+Apr 14 13:59:54 opfersystem2 sshd[1460]: Failed password for bob from 10.0.2.15 port 60960 ssh2
+Apr 14 13:59:54 opfersystem2 sshd[1463]: Failed password for bob from 10.0.2.15 port 60984 ssh2
+Apr 14 13:59:54 opfersystem2 sshd[1461]: Failed password for bob from 10.0.2.15 port 60968 ssh2
+Apr 14 13:59:54 opfersystem2 sshd[1462]: Failed password for bob from 10.0.2.15 port 60980 ssh2
+Apr 14 13:59:55 opfersystem2 sshd[1460]: Accepted password for bob from 10.0.2.15 port 60960 ssh2
+Apr 14 13:59:55 opfersystem2 sshd[1460]: pam_unix(sshd:session): session opened for user bob(uid=1001) by (uid=0)
+Apr 14 13:59:55 opfersystem2 systemd-logind[687]: New session 4 of user bob.
+Apr 14 13:59:55 opfersystem2 systemd: pam_unix(systemd-user:session): session opened for user bob(uid=1001) by (uid=0)
+Apr 14 13:59:55 opfersystem2 sshd[1469]: Invalid user alice from 10.0.2.15 port 60996
+Apr 14 13:59:55 opfersystem2 sshd[1469]: Failed none for invalid user alice from 10.0.2.15 port 60996 ssh2
+Apr 14 13:59:55 opfersystem2 sshd[1469]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 13:59:55 opfersystem2 sshd[1469]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 13:59:55 opfersystem2 sshd[1533]: Received disconnect from 10.0.2.15 port 60960:11: Bye Bye
+Apr 14 13:59:55 opfersystem2 sshd[1533]: Disconnected from user bob 10.0.2.15 port 60960
+Apr 14 13:59:55 opfersystem2 sshd[1460]: pam_unix(sshd:session): session closed for user bob
+Apr 14 13:59:55 opfersystem2 systemd-logind[687]: Session 4 logged out. Waiting for processes to exit.
+Apr 14 13:59:55 opfersystem2 systemd-logind[687]: Removed session 4.
+Apr 14 13:59:57 opfersystem2 sshd[1462]: Failed password for bob from 10.0.2.15 port 60980 ssh2
+Apr 14 13:59:57 opfersystem2 sshd[1463]: Failed password for bob from 10.0.2.15 port 60984 ssh2
+Apr 14 13:59:57 opfersystem2 sshd[1461]: Failed password for bob from 10.0.2.15 port 60968 ssh2
+Apr 14 13:59:57 opfersystem2 sshd[1469]: Failed password for invalid user alice from 10.0.2.15 port 60996 ssh2
+Apr 14 13:59:57 opfersystem2 sshd[1469]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 13:59:58 opfersystem2 sshd[1462]: Received disconnect from 10.0.2.15 port 60980:11: Bye Bye [preauth]
+Apr 14 13:59:58 opfersystem2 sshd[1462]: Disconnected from authenticating user bob 10.0.2.15 port 60980 [preauth]
+Apr 14 13:59:58 opfersystem2 sshd[1462]: PAM 1 more authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=bob
+Apr 14 13:59:58 opfersystem2 sshd[1463]: Received disconnect from 10.0.2.15 port 60984:11: Bye Bye [preauth]
+Apr 14 13:59:58 opfersystem2 sshd[1463]: Disconnected from authenticating user bob 10.0.2.15 port 60984 [preauth]
+Apr 14 13:59:58 opfersystem2 sshd[1463]: PAM 1 more authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=bob
+Apr 14 13:59:58 opfersystem2 sshd[1461]: Received disconnect from 10.0.2.15 port 60968:11: Bye Bye [preauth]
+Apr 14 13:59:58 opfersystem2 sshd[1461]: Disconnected from authenticating user bob 10.0.2.15 port 60968 [preauth]
+Apr 14 13:59:58 opfersystem2 sshd[1461]: PAM 1 more authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=bob
+Apr 14 13:59:58 opfersystem2 sshd[1538]: Invalid user alice from 10.0.2.15 port 38640
+Apr 14 13:59:58 opfersystem2 sshd[1538]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 13:59:58 opfersystem2 sshd[1538]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 13:59:58 opfersystem2 sshd[1540]: Invalid user alice from 10.0.2.15 port 38654
+Apr 14 13:59:58 opfersystem2 sshd[1540]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 13:59:58 opfersystem2 sshd[1540]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 13:59:58 opfersystem2 sshd[1541]: Invalid user alice from 10.0.2.15 port 38662
+Apr 14 13:59:58 opfersystem2 sshd[1541]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 13:59:58 opfersystem2 sshd[1541]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 13:59:59 opfersystem2 sshd[1469]: Failed password for invalid user alice from 10.0.2.15 port 60996 ssh2
+Apr 14 14:00:00 opfersystem2 sshd[1469]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:00 opfersystem2 sshd[1538]: Failed password for invalid user alice from 10.0.2.15 port 38640 ssh2
+Apr 14 14:00:00 opfersystem2 sshd[1540]: Failed password for invalid user alice from 10.0.2.15 port 38654 ssh2
+Apr 14 14:00:00 opfersystem2 sshd[1541]: Failed password for invalid user alice from 10.0.2.15 port 38662 ssh2
+Apr 14 14:00:00 opfersystem2 sshd[1538]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:00 opfersystem2 sshd[1540]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:00 opfersystem2 sshd[1541]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:01 opfersystem2 sshd[1469]: Failed password for invalid user alice from 10.0.2.15 port 60996 ssh2
+Apr 14 14:00:02 opfersystem2 sshd[1469]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:02 opfersystem2 sshd[1538]: Failed password for invalid user alice from 10.0.2.15 port 38640 ssh2
+Apr 14 14:00:02 opfersystem2 sshd[1540]: Failed password for invalid user alice from 10.0.2.15 port 38654 ssh2
+Apr 14 14:00:02 opfersystem2 sshd[1541]: Failed password for invalid user alice from 10.0.2.15 port 38662 ssh2
+Apr 14 14:00:03 opfersystem2 sshd[1538]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:03 opfersystem2 sshd[1540]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:03 opfersystem2 sshd[1541]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:04 opfersystem2 sshd[1469]: Failed password for invalid user alice from 10.0.2.15 port 60996 ssh2
+Apr 14 14:00:04 opfersystem2 sshd[1469]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:05 opfersystem2 sshd[1538]: Failed password for invalid user alice from 10.0.2.15 port 38640 ssh2
+Apr 14 14:00:05 opfersystem2 sshd[1540]: Failed password for invalid user alice from 10.0.2.15 port 38654 ssh2
+Apr 14 14:00:05 opfersystem2 sshd[1541]: Failed password for invalid user alice from 10.0.2.15 port 38662 ssh2
+Apr 14 14:00:06 opfersystem2 sshd[1469]: Failed password for invalid user alice from 10.0.2.15 port 60996 ssh2
+Apr 14 14:00:07 opfersystem2 sshd[1469]: error: maximum authentication attempts exceeded for invalid user alice from 10.0.2.15 port 60996 ssh2 [preauth]
+Apr 14 14:00:07 opfersystem2 sshd[1469]: Disconnecting invalid user alice 10.0.2.15 port 60996: Too many authentication failures [preauth]
+Apr 14 14:00:07 opfersystem2 sshd[1469]: PAM 4 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:07 opfersystem2 sshd[1469]: PAM service(sshd) ignoring max retries; 5 > 3
+Apr 14 14:00:07 opfersystem2 sshd[1538]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:07 opfersystem2 sshd[1540]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:07 opfersystem2 sshd[1541]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:10 opfersystem2 sshd[1538]: Failed password for invalid user alice from 10.0.2.15 port 38640 ssh2
+Apr 14 14:00:10 opfersystem2 sshd[1540]: Failed password for invalid user alice from 10.0.2.15 port 38654 ssh2
+Apr 14 14:00:10 opfersystem2 sshd[1541]: Failed password for invalid user alice from 10.0.2.15 port 38662 ssh2
+Apr 14 14:00:10 opfersystem2 sshd[1538]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:10 opfersystem2 sshd[1540]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:10 opfersystem2 sshd[1541]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:12 opfersystem2 sshd[1538]: Failed password for invalid user alice from 10.0.2.15 port 38640 ssh2
+Apr 14 14:00:12 opfersystem2 sshd[1540]: Failed password for invalid user alice from 10.0.2.15 port 38654 ssh2
+Apr 14 14:00:12 opfersystem2 sshd[1541]: Failed password for invalid user alice from 10.0.2.15 port 38662 ssh2
+Apr 14 14:00:12 opfersystem2 sshd[1538]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:12 opfersystem2 sshd[1540]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:12 opfersystem2 sshd[1541]: Received disconnect from 10.0.2.15 port 38662:11: Bye Bye [preauth]
+Apr 14 14:00:12 opfersystem2 sshd[1541]: Disconnected from invalid user alice 10.0.2.15 port 38662 [preauth]
+Apr 14 14:00:12 opfersystem2 sshd[1541]: PAM 4 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:12 opfersystem2 sshd[1541]: PAM service(sshd) ignoring max retries; 5 > 3
+Apr 14 14:00:12 opfersystem2 sshd[1545]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=hans
+Apr 14 14:00:14 opfersystem2 sshd[1538]: Failed password for invalid user alice from 10.0.2.15 port 38640 ssh2
+Apr 14 14:00:14 opfersystem2 sshd[1540]: Failed password for invalid user alice from 10.0.2.15 port 38654 ssh2
+Apr 14 14:00:14 opfersystem2 sshd[1545]: Failed password for hans from 10.0.2.15 port 44456 ssh2
+Apr 14 14:00:14 opfersystem2 sshd[1538]: error: maximum authentication attempts exceeded for invalid user alice from 10.0.2.15 port 38640 ssh2 [preauth]
+Apr 14 14:00:14 opfersystem2 sshd[1538]: Disconnecting invalid user alice 10.0.2.15 port 38640: Too many authentication failures [preauth]
+Apr 14 14:00:14 opfersystem2 sshd[1538]: PAM 5 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:14 opfersystem2 sshd[1538]: PAM service(sshd) ignoring max retries; 6 > 3
+Apr 14 14:00:14 opfersystem2 sshd[1540]: error: maximum authentication attempts exceeded for invalid user alice from 10.0.2.15 port 38654 ssh2 [preauth]
+Apr 14 14:00:14 opfersystem2 sshd[1540]: Disconnecting invalid user alice 10.0.2.15 port 38654: Too many authentication failures [preauth]
+Apr 14 14:00:14 opfersystem2 sshd[1540]: PAM 5 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:14 opfersystem2 sshd[1540]: PAM service(sshd) ignoring max retries; 6 > 3
+Apr 14 14:00:18 opfersystem2 sshd[1545]: Failed password for hans from 10.0.2.15 port 44456 ssh2
+Apr 14 14:00:27 opfersystem2 sshd[1545]: message repeated 3 times: [ Failed password for hans from 10.0.2.15 port 44456 ssh2]
+Apr 14 14:00:28 opfersystem2 sshd[1545]: error: maximum authentication attempts exceeded for hans from 10.0.2.15 port 44456 ssh2 [preauth]
+Apr 14 14:00:28 opfersystem2 sshd[1545]: Disconnecting authenticating user hans 10.0.2.15 port 44456: Too many authentication failures [preauth]
+Apr 14 14:00:28 opfersystem2 sshd[1545]: PAM 4 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=hans
+Apr 14 14:00:28 opfersystem2 sshd[1545]: PAM service(sshd) ignoring max retries; 5 > 3
+Apr 14 14:00:36 opfersystem2 sshd[1547]: Invalid user alice from 10.0.2.15 port 52086
+Apr 14 14:00:36 opfersystem2 sshd[1547]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:36 opfersystem2 sshd[1547]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:38 opfersystem2 sshd[1547]: Failed password for invalid user alice from 10.0.2.15 port 52086 ssh2
+Apr 14 14:00:39 opfersystem2 sshd[1547]: Received disconnect from 10.0.2.15 port 52086:11: Bye Bye [preauth]
+Apr 14 14:00:39 opfersystem2 sshd[1547]: Disconnected from invalid user alice 10.0.2.15 port 52086 [preauth]
+Apr 14 14:00:39 opfersystem2 sshd[1549]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=hans
+Apr 14 14:00:41 opfersystem2 sshd[1549]: Failed password for hans from 10.0.2.15 port 52096 ssh2
+Apr 14 14:00:44 opfersystem2 sshd[1549]: Failed password for hans from 10.0.2.15 port 52096 ssh2
+Apr 14 14:00:44 opfersystem2 sshd[1551]: Invalid user alice from 10.0.2.15 port 52098
+Apr 14 14:00:44 opfersystem2 sshd[1551]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:44 opfersystem2 sshd[1551]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:44 opfersystem2 sshd[1553]: Invalid user alice from 10.0.2.15 port 52114
+Apr 14 14:00:44 opfersystem2 sshd[1553]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:44 opfersystem2 sshd[1553]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:46 opfersystem2 sshd[1551]: Failed password for invalid user alice from 10.0.2.15 port 52098 ssh2
+Apr 14 14:00:46 opfersystem2 sshd[1553]: Failed password for invalid user alice from 10.0.2.15 port 52114 ssh2
+Apr 14 14:00:47 opfersystem2 sshd[1551]: Received disconnect from 10.0.2.15 port 52098:11: Bye Bye [preauth]
+Apr 14 14:00:47 opfersystem2 sshd[1551]: Disconnected from invalid user alice 10.0.2.15 port 52098 [preauth]
+Apr 14 14:00:47 opfersystem2 sshd[1553]: Received disconnect from 10.0.2.15 port 52114:11: Bye Bye [preauth]
+Apr 14 14:00:47 opfersystem2 sshd[1553]: Disconnected from invalid user alice 10.0.2.15 port 52114 [preauth]
+Apr 14 14:00:47 opfersystem2 sshd[1555]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=hans
+Apr 14 14:00:47 opfersystem2 sshd[1557]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=hans
+Apr 14 14:00:48 opfersystem2 sshd[1549]: Failed password for hans from 10.0.2.15 port 52096 ssh2
+Apr 14 14:00:49 opfersystem2 sshd[1555]: Failed password for hans from 10.0.2.15 port 50922 ssh2
+Apr 14 14:00:49 opfersystem2 sshd[1557]: Failed password for hans from 10.0.2.15 port 50926 ssh2
+Apr 14 14:00:50 opfersystem2 sshd[1557]: Accepted password for hans from 10.0.2.15 port 50926 ssh2
+Apr 14 14:00:50 opfersystem2 sshd[1557]: pam_unix(sshd:session): session opened for user hans(uid=1004) by (uid=0)
+Apr 14 14:00:50 opfersystem2 systemd-logind[687]: New session 6 of user hans.
+Apr 14 14:00:50 opfersystem2 systemd: pam_unix(systemd-user:session): session opened for user hans(uid=1004) by (uid=0)
+Apr 14 14:00:50 opfersystem2 sshd[1560]: Accepted password for pacoca from 10.0.2.15 port 50932 ssh2
+Apr 14 14:00:50 opfersystem2 sshd[1560]: pam_unix(sshd:session): session opened for user pacoca(uid=1003) by (uid=0)
+Apr 14 14:00:50 opfersystem2 systemd-logind[687]: New session 8 of user pacoca.
+Apr 14 14:00:50 opfersystem2 systemd: pam_unix(systemd-user:session): session opened for user pacoca(uid=1003) by (uid=0)
+Apr 14 14:00:50 opfersystem2 sshd[1624]: Received disconnect from 10.0.2.15 port 50926:11: Bye Bye
+Apr 14 14:00:50 opfersystem2 sshd[1624]: Disconnected from user hans 10.0.2.15 port 50926
+Apr 14 14:00:50 opfersystem2 sshd[1557]: pam_unix(sshd:session): session closed for user hans
+Apr 14 14:00:50 opfersystem2 systemd-logind[687]: Session 6 logged out. Waiting for processes to exit.
+Apr 14 14:00:50 opfersystem2 systemd-logind[687]: Removed session 6.
+Apr 14 14:00:50 opfersystem2 sshd[1608]: Invalid user test from 10.0.2.15 port 50948
+Apr 14 14:00:50 opfersystem2 sshd[1608]: Failed none for invalid user test from 10.0.2.15 port 50948 ssh2
+Apr 14 14:00:50 opfersystem2 sshd[1549]: Failed password for hans from 10.0.2.15 port 52096 ssh2
+Apr 14 14:00:50 opfersystem2 sshd[1608]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:50 opfersystem2 sshd[1608]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:50 opfersystem2 sshd[1672]: Received disconnect from 10.0.2.15 port 50932:11: Bye Bye
+Apr 14 14:00:50 opfersystem2 sshd[1672]: Disconnected from user pacoca 10.0.2.15 port 50932
+Apr 14 14:00:50 opfersystem2 sshd[1560]: pam_unix(sshd:session): session closed for user pacoca
+Apr 14 14:00:50 opfersystem2 systemd-logind[687]: Session 8 logged out. Waiting for processes to exit.
+Apr 14 14:00:50 opfersystem2 systemd-logind[687]: Removed session 8.
+Apr 14 14:00:51 opfersystem2 sshd[1549]: Received disconnect from 10.0.2.15 port 52096:11: Bye Bye [preauth]
+Apr 14 14:00:51 opfersystem2 sshd[1549]: Disconnected from authenticating user hans 10.0.2.15 port 52096 [preauth]
+Apr 14 14:00:51 opfersystem2 sshd[1549]: PAM 3 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=hans
+Apr 14 14:00:51 opfersystem2 sshd[1549]: PAM service(sshd) ignoring max retries; 4 > 3
+Apr 14 14:00:51 opfersystem2 sshd[1673]: Invalid user test from 10.0.2.15 port 50954
+Apr 14 14:00:51 opfersystem2 sshd[1673]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:51 opfersystem2 sshd[1673]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:52 opfersystem2 sshd[1555]: Failed password for hans from 10.0.2.15 port 50922 ssh2
+Apr 14 14:00:53 opfersystem2 sshd[1608]: Failed password for invalid user test from 10.0.2.15 port 50948 ssh2
+Apr 14 14:00:53 opfersystem2 sshd[1555]: Received disconnect from 10.0.2.15 port 50922:11: Bye Bye [preauth]
+Apr 14 14:00:53 opfersystem2 sshd[1555]: Disconnected from authenticating user hans 10.0.2.15 port 50922 [preauth]
+Apr 14 14:00:53 opfersystem2 sshd[1555]: PAM 1 more authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=hans
+Apr 14 14:00:53 opfersystem2 sshd[1675]: Invalid user test from 10.0.2.15 port 50970
+Apr 14 14:00:53 opfersystem2 sshd[1675]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:53 opfersystem2 sshd[1675]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:00:54 opfersystem2 sshd[1673]: Failed password for invalid user test from 10.0.2.15 port 50954 ssh2
+Apr 14 14:00:55 opfersystem2 sshd[1608]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:55 opfersystem2 sshd[1675]: Failed password for invalid user test from 10.0.2.15 port 50970 ssh2
+Apr 14 14:00:56 opfersystem2 sshd[1673]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:57 opfersystem2 sshd[1608]: Failed password for invalid user test from 10.0.2.15 port 50948 ssh2
+Apr 14 14:00:57 opfersystem2 sshd[1677]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=hans
+Apr 14 14:00:57 opfersystem2 sshd[1608]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:58 opfersystem2 sshd[1675]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:58 opfersystem2 sshd[1673]: Failed password for invalid user test from 10.0.2.15 port 50954 ssh2
+Apr 14 14:00:58 opfersystem2 sshd[1673]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:00:59 opfersystem2 sshd[1675]: Failed password for invalid user test from 10.0.2.15 port 50970 ssh2
+Apr 14 14:00:59 opfersystem2 sshd[1677]: Failed password for hans from 10.0.2.15 port 56304 ssh2
+Apr 14 14:00:59 opfersystem2 sshd[1608]: Failed password for invalid user test from 10.0.2.15 port 50948 ssh2
+Apr 14 14:00:59 opfersystem2 sshd[1608]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:00 opfersystem2 sshd[1673]: Failed password for invalid user test from 10.0.2.15 port 50954 ssh2
+Apr 14 14:01:00 opfersystem2 sshd[1675]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:00 opfersystem2 sshd[1677]: Received disconnect from 10.0.2.15 port 56304:11: Bye Bye [preauth]
+Apr 14 14:01:00 opfersystem2 sshd[1677]: Disconnected from authenticating user hans 10.0.2.15 port 56304 [preauth]
+Apr 14 14:01:00 opfersystem2 sshd[1679]: Invalid user test from 10.0.2.15 port 56318
+Apr 14 14:01:00 opfersystem2 sshd[1679]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:00 opfersystem2 sshd[1679]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:01:00 opfersystem2 systemd: pam_unix(systemd-user:session): session closed for user hans
+Apr 14 14:01:00 opfersystem2 systemd: pam_unix(systemd-user:session): session closed for user pacoca
+Apr 14 14:01:00 opfersystem2 sshd[1673]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:01 opfersystem2 sshd[1608]: Failed password for invalid user test from 10.0.2.15 port 50948 ssh2
+Apr 14 14:01:02 opfersystem2 sshd[1608]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:02 opfersystem2 sshd[1675]: Failed password for invalid user test from 10.0.2.15 port 50970 ssh2
+Apr 14 14:01:02 opfersystem2 sshd[1675]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:02 opfersystem2 sshd[1679]: Failed password for invalid user test from 10.0.2.15 port 56318 ssh2
+Apr 14 14:01:02 opfersystem2 sshd[1679]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:02 opfersystem2 sshd[1673]: Failed password for invalid user test from 10.0.2.15 port 50954 ssh2
+Apr 14 14:01:03 opfersystem2 sshd[1673]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:04 opfersystem2 sshd[1608]: Failed password for invalid user test from 10.0.2.15 port 50948 ssh2
+Apr 14 14:01:05 opfersystem2 sshd[1675]: Failed password for invalid user test from 10.0.2.15 port 50970 ssh2
+Apr 14 14:01:05 opfersystem2 sshd[1679]: Failed password for invalid user test from 10.0.2.15 port 56318 ssh2
+Apr 14 14:01:05 opfersystem2 sshd[1673]: Failed password for invalid user test from 10.0.2.15 port 50954 ssh2
+Apr 14 14:01:06 opfersystem2 sshd[1608]: error: maximum authentication attempts exceeded for invalid user test from 10.0.2.15 port 50948 ssh2 [preauth]
+Apr 14 14:01:06 opfersystem2 sshd[1608]: Disconnecting invalid user test 10.0.2.15 port 50948: Too many authentication failures [preauth]
+Apr 14 14:01:06 opfersystem2 sshd[1608]: PAM 4 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:01:06 opfersystem2 sshd[1608]: PAM service(sshd) ignoring max retries; 5 > 3
+Apr 14 14:01:07 opfersystem2 sshd[1675]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:07 opfersystem2 sshd[1679]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:07 opfersystem2 sshd[1673]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:08 opfersystem2 sshd[1675]: Failed password for invalid user test from 10.0.2.15 port 50970 ssh2
+Apr 14 14:01:09 opfersystem2 sshd[1679]: Failed password for invalid user test from 10.0.2.15 port 56318 ssh2
+Apr 14 14:01:09 opfersystem2 sshd[1675]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:09 opfersystem2 sshd[1679]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:09 opfersystem2 sshd[1673]: Failed password for invalid user test from 10.0.2.15 port 50954 ssh2
+Apr 14 14:01:10 opfersystem2 sshd[1673]: error: maximum authentication attempts exceeded for invalid user test from 10.0.2.15 port 50954 ssh2 [preauth]
+Apr 14 14:01:10 opfersystem2 sshd[1673]: Disconnecting invalid user test 10.0.2.15 port 50954: Too many authentication failures [preauth]
+Apr 14 14:01:10 opfersystem2 sshd[1673]: PAM 5 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:01:10 opfersystem2 sshd[1673]: PAM service(sshd) ignoring max retries; 6 > 3
+Apr 14 14:01:11 opfersystem2 sshd[1675]: Failed password for invalid user test from 10.0.2.15 port 50970 ssh2
+Apr 14 14:01:11 opfersystem2 sshd[1675]: error: maximum authentication attempts exceeded for invalid user test from 10.0.2.15 port 50970 ssh2 [preauth]
+Apr 14 14:01:11 opfersystem2 sshd[1675]: Disconnecting invalid user test 10.0.2.15 port 50970: Too many authentication failures [preauth]
+Apr 14 14:01:11 opfersystem2 sshd[1675]: PAM 5 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:01:11 opfersystem2 sshd[1675]: PAM service(sshd) ignoring max retries; 6 > 3
+Apr 14 14:01:11 opfersystem2 sshd[1679]: Failed password for invalid user test from 10.0.2.15 port 56318 ssh2
+Apr 14 14:01:11 opfersystem2 sshd[1679]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:14 opfersystem2 sshd[1679]: Failed password for invalid user test from 10.0.2.15 port 56318 ssh2
+Apr 14 14:01:14 opfersystem2 sshd[1679]: Connection closed by invalid user test 10.0.2.15 port 56318 [preauth]
+Apr 14 14:01:14 opfersystem2 sshd[1679]: PAM 4 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:01:14 opfersystem2 sshd[1679]: PAM service(sshd) ignoring max retries; 5 > 3
+Apr 14 14:01:34 opfersystem2 sshd[1684]: Invalid user test from 10.0.2.15 port 32822
+Apr 14 14:01:34 opfersystem2 sshd[1684]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:34 opfersystem2 sshd[1684]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:01:36 opfersystem2 sshd[1684]: Failed password for invalid user test from 10.0.2.15 port 32822 ssh2
+Apr 14 14:01:36 opfersystem2 sshd[1684]: Connection closed by invalid user test 10.0.2.15 port 32822 [preauth]
+Apr 14 14:01:39 opfersystem2 sshd[1686]: Invalid user test from 10.0.2.15 port 53578
+Apr 14 14:01:39 opfersystem2 sshd[1686]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:39 opfersystem2 sshd[1686]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:01:41 opfersystem2 sshd[1688]: Invalid user test from 10.0.2.15 port 53590
+Apr 14 14:01:41 opfersystem2 sshd[1688]: pam_unix(sshd:auth): check pass; user unknown
+Apr 14 14:01:41 opfersystem2 sshd[1688]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15 
+Apr 14 14:01:42 opfersystem2 sshd[1686]: Failed password for invalid user test from 10.0.2.15 port 53578 ssh2
+Apr 14 14:01:42 opfersystem2 sshd[1688]: Failed password for invalid user test from 10.0.2.15 port 53590 ssh2
+Apr 14 14:01:43 opfersystem2 sshd[1688]: Connection closed by invalid user test 10.0.2.15 port 53590 [preauth]
+Apr 14 14:01:44 opfersystem2 sshd[1686]: Connection closed by invalid user test 10.0.2.15 port 53578 [preauth]
+Apr 14 14:05:29 opfersystem2 sshd[1695]: Received disconnect from 10.0.2.15 port 58024:11: Bye Bye [preauth]
+Apr 14 14:05:29 opfersystem2 sshd[1695]: Disconnected from authenticating user administrator 10.0.2.15 port 58024 [preauth]
+Apr 14 14:05:29 opfersystem2 sshd[1700]: Accepted password for administrator from 10.0.2.15 port 58048 ssh2
+Apr 14 14:05:29 opfersystem2 sshd[1700]: pam_unix(sshd:session): session opened for user administrator(uid=1000) by (uid=0)
+Apr 14 14:05:29 opfersystem2 systemd-logind[687]: New session 10 of user administrator.
+Apr 14 14:05:29 opfersystem2 sshd[1698]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=administrator
+Apr 14 14:05:29 opfersystem2 sshd[1699]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.15  user=administrator
+Apr 14 14:05:29 opfersystem2 sshd[1697]: Connection closed by authenticating user administrator 10.0.2.15 port 58034 [preauth]
+Apr 14 14:05:29 opfersystem2 sshd[1700]: pam_unix(sshd:session): session closed for user administrator
+Apr 14 14:05:29 opfersystem2 systemd-logind[687]: Session 10 logged out. Waiting for processes to exit.
+Apr 14 14:05:29 opfersystem2 systemd-logind[687]: Removed session 10.
+Apr 14 14:05:30 opfersystem2 sshd[1699]: Failed password for administrator from 10.0.2.15 port 58044 ssh2
+Apr 14 14:05:30 opfersystem2 sshd[1698]: Failed password for administrator from 10.0.2.15 port 58036 ssh2
+Apr 14 14:05:31 opfersystem2 sshd[1698]: Connection closed by authenticating user administrator 10.0.2.15 port 58036 [preauth]
+Apr 14 14:05:31 opfersystem2 sshd[1699]: Connection closed by authenticating user administrator 10.0.2.15 port 58044 [preauth]
+Apr 14 14:07:20 opfersystem2 sshd[1785]: Accepted password for administrator from 10.0.2.15 port 40368 ssh2
+Apr 14 14:07:20 opfersystem2 sshd[1785]: pam_unix(sshd:session): session opened for user administrator(uid=1000) by (uid=0)
+Apr 14 14:07:20 opfersystem2 systemd-logind[687]: New session 11 of user administrator.
