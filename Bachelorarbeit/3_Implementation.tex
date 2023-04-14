@@ -273,7 +273,7 @@ Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsv
    \centering
 \end{figure}
 
-Eine Erkennungsregel würde folgender Logik folgen:
+Eine Erkennungsregel hätte folgende Logik:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
    # Gefundenen Wert in den Logdateien
@@ -291,12 +291,36 @@ Eine Erkennungsregel würde folgender Logik folgen:
 \end{Verbatim}
 }
 
+\newpage
 Grafana Loki bietet einen Einstellungsmuster für die Eingabe und Darstellung von \gls{ssh} Logdateien an. In dieser Einstellung befinden sich schon Graphik und Regelsätze für eine umfangreiche Analyse dieser Daten \citep{VoidQuark_sshlogs}. Die extrahierte Logdateien werden mit folgenden Elementen gelesen und bearbeitet:
 
 \begin{table}[H]
    \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
-   \caption{Kompenenten der von Grafana zur Verfügung gestellten Regelsätzen für die Darstellung von \gls{ssh} Logdateien  \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+   \caption{Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
+
+Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql}  aufgebaut sind. In Promtail wird jeder \gls{Endpoint} \quotes{Instance} genannt. Eine oder mehrere \quotes{Instance} werden einem \quotes{Job} zugewiesen. Diese Struktur kommt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach dem gleichen Regeln bearbeitet. Die Abfrage für unseren Angriff sieht so aus \citep{VoidQuark_sshlogs}:
+
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+(1) - "sum by (username) (count_over_time({$label_name=~\"$label_value\",
+      job=~\"$job\", instance=~\"$instance\"} 
+(2) - |=\"sshd[\" 
+(3) - |=\": Failed\" !~\"invalid user\" 
+(4) - | pattern `<_> for <username> from <_> port` 
+(5) - | __error__=\"\" [$__interval]))",
+
+(1) - Aufsummierung der Benutzername, den dieser Regel entsprechen und 
+      Filtern nach dem Job und Instance
+(2) - Suche nach Zeilen mit dem Wort "sshd"
+(3) - Suche nach Zeilen mit dem Wort "Failed" und ohne den Ausdruck 
+      "invalid user"
+(4) - Extrahierung des Benutzernames und der Port der Zeilen
+(5) - Suche nach andere Fehlermeldung, falls vorhanden
+\end{Verbatim}
+}
+
+
 
 \textcolor{red}{\textbf{Hinzufügen wie es in Grafana aufgebaut ist. Abschnitt der Regel und Erklärung}}
 
