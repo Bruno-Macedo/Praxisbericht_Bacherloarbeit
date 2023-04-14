@@ -3,19 +3,18 @@ In diesem Kapitel beschäftigen wir uns mit der Implementation und mit dem Aufba
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/Arbeitslabor.drawio.png}
+   \includegraphics[width=0.5\textwidth]{assets/Arbeitslabor.jpg}
    \caption{Aufbau unseres Arbeitslabors \\Quelle: Eigene Quelle}
    \centering
 \end{figure}
 
 Von unserem Aufbau wollen wir folgende Ziele erreichen: Aufnahmen und Anpassung der Logdateien für Grafana, Musterkerennung für die ausgewählten \glsplural{Cyberangriff} und schließlich Warnmeldung für die Endnutzer, damit sie geeignete Sicherheitsmaßnahmen ergreifen können. 
 
-\newpage
 Der gezielte Ablauf ist in dem folgenden Diagramm dargestellt:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=1\textwidth]{assets/Ablauf_grafana2.jpg}
+   \includegraphics[width=0.7\textwidth]{assets/Ablauf_grafana2.jpg}
    \caption{Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung \\ Quelle: Eigene Quelle und \citep{Grafana_loki}}
    \centering
 \end{figure}
@@ -34,9 +33,9 @@ Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 \end{itemize}
 }
 
-Die Matrix bietet eine umfangreiche Verwendung für Unternehmen und für \gls{SOC}-Team an, um ihre wertvollen Ressource schützen und ihre Fachkenntnisse über \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. Hier konzentrieren wir uns auf die Entwicklung und auf die Implementierung einer Methode für die automatische Erkennung und Analyse von Angriffstechnique in Grafana.
+Die Matrix bietet eine umfangreiche Verwendung für Unternehmen und für \gls{SOC}-Team an, um ihre wertvollen Ressource schützen und ihre Fachkenntnisse über \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. Hier konzentrieren wir uns auf die Entwicklung und auf die Implementierung einer Methode für die automatische Erkennung und Analyse von AngriffsTechnik in Grafana.
 
-Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Technique, die ihrerseits in Subtechniques aufgeteilt sind. Jede Subtechnique wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln dargestellt.
+Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Technik, die ihrerseits in SubTechniks aufgeteilt sind. Jede SubTechnik wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln dargestellt.
 
 \begin{figure}[H]
    \centering
@@ -46,7 +45,7 @@ Die \gls{mitre} Framework besteht aus 14 Taktik. Zu jedem Taktik gehören Techni
 \end{figure}
 
 {\setstretch{1.5}
-Die 14 Tactics sind folgende:
+Die 14 Taktiks sind folgende:
 \begin{itemize}[noitemsep]
    \item Informationssammlung für zukünftige Angriffe 
    \item	Entwicklung von Ressource von Angreifer
@@ -55,7 +54,7 @@ Die 14 Tactics sind folgende:
    \item Beharrlichkeit von System
    \item	Privilegienausweitung
    \item Vermeidung von Verteidigungssysteme
-   \item Zugang zu Anmeldedaten
+   \item \textbf{Zugang zu Anmeldedaten}
    \item Umgebungserkennung
    \item Seitliche Bewegung zu anderem Systemen innerhalb des Angriffsziels
    \item interne Informationssammlung
@@ -66,7 +65,7 @@ Die 14 Tactics sind folgende:
 }
 
 \subsection{Auswahl des Angriffes}
-In dieser Arbeit beschäftigen wir uns mit dem Tactic \quotes{Zugang zu Anmeldedaten} und deren Technique \gls{bruteforce}. Diese Technique ist in vier Subtechnique aufteilt:
+In dieser Arbeit beschäftigen wir uns mit dem Taktik \quotes{Zugang zu Anmeldedaten} und deren Technik \gls{bruteforce}. Diese Technik ist in vier SubTechnik aufteilt:
 
 {\setstretch{1.5}
 \begin{itemize}[noitemsep]
@@ -77,7 +76,7 @@ In dieser Arbeit beschäftigen wir uns mit dem Tactic \quotes{Zugang zu Anmelded
 \end{itemize}
 }
 
-Da unser Ziel hier ist Grafana, zu benutzen, um Angriffe zu erkennen, entschieden wir uns für einen einfachen reproduzierbaren Angriff, die weniger Ressource verlangt. In diesem Fall, lässt sich \gls{bruteforce} einwandfrei mit zwei \glsplural{vm} darstellen. Für diesen Angriff benutzen wir die Subtechnique \quotes{Erraten von Anmeldedaten und \textit{\gls{stuffing}}}, da sie ähnliche Erkennungmethode haben. Hier schließen wir auch die anderen Maßnahmen aus.
+Da unser Ziel hier ist Grafana, zu benutzen, um Angriffe zu erkennen, entschieden wir uns für einen einfachen reproduzierbaren Angriff, die weniger Ressource verlangt. In diesem Fall, lässt sich \gls{bruteforce} einwandfrei mit zwei \glsplural{vm} darstellen. Für diesen Angriff benutzen wir die SubTechnik \quotes{Erraten von Anmeldedaten und \textit{\gls{stuffing}}}, da sie ähnliche Erkennungmethode haben. Hier schließen wir auch die anderen Maßnahmen aus.
 
 Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
 \begin{figure}[H]
@@ -94,28 +93,30 @@ In diesem Abschnitt fokussieren wir uns auf folgenden Punkten:
    \item	Einrichtung der \glsplural{vm} für Opfersystem und Angreifen
    \item	Angriffsssimulation für die für die Generierung von Logdateien
    \item Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}
+   \item Weiterleitung der Logdateien zum Grafana
 \end{enumerate}
 
 Die Installation und Anwendung können entweder mit dem \glsfirst{GUI} oder mit der Kommandozeilen durchgeführt werden. In dieser Arbeit benutzen wir die Kommandozeile. 
 
-\newpage
 \subsubsection{Einrichtung der \glsplural{vm} für Opfersystem und Angreifen}
 Die beiden \glsplural{vm} sind eine vorgebaute \quotes{\gls{kali} \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} in ihren standardmäßigen Einstellungen. Beiden Maschinen wurden nach der jeweiligen Dokumentation installiert \citep{kali_vm} und \citep{Ubuntu_server}.
 
-Für das Opfersystem entschieden wir uns für das Passwort \quotes{qwertz}. Laut einer Umfrage gehört dieses Passwort zu den zehn meisten verwendeten Passwort in Deutschland \citep{silicon_passwort}.  
+Für das Opfersystemen entschieden wir uns für die Passwörte \quotes{qwertz} und \quotes{password}. Laut einer Umfrage gehört dieses Passwort zu den zehn meisten verwendeten Passwort in Deutschland \citep{silicon_passwort}.  
 
 Für die Durchführung von \gls{spraying} erstellen wir folgende Benutzer und Passwörterkombinationen:
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-   admin:123456
-   user1:passwort
-   user2:abc123
-   user3:qwertyuiop
+   Opfersystem 1          Opfersystem 2  
+   admin:123456           bob:hallo
+   user1:passwort         alice:master
+   user2:abc123           hans:daniel
+   user3:qwertyuiop       bruno:super123
 \end{Verbatim}
 }
 
-\subsubsection{Angrifsssimulation für die für die Generierung von Logdateien}
+\newpage
+\subsubsection{Generierung von Logdateien mit der Angrifsssimulation}
 Für den Angriff verwenden wir folgenden Tools:
 \begin{itemize}[noitemsep]
    \item	\glsfirst{ssh}
@@ -124,7 +125,6 @@ Für den Angriff verwenden wir folgenden Tools:
 
 In diesem Szenario schickt \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche zum Opfersystem, um eine \gls{ssh}-Verbindung mit dem Opfersystem herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannte \gls{rockyou}-Datei.
 
-\newpage
 Die nächste Abbildung zeigt, wie \gls{stuffing} abläuft:
 
 \begin{figure}[H]
@@ -138,13 +138,14 @@ Das folgende Kommando wurde gegen das Angreifersystem für \gls{stuffing} ausgef
 %Verbatim
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-   hydra -l test -P rockyou.txt [Adresse von Opfersystem] ssh -V -t 4
+   hydra -l test -P rockyou.txt [Opfersystem1] ssh -V -t 4
 
    # Erklärung
    -l: Spefizikation der Benutzername, den wir Angreifen
    -P: Auswahl der Datei mit bekannten Passwörter
    ssh: Auswahl der Anwendung, die wir angreifen wollen
-   -V: Ausgabe ausführlicher Information über die Durchführungen, wie Versuche, Fehlermeldungen und Erfolge
+   -V: Ausgabe ausführlicher Information über die Durchführungen, wie 
+   Versuche, Fehlermeldungen und Erfolge
    -t 4: Anzahl von gleichzeitigen Verbindungen
 \end{Verbatim}
 }
@@ -165,15 +166,33 @@ Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
    \centering
 \end{figure}
 
-Für diesen Angriff benutzen wir dasselbe Kommando wie vorher, mit einem \quotes{-L} (großen \quotes{L}) anstelle von \quotes{-l} (kleinen \quotes{L}). \quotes{-L} deutet darauf hin, dass wir eine Textdatei mit verschiedenen Benutzernamen verwenden .
+Für diesen Angriff benutzen wir folgendes Kommando:
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+   hydra -L username2.txt -P passwoerter.txt [Opfersystem2] ssh -V -t 4
+
+   # Erklärung
+   -L: Auswahl der Datei mit gefunden Benutzername
+\end{Verbatim}
+}
+
+In diesem Fall gehen wir davon aus, dass der Angreifer einige oder alle Benutzernamen schon kennen. Da es bei diesem Angriffe weniger Anmeldeversuche pro Nutzer stattfindet, benutzen wir eine selbsterstellte Datei mit weniger Passwörter als bei der \gls{rockyou}-Datei. Unsere Datei beinhalt die beliebigste Passwörter in Deutschland \citep{silicon_passwort}.  
 
 Der folgende Screenshot zeigt die Ausführung von \gls{spraying}:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Spraying_Kali.png}
-   \caption{Ausführung \textit{\gls{spraying}} in Kali Linux \\Quelle: Eigene Quelle}
+   \caption{Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1\\Quelle: Eigene Quelle}
    \centering
 \end{figure}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/Spraying_Kali.png}
+   \caption{Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2\\Quelle: Eigene Quelle}
+   \centering
+\end{figure}
+
 
 \subsubsection{Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}}
 Die offizielle Dokumentation von Grafana war nicht immer über die Ausführung eindeutig, deshalb benutzten wir auch fremde Quellen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unter befindet es sich die von Grafana zur Verfügung gestellte Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}. 
@@ -225,6 +244,9 @@ Für diesen ersten Test, wurden die Logdatei des Opfersystems manuell zu dem \gl
    \end{center}
 \end{landscape}
 
+\subsubsection{Weiterleitung der Logdateien zum Grafana}
+\textcolor{red}{\textbf{Erklären über existierenden Möglichkeiten Logdateien weiterzuleiten}}
+
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
 Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsversuchs erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir bearbeiten eine Situation, in der es keine Gegenmaßnahmen, wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Aktivitätsdiagramm stellt einen allgemeinen Ablauf eines Anmeldungsverfahrens dar:
 
@@ -253,13 +275,16 @@ Eine Erkennungsregel würde folgender Logik folgen:
 \end{Verbatim}
 }
 
-\newpage
 Grafana Loki bietet einen Einstellungsmuster für die Eingabe und Darstellung von \gls{ssh} Logdateien an. In dieser Einstellung befinden sich schon Graphik und Regelsätze für eine umfangreiche Analyse dieser Daten \citep{VoidQuark_sshlogs}. Die extrahierte Logdateien werden mit folgenden Elementen gelesen und bearbeitet:
 
 \begin{table}[H]
    \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
    \caption{Kompenenten der von Grafana zur Verfügung gestellten Regelsätzen für die Darstellung von \gls{ssh} Logdateien  \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
+
+\textcolor{red}{\textbf{Hinzufügen wie es in Grafana aufgebaut ist. Abschnitt der Regel und Erklärung}}
+
+\textcolor{red}{\textbf{wie würde es für andere Logs aussehen}}
 
 \newpage
 \thispagestyle{lscape}
