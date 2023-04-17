@@ -261,17 +261,17 @@ Für diesen ersten Test, wurden die Logdatei des Opfersystems manuell zu dem \gl
 \end{landscape}
 
 \subsubsection{Weiterleitung der Logdateien zum Grafana}
-Grafana Loki bietet einige Möglichkeiten an, um Logdateien weiterzuleiten. In unserer Arbeit benutzen wir \textbf{Promtail}, der in einem \gls{container} läuft. Dieser Instanz schickt Grafana die von uns ausgewählten Logdateien und bearbeitet alle diese Dateien innerhalb eines sogenanntes \quotes{job}. Hätten wir verschiedene Art von Logdateien, würde jeder Typ einem \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hätte ihre eigene Regeln, um nach dem gewünschten Information zu suchen. 
+Grafana Loki bietet mehrere Möglichkeiten an, Logdateien empfangen. In unserer Arbeit benutzen wir \textbf{Promtail}, der in einem \gls{container} läuft. Dieser Instanz schickt die von uns ausgewählten Logdateien Grafana und bearbeitet alle diese Dateien innerhalb eines sogenanntes \quotes{job}. Hätten wir verschiedene Art von Logdateien, würde jeder Typ einem \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat ihre eigene Regeln, um nach dem gewünschten Information zu suchen. 
 
-In einen produktive Umgebung wäre die Installation von \textbf{Grafana Agents} in jedenm\gls{Endpoint} eine andere Lösung, um Grafana Loki  Logdateien zu schicken. In diesem Fall würde jeder \gls{Endpoint} 
+In einen produktive Umgebung wäre die Installation von \textbf{Grafana Agents} in jedenm \gls{Endpoint} eine andere Lösung, um Grafana Loki mit  Logdateien befüllen. In diesem Fall würde jeder \gls{Endpoint} 
 mithilfe von Promtail die Dateien weiterleiten \citep{Grafana_Agents}. Wie in unserer Lösung, müsste der Nutzer für jeden Art von Logdateien einen spezifischen \quotes{job} konfigurieren. 
 
-Inhalt von Logdateien lassen sich auch mit \textbf{\glsfirst{API}} zum Grafana Loki schicken. In dieser Situation schickt der \gls{Endpoint} einen \gls{http} POST request zum Grafana Loki \gls{Endpoint} mit den Inhalt der Logdateien \citep{Grafana_api}:
+Inhalt von Logdateien lassen sich auch mit \textbf{\glsfirst{API}} zum Grafana Loki schicken. In dieser Situation schickt der \gls{Endpoint} einen \gls{http} POST Anfrage zum \gls{Endpoint} von Grafana Loki mit den Inhalt der Logdateien \citep{Grafana_api}:
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-# Endpoint
-POST /loki/api/v1/push
+# Endpoint 
+POST [Addresse_von_Grafana_Loki_Instanz]/loki/api/v1/push
 
 # Inhalt
 {
@@ -286,15 +286,22 @@ POST /loki/api/v1/push
     }
   ]
 }
+\end{Verbatim}
 }
 
+Grafana Loki ist auch mit dem \gls{opensource} Tool OpenTelemetry  integriert, um Logdateien zu empfangen \citep{Grafana_opentelemtry}. Im Allgemein wird OpenTelemetry dazu verwenden, Daten zu schicken, zu bearbeiten und zu empfangen. Laut dem Anbieter ist OpenTelemetry mit verschiedenen anderen integriert, um die Datenübertragung zu ermöglichen. Das Tool hat \textit{Agents} und \textit{Collectors}. Der erste wird an jedem \gls{Endpoint} installiert, um die Daten zu schicken und der zweite empfängt die Daten, um diese dann weiterzuleiten \citep{Grafana_opentelemtry}. Die Integration mit Grafana Loki findet mit der Nutzung von \gls{API} statt. Der \textit{collector} läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien schicken kann, die \textit{Agents} läufen in jeden \gls{Endpoint} und kommunizieren sich mit dem \textit{collector}. Die folgende Abbildung soll den beschriebenen Vorgang besser darstellen:
 
 
-Die Logdateien lassen sich mithilfe von Grafana Agent zum Grafana weiterleiten. Die Agents werden in jeden Endpoint installiert
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/Grafana_OpenTelemtry.png}
+   \caption{Datenfluss zwischen OpenTelemetry und Grafana Loki\\Quelle: \citep{Grafana_WhatOpentelemetry}}
+   \centering
+\end{figure}
 
+An der linken Seite haben wir die verschiedenen \glsplural{Endpoint}, in dem einen \textit{agent} läuft. In der Mitte haben wir den \textit{Collector}, der die Logdateien schließlich zu Grafana Loki und/oder zu anderen Tools weiterleitet.
 
-\textcolor{red}{\textbf{Erklären über existierenden Möglichkeiten Logdateien weiterzuleiten}}
-
+\newpage
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
 Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsversuchs erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir bearbeiten eine Situation, in der es keine Gegenmaßnahmen, wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Aktivitätsdiagramm stellt einen allgemeinen Ablauf eines Anmeldungsverfahrens dar:
 
@@ -351,12 +358,6 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql}  aufgebaut sin
 (5) - Suche nach andere Fehlermeldung, falls vorhanden
 \end{Verbatim}
 }
-
-
-
-\textcolor{red}{\textbf{Hinzufügen wie es in Grafana aufgebaut ist. Abschnitt der Regel und Erklärung}}
-
-\textcolor{red}{\textbf{wie würde es für andere Logs aussehen}}
 
 \newpage
 \thispagestyle{lscape}
