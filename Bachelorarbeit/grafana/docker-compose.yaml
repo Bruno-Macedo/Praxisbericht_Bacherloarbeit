@@ -18,8 +18,9 @@ services:
     image: grafana/promtail:2.3.0
     volumes:
       - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/promtail-local-config.yaml:/etc/promtail/promtail-config.yaml
-      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/*.log:/opt/
-      #- /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh2.log:/opt/ssh2.log
+      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh1.log:/opt/ssh1.log
+      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh2.log:/opt/ssh2.log
+      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh3.log:/opt/ssh3.log
     command: -config.file=/etc/promtail/promtail-config.yaml
     networks:
       - loki

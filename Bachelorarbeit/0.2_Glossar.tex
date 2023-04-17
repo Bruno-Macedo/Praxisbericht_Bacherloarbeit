@@ -2,6 +2,21 @@
     name={Abfragesprache },
     description={\textit{Query Language} funktioniert wie einen Filter fir die Suche nach spezifischen Daten in einem Datenbank \citep{at_query}}}
 
+
+% here goes to the description
+\newglossaryentry{API2}{
+    name=\glslink{API}{Application Programming Interface (\gls{API})},
+    description={beziehen sich auf Coden und Regel, die die Kommunikation zwischen verschiedenen Anwendungen ermöglichen. In diesem Fall kann eine Anwendung eine Anfrage einer anderen Anwendung schicken, um Daten zu holen oder zu schicken\citep{ibm_api}}}
+
+% here goes to the acronym
+\newglossaryentry{API}{
+    type=\acronymtype,
+    name=API,
+    first={ Application Programming Interface (API)\glsadd{API2}},
+    see=[Glossary:]{\gls{API2}}, 
+    description=\glslink{API2}{Application Programming Interface}}
+% =====
+
 \newglossaryentry{bruteforce} {
     name={Brute-Force Angriffe},
     description={systematischer Versuch, Credentials oder andere sensitive Daten zu raten, indem verschiedene Buchstaben, Ziefern und Symbolen kombiniert werden \citep{Sowmya_BruteForce}}}
@@ -64,6 +79,21 @@
     name={Hashwerte},
     plural={Hashwerte},
     description={sind Zeichen, die aus der Ergebnis einer mathematischen Funktion (Hashfunktion) auf einem Text oder auf einer Datei entstehen. Die Wiederherstellung des originallen Objekts soll aber schwierig sein \citep{Wendzel_IS}}}
+
+% here goes to the description
+\newglossaryentry{http2}{
+    name=\glslink{http}{Hypertext Transfer Protocol (\gls{http})},
+    description={ist der Basis unseres Internets. Dieser Protokol definiert die Regel für die Übertragung von Texten und Datein im Internet. Dieser Protokol verwendet acht Methode, um die Kommunikation zwischen Kunden und Server herzustellen: \textit{GET, POST, HEAD, DELETE, CONNECT, OPTIONS} und \textit{TRACE} \citep{Chai_http} and \citep{tutorialspoint_http}}}
+
+% here goes to the acronym
+\newglossaryentry{http}{
+    type=\acronymtype,
+    name=HTTP,
+    first={Hypertext Transfer Protocol (http)\glsadd{http2}},
+    see=[Glossary:]{\gls{http2}}, 
+    description=\glslink{http2}{Hypertext Transfer Protocol}}
+% =====
+
 
 \newglossaryentry{IDS}{
     type=\acronymtype,

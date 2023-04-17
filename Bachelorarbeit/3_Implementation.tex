@@ -261,6 +261,38 @@ Für diesen ersten Test, wurden die Logdatei des Opfersystems manuell zu dem \gl
 \end{landscape}
 
 \subsubsection{Weiterleitung der Logdateien zum Grafana}
+Grafana Loki bietet einige Möglichkeiten an, um Logdateien weiterzuleiten. In unserer Arbeit benutzen wir \textbf{Promtail}, der in einem \gls{container} läuft. Dieser Instanz schickt Grafana die von uns ausgewählten Logdateien und bearbeitet alle diese Dateien innerhalb eines sogenanntes \quotes{job}. Hätten wir verschiedene Art von Logdateien, würde jeder Typ einem \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hätte ihre eigene Regeln, um nach dem gewünschten Information zu suchen. 
+
+In einen produktive Umgebung wäre die Installation von \textbf{Grafana Agents} in jedenm\gls{Endpoint} eine andere Lösung, um Grafana Loki  Logdateien zu schicken. In diesem Fall würde jeder \gls{Endpoint} 
+mithilfe von Promtail die Dateien weiterleiten \citep{Grafana_Agents}. Wie in unserer Lösung, müsste der Nutzer für jeden Art von Logdateien einen spezifischen \quotes{job} konfigurieren. 
+
+Inhalt von Logdateien lassen sich auch mit \textbf{\glsfirst{API}} zum Grafana Loki schicken. In dieser Situation schickt der \gls{Endpoint} einen \gls{http} POST request zum Grafana Loki \gls{Endpoint} mit den Inhalt der Logdateien \citep{Grafana_api}:
+
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+# Endpoint
+POST /loki/api/v1/push
+
+# Inhalt
+{
+  "streams": [
+    {
+      "stream": {
+        "label": "value"
+      },
+      "values": [
+          [ "Zeit in Unixformat", "<Inhalt der Logdateie>" ],
+      ]
+    }
+  ]
+}
+}
+
+
+
+Die Logdateien lassen sich mithilfe von Grafana Agent zum Grafana weiterleiten. Die Agents werden in jeden Endpoint installiert
+
+
 \textcolor{red}{\textbf{Erklären über existierenden Möglichkeiten Logdateien weiterzuleiten}}
 
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
