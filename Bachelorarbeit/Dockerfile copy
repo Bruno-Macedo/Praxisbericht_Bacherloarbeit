@@ -15,4 +15,5 @@ COPY . /home/bachelorarbeit/
 
 COPY /home/bachelorarbeit/latexcompile /usr/bin/
 
-CMD [ "latexcompile", "-b -r -s -g", "0_bachelorarbeit.tex" ]
+#CMD [ "latexcompile", "-b -r -s -g", "0_bachelorarbeit.tex" ]
+CMD [ "latexcompile", "-b -r -g", "0_bachelorarbeit.tex" ]
