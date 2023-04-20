@@ -1,10 +1,5 @@
 FROM ubuntu
 
-
-
-
-# non interactive frontend for locales
-
 #ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ="Europe/Berlin"
 
@@ -16,7 +11,7 @@ RUN  apt-get -y install --no-install-recommends texlive texlive-lang-german texl
 
 RUN groupadd -g 1000 latexuser
 RUN useradd -u 1000 -g 1000 -s /bin/bash -m latexuser
-#USER latexuser
+USER latexuser
 
 WORKDIR /app
 
@@ -24,4 +19,5 @@ CMD [ "tail", "-f", "/dev/null" ]
 
 # docker compose build
 # docker compose up
-# docker exec c1d3a85ac312 ./latexcompile -g -r -b 0_bachelorarbeit.tex
+# docker exec [ID] ./latexcompile -g -r -b 0_bachelorarbeit.tex
+#  docker exec -it [ID]  /bin/bash

@@ -6,6 +6,10 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./Bachelorarbeit:/app
+    security_opt:
+      - no-new-privileges:true
+    #read_only: true
+
       #- C:\Users\bruno\Dropbox\Estudos_Avancados\Angewandte_Informatik\Praxissemester_Bachelorarbeit\:/home/bachelorarbeit/
       #- ${PWD}:/home/bachelorarbeit/
     #working_dir: /home/bachelorarbeit

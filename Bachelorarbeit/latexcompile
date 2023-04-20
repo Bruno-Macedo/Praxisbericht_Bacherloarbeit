@@ -124,7 +124,7 @@ fehlermeldung "PDF-Datei konnte nicht erzeugt werden."
 if [[ ${LOESCHEN} = 'true' ]]
 then
    
-    DATEILOESCHEN=$(find *.aux *.bbl *.toc *.log *.blg *.fls *.out *.gls *.glo *.ist *.acn *.acr *. 2> /dev/null)
+    DATEILOESCHEN=$(find *.aux *.bbl *.toc *.log *.blg *.fls *.out *.gls *.glo *.ist *.acn *.acr *.glg *.alg 2> /dev/null)
     #BBLDATEI=$(find *.bbl 2> /dev/null)
     #TOCDATEI=$(find *.toc 2> /dev/null)
     #LOGDATEI=$(find *.log 2> /dev/null)

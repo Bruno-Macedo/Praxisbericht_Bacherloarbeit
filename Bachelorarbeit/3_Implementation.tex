@@ -390,6 +390,10 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql}  aufgebaut sin
 \subsection{Einrichtung des Warnmeldungskomponent}
 Über Alarmsignal zu schreiben
 
+% count by (ip) (count_over_time({$label_name=~"$label_value", job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" |~".* from .*" | pattern `<_> from <ip> port` | __error__="" [$__interval]))
+
+% count by (ip) (count_over_time({$label_name=~"$label_value", job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" !~".* from .*" | pattern `<_> user <_> <ip> port` | __error__="" [$__interval]))
+
 %\textcolor{red}{\textbf{statische vs dinymische Regel}}
 
 
