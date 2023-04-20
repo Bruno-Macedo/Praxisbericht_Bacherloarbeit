@@ -8,8 +8,6 @@ FROM ubuntu
 #ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ="Europe/Berlin"
 
-
-
 # installing texlive and utils
 
 RUN apt-get update
@@ -24,4 +22,6 @@ WORKDIR /app
 
 CMD [ "tail", "-f", "/dev/null" ]
 
+# docker compose build
+# docker compose up
 # docker exec c1d3a85ac312 ./latexcompile -g -r -b 0_bachelorarbeit.tex
