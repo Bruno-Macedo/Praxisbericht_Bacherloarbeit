@@ -342,12 +342,12 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql}  aufgebaut sin
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-(1) - "sum by (username) (count_over_time({$label_name=~\"$label_value\",
-      job=~\"$job\", instance=~\"$instance\"} 
-(2) - |=\"sshd[\" 
-(3) - |=\": Failed\" !~\"invalid user\" 
+(1) - "sum by (username) (count_over_time({$label_name=~"$label_value",
+      job=~"$job", instance=~"$instance"} 
+(2) - |="sshd[" 
+(3) - |=": Failed" !~"invalid user" 
 (4) - | pattern `<_> for <username> from <_> port` 
-(5) - | __error__=\"\" [$__interval]))",
+(5) - | __error__="" [$__interval]))",
 
 (1) - Aufsummierung der Benutzername, den dieser Regel entsprechen und 
       Filtern nach dem Job und Instance
@@ -388,18 +388,18 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql}  aufgebaut sin
 \end{landscape}
 
 \subsection{Einrichtung des Warnmeldungskomponent}
-In den vorherigen Teilen dieser Arbeit setzten wir uns damit auseinander, Grafana so einzustellen, damit wir schließlich eine \gls{SIEM} ähnliche Lösung bekommen könnnten. Von unserer ursprünglichen Vorschlag erreichten wir schon Folgendes:
+In den vorherigen Teilen dieser Arbeit setzten wir uns damit auseinander, Grafana so einzustellen, damit wir schließlich eine \gls{SIEM} ähnliche Lösung bekommen könnten. Von unseren ursprünglichen Vorschläge erreichten wir schon Folgendes:
 
 {\setstretch{1}
 \begin{enumerate}[noitemsep]
    \item	Sammlung der Logdateien aus den \glsplural{Endpoint} mit Promtail
-   \item Anpassung der Logdateien mit Loki für die nachträgliche visuelle Darstellung
+   \item Anpassung der Logdateien für die nachträgliche visuelle Darstellung mit Loki
    \item Nutzung von Regelsätzen in Loki für die Analysierung der \gls{ssh} Logdateien
    \item Graphische Darstellung der Logdateien in Grafana mit den in Loki verwendeten Regelsätzen
 \end{enumerate}
 }
 
-Unser letztes Ziel ist es, Warnmeldungen für potenzielle Angriffe mit den Ergebnissen von Loki zu generieren. Grafana lässt sich mit internen und externen Tools integrieren, um Warnmeldungen zu generieren \citep{Grafana_AlertManager}. Für diese Arbeit benutzen wir das integrierten Tool AlertManager. AlertManager benötigt keine externe Installation und kann nach vordefinierten Regel Warnmeldungen zu beliebigen \glsplural{Endpoint} schicken. Diese Regel wird so aufgebaut:
+Unser letztes Ziel ist es, Warnmeldungen für potenzielle Angriffe mit den Ergebnissen von Loki zu generieren. Grafana lässt sich mit internen und externen Tools integrieren, um Warnmeldungen zu erstellen. \textbf{Alertmanager} gehört zu einem von den externen Tools, die aber schon integriert sind. Dieses Tool kann \gls{prometheus}, \gls{cortex} und \gls{mimir} als Dateiquelle verwenden \citep{Grafana_Alertmanager} und lässt sich Daten aus beliebigen \glsplural{Endpoint} schicken. Bei Alertmanager haben die Regelsätze folgenden Muster:
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
@@ -415,48 +415,55 @@ Unser letztes Ziel ist es, Warnmeldungen für potenzielle Angriffe mit den Ergeb
              summary: High request latency
 
 
-(1)   Warnmeldungen können in beliebigen Gruppen kategorisiert werden. Die können so definiert werden, wie die Nutzer es wollen und brauchen
-(2)   Ab diesem Punkt definieren wir die Regelsätzen für die Erkennung der Warnmeldung
+(1)   Warnmeldungen können in beliebigen Gruppen kategorisiert werden.
+Die können so definiert werden, wie die Nutzer es wollen und brauchen
+(2)   Ab diesem Punkt definieren wir die Regelsätzen für die Erkennung
+der Warnmeldung
 (2.1) Titel für den Alert, z.B. Pontezieller Angriff gegen ssh
 (2.2) Logql Regelsätze für die Erkennung der Warnmeldung
-Titel der Alert, z.B. 
-(2.3) frei definierbare Metaden über die Warnmeldungen 
+(2.3) frei definierbare Metadaten über die Warnmeldungen 
 \end{Verbatim}
 }
 
+Grafana hat auch ein eigenes internes Tool, um Warnmeldungen zu konfigurieren: \textbf{Alerting}. In dieser Arbeit versuchen wir unser Wanrmeldungsystem mithilfe dieses Tools aufzubauen.
 
-AlertManager 
+Die Warnmeldung können direkt in der \gls{GUI} von Grafana konfiguriert werden. Für diese Nutzung werden folgende Schritte gefolgt \citep{Grafana_alerting}:
+{\setstretch{1}
+\begin{enumerate}[noitemsep]
+   \item	Name des Regels
+   \item Regelsätze in \gls{logql}
+   \item Definition von Gruppe für jede Art von Warnmeldung. Gruppen können später verschiedenen Einstellungen bekommen, wie über Benachrichtigungen und Inhalte
+   \item Informationen über die Warnmeldung, wie eindeutige ID, Beschreibung. Der Nutzer kann diese Felder so definieren, wie es notwendig ist 
+   \item Benachrichtigung an die Zielgruppe, die diesen Fall später bearbeiten wird
+   \item \textit{Labels} zum besseren Organisation der Warnmeldungen 
+\end{enumerate}
+}
 
+Für unseren ersten Test wollen wir Warnmeldungen für fehlgeschlagenen Anmeldeversuche schicken. Wir definierten die obigen Elementen und benutzten die Regelsätze unten \citep{VoidQuark_sshlogs}: 
 
-%Eins von diesem Tools ist AlertManager. 
-
-
-%The Alertmanager handles alerts sent by client applications such as the Prometheus server. It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts.
-
-mit dem Tool AlertManager integrieren. Mit diesem Tool
-
-Aus der Gra
-
-
-
-Über Alarmsignal zu schreiben
-
-
-
-
-% \subsection{Bewertung der Daten in Grafana}
-% Hinzufügen der Logdateien und Erstellung von Regeln zur Erkennung des Angriffes
-% Diagramm der Nutzung von Grafana
-
-% \subsection{Normalisierung der Logdateien mit Zeek}
-% Diagramm der Nutzung von Grafana und Zeek
-
-% Hier werden die Schritte für die Installation und Sammeln von Daten beschrieben.
-
-% - Implementation in Container %https://rdr-it.com/elk-installation-configuration-un-siem-docker/
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+# (A) Anzahl von fehlgeschlagenen Anmeldeversuche für existierenden
+Benutzernamen:
+sum by (username) (count_over_time({$label_name=~"$label_value", 
+job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: 
+Connection closed by authenticating user|: Failed .* user" | 
+pattern `<_> user <username> <_> port` | __error__="" 
+[$__interval]))
 
 
+# (B) Anzahl von Fehlgeschlagenen Anmeldeversuche für nicht 
+existierenden Benutzernamen:
+sum by (username) (count_over_time({$label_name=~"$label_value", 
+job=~"$job", instance=~"$instance"} |="sshd[" |=": Failed" !~"invalid 
+user" | pattern `<_> for <username> from <_> port` | __error__=""
+[$__interval]))
 
+# Wenn die Anzahl von (A) oder von (B) größer als fünf ist, dann wird
+die Warnmeldung an dem Ziel, in diesem Fall meine E-Mail Adresse, 
+geschickt.
+\end{Verbatim}
+}
 
 
 
