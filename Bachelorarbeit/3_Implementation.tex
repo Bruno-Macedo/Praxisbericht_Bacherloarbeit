@@ -388,13 +388,59 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql}  aufgebaut sin
 \end{landscape}
 
 \subsection{Einrichtung des Warnmeldungskomponent}
+In den vorherigen Teilen dieser Arbeit setzten wir uns damit auseinander, Grafana so einzustellen, damit wir schließlich eine \gls{SIEM} ähnliche Lösung bekommen könnnten. Von unserer ursprünglichen Vorschlag erreichten wir schon Folgendes:
+
+{\setstretch{1}
+\begin{enumerate}[noitemsep]
+   \item	Sammlung der Logdateien aus den \glsplural{Endpoint} mit Promtail
+   \item Anpassung der Logdateien mit Loki für die nachträgliche visuelle Darstellung
+   \item Nutzung von Regelsätzen in Loki für die Analysierung der \gls{ssh} Logdateien
+   \item Graphische Darstellung der Logdateien in Grafana mit den in Loki verwendeten Regelsätzen
+\end{enumerate}
+}
+
+Unser letztes Ziel ist es, Warnmeldungen für potenzielle Angriffe mit den Ergebnissen von Loki zu generieren. Grafana lässt sich mit internen und externen Tools integrieren, um Warnmeldungen zu generieren \citep{Grafana_AlertManager}. Für diese Arbeit benutzen wir das integrierten Tool AlertManager. AlertManager benötigt keine externe Installation und kann nach vordefinierten Regel Warnmeldungen zu beliebigen \glsplural{Endpoint} schicken. Diese Regel wird so aufgebaut:
+
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+(1)  groups:
+      - name: example
+(2)     rules:
+(2.1)    - alert: HighRequestLatency
+(2.2)      expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
+(2.3)      for: 10m
+           labels:
+             severity: page
+           annotations:
+             summary: High request latency
+
+
+(1)   Warnmeldungen können in beliebigen Gruppen kategorisiert werden. Die können so definiert werden, wie die Nutzer es wollen und brauchen
+(2)   Ab diesem Punkt definieren wir die Regelsätzen für die Erkennung der Warnmeldung
+(2.1) Titel für den Alert, z.B. Pontezieller Angriff gegen ssh
+(2.2) Logql Regelsätze für die Erkennung der Warnmeldung
+Titel der Alert, z.B. 
+(2.3) frei definierbare Metaden über die Warnmeldungen 
+\end{Verbatim}
+}
+
+
+AlertManager 
+
+
+%Eins von diesem Tools ist AlertManager. 
+
+
+%The Alertmanager handles alerts sent by client applications such as the Prometheus server. It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts.
+
+mit dem Tool AlertManager integrieren. Mit diesem Tool
+
+Aus der Gra
+
+
+
 Über Alarmsignal zu schreiben
 
-% count by (ip) (count_over_time({$label_name=~"$label_value", job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" |~".* from .*" | pattern `<_> from <ip> port` | __error__="" [$__interval]))
-
-% count by (ip) (count_over_time({$label_name=~"$label_value", job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" !~".* from .*" | pattern `<_> user <_> <ip> port` | __error__="" [$__interval]))
-
-%\textcolor{red}{\textbf{statische vs dinymische Regel}}
 
 
 
@@ -410,9 +456,6 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql}  aufgebaut sin
 % - Implementation in Container %https://rdr-it.com/elk-installation-configuration-un-siem-docker/
 
 
-% \subsection{Sammlung von Server-Log Dateien}
-
-% \subsection{Normalisierung der Log-Dateien}
 
 
 
