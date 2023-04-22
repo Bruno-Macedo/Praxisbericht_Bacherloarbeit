@@ -1,0 +1,102 @@
+\section{Angepasste Einstellungsdateien von Grafana}\label{appendix:Warnmedungskonfiguration}
+
+Unten befindet sich unser Regel für die Generierung von Warnmeldungen in Fälle eines \gls{bruteforce}s gegen \gls{ssh} Server.
+
+{\setstretch{0.5}
+\begin{Verbatim}[frame=single]
+apiVersion: 1
+groups:
+    - orgId: 1
+      name: sshTeam
+      folder: sshlogs
+      interval: 1m
+      rules:
+        - uid: lHYZTLPVz
+          title: Bruteforce Attempt agains SSH-Server
+          condition: C
+          data:
+            - refId: A
+              queryType: range
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: sx2e5YE4k
+              model:
+                datasource:
+                    type: loki
+                    uid: sx2e5YE4k
+                editorMode: code
+                expr: 'sum by(username) (count_over_time({job=~"varlogs", job=~".*", instance=~".*"} |= `sshd[` |~ `: Invalid|: Connection closed by authenticating user|: Failed .* user` != `test` | pattern `<_> user <username> <_> port` | __error__=`` [2400h]))'
+                hide: false
+                intervalMs: 1000
+                maxDataPoints: 43200
+                queryType: range
+                refId: A
+            - refId: B
+              queryType: range
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: sx2e5YE4k
+              model:
+                datasource:
+                    type: loki
+                    uid: sx2e5YE4k
+                editorMode: code
+                expr: 'sum by(username) (count_over_time({job=~"varlogs", job=~".*", instance=~".*"} |= `sshd[` |= `: Failed` !~ `invalid user` != `test` | pattern `<_> for <username> from <_> port` | __error__=`` [2400h]))'
+                hide: false
+                intervalMs: 1000
+                maxDataPoints: 43200
+                queryType: range
+                refId: B
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 5
+                            - 0
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - A
+                      reducer:
+                        params: []
+                        type: count
+                      type: query
+                    - evaluator:
+                        params:
+                            - 5
+                            - 0
+                        type: gt
+                      operator:
+                        type: or
+                      query:
+                        params:
+                            - B
+                      reducer:
+                        params: []
+                        type: count
+                      type: query
+                datasource:
+                    name: Expression
+                    type: __expr__
+                    uid: __expr__
+                expression: ""
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: classic_conditions
+          noDataState: NoData
+          execErrState: Error
+          for: 5m
+          annotations:
+            description: We have several failed connections to our SSH-serves. This may be an attack.
+            summary: Multiple failed connections to SSH-Server
+          isPaused: false
+  
+\end{Verbatim}
+}

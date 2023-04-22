@@ -436,6 +436,7 @@ Die Warnmeldung können direkt in der \gls{GUI} von Grafana konfiguriert werden.
    \item Informationen über die Warnmeldung, wie eindeutige ID, Beschreibung. Der Nutzer kann diese Felder so definieren, wie es notwendig ist 
    \item Benachrichtigung an die Zielgruppe, die diesen Fall später bearbeiten wird
    \item \textit{Labels} zum besseren Organisation der Warnmeldungen 
+   \item Konfiguration von E-Mail in Grafana für die Weiterleitung der Warnmeldungen.
 \end{enumerate}
 }
 
@@ -465,6 +466,20 @@ geschickt.
 \end{Verbatim}
 }
 
+Im Anhang, (Siehe \ref{appendix:Warnmedungskonfiguration}), befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles richtig konfiguriert ist, bekommen wir folgende E-Mail:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/GrafanaWarnmeldung.png}
+   \caption{E-Mail Warnmeldung von Grafana \\Quelle: Eigene Quelle und \citep{Grafana_alerting}}
+   \centering
+\end{figure}
 
 
 
+
+% enabled = true
+% host = smtp.gmail.com:587
+% user = alertsgrafanaBA@gmail.com
+% # If the password contains # or ; you have to wrap it with triple quotes. Ex """#password;"""
+% password = "sexpjkbdsdwrkgqm"
