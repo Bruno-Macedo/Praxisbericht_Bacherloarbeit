@@ -113,13 +113,13 @@ Für das Opfersystem haben wir uns für die Passwörter \quotes{qwertz} und \quo
 Für die Durchführung des \gls{spraying} haben wir folgende Passwortkombinationen erstellt:
 
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
+\begin{lstlisting}[frame=single]
    Opfersystem 1          Opfersystem 2  
    admin:123456           bob:hallo
    user1:passwort         master:alice
    user2:abc123           hans:daniel
    user3:qwertyuiop       bruno:super123
-\end{Verbatim}
+\end{lstlisting}
 }
 
 \newpage
@@ -218,16 +218,17 @@ Die offizielle Dokumentation von Grafana war nicht immer eindeutig in Bezug auf 
 
 
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
-wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki
-/loki-local-config.yaml -O loki-config.yaml (die Datei wurde angepasst)
-
-wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/clients/
-cmd/promtail/promtail-docker-config.yaml -O promtail-config.yaml 
+\begin{lstlisting}[frame=single]
+wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/
+loki/loki-local-config.yaml -O loki-config.yaml
 (die Datei wurde angepasst)
 
+wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/
+clients/cmd/promtail/promtail-docker-config.yaml
+-O promtail-config.yaml (die Datei wurde angepasst)
+
 docker-compose -f docker-compose.yaml up 
-\end{Verbatim}
+\end{lstlisting}
 }
 %docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
 %docker run --name loki -d -v $(pwd):/mnt/config -p 3100:3100 grafana/loki:2.8.0 -config.file=/mnt/config/loki-config.yaml
@@ -279,7 +280,7 @@ Der Inhalt von Logdateien lässt sich auch mithilfe der \textbf{\glsfirst{API}} 
 %Inhalt von Logdateien lassen sich auch mit \textbf{\glsfirst{API}} zum Grafana Loki schicken. In dieser Situation schickt der \gls{Endpoint} einen \gls{http} POST Anfrage zum \gls{Endpoint} von Grafana Loki mit den Inhalt der Logdateien \citep{Grafana_api}:
 
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
+\begin{lstlisting}[frame=single][language=json]
 # Endpoint 
 POST [Addresse_von_Grafana_Loki_Instanz]/loki/api/v1/push
 
@@ -296,7 +297,7 @@ POST [Addresse_von_Grafana_Loki_Instanz]/loki/api/v1/push
     }
   ]
 }
-\end{Verbatim}
+\end{lstlisting}
 }
 
 Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool OpenTelemetry an, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Im Allgemeinen wird OpenTelemetry verwendet, um Daten zu senden, zu verarbeiten und zu empfangen. Laut dem Anbieter ist OpenTelemetry mit verschiedenen anderen Tools integriert, um die Datenübertragung zu ermöglichen. Das Tool besteht aus \textit{Agents} und \textit{Collectors}. Der Agent wird auf jedem Endpunkt installiert, um Daten zu sammeln und der Collector empfängt die Daten und leitet sie weiter \citep{Grafana_opentelemetry}. Die Integration mit Grafana Loki erfolgt über die Nutzung von APIs. Der Collector läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem Endpunkt und kommunizieren mit dem \textit{Collector}. Die folgende Abbildung soll diesen Vorgang besser darstellen:
@@ -433,28 +434,25 @@ Unser letztes Ziel besteht darin, Warnmeldungen für potenzielle Angriffe mithil
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-(1)  groups:
-      - name: example
-(2)     rules:
-(2.1)    - alert: HighRequestLatency
-(2.2)      expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
-(2.3)      for: 10m
-           labels:
-             severity: page
-           annotations:
-             summary: High request latency
+# Warnmeldungen können in beliebigen Gruppen kategorisiert werden. Diese
+können von den Nutzern entsprechend ihrer Anforderungen und Bedürfnisse 
+definiert werden.
+groups:
 
+      # Ab diesem Punkt beginnen wir mit der Definition der Regelsätze 
+      für die Erkennung von Warnmeldungen. Diese umfassen:
+   - name: example
+     rules:
+    - alert: HighRequestLatency
 
-(1)   Warnmeldungen können in beliebigen Gruppen kategorisiert werden.
-      Diese können von den Nutzern entsprechend ihrer Anforderungen 
-      und Bedürfnisse definiert werden.
-(2)   Ab diesem Punkt beginnen wir mit der Definition der Regelsätze 
-   	für die Erkennung von Warnmeldungen. Diese umfassen:
-(2.1) Titel für den Alert, zum Beispiel "Potenzieller Angriff gegen SSH"
-(2.2) LogQL-Regelsätze für die Erkennung der Warnmeldung, welche die in
-     den vorherigen Schritten definierten Abfragen verwenden.
-(2.3) Frei definierbare Metadaten über die Warnmeldung, die für
-      eine weitere Analyse oder Kategorisierung nützlich sein können.
+      # LogQL-Regelsätze für die Erkennung der Warnmeldung, welche die 
+      in den vorherigen Schritten definierten Abfragen verwenden.
+      expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
+      for: 10m
+       labels:
+         severity: page
+       annotations:
+         summary: High request latency
 \end{Verbatim}
 }
 
@@ -501,7 +499,6 @@ user" | pattern `<_> for <username> from <_> port` | __error__=""
 
 # Wenn die Anzahl von (A) oder von (B) größer als fünf ist, dann wird
 die Warnmeldung als E-Mail an dem Ziel geschickt.
-
 \end{Verbatim}
 }
 
@@ -518,13 +515,14 @@ Im Anhang (Siehe Anhang \ref{appendix:Warnmedungskonfiguration}) befindet sich d
 
 \textbf{Weitere Option für die Weiterleitung der Warnmeldungen sind: blablablablabla - IPS, IDS, API}
 
+\textbf{Umgang mit falschen Positiv}
 
 % weiterleiten zum IPS, usw
 % <_> = Bedeutung?
 % Umgang mit legitimen Fehler. (Ansible)
 % Plugin für die automatische Erstellung von Query, mithilfe von Template
 
-% bei welchen Angriff würde es nicht detektieren
+% bei welchen  Angriff würde es nicht detektieren
 
 
 % enabled = true

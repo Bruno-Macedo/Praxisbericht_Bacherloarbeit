@@ -28,9 +28,9 @@ groups:
                 editorMode: code
                 expr: 'sum by(username) (count_over_time({job=~"varlogs", 
                 job=~".*", instance=~".*"} |= `sshd[` |~ `: Invalid|: 
-                Connection closed by authenticating user|: Failed .* user` 
-                != `test` | pattern `<_> user <username> <_> port` | 
-                __error__=`` [2400h]))'
+                Connection closed by authenticating user|: Failed .* 
+                user` != `test` | pattern `<_> user <username> <_> port`
+                | __error__=`` [2400h]))'
                 hide: false
                 intervalMs: 1000
                 maxDataPoints: 43200
