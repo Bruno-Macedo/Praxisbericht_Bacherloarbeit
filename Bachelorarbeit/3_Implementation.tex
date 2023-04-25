@@ -234,7 +234,7 @@ docker-compose -f docker-compose.yaml up
 
 %docker run --name promtail -d -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.8.0 -config.file=/mnt/config/promtail-config.yaml
 
-Im Anhang befinden sich die originalle (Siehe \ref{appendix:orgGrafana}) und die angepassten Dateien (Siehe \ref{appendix:AngepasstGrafana}).
+Im Anhang befinden sich die originalle (Siehe Anhang \ref{appendix:orgGrafana}) und die angepassten Dateien (Siehe Anhang \ref{appendix:AngepasstGrafana}).
 
 Die obigen Kommandos haben folgende Bedeutungen:
 \begin{enumerate}[noitemsep]
@@ -379,6 +379,11 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind
 (5) - Suche nach anderen Fehlermeldungen, falls vorhanden.
 \end{Verbatim}
 }
+% listing
+
+\textbf{Plugin für Generierung von Regeln}
+
+% Clicky Bunty Bild
 
 \newpage
 \thispagestyle{lscape}
@@ -387,7 +392,7 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind
    \begin{center}
       \begin{figure}[H]
          \centering
-         \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_ssh.png}.
+         \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_sshDetailed.png}.
          \caption{Bearbeitung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
          \centering
       \end{figure}
@@ -398,6 +403,7 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind
 \thispagestyle{lscape}
 \begin{landscape}
    Das nächste Bild gibt ausführliche Informationen der Logdateien:
+   \textbf{Bild Korrigieren}
    \begin{center}
       \begin{figure}[H]
          \centering
@@ -439,18 +445,21 @@ Unser letztes Ziel besteht darin, Warnmeldungen für potenzielle Angriffe mithil
              summary: High request latency
 
 
-(1)   Warnmeldungen können in beliebigen Gruppen kategorisiert werden. Diese 
-      können von den Nutzern entsprechend ihrer Anforderungen und Bedürfnisse 
-      definiert werden.
-(2)   Ab diesem Punkt beginnen wir mit der Definition der Regelsätze für die 
-      Erkennung von Warnmeldungen. Diese umfassen:
+(1)   Warnmeldungen können in beliebigen Gruppen kategorisiert werden.
+      Diese können von den Nutzern entsprechend ihrer Anforderungen 
+      und Bedürfnisse definiert werden.
+(2)   Ab diesem Punkt beginnen wir mit der Definition der Regelsätze 
+   	für die Erkennung von Warnmeldungen. Diese umfassen:
 (2.1) Titel für den Alert, zum Beispiel "Potenzieller Angriff gegen SSH"
-(2.2) LogQL-Regelsätze für die Erkennung der Warnmeldung, welche die in den 
-      vorherigen Schritten definierten Abfragen verwenden.
-(2.3) Frei definierbare Metadaten über die Warnmeldung, die für eine weitere
-     Analyse oder Kategorisierung nützlich sein können.
+(2.2) LogQL-Regelsätze für die Erkennung der Warnmeldung, welche die in
+     den vorherigen Schritten definierten Abfragen verwenden.
+(2.3) Frei definierbare Metadaten über die Warnmeldung, die für
+      eine weitere Analyse oder Kategorisierung nützlich sein können.
 \end{Verbatim}
 }
+
+%verbatim comments
+%lst listing
 
 Grafana hat auch ein eigenes internes Tool, um Warnmeldungen zu konfigurieren: \textbf{Alerting}. In dieser Arbeit versuchen wir unser Warnmeldungs-System mithilfe dieses Tools aufzubauen.
 
@@ -496,7 +505,7 @@ die Warnmeldung als E-Mail an dem Ziel geschickt.
 \end{Verbatim}
 }
 
-Im Anhang (siehe \ref{appendix:Warnmeldungskonfiguration}) befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten:
+Im Anhang (Siehe Anhang \ref{appendix:Warnmedungskonfiguration}) befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten:
 
 %Im Anhang, (Siehe \ref{appendix:Warnmedungskonfiguration}), befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles richtig konfiguriert ist, bekommen wir folgende E-Mail:
 
@@ -507,6 +516,15 @@ Im Anhang (siehe \ref{appendix:Warnmeldungskonfiguration}) befindet sich die Kon
    \centering
 \end{figure}
 
+\textbf{Weitere Option für die Weiterleitung der Warnmeldungen sind: blablablablabla - IPS, IDS, API}
+
+
+% weiterleiten zum IPS, usw
+% <_> = Bedeutung?
+% Umgang mit legitimen Fehler. (Ansible)
+% Plugin für die automatische Erstellung von Query, mithilfe von Template
+
+% bei welchen Angriff würde es nicht detektieren
 
 
 % enabled = true
