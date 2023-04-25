@@ -29,25 +29,32 @@ Für eine präzise Implementierung spielt die richtige Entwicklung der Regelsät
     \item \textbf{statische Regel in einer dynamischen Angriffswelt}
 \end{itemize}
 
-Die von uns definierten Regel haben statische Elementen, wie \quotes{Anzahl von Anfrage}, \quotes{Zeitabstand zwischen Requests}, \quotes{Anzahl von fehlgeschlagenen Anmeldeversuchen}. Die heutigen Angriffe haben aber einen dynamischen Aspekt, die sich an der Umgebung anpasst, besonders mit der starken Entwicklung von \glsfirst{KI}. Während \gls{KI} einerseits für Automatisierung von Aufgabe oder für effiziente Datenanalyse verwendet wird, könnte sie auch für Cyberkriminalität zur Nutzung kommen. \gls{KI} ist am Ende nur ein Tool, dessen Nutzung von den Absichten ihrer Benutzer abhängig ist.
+Die von uns definierten Regeln haben statische Elemente wie die \quotes{Anzahl von Anfragen}, den \quotes{Zeitabstand zwischen Requests} und die \quotes{Anzahl von fehlgeschlagenen Anmeldeversuchen}. Die heutigen Angriffe haben jedoch auch einen dynamischen Aspekt, der sich an die Umgebung anpasst, insbesondere durch die starke Entwicklung von \glsfirst{KI}. Während \gls{KI} einerseits für die Automatisierung von Aufgaben oder für effiziente Datenanalyse verwendet wird, könnte sie auch für Cyberkriminalität genutzt werden. \gls{KI} ist am Ende nur ein Werkzeug, dessen Nutzung von den Absichten ihrer Benutzer abhängt.
 
-Verschiedenen Angriffstechniken lassen sich schneller und effizienter mit \gls{KI} durchführen. Die Nutzung von \gls{polyphomicMalware} ist ein Beispiel, wo weder Antivirus-Programmen noch Log Analysis Tools einen normalen von abnormalen Ablauf unterscheiden können. Die Verkehrsanalyse können auch durch \gls{KI} gefährdet sein, da Angriffe und normaler Verkehr sich ähnlich darstellen lassen. Und auch gegen Authentifizierungsverfahren kann \gls{KI} verwendet werden, um z.B.Anmeldedaten schneller zu raten und/oder vorauszusehen \citep{Fritsch_AIcybersec}. 
+%Die von uns definierten Regel haben statische Elementen, wie \quotes{Anzahl von Anfrage}, \quotes{Zeitabstand zwischen Requests}, \quotes{Anzahl von fehlgeschlagenen Anmeldeversuchen}. Die heutigen Angriffe haben aber einen dynamischen Aspekt, die sich an der Umgebung anpasst, besonders mit der starken Entwicklung von \glsfirst{KI}. Während \gls{KI} einerseits für Automatisierung von Aufgabe oder für effiziente Datenanalyse verwendet wird, könnte sie auch für Cyberkriminalität zur Nutzung kommen. \gls{KI} ist am Ende nur ein Tool, dessen Nutzung von den Absichten ihrer Benutzer abhängig ist.
+
+Verschiedene Angriffstechniken lassen sich schneller und effizienter mit \gls{KI} durchführen. Die Nutzung von \gls{polyphomicMalware} ist ein Beispiel, wo weder Antivirus-Programme noch Log-Analyse-Tools einen normalen von einem abnormalen Ablauf unterscheiden können. Auch die Verkehrsanalyse kann durch \gls{KI} gefährdet sein, da Angriffe und normaler Verkehr ähnlich dargestellt werden können. Darüber hinaus kann \gls{KI} auch gegen Authentifizierungsverfahren eingesetzt werden, um beispielsweise Anmeldedaten schneller zu erraten und/oder vorauszusehen \citep{Fritsch_AIcybersec}.
+
+
+%Verschiedenen Angriffstechniken lassen sich schneller und effizienter mit \gls{KI} durchführen. Die Nutzung von \gls{polyphomicMalware} ist ein Beispiel, wo weder Antivirus-Programmen noch Log-Analyse-Tools einen normalen von abnormalen Ablauf unterscheiden können. Die Verkehrsanalyse können auch durch \gls{KI} gefährdet sein, da Angriffe und normaler Verkehr sich ähnlich darstellen lassen. Und auch gegen Authentifizierungsverfahren kann \gls{KI} verwendet werden, um z.B.Anmeldedaten schneller zu raten und/oder vorauszusehen \citep{Fritsch_AIcybersec}. 
 
 \newpage
-Das folgende Diagramm stellt dar, wo sich \gls{KI} bei Cyberangriffen anhand der \gls{CKC} integrieren lässt:
+Das folgende Diagramm zeigt, wo sich \gls{KI} bei Cyberangriffen anhand der\gls{CKC} integrieren lässt:
+
+%Das folgende Diagramm stellt dar, wo sich \gls{KI} bei Cyberangriffen anhand der \gls{CKC} integrieren lässt:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets//CKC_AI.jpg}
+    \includegraphics[width=0.9\textwidth]{assets//CKC_AI.jpg}
     \caption{\gls{KI} in der \glsfirst{CKC} \\Quelle: \citep{Guembe_AIDiagrammAngriff}}
     \centering
  \end{figure}
  
-
 \subsection{Zukünftige Entwicklungen}
-\begin{itemize}[noitemsep]
-    \item Dynamische Regel
-    \item Maschine Learning
-    \item Grafana Nutzung einschränken
- \end{itemize}
- 
+Um sicherzustellen, dass unsere vorgeschlagenen Lösungen sich an diese neue und dynamische Realität anpassen können, können zukünftige Regelsätze mithilfe von \gls{KI} erstellt werden. Nachdem die meisten möglichen Angriffsflächen abgedeckt wurden, sollten die Regeln so angepasst werden, dass sie möglichst viele Szenarien abdecken.
+
+%Damit unsere vorgeschlagenen Lösung sich an diese neue und dynamische Realität anpasst, können zukünftige Regelsätze mithilfe von \gls{KI} aufgebaut werden. Nachdem die meisten möglichen Angriffsoberfläche gedeckt wurden, sollen die Regel so angepasst werden, dass sie verschiedenen viele Szenarien decken.
+
+Mit der rasanten Entwicklung von \gls{KI}, insbesondere während der Erstellung dieser Arbeit, können wir auch erwarten, dass sich sowohl Loki als auch Grafana bald mit verschiedenen \gls{opensource} \gls{plugin} integrieren lassen, die auch \gls{KI} unterstützen, um die Loganalyse effizienter und zuverlässiger zu machen. All dies würde dazu beitragen, einen sicheren Netzwerkverkehr zu gewährleisten.
+
+

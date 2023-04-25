@@ -26,7 +26,11 @@ groups:
                     type: loki
                     uid: sx2e5YE4k
                 editorMode: code
-                expr: 'sum by(username) (count_over_time({job=~"varlogs", job=~".*", instance=~".*"} |= `sshd[` |~ `: Invalid|: Connection closed by authenticating user|: Failed .* user` != `test` | pattern `<_> user <username> <_> port` | __error__=`` [2400h]))'
+                expr: 'sum by(username) (count_over_time({job=~"varlogs", 
+                job=~".*", instance=~".*"} |= `sshd[` |~ `: Invalid|: 
+                Connection closed by authenticating user|: Failed .* user` 
+                != `test` | pattern `<_> user <username> <_> port` | 
+                __error__=`` [2400h]))'
                 hide: false
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -43,7 +47,10 @@ groups:
                     type: loki
                     uid: sx2e5YE4k
                 editorMode: code
-                expr: 'sum by(username) (count_over_time({job=~"varlogs", job=~".*", instance=~".*"} |= `sshd[` |= `: Failed` !~ `invalid user` != `test` | pattern `<_> for <username> from <_> port` | __error__=`` [2400h]))'
+                expr: 'sum by(username) (count_over_time({job=~"varlogs", 
+                job=~".*", instance=~".*"} |= `sshd[` |= `: Failed` !~ 
+                `invalid user` != `test` | pattern `<_> for <username> 
+                from <_> port` | __error__=`` [2400h]))'
                 hide: false
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -94,7 +101,8 @@ groups:
           execErrState: Error
           for: 5m
           annotations:
-            description: We have several failed connections to our SSH-serves. This may be an attack.
+            description: We have several failed connections to our 
+            SSH-serves. This may be an attack.
             summary: Multiple failed connections to SSH-Server
           isPaused: false
   

@@ -1,8 +1,8 @@
 \contentsline {figure}{\numberline {1}{\ignorespaces Aufbau dieser wissenschaftlichen Recherche \gls {SIEM} Quelle: Eigene Darstellung \relax }}{3}{figure.caption.11}%
 \contentsline {figure}{\numberline {2}{\ignorespaces Allgemeine Struktur von \gls {SIEM} Quelle: \citep {Mohanan_What} \relax }}{5}{figure.caption.12}%
 \contentsline {figure}{\numberline {3}{\ignorespaces Allgemeine Informationsfluss von \gls {SIEM} Quelle: \citep {Granadillo_SIEM} \relax }}{6}{figure.caption.13}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Allgemeine Struktur von Log Analysis Tools Quelle: \citep {Tek-Tools_LGTArchitektur} \relax }}{6}{figure.caption.14}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Allgemeine Informationsfluss von Log Analysis Tools Quelle: \citep {Neptune_LATInfoFluss} \relax }}{6}{figure.caption.15}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Allgemeine Struktur von Log-Analyse-Tools Quelle: \citep {Tek-Tools_LGTArchitektur} \relax }}{6}{figure.caption.14}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Allgemeine Informationsfluss von Log-Analyse-Tools Quelle: \citep {Neptune_LATInfoFluss} \relax }}{6}{figure.caption.15}%
 \contentsline {figure}{\numberline {6}{\ignorespaces Integration zwischen den Modulen von Prelude Quelle: \citep {Prelude_MU} \relax }}{9}{figure.caption.16}%
 \contentsline {figure}{\numberline {7}{\ignorespaces Einfache Architektur von Prelude Quelle: \citep {Prelude_MU} \relax }}{10}{figure.caption.17}%
 \contentsline {figure}{\numberline {8}{\ignorespaces Erweiterte Architektur von Prelude mit der Nutzung von dezentralisierten Datenquellen und Bearbeitung Quelle: \citep {Prelude_MU} \relax }}{11}{figure.caption.18}%

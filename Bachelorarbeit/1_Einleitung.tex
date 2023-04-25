@@ -1,10 +1,10 @@
 \section{Einleitung}
 
-Der heutige Netzwerkverkehr fast tausendfach größer als vor 20 Jahre \citep{Roser_I}. Das Internet wird heutzutage für fast alle unseren alltäglichen Tätigkeiten verwendet: Soziale Netzwerke, Video und Audio-Streaming, Einkauf, behördliche Angelegenheiten und viele andere. So viel Verkehr generiert eine unermessliche Menge von Daten, die alle möglichen Inhalte beinhalten, von unschuldigen Anfragen nach einem eigenen Kontostand bis zur Ausführung von beabsichtigten Anfragen, um Systeme lahmzumachen. Um das Erste vom Zweiten zu unterscheiden, verwenden viele Firmen das sogenannte \glsfirst*{SIEM} oder die Log Analysis Tools. 
+Der heutige Netzwerkverkehr fast tausendfach größer als vor 20 Jahre \citep{Roser_I}. Das Internet wird heutzutage für fast alle unseren alltäglichen Tätigkeiten verwendet: Soziale Netzwerke, Video und Audio-Streaming, Einkauf, behördliche Angelegenheiten und viele andere. So viel Verkehr generiert eine unermessliche Menge von Daten, die alle möglichen Inhalte beinhalten, von unschuldigen Anfragen nach einem eigenen Kontostand bis zur Ausführung von beabsichtigten Anfragen, um Systeme lahmzumachen. Um das Erste vom Zweiten zu unterscheiden, verwenden viele Firmen das sogenannte \glsfirst*{SIEM} oder die Log-Analyse-Tools. 
 
 Das \glsfirst{NIST} definiert \gls{SIEM} als Software für die Sammlung, Anpassung, Analyse, Überwachung und Bedrohungserkennung von Sicherheitsdaten aus verschiedenen Quellen, damit das zuständige \glsfirst{SOC}  Maßnahmen ergreifen kann \citep{NIST_Definitions}. Die Bewertung dieser Daten spielt eine wesentliche Rolle bei solchen Anwendungen, da es entscheidend ist zu wissen, ob es sich um normale Anfrage oder um \glsplural{Cyberangriff} handelt. Log Analysis und Log Management beziehen sich auf die Sammlung, Bearbeitung, Speicherung und/oder Löschen, Weiterleitung und Überwachung von Loginformationen. In dieser Arbeit benutzen wir den Begriff \quotes{Log Analysis Tool}, um diese Systeme zu referenzieren.
 
-In diesem Projekt recherchieren und vergleichen wir existierende \gls{SIEM} und Log Analysis Tools. Danach entscheiden wir uns für eine \gls{opensource} Lösung. Mit dem ausgewählten Tool wollen wir spezifische Logdateien analysieren und bewerten, damit wir demnächst potenzielle Angriffe erkennen können. Die Angriffserkennung soll automatisch mit der Eingabe von vordefinierten Regeln der \gls{mitre} Matrix stattfinden. 
+In diesem Projekt recherchieren und vergleichen wir existierende \gls{SIEM} und Log-Analyse-Tools. Danach entscheiden wir uns für eine \gls{opensource} Lösung. Mit dem ausgewählten Tool wollen wir spezifische Logdateien analysieren und bewerten, damit wir demnächst potenzielle Angriffe erkennen können. Die Angriffserkennung soll automatisch mit der Eingabe von vordefinierten Regeln der \gls{mitre} Matrix stattfinden. 
 
 \newpage
 Unser Ziel ist, eine umfangreiche \gls{opensource} Lösung zu finden bzw. gesltaten, die uns ermöglichen, \glsplural{Cyberangriff} schnell und einfach zu detektieren. \gls{Proprietary} Lösungen gibt es viele auf dem Markt. Sie kosten meisten sehr viel und verlangen spezielle Kenntnis für die Verwaltung. Da solche Lösungen eher an großen Unternehmen eingeschränkt sind, beschäftigen wir uns mit dem Aufbau und Strukturierung eine eigene Lösung mithilfe von \gls{opensource} Tools. 
@@ -24,7 +24,7 @@ Diese Arbeit wird in folgende Teile geteilt:
 
 {\setstretch{1.5}
 \begin{itemize}[noitemsep]
-   \item	Definition von SIEMs und Log Analysis Tools 
+   \item	Definition von SIEMs und Log-Analyse-Tools 
    \item	Beschreibung von existierenden Proprietary und Open Source Lösungen 
    \item	Entscheidung für die Implementation einer Open Source Lösungen 
    \item	Installation und Konfiguration von der ausgewählten Anwendung 
@@ -51,7 +51,7 @@ Um diese oben genannten Ziele zu erreichen, verwenden wir folgenden Methoden:
 
 {\setstretch{1.5}
 \begin{itemize}[noitemsep]
-   \item	Recherche in der Fachliteratur über SIEMs und Log Analysis Tools Lösungen 
+   \item	Recherche in der Fachliteratur über SIEMs und Log-Analyse-Tools Lösungen 
    \item	Vergleich zwischen verschiedenen Open Source und Proprietary Lösungen 
    \item	Installation von dem ausgewählten Tool 
    \item	Importieren von Logdateien in der ausgewählten Lösung 

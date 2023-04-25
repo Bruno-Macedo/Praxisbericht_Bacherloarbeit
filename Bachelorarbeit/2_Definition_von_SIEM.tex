@@ -1,14 +1,14 @@
-\section{Definition von SIEMs und Log Analysis Tools}
+\section{Definition von SIEMs und Log-Analyse-Tools}
 
-\gls{SIEM} ist das Ergebnis einer Kombination zwischen dem \glsfirst{SEM} und \glsfirst{SIM} \citep{Dorigo_SIEM}. Das Erste bezieht sich auf die Identifizierung, Bewertung, Beobachtung und Bericht von Sicherheitsvorfällen mithilfe von verschiedenen Log Dateien \citep{techopedia_SEM}. Das Zweite ist eine Software, die bei der automatischen Sammlung von Loginformationen aus vielen Quellen, wie Firewall und Servers unterstützt \citep{techopedia_SIM}. Da die meisten \gls{SIEM}-Lösungen kostenpflichtig sind, existieren auch viele \gls{opensource} Log Analysis Tools, die eine ähnliche Aufgabe erledigen, ohne die Kernelementen von \gls{SIEM} zu besitzen. 
+\gls{SIEM} ist das Ergebnis einer Kombination zwischen dem \glsfirst{SEM} und \glsfirst{SIM} \citep{Dorigo_SIEM}. Das Erste bezieht sich auf die Identifizierung, Bewertung, Beobachtung und Bericht von Sicherheitsvorfällen mithilfe von verschiedenen Log Dateien \citep{techopedia_SEM}. Das Zweite ist eine Software, die bei der automatischen Sammlung von Loginformationen aus vielen Quellen, wie Firewall und Servers unterstützt \citep{techopedia_SIM}. Da die meisten \gls{SIEM}-Lösungen kostenpflichtig sind, existieren auch viele \gls{opensource} Log-Analyse-Tools, die eine ähnliche Aufgabe erledigen, ohne die Kernelementen von \gls{SIEM} zu besitzen. 
 
-Log Analysis Tools sind meistens Anwendungen die Logdateien empfangen, speichern, bearbeiten und nach spezifisichen eingegebenen Regeln bewerten. Diese Tools unterstützen Programmierer und Systemadministratoren bei der Überwachung des Zustands Systemen oder Software. Ein solches Tools kann Logdateien von verschiedenen \glsplural{Endpoint} und mit verschiedenen Formattierungen bekommen und editieren, so dass es schließlich ein Bericht oder Graphik erzeugt \citep{Korzeniowski_LATDef}. Die Nutzung dieser Tools schränkt sich nicht in dem Sicherheitsbereich ein, sondern kann für das gesamte Rechenzentren nützlich sein.
+Log-Analyse-Tools sind meistens Anwendungen die Logdateien empfangen, speichern, bearbeiten und nach spezifisichen eingegebenen Regeln bewerten. Diese Tools unterstützen Programmierer und Systemadministratoren bei der Überwachung des Zustands Systemen oder Software. Ein solches Tools kann Logdateien von verschiedenen \glsplural{Endpoint} und mit verschiedenen Formattierungen bekommen und editieren, so dass es schließlich ein Bericht oder Graphik erzeugt \citep{Korzeniowski_LATDef}. Die Nutzung dieser Tools schränkt sich nicht in dem Sicherheitsbereich ein, sondern kann für das gesamte Rechenzentren nützlich sein.
 
 
-In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutung und Verantwortung haben. \glsfirst{IDS}, \glsfirst{IPS}, \glsfirst{SIEM} und Log Analysis Tools werden von \textit{nonnative users}  und sogar von Spezialisten oft verwechselt, da ihre Aufgaben mehr Zusammenhang als Unterschied haben. Um den Umfang dieser Arbeit wegen der zeitlichen Einschränkungen zu verringern, fassen wir kurz die Unterschiede zwischen denen zusammen und legen unsere Grenze auf den \glspl{SIEM} Lösungen und auf Log Analysis Tools fest. 
+In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutung und Verantwortung haben. \glsfirst{IDS}, \glsfirst{IPS}, \glsfirst{SIEM} und Log-Analyse-Tools werden von \textit{nonnative users}  und sogar von Spezialisten oft verwechselt, da ihre Aufgaben mehr Zusammenhang als Unterschied haben. Um den Umfang dieser Arbeit wegen der zeitlichen Einschränkungen zu verringern, fassen wir kurz die Unterschiede zwischen denen zusammen und legen unsere Grenze auf den \glspl{SIEM} Lösungen und auf Log-Analyse-Tools fest. 
 
 \newpage
-\glsfirst{IDS} sind Software oder Hardware, die \glsplural{Cyberangriff} identifizieren und berichten. Sie haben eine passive Rolle, da sie die \glsplural{Cyberangriff} weder stoppen noch verhindern können. \glsfirst{IPS}allerdings haben eine aktive Haltung gegenüber \glsplural{Cyberangriff} - die können automatisch behandeln können, indem sie Blocking-Mechanismen einschalten, um den Angriff zu stoppen \citep{Wendzel_IS}. Wie das \gls{IDS}, kann das \gls{IPS} auch Logdateien generieren, die von einer \gls{SIEM}-Lösung gesammelt werden können. \glsplural{SIEM} können seinerseits die Logdateien von diesen und von anderen \glsplural{Endpoint} bekommen und diese nach vordefinierten Regeln bewerten, um dem \gls{SOC}-Team über Sicherheitsvorfälle zu informieren oder automatisch Maßnahmen zu ergreifen. Wie \glsplural{SIEM} bekommen Log Analysis Tools auch Logdateien, um Bericht oder Darstellung zu genieren. Ihre Nutzung ist aber nicht so spezifisch wie die von \glsplural{SIEM}. 
+\glsfirst{IDS} sind Software oder Hardware, die \glsplural{Cyberangriff} identifizieren und berichten. Sie haben eine passive Rolle, da sie die \glsplural{Cyberangriff} weder stoppen noch verhindern können. \glsfirst{IPS}allerdings haben eine aktive Haltung gegenüber \glsplural{Cyberangriff} - die können automatisch behandeln können, indem sie Blocking-Mechanismen einschalten, um den Angriff zu stoppen \citep{Wendzel_IS}. Wie das \gls{IDS}, kann das \gls{IPS} auch Logdateien generieren, die von einer \gls{SIEM}-Lösung gesammelt werden können. \glsplural{SIEM} können seinerseits die Logdateien von diesen und von anderen \glsplural{Endpoint} bekommen und diese nach vordefinierten Regeln bewerten, um dem \gls{SOC}-Team über Sicherheitsvorfälle zu informieren oder automatisch Maßnahmen zu ergreifen. Wie \glsplural{SIEM} bekommen Log-Analyse-Tools auch Logdateien, um Bericht oder Darstellung zu genieren. Ihre Nutzung ist aber nicht so spezifisch wie die von \glsplural{SIEM}. 
 
 Die folgende Abbildung stellt didaktisch eine allgemeine Struktur von \gls{SIEM}-Lösungen dar:
 
@@ -31,12 +31,12 @@ Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisie
    \centering
 \end{figure}
 
-Die folgende Abbildung stellt eine allgemeine Architektur von Log Analysis Tools dar:
+Die folgende Abbildung stellt eine allgemeine Architektur von Log-Analyse-Tools dar:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2.1_p2.png}
-   \caption{Allgemeine Struktur von Log Analysis Tools\\Quelle: \citep{Tek-Tools_LGTArchitektur} }
+   \caption{Allgemeine Struktur von Log-Analyse-Tools\\Quelle: \citep{Tek-Tools_LGTArchitektur} }
    \centering
 \end{figure}
 
@@ -45,17 +45,17 @@ Den Informationsfluss eines Log Analyst Tools bildet folgendes Bild ab:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.55\textwidth]{assets/2.2_p2.png}
-   \caption{Allgemeine Informationsfluss von Log Analysis Tools\\Quelle: \citep{Neptune_LATInfoFluss} }
+   \caption{Allgemeine Informationsfluss von Log-Analyse-Tools\\Quelle: \citep{Neptune_LATInfoFluss} }
    \centering
 \end{figure}
 
-Aus bisheriger Beschreibung stellen wir fest, dass \gls{SIEM} viel mehr als eine Sammlung von Logdateien sind. Das Ziel dieser Software ist die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereichen, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM}s eine gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verpflichtet das zweite Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme Organisationen mit kritischen Infrastrukturen die Anwendungen solcher Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log Analysis Tools sind seinerseits allgemeine Tools zu der Speicherung, Anpassung, Bewertung und Darstellung von Logdateien, ohne dass sie sich auf der Sicherheitsebenen fokussieren.
+Aus bisheriger Beschreibung stellen wir fest, dass \gls{SIEM} viel mehr als eine Sammlung von Logdateien sind. Das Ziel dieser Software ist die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereichen, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM}s eine gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verpflichtet das zweite Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme Organisationen mit kritischen Infrastrukturen die Anwendungen solcher Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log-Analyse-Tools sind seinerseits allgemeine Tools zu der Speicherung, Anpassung, Bewertung und Darstellung von Logdateien, ohne dass sie sich auf der Sicherheitsebenen fokussieren.
 
 
 
-\subsection{Existierende SIEMs Lösungen und Log Analysis Tools}
+\subsection{Existierende SIEMs Lösungen und Log-Analyse-Tools}
 % über Splunk schreiben, state of the art, nicht open source, aber andere müssen ähnliche funktionaliten haben
-Die existierenden \glsplural{SIEM} und Log Analysis Tools können in zwei Kategorien getrennt werden: \textit{\gls{Proprietary}} und  \textit{\gls{opensource}}. In folgenden Abschnitten präsentieren wir die proprietäre \gls{SIEM} Splunk, um einen Maßstab für unsere Auswahl zu definieren, wenn es um Funktionalitäten geht. Wir analysieren folgende \glsplural{SIEM} und Log Analysis Tools: 
+Die existierenden \glsplural{SIEM} und Log-Analyse-Tools können in zwei Kategorien getrennt werden: \textit{\gls{Proprietary}} und  \textit{\gls{opensource}}. In folgenden Abschnitten präsentieren wir die proprietäre \gls{SIEM} Splunk, um einen Maßstab für unsere Auswahl zu definieren, wenn es um Funktionalitäten geht. Wir analysieren folgende \glsplural{SIEM} und Log-Analyse-Tools: 
 
 \begin{itemize}[noitemsep]
    \item Prelude %(nein)
