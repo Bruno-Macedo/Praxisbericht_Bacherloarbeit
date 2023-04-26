@@ -355,7 +355,7 @@ Grafana Loki bietet ein Konfigurationsmuster für die Eingabe und Darstellung vo
 
 \begin{table}[H]
    \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
-   \caption{Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+   \caption{Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
 
 %Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. Diese Struktur stammt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach den gleichen Regeln verarbeitet. Die Regelsätze in Grafana Loki können sowohl Manuel in dem Menu \quotes{Code} als auch über die \gls{GUI} in dem Menu \quotes{Builder} geschrieben werden. Die zweite bietet einen nutzerfreundlicher Umgebung, um die Regel zu schreiben. Die nächsten Abbildungzeigen diese zwei Optionen:
@@ -397,29 +397,46 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
 
    Um \gls{ssh}-Einträge zu erkennen und bestimmte Informationen zu extrahieren, die anzeigen, ob es sich um einen fehlgeschlagenen Anmeldeversuch handelt, möchten wir die hervorgehobenen Elemente extrahierenund später hochzählen:
 
-   14 14:05:30 opfersystem2 \textbf{\textcolor{red}{sshd[}}1698]: \textbf{\textcolor{red}{Failed}} password for \textbf{\textcolor{blue}{administrator}} from \textbf{\textcolor{violet}{10.0.2.15}} port    58036 ssh2
+   14 14:05:30 opfersystem2 \textbf{\textcolor{red}{sshd[}}1698]: \textbf{\textcolor{red}{Failed}} password for \textbf{\textcolor{blue}{administrator}} from \textbf{\textcolor{blue}{10.0.2.15}} port    58036 ssh2
 
-   Diese Elementen werden folgendermaßen gelesen und extrahiert, um die Aufsummierung auszugeben:
+   Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen: 
+
+   \begin{table}[H]
+      \includegraphics[width=\linewidth]{assets/tabelle_logql.png}
+      \caption{Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
+   \end{table}
    
 
-\begin{Verbatim}
-sum by(username) (rate({job="varlogs"} 
-Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit 
-"Patterns" in LogQL definiert haben. "Patterns" ermöglichen die einfache
-Extrahierung von Informationen aus einer Zeile.
+% \begin{center}
+%    sum by(username) rate{job=\quotes{varlogs}}
+% \end{center}
+% \begin{itemize}
+%    \item Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in \gls{logql} definiert haben. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den Job \quotes{varlogs} beziehen.
+% \end{itemize}
 
-|= `sshd[`|= `: Failed` 
-Regular Expression für die Suche nach Zeilen mit diesen Einträge
+% \begin{center}
+%    |= `\textbf{\textcolor{red}{sshd[}}` |= `: \textbf{\textcolor{red}{Failed}}`
+% \end{center}
+% \begin{itemize}
+%    \item Regular Expression für die Suche nach Zeilen mit diesen Einträge.
+% \end{itemize}
 
-|= !~ `invalid user` != `test`
-Regular Expression für die Suche nach Zeilen ohne diese Einträge
+% \begin{center}
+%    |= !~ `invalid user` != `test` !~ `10.0.2.15`
+% \end{center}
+% \begin{itemize}
+%       \item \gls{RegExp} für die Suche nach Zeilen ohne diese Einträge. Wir können beispielsweise Einträge ausschließen, die sich nicht bösartige Nutzer sind, um \gls{falsch positiv} zu vermeiden.
+% \end{itemize}
 
-| pattern `<_> for <username> from <add> port <_>` [$__range]))
-Die Definition des Wortes "username" als "Pattern" dient dazu, einen 
-Benutzernamen aus der Logdatei zu extrahieren. Die Platzhalter "<_>" 
-sind unbenannte Elemente, die in diesem Fall auf die Einträge "password"
-und "10.0.2.15" in der Zeile verweisen.
-\end{Verbatim}
+% \begin{center}
+%    \begin{BVerbatim}
+%    | pattern `<_> for <username> from <add> port <_>` [\$__range]))
+%    \end{BVerbatim}
+% \end{center}
+% \begin{itemize}
+%       \item Die Definition des Wortes \quotes{username} als \quotes{Pattern} dient dazu, einen Benutzernamen aus der Logdatei zu extrahieren. Die Platzhalter <XX sind unbenannte Elemente, die in diesem Fall auf die Einträge \quotes{password} und \quotes{10.0.2.15} in der Zeile verweisen.
+% \end{itemize}
+
 
 End des Exkurses
 \end{framed}
@@ -570,8 +587,7 @@ die Warnmeldung als E-Mail an dem Ziel geschickt.
 }
 
 % discard lines with Server Ansible - https://grafana.com/docs/loki/latest/logql/log_queries/
-%A capture is a field name delimited by the < and > characters. <example> defines the field name example. An unnamed capture appears as <_>. The unnamed capture skips matched content.
-% how this rule is built
+
 
 Im Anhang (Siehe Anhang \ref{appendix:Warnmedungskonfiguration}) befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten:
 
@@ -586,10 +602,8 @@ Im Anhang (Siehe Anhang \ref{appendix:Warnmedungskonfiguration}) befindet sich d
 
 \textbf{Weitere Option für die Weiterleitung der Warnmeldungen sind: blablablablabla - IPS, IDS, API}
 
-\textbf{Umgang mit falschen Positiv}
 
 % weiterleiten zum IPS, usw
-% <_> = Bedeutung?
 % Umgang mit legitimen Fehler. (Ansible)
 % Plugin für die automatische Erstellung von Query, mithilfe von Template
 
