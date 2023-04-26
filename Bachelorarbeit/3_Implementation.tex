@@ -358,31 +358,98 @@ Grafana Loki bietet ein Konfigurationsmuster für die Eingabe und Darstellung vo
    \caption{Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
 
-Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. Diese Struktur stammt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach den gleichen Regeln verarbeitet. Die Abfrage für unseren Angriff sieht folgendermaßen aus \citep{VoidQuark_sshlogs}:
+%Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. Diese Struktur stammt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach den gleichen Regeln verarbeitet. Die Regelsätze in Grafana Loki können sowohl Manuel in dem Menu \quotes{Code} als auch über die \gls{GUI} in dem Menu \quotes{Builder} geschrieben werden. Die zweite bietet einen nutzerfreundlicher Umgebung, um die Regel zu schreiben. Die nächsten Abbildungzeigen diese zwei Optionen:
 
+Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. Diese Struktur stammt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach den gleichen Regeln verarbeitet. Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} als auch über die \gls{GUI} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen zeigen diese beiden Optionen:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1\textwidth]{assets/manuellerCodeLoki.png}
+   \caption{\quotes{Code} in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes. \\ Quelle: \citep{VoidQuark_sshlogs}}
+   \centering
+\end{figure}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1\textwidth]{assets/klickibuntyGrafana.png}
+   \caption{\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes. Quelle: \citep{VoidQuark_sshlogs}}
+   \centering
+\end{figure}
+
+Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1\textwidth]{assets/erklaerungLoki.png}
+   \caption{Ausführliche Information über die Abfrage\\Quelle: \citep{Grafana_QueryEditor}}
+   \centering
+\end{figure}
+
+\newpage
+{\setstretch{1}
+\begin{framed}
+   \subsubsection{Exkurs - Regelsätze in LogQL}
+   %\frametitle{Exkurs - Regelsätze in LogQL}
+   In diesem Abschnitt fassen wir zusammen, wie eine Abfrage in \gls{logql} für eine Logdatei mit \gls{ssh} Einträge aussieht. Für ausführliche Informationen über den Aufbau der Abfrage empfehlen wir die offizielle Dokumentation, auf die diese Erklärung basiert ist \citep{Grafana_logql}.
+
+   Unsere Logdatei enthält unter anderem folgende Zeile:
+
+   14 14:05:30 opfersystem2 sshd[1698]: Failed password for administrator from 10.0.2.15 port 58036 ssh2
+
+   Um \gls{ssh}-Einträge zu erkennen und bestimmte Informationen zu extrahieren, die anzeigen, ob es sich um einen fehlgeschlagenen Anmeldeversuch handelt, möchten wir die hervorgehobenen Elemente extrahierenund später hochzählen:
+
+   14 14:05:30 opfersystem2 \textbf{\textcolor{red}{sshd[}}1698]: \textbf{\textcolor{red}{Failed}} password for \textbf{\textcolor{blue}{administrator}} from \textbf{\textcolor{violet}{10.0.2.15}} port    58036 ssh2
+
+   Diese Elementen werden folgendermaßen gelesen und extrahiert, um die Aufsummierung auszugeben:
+   
+
+\begin{Verbatim}
+sum by(username) (rate({job="varlogs"} 
+Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit 
+"Patterns" in LogQL definiert haben. "Patterns" ermöglichen die einfache
+Extrahierung von Informationen aus einer Zeile.
+
+|= `sshd[`|= `: Failed` 
+Regular Expression für die Suche nach Zeilen mit diesen Einträge
+
+|= !~ `invalid user` != `test`
+Regular Expression für die Suche nach Zeilen ohne diese Einträge
+
+| pattern `<_> for <username> from <add> port <_>` [$__range]))
+Die Definition des Wortes "username" als "Pattern" dient dazu, einen 
+Benutzernamen aus der Logdatei zu extrahieren. Die Platzhalter "<_>" 
+sind unbenannte Elemente, die in diesem Fall auf die Einträge "password"
+und "10.0.2.15" in der Zeile verweisen.
+\end{Verbatim}
+
+End des Exkurses
+\end{framed}
+}
+
+\newpage
+%%Die Abfrage für unseren Angriff sieht folgendermaßen aus \citep{VoidQuark_sshlogs}:
 %Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql}  aufgebaut sind. In Promtail wird jeder \gls{Endpoint} \quotes{Instance} genannt. Eine oder mehrere \quotes{Instance} werden einem \quotes{Job} zugewiesen. Diese Struktur kommt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach dem gleichen Regeln bearbeitet. Die Abfrage für unseren Angriff sieht so aus \citep{VoidQuark_sshlogs}:
 
-{\setstretch{1.0}
-\begin{Verbatim}[frame=single]
-(1) - "sum by (username) (count_over_time({$label_name=~"$label_value",
-      job=~"$job", instance=~"$instance"} 
-(2) - |="sshd[" 
-(3) - |=": Failed" !~"invalid user" 
-(4) - | pattern `<_> for <username> from <_> port` 
-(5) - | __error__="" [$__interval]))",
+% % {\setstretch{1}
+% % \begin{Verbatim}[frame=single]
+% % (1) - "sum by (username) (count_over_time({$label_name=~"$label_value",
+% %       job=~"$job", instance=~"$instance"} 
+% % (2) - |="sshd[" 
+% % (3) - |=": Failed" !~"invalid user" 
+% % (4) - | pattern `<_> for <username> from <_> port` 
+% % (5) - | __error__="" [$__interval]))",
 
-(1) - Aufsummierung der Benutzernamen, die dieser Regel entsprechen und
-      Filtern nach dem Job und der Instance.
-(2) - Suche nach Zeilen mit dem Wort "sshd".
-(3) - Suche nach Zeilen mit dem Wort "Failed" und ohne den Ausdruck
-      "invalid user".
-(4) - Extrahierung des Benutzernamens und des Ports aus den Zeilen.
-(5) - Suche nach anderen Fehlermeldungen, falls vorhanden.
-\end{Verbatim}
-}
+% % (1) - Aufsummierung der Benutzernamen, die dieser Regel entsprechen und
+% %       Filtern nach dem Job und der Instance.
+% % (2) - Suche nach Zeilen mit dem Wort "sshd".
+% % (3) - Suche nach Zeilen mit dem Wort "Failed" und ohne den Ausdruck
+% %       "invalid user".
+% % (4) - Extrahierung des Benutzernamens und des Ports aus den Zeilen.
+% % (5) - Suche nach anderen Fehlermeldungen, falls vorhanden.
+% % \end{Verbatim}
+% % }
 % listing
 
-\textbf{Plugin für Generierung von Regeln}
+%\textbf{Plugin für Generierung von Regeln}
 
 % Clicky Bunty Bild
 
