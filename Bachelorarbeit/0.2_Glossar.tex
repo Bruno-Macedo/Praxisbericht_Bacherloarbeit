@@ -31,11 +31,11 @@
 \newglossaryentry{container} {
     name={Container},
     plural={Containers},
-    description={funktionieren ähnlich wie virtuelle Maschinen (VMs), mit dem Unterschied, dass Container auf der Softwareebene entstehen. Container werden meistens für einzelne Anwendungen verwendet. Sie nutzen die Ressourcen des Host-Systems, sind jedoch in einer isolierten Umgebung mit den notwendigen Ressourcen für den Betrieb der ausgewählten Anwendung \citep{Douglis_Container}. In dieser Arbeit verwenden wir Docker-Container}}
+    description={funktionieren ähnlich wie virtuelle Maschinen (VMs), jedoch werden Container auf der Ebene der Betriebssystemvirtualisierung erstellt und ausgeführt, während VMs eine komplette virtuelle Hardwareumgebung emulieren. Container werden oft für einzelne Anwendungen verwendet und teilen Ressourcen wie den Kernel des Host-Betriebssystems. Jeder Container ist in einer isolierten Umgebung mit den notwendigen Ressourcen für den Betrieb der ausgewählten Anwendung. Docker ist eine der bekanntesten Plattformen zur Verwaltung von Containern \citep{Douglis_Container}}}
 
 \newglossaryentry{cortex} {
     name={Cortex},
-    description={ist eine  Open Source Plattform für die Verwaltung und Weiterbearbeitung von Sicherheitsvorfällen. Es funktioniert wie eine Analysis Engine, die Informationen sammelt und Antworten/Aktionen je nach Fälle durchführt. Es kann eigenständig oder integriert mit anderen Tools  funktionieren \citep{TheHive}}   
+    description={ist eine Open-Source-Plattform zur Verwaltung und Weiterverarbeitung von Sicherheitsvorfällen. Es fungiert als Analyse-Engine, indem es Informationen sammelt und je nach Fall Antworten oder Aktionen durchführt. Cortex kann eigenständig oder in Kombination mit anderen Tools verwendet werden \citep{TheHive}}   
 }
 
 \newglossaryentry{Cyberangriff} {
@@ -83,12 +83,12 @@
 \newglossaryentry{hash} {
     name={Hashwerte},
     plural={Hashwerte},
-    description={sind Zeichen, die aus der Ergebnis einer mathematischen Funktion (Hashfunktion) auf einem Text oder auf einer Datei entstehen. Die Wiederherstellung des originallen Objekts soll aber schwierig sein \citep{Wendzel_IS}}}
+    description={sind Zeichenfolgen, die durch Anwenden einer mathematischen Funktion (Hashfunktion) auf einen Text oder eine Datei erzeugt werden. Die Rückführung auf das ursprüngliche Objekt aus dem Hashwert sollte jedoch schwierig sein \citep{Wendzel_IS}}}
 
 % here goes to the description
 \newglossaryentry{http2}{
     name=\glslink{http}{Hypertext Transfer Protocol (\gls{http})},
-    description={ist der Basis unseres Internets. Dieser Protokol definiert die Regel für die Übertragung von Texten und Datein im Internet. Dieser Protokol verwendet acht Methode, um die Kommunikation zwischen Kunden und Server herzustellen: \textit{GET, POST, HEAD, DELETE, CONNECT, OPTIONS} und \textit{TRACE} \citep{Chai_http} and \citep{tutorialspoint_http}}}
+    description={ist die Grundlage des Internets. Dieses Protokoll definiert die Regeln für die Übertragung von Texten und Dateien im Internet. Das Protokoll verwendet acht Methoden, um die Kommunikation zwischen Clients und Servern herzustellen: \textit{GET, POST, HEAD, DELETE, CONNECT, OPTIONS, PUT} und \textit{TRACE} \citep{Chai_http} and \citep{tutorialspoint_http}}}
 
 % here goes to the acronym
 \newglossaryentry{http}{
@@ -119,7 +119,7 @@
 %===========
 \newglossaryentry{GUI2}{
     name=\glslink{GUI}{grafische Benutzeroberfläche (\gls{GUI})},
-    description={ von englisch \textit{graphical user interface}, ist eine Schnittstelle, die den Nutzer ermöglicht, mithilfe von Symbolen und visuellen Elementen mit der Anwendung zu interagieren \citep{Fu_GUI}}}
+    description={ - Es handelt sich dabei um eine visuelle Schnittstelle, die es dem Benutzer ermöglicht, mit Anwendungen mittels Symbolen und grafischen Elementen zu interagieren. Im Gegensatz dazu verwendet die textbasierte Benutzeroberfläche (CLI) Befehlszeilen und Texteingabe zur Steuerung von Anwendungen. Die Verwendung von GUIs hat die Benutzerfreundlichkeit von Anwendungen erhöht und sie für eine breitere Zielgruppe zugänglich gemacht \citep{Fu_GUI}}}
 
 % here goes to the acronym
 \newglossaryentry{GUI}{
@@ -163,12 +163,12 @@
 
 \newglossaryentry{kali} {
     name={Kali},
-    description={ist eine Open Source Linux-Distribution, die wegen spezifische Tools im Sicherheitsbereich für die Durchführung von Angriffe und Sicherheitstesten verwendet wird \citep{kali_docs}}}
+    description={ist eine Open-Source-Linux-Distribution, die speziell auf den Einsatz von Sicherheitstools für Angriffe und Sicherheitstests ausgelegt ist \citep{kali_docs}}}
 
 % here goes to the description
 \newglossaryentry{KI2}{
     name=\glslink{KI}{Künstliche Intelligenz (\gls{KI})},
-    description={bezieht sich auf den Konzept, dass Maschine kognitive menschliche Fähigkeit entwickeln können, wie Verständnis, Entscheitungstreffen, Lernen, Problemlösung und \citep{Collins_KI}}}
+    description={bezieht sich darauf, dass Maschinen in der Lage sind, menschenähnliche kognitive Fähigkeiten wie Verständnis, Entscheidungsfindung, Lernen und Problemlösung zu entwickeln \citep{Collins_KI}}}
 % here goes to the acronym
 \newglossaryentry{KI}{
     type=\acronymtype,
@@ -184,7 +184,7 @@
 % here goes to the description
 \newglossaryentry{mfa2}{
     name=\glslink{mfa}{Multi-Faktor-Authentisierung (\gls{mfa})},
-    description={bezeichnet das Authentifizierungsverfahren, indem zwei oder mehrere unabhängige Komponenten zur Authentifizierung verwendet werden, z.B. ein Passwort zusammen mit dem Fingerabdruck, oder eine Karte zusammen mit der Erkennung des Muster der Iris im Auge\citep{Ibrokhimov_MFA}}}
+    description={bezeichnet ein Authentifizierungsverfahren, bei dem mindestens zwei unabhängige Komponenten zur Identitätsprüfung verwendet werden, um eine höhere Sicherheit zu gewährleisten. Zum Beispiel kann ein Benutzer aufgefordert werden, sich mit einem Passwort und einem Fingerabdruck oder einem Token und einer Gesichtserkennung zu authentifizieren \citep{Ibrokhimov_MFA}}}
 
 % here goes to the acronym
 \newglossaryentry{mfa}{
@@ -264,11 +264,10 @@
     name={Password Stuffing},
     description={ist ein Angriff gegen Passwörtern, indem schon bekannte Anmeldedaten von vorherigen Angriffen verwendet werden. Dieser Angriff basiert sich auf die Idee, dass Nutzer dasselbe Passwort für verschiedenen Systemen verwenden \citep{Nguyen_stuffing}}}
     
-
 %=====
 \newglossaryentry{PCIDSS2}{
     name=\glslink{PCDISS}{Payment Card Industry Data Security Standard (\gls{PCDISS})},
-    description={sind Sicherheitsstandards, die Unternehmen, die Kreditkarte akzeptieren, bearbeiten, speichern oder übertragen, anwenden müssen \citep{Compliance_PCI}}}
+    description={sind Sicherheitsstandards, die von Unternehmen, die Kreditkarten akzeptieren, verarbeiten, speichern oder übertragen, eingehalten werden müssen \citep{Compliance_PCI}}}
 
 \newglossaryentry{PCDISS}{
     type=\acronymtype,
@@ -280,13 +279,13 @@
 
 \newglossaryentry{polyphomicMalware} {
     name={Polymorphe Malware},
-    description={sind Schadsoftware, deren Erkennungsregel (Signature) sich an der Umgebung anpassen, um von Anti-Malware Systemen nicht erkannt werden \citep{Syuhada_Polymorphic}}   
+    description={sind Schadprogramme, deren Erkennungsregeln sich an die Umgebung anpassen, um nicht von Anti-Malware-Systemen erkannt zu werden \citep{Syuhada_Polymorphic}}   
     }
 
 %=====
 \newglossaryentry{NOC2}{
     name=\glslink{NOC}{Network Operations Center (\gls{NOC})},
-    description={ist ein zentralisierter Bereich eines Unternehmens und dafür zuständig, Netzwerkaktivitäten zu überwachen und zu verwalten \citep{Mohammed_NOC}}}
+    description={ist ein zentralisierter Bereich eines Unternehmens, der für die Überwachung und Verwaltung von Netzwerkaktivitäten verantwortlich ist. \citep{Mohammed_NOC}}}
 
 \newglossaryentry{NOC}{
     type=\acronymtype,
@@ -299,7 +298,7 @@
 %=====
 \newglossaryentry{owasp2}{
     name=\glslink{owasp}{Open Web Application Security Project\textregistered (\gls{owasp})},
-    description={Eine Non-Profit Organisation, die sich darauf fokussiert, die Sicherheit in dem Umgang mit Webanwendungen zu gewährleisten. Die Organisation verteilt Open-Source Informationen über sichere Entwicklung, Dokumentation, Best-Practices zu dem sicheren Umgang mit dem Internet und Bildung \citep{owasp}}
+    description={ist eine Non-Profit-Organisation, die sich auf die Gewährleistung der Sicherheit im Umgang mit Webanwendungen konzentriert. Die Organisation verbreitet Open-Source-Informationen über sichere Entwicklung, Dokumentation, Best Practices für sicheren Umgang im Internet und Bildung \citep{owasp}}
 }
 
 \newglossaryentry{owasp}{
@@ -319,20 +318,20 @@
 \newglossaryentry{port} {
     name={Port},
     plural={Ports},
-    description={ist eine Zahl, die ein Dienst oder eine Verbindung identifiziert. Es geht hier um eine logische Adressierung zur Identifizierung eines oder mehrere Prozessen \citep{Tanembaum_CN}}}
+    description={ist eine numerische Identifikation eines Dienstes oder einer Verbindung. Es handelt sich um eine logische Adressierung, die zur Identifikation eines oder mehrerer Prozesse verwendet wird \citep{Tanembaum_CN}}}
 
 \newglossaryentry{prometheus} {
     name={Prometheus},
-    description={ist ein OpenSource Tool von der Firma SoundCloud. Dieses Tool beschäftigt sich mit Überwachung und mit Erstellung von Warnmeldung je nach Regel konfiguriert wurde \citep{Prometheus_doc}}}
+    description={ist ein Open-Source-Tool der Firma SoundCloud. Es dient der Überwachung und Erstellung von Warnmeldungen, die auf der Grundlage von vordefinierten Regeln konfiguriert werden \citep{Prometheus_doc}}}
 
 \newglossaryentry{Proprietary} {
     name={Proprietary},
-    description={bezieht sich auf Software, die einer Firma oder Person gehören. Für die Nutzung ist meisten Kauf einer Lizenz notwendig. In diesem Fall haben Kunden wenig oder kaum Zugang zu einem originellen Code \citep{Nexcess_P}}}
+    description={bezieht sich auf Software, die einer Firma oder Person gehört. Für die Nutzung ist in der Regel der Kauf einer Lizenz erforderlich. In diesem Fall haben Kunden nur begrenzten oder keinen Zugriff auf den Quellcode \citep{Nexcess_P}}}
 
 %=====
 \newglossaryentry{regex2}{
-    name=\glslink{RegExp}{Regular Expression (\gls{RegExp})},
-    description={ist eine Methode, um Muster in Zeichenketten zu beschreiben. In dem Informatikbereich werden solche Benutzer verwendet, um spezifische Texte oder Einträge in Textdateien zu finden \citep{Qusef_Regex}}}
+    name=\glslink{RegExp}{Regular Expressions (\gls{RegExp})},
+    description={sind Methode, Methode, um Muster in Zeichenketten zu beschreiben. Im Informatikbereich werden solche Ausdrücke verwendet, um spezifische Texte oder Einträge in Textdateien zu finden \citep{Qusef_Regex}}}
 
 \newglossaryentry{RegExp}{
     type=\acronymtype,
@@ -344,7 +343,7 @@
 
 \newglossaryentry{rockyou} {
     name={Rockyou},
-    description={ist eine Textdatei mit über 8 Milliarden Passwörter im Klartext. Diese Datei entstammt aus einem im Jahr 2009 stattgefundenen Angriff gegen Yahoo und ist seitdem ständig aktualisiert \citep{Mikalauskas_rockyou}}}
+    description={ist eine Textdatei mit über 8 Milliarden Passwörtern im Klartext. Diese Datei stammt aus einem Angriff gegen Yahoo im Jahr 2009 und wird seitdem ständig aktualisier \citep{Mikalauskas_rockyou}}}
 
 \newglossaryentry{SIEM}{
     type=\acronymtype,
@@ -373,7 +372,7 @@
 %=====
 \newglossaryentry{SOC2}{
     name=\glslink{SOC}{Security Operations Center (\gls{SOC})},
-    description={ist ein zentralisierter Bereich eines Unternehmens und dafür zuständig, Sicherheitsvorfälle zu überwachen, zu identifizieren, zu bewerten und dazu zu reagieren \citep{Vielberth_SOC}}}
+    description={ist ein zentralisierter Bereich eines Unternehmens, der für die Überwachung, Identifizierung, Bewertung und Reaktion auf Sicherheitsvorfälle verantwortlich ist. \citep{Vielberth_SOC}}}
 
 \newglossaryentry{SOC}{
     type=\acronymtype,
@@ -391,7 +390,7 @@
 %=====
 \newglossaryentry{ssh2}{
     name=\glslink{ssh}{Secure Shell Protocol(\gls{ssh})},
-    description={ist ein Netzwerkprotokoll, das eine verschlüsselte Verbindung zwischen den Endpoints anbietet. SHH wird meistens für die Fernadministration von Rechner verwendet. Dieses Protokoll ermöglicht die Erstellung eine sichere Verbindung in einer unsicheren Umgebung \citep{Wendzel_IS}}}
+    description={ist ein Netzwerkprotokoll, das eine verschlüsselte Verbindung zwischen Endpunkten bietet. SSH wird meistens für die Fernadministration von Computern verwendet. Dieses Protokoll ermöglicht die Erstellung einer sicheren Verbindung in einer unsicheren Umgebung \citep{Wendzel_IS}}}
 
 \newglossaryentry{ssh}{
     type=\acronymtype,
@@ -408,7 +407,7 @@
 \newglossaryentry{usecases} {
     name={Use Cases},
     plural={Uses Cases},
-    description={beschreiben die Interaktion zwischen Systemen und Benutzer. Sie dienen zu der Anforderungserhebung eines Systems \citep{Savic_UseCase}}}
+    description={Use Cases beschreiben die Interaktionen zwischen Systemen und Benutzern. Sie dienen der Anforderungserhebung für ein System \citep{Savic_UseCase}}}
 
 \newglossaryentry{USM}{
     type=\acronymtype,
@@ -425,7 +424,7 @@
 %=====
 \newglossaryentry{vm2}{
     name=\glslink{vm}{virtuelle Maschine (\gls{vm})},
-    description={ist eine Kopie der Hardware-Struktur mit eigener Aufteilung von Ressources und mit eigenen Betriebssystem. In einer physikalischen Maschine, auch Host virtuelle Maschine genannt, kann mehreren von solchen VMs laufen. Sie emulieren ein echtes und unabhängiges System \citep{Tanembaum_MBS}}}
+    description={ist eine Kopie der Hardware-Struktur mit einer eigenen Aufteilung von Ressourcen und einem eigenen Betriebssystem. Auf einer physischen Maschine, auch Host genannt, können mehrere solcher VMs ausgeführt werden. Sie emulieren ein echtes und unabhängiges System \citep{Tanembaum_MBS}}}
 
 \newglossaryentry{vm}{
     type=\acronymtype,
@@ -436,7 +435,10 @@
     description=\glslink{vm2}{virtuelle Maschine}}
 % =====
 
-
+\newglossaryentry{webhook} {
+    name={Webhook},
+    plural={Webhooks},
+    description={Webhooks funktionieren ähnlich wie APIs, ohne dass die Client-Seite ständig nach Aktualisierungen fragen muss. Bei Webhooks sendet der Server die Aktualisierung, sobald sie verfügbar ist. Die Kommunikation findet in Echtzeit statt \citep{Tas_webhook}}}
 
 
 

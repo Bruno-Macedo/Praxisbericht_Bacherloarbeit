@@ -230,20 +230,13 @@ clients/cmd/promtail/promtail-docker-config.yaml
 docker-compose -f docker-compose.yaml up 
 \end{lstlisting}
 }
-%docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
-%docker run --name loki -d -v $(pwd):/mnt/config -p 3100:3100 grafana/loki:2.8.0 -config.file=/mnt/config/loki-config.yaml
-
-%docker run --name promtail -d -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.8.0 -config.file=/mnt/config/promtail-config.yaml
 
 Im Anhang befinden sich die originalle (Siehe Anhang \ref{appendix:orgGrafana}) und die angepassten Dateien (Siehe Anhang \ref{appendix:AngepasstGrafana}).
 
 Die obigen Kommandos haben folgende Bedeutungen:
 \begin{enumerate}[noitemsep]
-   %\item Ausführung von Grafana und Nutzung des Nutzung des lokalen und externen \glsplural{port} 3000
    \item Herunterladen der Konfigurationsdatei von Loki
-   %\item Ausführung der Loki \gls{container}, Nutzung des lokalen und externen \glsplural{port} 3100 für die Netzwerkverbindung und Verwendung der heruntergeladenen Konfigurationsdatei
    \item Herunterladen der Konfigurationsdatei von Promptail
-   %\item Ausführung der Promptail \gls{container}, Verbindung zwischen diesen und den Loki \gls{container} und Verwendung der heruntergeladenen Konfigurationsdatei
    \item Ausführung von den \glsplural{container}, indem beiden Konfigurationsdateien in einer eingepackt und angepasst wurden und schliesslich von der \gls{container}-Anwendung gelesen werden
 \end{enumerate}
 
@@ -268,16 +261,9 @@ Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \
 \subsubsection{Weiterleitung der Logdateien zum Grafana}
 Grafana Loki bietet mehrere Möglichkeiten, Logdateien zu empfangen. In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und bearbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Wenn wir verschiedene Arten von Logdateien hätten, würde jeder Typ einem eigenen \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat seine eigenen Regeln, um nach den gewünschten Informationen zu suchen.
 
-%Grafana Loki bietet mehrere Möglichkeiten an, Logdateien empfangen. In unserer Arbeit benutzen wir \textbf{Promtail}, der in einem \gls{container} läuft. Dieser Instanz schickt die von uns ausgewählten Logdateien Grafana und bearbeitet alle diese Dateien innerhalb eines sogenanntes \quotes{job}. Hätten wir verschiedene Art von Logdateien, würde jeder Typ einem \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat ihre eigene Regeln, um nach dem gewünschten Information zu suchen. 
-
-
 In einer produktiven Umgebung wäre die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. In diesem Fall würde jeder \gls{Endpoint} mithilfe von Promtail die Dateien weiterleiten \citep{Grafana_Agents}. Wie bei unserer Lösung müsste der Nutzer für jeden Typ von Logdateien einen spezifischen \quotes{job} konfigurieren.
 
-%In einen produktive Umgebung wäre die Installation von \textbf{Grafana Agents} in jedenm \gls{Endpoint} eine andere Lösung, um Grafana Loki mit  Logdateien befüllen. In diesem Fall würde jeder \gls{Endpoint} mithilfe von Promtail die Dateien weiterleiten \citep{Grafana_Agents}. Wie in unserer Lösung, müsste der Nutzer für jeden Art von Logdateien einen spezifischen \quotes{job} konfigurieren. 
-
 Der Inhalt von Logdateien lässt sich auch mithilfe der \textbf{\glsfirst{API}} an Grafana Loki senden. In dieser Situation sendet der \gls{Endpoint} eine \gls{http} POST-Anfrage an den Endpunkt von Grafana Loki mit dem Inhalt der Logdateien \citep{Grafana_api}:
-
-%Inhalt von Logdateien lassen sich auch mit \textbf{\glsfirst{API}} zum Grafana Loki schicken. In dieser Situation schickt der \gls{Endpoint} einen \gls{http} POST Anfrage zum \gls{Endpoint} von Grafana Loki mit den Inhalt der Logdateien \citep{Grafana_api}:
 
 {\setstretch{1.0}
 \begin{lstlisting}[frame=single][language=json]
@@ -302,9 +288,6 @@ POST [Addresse_von_Grafana_Loki_Instanz]/loki/api/v1/push
 
 Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool OpenTelemetry an, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Im Allgemeinen wird OpenTelemetry verwendet, um Daten zu senden, zu verarbeiten und zu empfangen. Laut dem Anbieter ist OpenTelemetry mit verschiedenen anderen Tools integriert, um die Datenübertragung zu ermöglichen. Das Tool besteht aus \textit{Agents} und \textit{Collectors}. Der Agent wird auf jedem Endpunkt installiert, um Daten zu sammeln und der Collector empfängt die Daten und leitet sie weiter \citep{Grafana_opentelemetry}. Die Integration mit Grafana Loki erfolgt über die Nutzung von APIs. Der Collector läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem Endpunkt und kommunizieren mit dem \textit{Collector}. Die folgende Abbildung soll diesen Vorgang besser darstellen:
 
-%Grafana Loki ist auch mit dem \gls{opensource} Tool OpenTelemetry integriert, um Logdateien zu empfangen \citep{Grafana_opentelemtry}. Im Allgemein wird OpenTelemetry dazu verwenden, Daten zu schicken, zu bearbeiten und zu empfangen. Laut dem Anbieter ist OpenTelemetry mit verschiedenen anderen integriert, um die Datenübertragung zu ermöglichen. Das Tool hat \textit{Agents} und \textit{Collectors}. Der erste wird an jedem \gls{Endpoint} installiert, um die Daten zu schicken und der zweite empfängt die Daten, um diese dann weiterzuleiten \citep{Grafana_opentelemtry}. Die Integration mit Grafana Loki findet mit der Nutzung von \gls{API} statt. Der \textit{collector} läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien schicken kann, die \textit{Agents} läufen in jeden \gls{Endpoint} und kommunizieren sich mit dem \textit{collector}. Die folgende Abbildung soll den beschriebenen Vorgang besser darstellen:
-
-
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Grafana_OpenTelemtry.png}
@@ -314,14 +297,9 @@ Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool OpenTelemetry
 
 An der linken Seite haben wir die verschiedenen \glsplural{Endpoint}, auf denen jeweils ein \textit{Agent} läuft. In der Mitte haben wir den \textit{Collector}, der die Logdateien schließlich an Grafana Loki und/oder an andere Tools weiterleitet.
 
-%An der linken Seite haben wir die verschiedenen \glsplural{Endpoint}, in dem einen \textit{agent} läuft. In der Mitte haben wir den \textit{Collector}, der die Logdateien schließlich zu Grafana Loki und/oder zu anderen Tools weiterleitet.
-
-
 \newpage
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
 Ein \gls{bruteforce} lässt sich durch die Anzahl der fehlgeschlagenen Anmeldeversuche erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir betrachten eine Situation, in der keine Gegenmaßnahmen wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Aktivitätsdiagramm stellt einen allgemeinen Ablauf eines Anmeldungsverfahrens dar
-
-%Der \gls{bruteforce} lässt sich durch die Anzahl des fehlgeschlagen Anmeldungsversuchs erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir bearbeiten eine Situation, in der es keine Gegenmaßnahmen, wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Aktivitätsdiagramm stellt einen allgemeinen Ablauf eines Anmeldungsverfahrens dar:
 
 \begin{figure}[H]
    \centering
@@ -351,14 +329,10 @@ Eine Erkennungsregel hätte folgende Logik:
 \newpage
 Grafana Loki bietet ein Konfigurationsmuster für die Eingabe und Darstellung von \gls{ssh} Logdateien an. In dieser Konfiguration sind bereits Grafiken und Regelsets enthalten, die eine umfassende Analyse dieser Daten ermöglichen \citep{VoidQuark_sshlogs}. Die extrahierten Logdateien werden mithilfe der folgenden Elemente gelesen und bearbeitet:
 
-%Grafana Loki bietet einen Einstellungsmuster für die Eingabe und Darstellung von \gls{ssh} Logdateien an. In dieser Einstellung befinden sich schon Graphik und Regelsätze für eine umfangreiche Analyse dieser Daten \citep{VoidQuark_sshlogs}. Die extrahierte Logdateien werden mit folgenden Elementen gelesen und bearbeitet:
-
 \begin{table}[H]
    \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
    \caption{Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
-
-%Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. Diese Struktur stammt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach den gleichen Regeln verarbeitet. Die Regelsätze in Grafana Loki können sowohl Manuel in dem Menu \quotes{Code} als auch über die \gls{GUI} in dem Menu \quotes{Builder} geschrieben werden. Die zweite bietet einen nutzerfreundlicher Umgebung, um die Regel zu schreiben. Die nächsten Abbildungzeigen diese zwei Optionen:
 
 Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. Diese Struktur stammt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach den gleichen Regeln verarbeitet. Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} als auch über die \gls{GUI} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen zeigen diese beiden Optionen:
 
@@ -388,7 +362,6 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
 {\setstretch{1}
 \begin{framed}
    \subsubsection{Exkurs - Regelsätze in LogQL}
-   %\frametitle{Exkurs - Regelsätze in LogQL}
    In diesem Abschnitt fassen wir zusammen, wie eine Abfrage in \gls{logql} für eine Logdatei mit \gls{ssh} Einträge aussieht. Für ausführliche Informationen über den Aufbau der Abfrage empfehlen wir die offizielle Dokumentation, auf die diese Erklärung basiert ist \citep{Grafana_logql}.
 
    Unsere Logdatei enthält unter anderem folgende Zeile:
@@ -405,70 +378,12 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
       \includegraphics[width=\linewidth]{assets/tabelle_logql.png}
       \caption{Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
    \end{table}
-   
 
-% \begin{center}
-%    sum by(username) rate{job=\quotes{varlogs}}
-% \end{center}
-% \begin{itemize}
-%    \item Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in \gls{logql} definiert haben. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den Job \quotes{varlogs} beziehen.
-% \end{itemize}
-
-% \begin{center}
-%    |= `\textbf{\textcolor{red}{sshd[}}` |= `: \textbf{\textcolor{red}{Failed}}`
-% \end{center}
-% \begin{itemize}
-%    \item Regular Expression für die Suche nach Zeilen mit diesen Einträge.
-% \end{itemize}
-
-% \begin{center}
-%    |= !~ `invalid user` != `test` !~ `10.0.2.15`
-% \end{center}
-% \begin{itemize}
-%       \item \gls{RegExp} für die Suche nach Zeilen ohne diese Einträge. Wir können beispielsweise Einträge ausschließen, die sich nicht bösartige Nutzer sind, um \gls{falsch positiv} zu vermeiden.
-% \end{itemize}
-
-% \begin{center}
-%    \begin{BVerbatim}
-%    | pattern `<_> for <username> from <add> port <_>` [\$__range]))
-%    \end{BVerbatim}
-% \end{center}
-% \begin{itemize}
-%       \item Die Definition des Wortes \quotes{username} als \quotes{Pattern} dient dazu, einen Benutzernamen aus der Logdatei zu extrahieren. Die Platzhalter <XX sind unbenannte Elemente, die in diesem Fall auf die Einträge \quotes{password} und \quotes{10.0.2.15} in der Zeile verweisen.
-% \end{itemize}
-
-
-End des Exkurses
+   \begin{center}
+   End des Exkurses
+   \end{center}
 \end{framed}
 }
-
-\newpage
-%%Die Abfrage für unseren Angriff sieht folgendermaßen aus \citep{VoidQuark_sshlogs}:
-%Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql}  aufgebaut sind. In Promtail wird jeder \gls{Endpoint} \quotes{Instance} genannt. Eine oder mehrere \quotes{Instance} werden einem \quotes{Job} zugewiesen. Diese Struktur kommt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach dem gleichen Regeln bearbeitet. Die Abfrage für unseren Angriff sieht so aus \citep{VoidQuark_sshlogs}:
-
-% % {\setstretch{1}
-% % \begin{Verbatim}[frame=single]
-% % (1) - "sum by (username) (count_over_time({$label_name=~"$label_value",
-% %       job=~"$job", instance=~"$instance"} 
-% % (2) - |="sshd[" 
-% % (3) - |=": Failed" !~"invalid user" 
-% % (4) - | pattern `<_> for <username> from <_> port` 
-% % (5) - | __error__="" [$__interval]))",
-
-% % (1) - Aufsummierung der Benutzernamen, die dieser Regel entsprechen und
-% %       Filtern nach dem Job und der Instance.
-% % (2) - Suche nach Zeilen mit dem Wort "sshd".
-% % (3) - Suche nach Zeilen mit dem Wort "Failed" und ohne den Ausdruck
-% %       "invalid user".
-% % (4) - Extrahierung des Benutzernamens und des Ports aus den Zeilen.
-% % (5) - Suche nach anderen Fehlermeldungen, falls vorhanden.
-% % \end{Verbatim}
-% % }
-% listing
-
-%\textbf{Plugin für Generierung von Regeln}
-
-% Clicky Bunty Bild
 
 \newpage
 \thispagestyle{lscape}
@@ -502,8 +417,6 @@ End des Exkurses
 \subsection{Einrichtung des Warnmeldungskomponent}
 In den vorherigen Teilen dieser Arbeit haben wir uns damit auseinandergesetzt, Grafana so einzustellen, dass wir schließlich eine Lösung ähnlich einer \gls{SIEM} erhalten. Von unseren ursprünglichen Vorschlägen haben wir bereits Folgendes erreicht:
 
-%In den vorherigen Teilen dieser Arbeit setzten wir uns damit auseinander, Grafana so einzustellen, damit wir schließlich eine \gls{SIEM} ähnliche Lösung bekommen könnten. Von unseren ursprünglichen Vorschläge erreichten wir schon Folgendes:
-
 {\setstretch{1}
 \begin{enumerate}[noitemsep]
    \item	Sammlung der Logdateien aus den \glsplural{Endpoint} mit Promtail
@@ -513,8 +426,6 @@ In den vorherigen Teilen dieser Arbeit haben wir uns damit auseinandergesetzt, G
 \end{enumerate}
 }
 Unser letztes Ziel besteht darin, Warnmeldungen für potenzielle Angriffe mithilfe der Ergebnisse von Loki zu generieren. Grafana kann intern und extern mit Tools integriert werden, um Warnmeldungen zu erstellen. Eines dieser externen Tools ist der \textbf{Alertmanager}, der bereits integriert ist. Dieses Tool kann Daten von \gls{prometheus}, \gls{cortex} und \gls{mimir} als Datenquelle verwenden \citep{Grafana_Alertmanager} und kann Daten von beliebigen \glsplural{Endpoint} empfangen. Die Regelsätze des Alertmanagers haben folgendes Muster:
-
-%Unser letztes Ziel ist es, Warnmeldungen für potenzielle Angriffe mit den Ergebnissen von Loki zu generieren. Grafana lässt sich mit internen und externen Tools integrieren, um Warnmeldungen zu erstellen. \textbf{Alertmanager} gehört zu einem von den externen Tools, die aber schon integriert sind. Dieses Tool kann \gls{prometheus}, \gls{cortex} und \gls{mimir} als Dateiquelle verwenden \citep{Grafana_Alertmanager} und lässt sich Daten aus beliebigen \glsplural{Endpoint} schicken. Bei Alertmanager haben die Regelsätze folgenden Muster:
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
@@ -546,7 +457,7 @@ groups:
 Grafana hat auch ein eigenes internes Tool, um Warnmeldungen zu konfigurieren: \textbf{Alerting}. In dieser Arbeit versuchen wir unser Warnmeldungs-System mithilfe dieses Tools aufzubauen.
 
 Die Warnmeldungen können direkt in der \gls{GUI} von Grafana konfiguriert werden. Dazu folgt man den folgenden Schritten \citep{Grafana_alerting}:
-%Die Warnmeldung können direkt in der \gls{GUI} von Grafana konfiguriert werden. Für diese Nutzung werden folgende Schritte gefolgt \citep{Grafana_alerting}:
+
 {\setstretch{1}
 \begin{enumerate}[noitemsep]
    \item Name der Regel
@@ -561,8 +472,6 @@ Die Warnmeldungen können direkt in der \gls{GUI} von Grafana konfiguriert werde
 
 Für unseren ersten Test möchten wir Warnmeldungen für fehlgeschlagene Anmeldeversuche erstellen. Wir haben die oben genannten Elemente definiert und die folgenden Regelsätze verwendet \citep{VoidQuark_sshlogs}:
 
-%Für unseren ersten Test wollen wir Warnmeldungen für fehlgeschlagenen Anmeldeversuche schicken. Wir definierten die obigen Elementen und benutzten die Regelsätze unten \citep{VoidQuark_sshlogs}: 
-
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
 # (A) Anzahl von fehlgeschlagenen Anmeldeversuche für existierenden
@@ -572,7 +481,6 @@ job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|:
 Connection closed by authenticating user|: Failed .* user" | 
 pattern `<_> user <username> <_> port` | __error__="" 
 [$__interval]))
-
 
 # (B) Anzahl von Fehlgeschlagenen Anmeldeversuche für nicht 
 existierenden Benutzernamen:
@@ -588,10 +496,7 @@ die Warnmeldung als E-Mail an dem Ziel geschickt.
 
 % discard lines with Server Ansible - https://grafana.com/docs/loki/latest/logql/log_queries/
 
-
 Im Anhang (Siehe Anhang \ref{appendix:Warnmedungskonfiguration}) befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten:
-
-%Im Anhang, (Siehe \ref{appendix:Warnmedungskonfiguration}), befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles richtig konfiguriert ist, bekommen wir folgende E-Mail:
 
 \begin{figure}[H]
    \centering
@@ -600,15 +505,7 @@ Im Anhang (Siehe Anhang \ref{appendix:Warnmedungskonfiguration}) befindet sich d
    \centering
 \end{figure}
 
-\textbf{Weitere Option für die Weiterleitung der Warnmeldungen sind: blablablablabla - IPS, IDS, API}
-
-
-% weiterleiten zum IPS, usw
-% Umgang mit legitimen Fehler. (Ansible)
-% Plugin für die automatische Erstellung von Query, mithilfe von Template
-
-% bei welchen  Angriff würde es nicht detektieren
-
+Das Alerting-Tool von Grafana bietet keine direkte Integration zu einem \gls{IDS}, \gls{IPS}, \gls{SIEM} oder einer \gls{API} an. Die Kommunikation mit solchen \glsplural{Endpoint} lässt sich jedoch mithilfe von \textbf{\gls{webhook}} konfigurieren \citep{Grafana_Notifications}.
 
 % enabled = true
 % host = smtp.gmail.com:587
