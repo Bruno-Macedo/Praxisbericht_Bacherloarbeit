@@ -4,7 +4,8 @@ In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.5\textwidth]{assets/Arbeitslabor.jpg}
-   \caption{Aufbau unseres Arbeitslabors \\Quelle: Eigene Quelle}
+   \caption[Aufbau unseres Arbeitslabors]
+   {Aufbau unseres Arbeitslabors \\Quelle: Eigene Quelle}
    \centering
 \end{figure}
 
@@ -15,13 +16,13 @@ Der gezielte Ablauf ist in dem folgenden Diagramm dargestellt:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/Ablauf_grafana2.jpg}
-   \caption{Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung \\ Quelle: Eigene Quelle und \citep{Grafana_loki}}
+   \caption[Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung]
+   {Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung \\ Quelle: Eigene Quelle und \citep{Grafana_loki}}
    \centering
 \end{figure}
 
 \subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix\textregistered}
 Es gibt verschiedene Methoden und Frameworks zur Vermeidung, Erkennung und Unterbrechung von \glsplural{Cyberangriff}. Zu den Beispielen gehören das \glsfirst{owasp}, das \glsfirst{CKC}und die \gls{mitre} Matrix, die von \gls{SOC}-Teams verwendet werden, um die Sicherheit von Systemen und/oder Netzwerken zu gewährleisten. Da sich die Richtlinien und Schwerpunkte dieser Frameworks unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, haben wir uns entschieden, die \gls{mitre} Matrix zur Erkennung von \glsplural{Cyberangriff} anzuwenden, insbesondere da dieser Framework auch in Splunk integriert ist.
-
 
 Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 
@@ -42,7 +43,8 @@ Das \gls{mitre} Framework besteht aus 14 Taktiken, zu denen jeweils Techniken ge
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Mitre_structure.drawio.png}
-   \caption{Struktur der Mitre Matrix \\Quelle: Eigene Quelle und \citep{Mitre_Started}}
+   \caption[Struktur der \gls{mitre} Matrix]
+   {Struktur der \gls{mitre} Matrix \\Quelle: Eigene Quelle und \citep{Mitre_Started}}
    \centering
 \end{figure}
 
@@ -87,7 +89,8 @@ Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/T1110.drawio.png}
-   \caption{Analysestruktur für diese Arbeit \glsplural{Cyberangriff} \\Quelle: Eigene Quelle und \citep{Mitre_t1110}}
+   \caption[Analysestruktur für diese Arbeit \glsplural{Cyberangriff}]
+   {Analysestruktur für diese Arbeit \glsplural{Cyberangriff} \\Quelle: Eigene Quelle und \citep{Mitre_t1110}}
    \centering
 \end{figure}
 
@@ -139,7 +142,8 @@ Die folgende Abbildung zeigt, wie das \gls{stuffing} abläuft:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Stuffing.jpg}
-   \caption{\textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \caption[\textit{\gls{stuffing}}]
+   {\textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
    \centering
 \end{figure}
 
@@ -162,7 +166,8 @@ Das folgende Bild zeigt einen Teil der Ausgabe von \gls{hydra} während der Ausf
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/stuffing_kali.png}
-   \caption{\textit{\gls{stuffing}} gegen Opfersystem1\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \caption[\textit{\gls{stuffing}} gegen Opfersystem1]
+   {\textit{\gls{stuffing}} gegen Opfersystem1\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
    \centering
 \end{figure}
 
@@ -170,7 +175,8 @@ Und gegen Opfersystem2:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/stuffing_kali2.png}
-   \caption{\textit{\gls{stuffing}} gegen Opfersystem2\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \caption[\textit{\gls{stuffing}} gegen Opfersystem2]
+   {\textit{\gls{stuffing}} gegen Opfersystem2\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
    \centering
 \end{figure}
 
@@ -179,7 +185,8 @@ Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Spraying.jpg}
-   \caption{\textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
+   \caption[\textit{\gls{spraying}}]
+   {\textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
    \centering
 \end{figure}
 
@@ -200,21 +207,22 @@ Die folgenden Screenshots zeigen die Ausführung von \gls{spraying}:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Spraying_Kali.png}
-   \caption{Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1\\Quelle: Eigene Quelle}
+   \caption[Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1]
+   {Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1\\Quelle: Eigene Quelle}
    \centering
 \end{figure}
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Spraying_Kali2.png}
-   \caption{Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2\\Quelle: Eigene Quelle}
+   \caption[Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2]
+   {Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2\\Quelle: Eigene Quelle}
    \centering
 \end{figure}
 
 \newpage
 \subsubsection{Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}}
 Die offizielle Dokumentation von Grafana war nicht immer eindeutig in Bezug auf die Ausführung, daher haben wir auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unter befindet es sich die von Grafana zur Verfügung gestellten Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}:
-
 
 {\setstretch{1.0}
 \begin{lstlisting}[frame=single]
@@ -251,7 +259,8 @@ Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \
       \begin{figure}[H]
          \centering
          \includegraphics[width=1.3\textwidth]{assets/Installation_Grafana.png}.
-         \caption{Screenshot der Willkommensseite von Grafana Loki\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
+         \caption[Screenshot der Willkommensseite von Grafana Loki]
+         {Screenshot der Willkommensseite von Grafana Loki\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
          \centering
       \end{figure}
    \end{center}
@@ -290,7 +299,8 @@ Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool OpenTelemetry
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Grafana_OpenTelemtry.png}
-   \caption{Datenfluss zwischen OpenTelemetry und Grafana Loki\\Quelle: \citep{Grafana_WhatOpentelemetry}}
+   \caption[Datenfluss zwischen OpenTelemetry und Grafana Loki]
+   {Datenfluss zwischen OpenTelemetry und Grafana Loki\\Quelle: \citep{Grafana_WhatOpentelemetry}}
    \centering
 \end{figure}
 
@@ -303,7 +313,8 @@ Ein \gls{bruteforce} lässt sich durch die Anzahl der fehlgeschlagenen Anmeldeve
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Anmeldeverfahren.drawio.png}
-   \caption{Allgemeiner Ablauf eines Anmeldungsverfahrens \\Quelle: Eigene Quelle und \citep{Selvaganesh_SplunkBruteForce}}
+   \caption[Allgemeiner Ablauf eines Anmeldungsverfahrens]
+   {Allgemeiner Ablauf eines Anmeldungsverfahrens \\Quelle: Eigene Quelle und \citep{Selvaganesh_SplunkBruteForce}}
    \centering
 \end{figure}
 
@@ -330,7 +341,8 @@ Grafana Loki bietet ein Konfigurationsmuster für die Eingabe und Darstellung vo
 
 \begin{table}[H]
    \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
-   \caption{Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+   \caption[Elementen eines Regelsätzes in Grafana Loki]
+   {Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
 
 Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. Diese Struktur stammt aus dem Tool \gls{prometheus}. Die \quotes{Instances} in einem \quotes{Job} werden nach den gleichen Regeln verarbeitet. Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} als auch über die \gls{GUI} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen zeigen diese beiden Optionen:
@@ -338,14 +350,16 @@ Jedes Angriffszenario hat spezifische Regeln, die mit \gls{logql} aufgebaut sind
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/manuellerCodeLoki.png}
-   \caption{\quotes{Code} in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes. \\ Quelle: \citep{VoidQuark_sshlogs}}
+   \caption[\quotes{Code} in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes]
+   {\quotes{Code} in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes. \\ Quelle: \citep{VoidQuark_sshlogs}}
    \centering
 \end{figure}
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/klickibuntyGrafana.png}
-   \caption{\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes. Quelle: \citep{VoidQuark_sshlogs}}
+   \caption[\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes.]
+   {\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes. Quelle: \citep{VoidQuark_sshlogs}}
    \centering
 \end{figure}
 
@@ -353,7 +367,8 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/erklaerungLoki.png}
-   \caption{Ausführliche Information über die Abfrage\\Quelle: \citep{Grafana_QueryEditor}}
+   \caption[Ausführliche Information über die Abfrage]
+   {Ausführliche Information über die Abfrage\\Quelle: \citep{Grafana_QueryEditor}}
    \centering
 \end{figure}
 
@@ -376,7 +391,8 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
 
    \begin{table}[H]
       \includegraphics[width=\linewidth]{assets/tabelle_logql.png}
-      \caption{Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
+      \caption[Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien]
+      {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
    \end{table}
 
    \begin{center}
@@ -393,7 +409,8 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
       \begin{figure}[H]
          \centering
          \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_sshDetailed.png}.
-         \caption{Bearbeitung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
+         \caption[Bearbeitung der \gls{ssh} Logdateien von Grafana Loki]
+         {Bearbeitung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
          \centering
       \end{figure}
    \end{center}
@@ -408,7 +425,8 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
       \begin{figure}[H]
          \centering
          \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_sshDetailed.png}.
-         \caption{Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
+         \caption[Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki]
+         {Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
          \centering
       \end{figure}
    \end{center}
@@ -501,7 +519,8 @@ Im Anhang (Siehe Anhang \ref{appendix:Warnmedungskonfiguration}) befindet sich d
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/GrafanaWarnmeldung.png}
-   \caption{E-Mail Warnmeldung von Grafana \\Quelle: Eigene Quelle und \citep{Grafana_alerting}}
+   \caption[E-Mail Warnmeldung von Grafana]
+   {E-Mail Warnmeldung von Grafana \\Quelle: Eigene Quelle und \citep{Grafana_alerting}}
    \centering
 \end{figure}
 

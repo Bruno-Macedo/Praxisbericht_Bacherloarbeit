@@ -15,7 +15,8 @@ Die folgende Abbildung stellt didaktisch eine allgemeine Struktur von \gls{SIEM}
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.55\textwidth]{assets/2_p1.png}
-   \caption{Allgemeine Struktur von \gls{SIEM} \\Quelle: \citep{Mohanan_What} }
+   \caption[Allgemeine Struktur von \gls{SIEM}]
+   {Allgemeine Struktur von \gls{SIEM}\\Quelle: \citep{Mohanan_What} }
    \label{fig:SIEM_Allg_Struktur}
    \centering
 \end{figure}
@@ -26,7 +27,8 @@ Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisie
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p2.png}
-   \caption{Allgemeine Informationsfluss von \gls{SIEM} \\Quelle: \citep{Granadillo_SIEM} }
+   \caption[Allgemeine Informationsfluss von \gls{SIEM}]
+   {Allgemeine Informationsfluss von \gls{SIEM} \\Quelle: \citep{Granadillo_SIEM} }
    \label{fig:SIEM_Allg_Informationsfluss}
    \centering
 \end{figure}
@@ -36,7 +38,8 @@ Die folgende Abbildung stellt eine allgemeine Architektur von Log-Analyse-Tools 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2.1_p2.png}
-   \caption{Allgemeine Struktur von Log-Analyse-Tools\\Quelle: \citep{Tek-Tools_LGTArchitektur} }
+   \caption[Allgemeine Struktur von Log-Analyse-Tools]
+   {Allgemeine Struktur von Log-Analyse-Tools\\Quelle: \citep{Tek-Tools_LGTArchitektur} }
    \centering
 \end{figure}
 
@@ -45,12 +48,12 @@ Den Informationsfluss eines Log Analyst Tools bildet folgendes Bild ab:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.55\textwidth]{assets/2.2_p2.png}
-   \caption{Allgemeine Informationsfluss von Log-Analyse-Tools\\Quelle: \citep{Neptune_LATInfoFluss} }
+   \caption[Allgemeine Informationsfluss von Log-Analyse-Tools]
+   {Allgemeine Informationsfluss von Log-Analyse-Tools\\Quelle: \citep{Neptune_LATInfoFluss} }
    \centering
 \end{figure}
 
 Aus bisheriger Beschreibung stellen wir fest, dass \gls{SIEM} viel mehr als eine Sammlung von Logdateien sind. Das Ziel dieser Software ist die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereichen, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM}s eine gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verpflichtet das zweite Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme Organisationen mit kritischen Infrastrukturen die Anwendungen solcher Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log-Analyse-Tools sind seinerseits allgemeine Tools zu der Speicherung, Anpassung, Bewertung und Darstellung von Logdateien, ohne dass sie sich auf der Sicherheitsebenen fokussieren.
-
 
 
 \subsection{Existierende SIEMs Lösungen und Log-Analyse-Tools}
@@ -87,16 +90,6 @@ In Splunk funktioniert die Bedrohungserkennung mithilfe von\glsplural{usecases}.
 
 In einer spezifischen Arbeit wurden Angriffe auf einem System simuliert und schließlich mit Splunk analysiert, um Gefahren zu identifizieren und diese im Voraus zu sehen \citep{Su_SplunkDDOS}. In anderer Arbeit beschrieben die Autoren, wie eine Splunk-Instanz installiert und konfiguriert wurden, um spezifische \gls{bruteforce} zu erkennen \citep{Selvaganesh_SplunkBruteForce}.
  
-
-% Grafana: 
-% zeek: The Zeek Network Security Monitor => Tool ==> Verkehr umleiten und analysieren
-% Own SIEM: chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://prof.msoltys.com/wp-content/uploads/2019/02/Donnelly-Gittins.pdf
-
-
-
-% 1 - zuerst Zugriffs auf Log von jeder anwendung
-% 2 -  danach Zugriffs auf Log von Zeek Nehmen (Zeek) 
-
 \subsubsection{Prelude}
 % suche nach Modulen, die man separat benutzen kann (Correlator)
 Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere freigegebene Tool Prelude zählt zu einer europäischen \gls{opensource} \gls{SIEM} Lösung. Laut dem Anbieter verfügt Prelude unter anderem folgende Funktionalitäten \citep{Prelude_SIEM}: 
@@ -115,7 +108,8 @@ Die folgende Abbildung zeigt die Integration verschiedener Module von Prelude un
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.5\textwidth]{assets/2_p3.png}
-   \caption{Integration zwischen den Modulen von Prelude \\Quelle: \citep{Prelude_MU} }
+   \caption[Integration zwischen den Modulen von Prelude ]
+   {Integration zwischen den Modulen von Prelude \\Quelle: \citep{Prelude_MU} }
    \centering
 \end{figure}
 
@@ -126,7 +120,8 @@ Die Architektur der Anwendung ermöglicht sowohl einen zentralisierten als auch 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p4.png}
-   \caption{Einfache Architektur von Prelude \\Quelle: \citep{Prelude_MU} }
+   \caption[Einfache Architektur von Prelude ]
+   {Einfache Architektur von Prelude \\Quelle: \citep{Prelude_MU} }
    \centering
 \end{figure}
 
@@ -135,8 +130,8 @@ In einer dezentralisierten Umgebung werden Daten von verschiedenen und getrennte
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p5.png}
-   \caption{Erweiterte Architektur von Prelude mit der Nutzung von dezentralisierten
-   Datenquellen und Bearbeitung\\Quelle: \citep{Prelude_MU} }
+   \caption[Erweiterte Architektur von Prelude mit der Nutzung von dezentralisierten Datenquellen und Bearbeitung]
+   {Erweiterte Architektur von Prelude mit der Nutzung von dezentralisierten Datenquellen und Bearbeitung\\Quelle: \citep{Prelude_MU} }
    \centering
 \end{figure}
 
@@ -173,7 +168,8 @@ Die folgende Abbildung zeigt das von dem Anbieter freigelegte Architekturdiagram
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.6\textwidth]{assets/2_p6.png}
-   \caption{Architekturdiagramm  von AlienVault \gls{USM} \\Quelle: \citep{ATT_AVO} }
+   \caption[Architekturdiagramm von AlienVault \gls{USM}]
+   {Architekturdiagramm von AlienVault \gls{USM} \\Quelle: \citep{ATT_AVO} }
    \centering
 \end{figure}
 
@@ -191,7 +187,8 @@ Laut dem Anbieter hat FortiSIEM eine robuste Integration mit anderen Tools und l
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/2_p7.png}
-   \caption{Skalierbare Architektur von FortiSIEM \\Quelle: \citep{Fortinet_Arch} }
+   \caption[Skalierbare Architektur von FortiSIEM]
+   {Skalierbare Architektur von FortiSIEM \\Quelle: \citep{Fortinet_Arch} }
    \centering
 \end{figure}
 
@@ -206,7 +203,6 @@ Auch zu dieser \gls{SIEM}-Lösung ist die wissenschaftliche Produktion eingeschr
    \item Datenauswertung
 \end{itemize}
 
-
 \subsubsection{ELK-Stack}
 ELK Stack stammt aus der Verbindung von drei Tools: Elasticsearch, Logstash und Kibana. Das Erste ist eine Such-und Analyse-Maschine. Das Zweite ist eine serverseitige Anwendung zur Datenverarbeitung und -Weiterleitung. Schließlich Kibana \label{kibana} ist dafür zuständig, visuelle Darstellung in Grafik-Format auszugeben (packt, 2019). Von diesen drei Tools Logstasch ist der einzige \gls{opensource} \citep{elastic_OSI}. Obwohl die anderen zwei 
 kostenlos verwendet werden können, gehören sie nicht zu der \gls{opensource} Kategorie \citep{OpenSource_Def}. Dieses Tool besitzt viele Eigenschaften einer \gls{SIEM}-Lösung und wird von vielen SOC verwendet, ist aber, für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungssystem, Daten Zusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren. 
@@ -217,7 +213,8 @@ Das folgende Diagramm stellt die Architektur von ELK Stack mit ihren integrierte
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p8.png}
-   \caption{Integration zwischen Elasticsearch, Logstash und Kibana\\Quelle: \citep{packt_elkstack} }
+   \caption[Integration zwischen Elasticsearch, Logstash und Kibana]
+   {Integration zwischen Elasticsearch, Logstash und Kibana\\Quelle: \citep{packt_elkstack} }
    \centering
 \end{figure}
 
@@ -238,12 +235,12 @@ Folgendes Diagramm aus der offiziellen Dokumentation zeigt die Aufteilung der Fu
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p9.png}
-   \caption{Aufteilung der Funktionalitäten zwischen den Komponenten\\Quelle: \citep{elastic_docs}}
+   \caption[Aufteilung der Funktionalitäten zwischen den Komponenten]
+   {Aufteilung der Funktionalitäten zwischen den Komponenten\\Quelle: \citep{elastic_docs}}
    \centering
 \end{figure}
 
 Die wissenschaftliche Publikation über ELK-Stack ist vielfältiger als bei anderen recherchierten Tools. Es ist aber wichtig, zu betonen, dass die Mehrheit von denen sich eher mit dem Logging als mit den \gls{SIEM}-Eigenschaften der Anwendung beschäftigt.
-
 
 \subsubsection{Grafana}
 Von allen recherchierten Lösungen ist Grafana die Einzige, die nicht als \gls{SIEM} dargestellt ist. Grafana wird aber als Plattform für Visualisierung von Data beschrieben. Mit dem Tool ist es möglich eine Graphik zu erstellen und Meldungen zu definieren. Das Ziel der Anwendung ist, Information in einer einfachen und verständlichen Art und Weise zur Verfügung zu stehen \citep{redhat_grafana}.  
@@ -257,7 +254,8 @@ Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail is
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p10.png}
-   \caption{Integration von verschiedenen Log-Quellen mit Grafana Loki und Promptail \\Quelle: \citep{Grafana_Logs}}
+   \caption[Integration von Log-Quellen mit Grafana Loki und Promptail]
+   {Integration von verschiedenen Log-Quellen mit Grafana Loki und Promptail \\Quelle: \citep{Grafana_Logs}}
    \centering
 \end{figure}
 
