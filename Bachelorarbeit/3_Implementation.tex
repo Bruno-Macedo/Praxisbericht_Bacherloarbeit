@@ -1,7 +1,6 @@
 \section{Implementation}
 In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um \gls{Cyberangriff} mithilfe der \gls{mitre} Matrix zu erkennen. Das Arbeitslabor wird mit \gls{container} und \glsfirst{vm} aufgebaut, wie im Diagramm in der folgenden Abbildung dargestellt.
 
-
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.5\textwidth]{assets/Arbeitslabor.jpg}
@@ -359,8 +358,9 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
 \end{figure}
 
 \newpage
-{\setstretch{1}
-\begin{mdframed}
+{\setstretch{1.2}
+\begin{frshaded}
+   \vspace{-2em}
    \subsubsection{Exkurs - Regelsätze in LogQL}
    In diesem Abschnitt fassen wir zusammen, wie eine Abfrage in \gls{logql} für eine Logdatei mit \gls{ssh} Einträge aussieht. Für ausführliche Informationen über den Aufbau der Abfrage empfehlen wir die offizielle Dokumentation, auf die diese Erklärung basiert ist \citep{Grafana_logql}.
 
@@ -382,7 +382,7 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
    \begin{center}
    End des Exkurses
    \end{center}
-\end{mdframed}
+\end{frshaded}
 }
 
 \newpage
