@@ -3,7 +3,7 @@ In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um 
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.5\textwidth]{assets/Arbeitslabor.jpg}
+   \includegraphics[width=1\textwidth]{assets/Arbeitslabor.jpg}
    \caption[Aufbau unseres Arbeitslabors]
    {Aufbau unseres Arbeitslabors \\Quelle: Eigene Quelle}
    \centering
@@ -11,11 +11,12 @@ In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um 
 
 Von unserem Aufbau aus streben wir folgende Ziele an: die Aufnahme und Anpassung von Logdateien für Grafana, die Mustererkennung für ausgewählte \glsplural{Cyberangriff} und schließlich die Erstellung von Warnmeldungen für die Endnutzer, damit sie geeignete Sicherheitsmaßnahmen ergreifen können.
 
+\newpage
 Der gezielte Ablauf ist in dem folgenden Diagramm dargestellt:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.7\textwidth]{assets/Ablauf_grafana2.jpg}
+   \includegraphics[width=1\textwidth]{assets/Ablauf_grafana2.jpg}
    \caption[Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung]
    {Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung \\ Quelle: Eigene Quelle und \citep{Grafana_loki}}
    \centering
@@ -37,7 +38,6 @@ Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 
 Die \gls{mitre} Matrix bietet Unternehmen und \gls{SOC}-Teams umfassende Möglichkeiten, um ihre wertvollen Ressourcen zu schützen und ihr Fachwissen im Bereich der \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. In dieser Arbeit konzentrieren wir uns auf die Entwicklung und Implementierung einer Methode zur automatischen Erkennung und Analyse von Angriffstechniken in Grafana.
 
-\newpage
 Das \gls{mitre} Framework besteht aus 14 Taktiken, zu denen jeweils Techniken gehören, die wiederum in Sub-Techniken unterteilt sind. Jede Sub-Technik wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln beschrieben.
 
 \begin{figure}[H]
@@ -84,17 +84,16 @@ In dieser Arbeit beschäftigen wir uns mit der Taktik \quotes{Zugang zu Anmelded
 
 Da unser Ziel hier ist, Grafana zu verwenden, um Angriffe zu erkennen, haben wir uns für einen einfachen und reproduzierbaren Angriff entschieden, der weniger Ressourcen erfordert. In diesem Fall kann ein \gls{bruteforce} mit zwei \glsplural{vm} problemlos durchgeführt werden. Für diesen Angriff verwenden wir die Sub-Technik "Erraten von Anmeldedaten und \textit{\gls{stuffing}}, da sie ähnliche Erkennungsmethoden aufweisen. Andere Maßnahmen schließen wir hierbei aus.
 
-
+\newpage
 Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/T1110.drawio.png}
+   \includegraphics[width=0.7\textwidth]{assets/T1110.drawio.png}
    \caption[Analysestruktur für diese Arbeit \glsplural{Cyberangriff}]
    {Analysestruktur für diese Arbeit \glsplural{Cyberangriff} \\Quelle: Eigene Quelle und \citep{Mitre_t1110}}
    \centering
 \end{figure}
 
-\newpage
 \subsection{Installation und Erstellung von Logdateien}
 In diesem Abschnitt konzentrieren wir uns auf die folgenden Punkte:
 
@@ -110,6 +109,7 @@ Die Installation und Verwendung können entweder über die \glsfirst{GUI} oder �
 \subsubsection{Einrichtung der \glsplural{vm} für Opfersystem und Angreifen}
 Die beiden \glsplural{vm} sind eine vorgebaute \quotes{\gls{kali} \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} in ihren standardmäßigen Einstellungen. Beide Maschinen wurden entsprechend ihrer jeweiligen Dokumentation installiert \citep{kali_vm} und \citep{Ubuntu_server}.
 
+\newpage
 Für das Opfersystem haben wir uns für die Passwörter \quotes{qwertz} und \quotes{password} entschieden. Laut einer Umfrage gehören diese Passwörter zu den zehn am häufigsten verwendeten Passwörtern in Deutschland \citep{silicon_passwort}.
 
 Für die Durchführung des \gls{spraying} haben wir folgende Passwortkombinationen erstellt:
@@ -124,7 +124,6 @@ Für die Durchführung des \gls{spraying} haben wir folgende Passwortkombination
 \end{lstlisting}
 }
 
-\newpage
 \subsubsection{Generierung von Logdateien mit der Angrifsssimulation}
 Für den Angriff verwenden wir folgende Tools:
 
@@ -137,13 +136,14 @@ Für den Angriff verwenden wir folgende Tools:
 
 In diesem Szenario sendet \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche an das Opfersystem, um eine \gls{ssh}-Verbindung herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannte \gls{rockyou}-Datei.
 
+\newpage
 Die folgende Abbildung zeigt, wie das \gls{stuffing} abläuft:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Stuffing.jpg}
-   \caption[\textit{\gls{stuffing}}]
-   {\textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \caption[Darstellung von \textit{\gls{stuffing}}]
+   {Darstellung von \textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
    \centering
 \end{figure}
 
@@ -151,23 +151,24 @@ Die folgende Abbildung zeigt, wie das \gls{stuffing} abläuft:
 %Verbatim
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-   hydra -l [Benutzername] -P rockyou.txt [Opfersystem] ssh -V -t 4
+hydra -l [Benutzername] -P rockyou.txt [Opfersystem] ssh -V -t 4
 
-   # Erklärung
-   -l: Spezifikation des Benutzernamens, den wir angreifen wollen
-   -P: Auswahl der Datei mit bekannten Passwörtern
-   ssh: Auswahl der Anwendung, die wir angreifen wollen
-   -V: Ausführliche Ausgabe über Versuche, Fehler und Erfolg
-   -t 4: Anzahl von gleichzeitigen Verbindungen
+# Erklärung
+-l: Spezifikation des Benutzernamens, den wir angreifen wollen
+-P: Auswahl der Datei mit bekannten Passwörtern
+ssh: Auswahl der Anwendung, die wir angreifen wollen
+-V: Ausführliche Ausgabe über Versuche, Fehler und Erfolg
+-t 4: Anzahl von gleichzeitigen Verbindungen
 \end{Verbatim}
 }
 
+\newpage
 Das folgende Bild zeigt einen Teil der Ausgabe von \gls{hydra} während der Ausführung von \gls{stuffing} gegen das Opfersystem1:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/stuffing_kali.png}
-   \caption[\textit{\gls{stuffing}} gegen Opfersystem1]
-   {\textit{\gls{stuffing}} gegen Opfersystem1\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \caption[Ausführung von \textit{\gls{stuffing}} gegen Opfersystem1]
+   {Ausführung von \textit{\gls{stuffing}} gegen Opfersystem1\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
    \centering
 \end{figure}
 
@@ -175,8 +176,8 @@ Und gegen Opfersystem2:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/stuffing_kali2.png}
-   \caption[\textit{\gls{stuffing}} gegen Opfersystem2]
-   {\textit{\gls{stuffing}} gegen Opfersystem2\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \caption[Ausführung von \textit{\gls{stuffing}} gegen Opfersystem2]
+   {Ausführung von \textit{\gls{stuffing}} gegen Opfersystem2\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
    \centering
 \end{figure}
 
@@ -185,18 +186,18 @@ Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Spraying.jpg}
-   \caption[\textit{\gls{spraying}}]
-   {\textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
+   \caption[Darstellung von \textit{\gls{spraying}}]
+   {Darstellung von \textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
    \centering
 \end{figure}
 
 Für diesen Angriff benutzen wir folgendes Kommando:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-   hydra -L username2.txt -P passwoerter.txt [Opfersystem2] ssh -V -t 4
+hydra -L username2.txt -P passwoerter.txt [Opfersystem2] ssh -V -t 4
 
-   # Erklärung
-   -L: Auswahl der Datei mit gefunden Benutzernamen
+# Erklärung
+-L: Auswahl der Datei mit gefunden Benutzernamen
 \end{Verbatim}
 }
 
