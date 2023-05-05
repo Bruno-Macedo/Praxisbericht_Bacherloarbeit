@@ -32,7 +32,10 @@
 \begin{document}
   \pagenumbering{roman}
   \include{0.1_titelblat}
-  \tableofcontents
+  \begingroup
+  \setstretch{1.5}
+    \tableofcontents
+  \endgroup
   \newpage
   \phantomsection
   \addcontentsline{toc}{section}{Abstract}
@@ -48,9 +51,12 @@
   \clearpage
   \newpage
   \clearpage
-  \begin{singlespacing}
-    \printglossary[type=acronym,title=Abkürzungsverzeichnis,toctitle=Abkürzungsverzeichnis, nonumberlist, nogroupskip]
-  \end{singlespacing}
+  %\begin{singlespacing}
+  {\setstretch{1}
+  \printglossary[type=acronym,title=Abkürzungsverzeichnis,toctitle=Abkürzungsverzeichnis, nonumberlist, nogroupskip]
+  }
+
+ % \end{singlespacing}
   \clearpage
   \pagenumbering{arabic}
   \include{1_Einleitung}
@@ -62,7 +68,7 @@
     \setlength{\bibsep}{4pt}
     \setstretch{1}
     \bibliography{9_Referenzen}
-    \endgroup
+  \endgroup
   \bibliographystyle{apalike}
   \begin{appendices}
     \include{A_OrgGrafana}
