@@ -23,3 +23,5 @@ CMD [ "tail", "-f", "/dev/null" ]
 #  docker exec -it [ID]  /bin/bash
 
 #cp 0_bachelorarbeit.pdf /mnt/c/Users/bruno/Dropbox/Estudos_Avancados/Angewandte_Informatik/Praxissemester_Bachelorarbeit/Macedo_da_Silva_Bruno_Bacherlorarbeit.pdf
+
+#1e92557167b1

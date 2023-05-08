@@ -18,16 +18,15 @@
 \renewcommand{\footrulewidth}{0pt}% No footer rule
 }
 
-\newenvironment{frshaded}{%
-\def\FrameCommand{\fboxrule=\FrameRule\fboxsep=\FrameSep \fcolorbox{framecolor}{shadecolor}}%
-\MakeFramed {\FrameRestore}}%
-{\endMakeFramed}
+% \newenvironment{frshaded}{%
+% \def\FrameCommand{\fboxrule=\FrameRule\fboxsep=\FrameSep \fcolorbox{framecolor}{shadecolor}}%
+% \MakeFramed {\FrameRestore}}%
+% {\endMakeFramed}
 
-
-\newenvironment{frshaded*}{%
-\def\FrameCommand{\fboxrule=\FrameRule\fboxsep=\FrameSep \fcolorbox{framecolor}{shadecolor}}%
-\MakeFramed {\advance\hsize-\width \FrameRestore}}%
-{\endMakeFramed}
+% \newenvironment{frshaded*}{%
+% \def\FrameCommand{\fboxrule=\FrameRule\fboxsep=\FrameSep \fcolorbox{framecolor}{shadecolor}}%
+% \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+% {\endMakeFramed}
 
 \begin{document}
   \pagenumbering{roman}
@@ -62,7 +61,8 @@
   \include{1_Einleitung}
   \include{2_Definition_von_SIEM}
   \include{3_Implementation}
-  \include{4_Fazit}
+  \include{4_Evaluation}
+  \include{5_Fazit}
   %\nocite{*}
   \begingroup
     \setlength{\bibsep}{4pt}
