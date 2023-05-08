@@ -327,20 +327,43 @@ Grafana Loki bietet ein Konfigurationsmuster für die Eingabe und Darstellung vo
    {Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
 
+
+
+% \begin{table}[]
+%    \begin{tabular}{|c|c|}
+%    \hline
+%    sum by(add) (rate({job=\quotes{varlogs}, instance=~\quotes{\$instance}} & Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in LogQL definiert haben. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den Job \quotes{varlogs} beziehen. Wir können auch nach spezifischen Endpoint filtern, indem wir das Schlüsselwort \quotes{instance} benutzen. \\ \hline
+
+%    | &  \\ \hline
+
+%    |= `\textbf{\textcolor{red}{sshd}}[` \\ |= `: \textbf{\textcolor{red}{Failed}}` & \quotes{|} funktioniert in LogQL wie eine Pipeline für die Verkettung von mehreren Suchmustern. \\ \hline
+
+%    !~ `invalid user` \\ !~ `test` !~ `10.0.2.15` & Regular Expression für die Suche nach Zeilen \textbf{ohne} diese Einträge. Wir können beispielsweise Einträge ausschließen, die sich nicht bösartige Nutzer sind, um falsche Positive zu vermeiden \\ \hline
+
+%    | pattern `<_> for <\textbf{\textcolor{blue}{Benutzername}}> from \<\textbf{\textcolor{blue}{QuelleAddress}}\> port <_>` [\$__range])) &  Die Definition der Wörter \quotes{Benutzername} \quote{QuelleAddress} und als \quote{Pattern} dienen dazu, einen Benutzernamen und eine Quelle IP-Adresse aus der Logdatei zu extrahieren. Die Platzhalter \quote{<_>}sind unbenannte Elemente, die in diesem Fall auf die Einträge  \quote{“password”} und Portnummber in der Zeile verweisen.\\ \hline
+%    \end{tabular}
+% \end{table}
+
 %https://grafana.com/docs/loki/latest/fundamentals/labels/
 %https://prometheus.io/docs/concepts/jobs_instances/
 
-Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. \quotes{Jobs} beziehen sich auf die Bearbeitung der Logdateien nach dem spezifizieren Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. 
-Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{Instance} werden in einem \quotes{Job} eingepacjt, wo sie nach den gleichen Regeln verarbeitet. Das folgende Diagramm stellt die Beziehung zwischen dieser beiden Labels dar:
+Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zweil Labels \quotes{Instance} und \quotes{Job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. \quotes{Jobs} beziehen sich auf die Bearbeitung der Logdateien nach dem spezifizieren Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{Instance} werden in einem \quotes{Job} eingepackt, wo sie nach den gleichen Regeln verarbeitet. Das folgende Diagramm stellt die Beziehung zwischen dieser beiden Labels dar:
 
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\textwidth]{assets/Instance_Jobs.drawio.png}
+   \caption[Beziehung zwischen \quotes{Instance} und \quotes{Job}]
+   {Beziehung zwischen \quotes{Instance} und \quotes{Job} \\Quelle: Eigene Quelle und \citep{Prometheus_JobInstance}}
+   \centering
+\end{figure}
 
 
 In dem nächsten Abschnitt beschreiben wir, wie diese Regel in \gls{logql} geschrieben werden.
 
+\newpage
 \subsubsection{Regelsätze in LogQL}
-In diesem Abschnitt fassen wir zusammen, wie eine Abfrage in \gls{logql} für eine Logdatei mit \gls{ssh} Einträge aussieht. Für ausführliche Informationen über den Aufbau der Abfrage empfehlen wir die offizielle Dokumentation, auf die diese Erklärung basiert ist \citep{Grafana_logql}.
+In diesem Abschnitt fassen wir zusammen, wie eine Abfrage in \gls{logql} für eine Logdatei mit \gls{ssh} Einträge aussieht. Für ausführliche Informationen über den Aufbau der Abfrage empfehlen wir die offizielle Dokumentation, auf die diese Erklärung basiert ist \citep{Grafana_logql}. Unsere Logdatei enthält unter anderem folgende Zeile:
 
-Unsere Logdatei enthält unter anderem folgende Zeile:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
 14 14:05:30 opfersystem2 sshd[1698]: Failed password for administrator 
@@ -357,14 +380,28 @@ from \textbf{\textcolor{blue}{10.0.2.15}} port 58036 ssh2
 \end{Verbatim}
 }
 
-\newpage
 Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen: 
-
 \begin{table}[H]
-   \includegraphics[width=\linewidth]{assets/tabelle_logql.png}
+   \includegraphics[width=1\linewidth]{assets/tabelle_logql.png}
    \caption[Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien]
    {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
 \end{table}
+
+% \begin{table}[]
+%    \begin{tabular}{|c|X|}
+%    \hline
+%    % sum by(add) (rate({job=\quotes{varlogs},\\ instance=~\quotes{\$instance}} & Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in LogQL definiert haben. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den Job \quotes{varlogs} beziehen. Wir können auch nach spezifischen Endpoint filtern, indem wir das Schlüsselwort \quotes{instance} benutzen. \\ \hline
+
+%    | &  \\ \hline
+
+%    |= `\textbf{\textcolor{red}{sshd}}[` \\ |= `: \textbf{\textcolor{red}{Failed}}` & \quotes{|} funktioniert in LogQL wie eine Pipeline für die Verkettung von mehreren Suchmustern. \\ \hline
+
+%    !~ `invalid user` \\ !~ `test` !~ `10.0.2.15` & Regular Expression für die Suche nach Zeilen \textbf{ohne} diese Einträge. Wir können beispielsweise Einträge ausschließen, die sich nicht bösartige Nutzer sind, um falsche Positive zu vermeiden \\ \hline
+
+%   % | pattern `<_> for <\textbf{\textcolor{blue}{Benutzername}}> from \<\textbf{\textcolor{blue}{QuelleAddress}}\> port <_>` [\$__range])) &  Die Definition der Wörter \quotes{Benutzername} \quote{QuelleAddress} und als \quote{Pattern} dienen dazu, einen Benutzernamen und eine Quelle IP-Adresse aus der Logdatei zu extrahieren. Die Platzhalter \quote{<_>}sind unbenannte Elemente, die in diesem Fall auf die Einträge  \quote{“password”} und Portnummber in der Zeile verweisen.\\ \hline
+%    \end{tabular}
+% \end{table}
+
 
 
 \textbf{\textcolor{red}{Das sollte verbessert werden}}

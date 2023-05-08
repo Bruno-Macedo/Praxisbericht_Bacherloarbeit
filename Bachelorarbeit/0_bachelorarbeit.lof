@@ -25,11 +25,12 @@
 \contentsline {figure}{\numberline {25}{\ignorespaces Screenshot der Willkommensseite von Grafana Loki}}{31}{figure.caption.35}%
 \contentsline {figure}{\numberline {26}{\ignorespaces Datenfluss zwischen OpenTelemetry und Grafana Loki}}{33}{figure.caption.36}%
 \contentsline {figure}{\numberline {27}{\ignorespaces Allgemeiner Ablauf eines Anmeldungsverfahrens}}{34}{figure.caption.37}%
-\contentsline {figure}{\numberline {28}{\ignorespaces ``Code'' in Grafana Loki für manuelle die Eingabe des \gls {logql}-Codes}}{37}{figure.caption.40}%
-\contentsline {figure}{\numberline {29}{\ignorespaces ``Builder'' in Grafana Loki für nutzerfreundlichere Eingabe des \gls {logql}-Codes.}}{37}{figure.caption.41}%
-\contentsline {figure}{\numberline {30}{\ignorespaces Ausführliche Information über die Abfrage}}{37}{figure.caption.42}%
-\contentsline {figure}{\numberline {31}{\ignorespaces Bearbeitung der \gls {ssh} Logdateien von Grafana Loki}}{38}{figure.caption.43}%
-\contentsline {figure}{\numberline {32}{\ignorespaces Ausführliche Darstellung der \gls {ssh} Logdateien von Grafana Loki}}{39}{figure.caption.44}%
-\contentsline {figure}{\numberline {33}{\ignorespaces E-Mail Warnmeldung von Grafana}}{42}{figure.caption.45}%
-\contentsline {figure}{\numberline {34}{\ignorespaces \gls {KI} in der \glsfirst {CKC}}}{46}{figure.caption.47}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Beziehung zwischen ``Instance'' und ``Job''}}{35}{figure.caption.39}%
+\contentsline {figure}{\numberline {29}{\ignorespaces ``Code'' in Grafana Loki für manuelle die Eingabe des \gls {logql}-Codes}}{37}{figure.caption.41}%
+\contentsline {figure}{\numberline {30}{\ignorespaces ``Builder'' in Grafana Loki für nutzerfreundlichere Eingabe des \gls {logql}-Codes.}}{37}{figure.caption.42}%
+\contentsline {figure}{\numberline {31}{\ignorespaces Ausführliche Information über die Abfrage}}{38}{figure.caption.43}%
+\contentsline {figure}{\numberline {32}{\ignorespaces Bearbeitung der \gls {ssh} Logdateien von Grafana Loki}}{39}{figure.caption.44}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Ausführliche Darstellung der \gls {ssh} Logdateien von Grafana Loki}}{40}{figure.caption.45}%
+\contentsline {figure}{\numberline {34}{\ignorespaces E-Mail Warnmeldung von Grafana}}{43}{figure.caption.46}%
+\contentsline {figure}{\numberline {35}{\ignorespaces \gls {KI} in der \glsfirst {CKC}}}{47}{figure.caption.48}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
