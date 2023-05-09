@@ -6,16 +6,16 @@
 \contentsline {figure}{\numberline {6}{\ignorespaces Allgemeine Informationsfluss von Splunk}}{8}{figure.caption.16}%
 \contentsline {figure}{\numberline {7}{\ignorespaces Integration zwischen den Modulen von Prelude }}{10}{figure.caption.17}%
 \contentsline {figure}{\numberline {8}{\ignorespaces Informationsfluss in Prelude}}{10}{figure.caption.18}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Erweiterte Architektur von Prelude mit der Nutzung von dezentralisierten Datenquellen und Bearbeitung}}{11}{figure.caption.19}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen und Datenverarbeitung}}{11}{figure.caption.19}%
 \contentsline {figure}{\numberline {10}{\ignorespaces Architekturdiagramm von AlienVault \gls {USM}}}{13}{figure.caption.20}%
 \contentsline {figure}{\numberline {11}{\ignorespaces Skalierbare Architektur von FortiSIEM}}{14}{figure.caption.21}%
 \contentsline {figure}{\numberline {12}{\ignorespaces Integration zwischen Elasticsearch, Logstash und Kibana}}{16}{figure.caption.22}%
 \contentsline {figure}{\numberline {13}{\ignorespaces Aufteilung der Funktionalitäten zwischen den Komponenten}}{17}{figure.caption.23}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Integration von Log-Quellen mit Grafana Loki und Promptail}}{18}{figure.caption.24}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Integration von Log-Quellen mit Promptail, Loki und Grafana}}{18}{figure.caption.24}%
 \contentsline {figure}{\numberline {15}{\ignorespaces Aufbau unseres Arbeitslabors}}{20}{figure.caption.25}%
 \contentsline {figure}{\numberline {16}{\ignorespaces Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung}}{21}{figure.caption.26}%
 \contentsline {figure}{\numberline {17}{\ignorespaces Struktur der \gls {mitre} Matrix}}{22}{figure.caption.27}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Analysestruktur für diese Arbeit \glsplural {Cyberangriff}}}{24}{figure.caption.28}%
+\contentsline {figure}{\numberline {18}{\ignorespaces \glsfirst {ttp} für unseren Angriff}}{24}{figure.caption.28}%
 \contentsline {figure}{\numberline {19}{\ignorespaces Darstellung von \textit {\gls {stuffing}}}}{26}{figure.caption.29}%
 \contentsline {figure}{\numberline {20}{\ignorespaces Ausführung von \textit {\gls {stuffing}} gegen Opfersystem1}}{27}{figure.caption.30}%
 \contentsline {figure}{\numberline {21}{\ignorespaces Ausführung von \textit {\gls {stuffing}} gegen Opfersystem2}}{27}{figure.caption.31}%
@@ -25,9 +25,9 @@
 \contentsline {figure}{\numberline {25}{\ignorespaces Screenshot der Willkommensseite von Grafana Loki}}{31}{figure.caption.35}%
 \contentsline {figure}{\numberline {26}{\ignorespaces Datenfluss zwischen OpenTelemetry und Grafana Loki}}{33}{figure.caption.36}%
 \contentsline {figure}{\numberline {27}{\ignorespaces Allgemeiner Ablauf eines Anmeldungsverfahrens}}{34}{figure.caption.37}%
-\contentsline {figure}{\numberline {28}{\ignorespaces Beziehung zwischen ``Instance'' und ``Job''}}{35}{figure.caption.39}%
-\contentsline {figure}{\numberline {29}{\ignorespaces ``Code'' in Grafana Loki für manuelle die Eingabe des \gls {logql}-Codes}}{37}{figure.caption.41}%
-\contentsline {figure}{\numberline {30}{\ignorespaces ``Builder'' in Grafana Loki für nutzerfreundlichere Eingabe des \gls {logql}-Codes.}}{37}{figure.caption.42}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Beziehung zwischen \glqq Instance\grqq {} und \glqq Job\grqq {}}}{35}{figure.caption.39}%
+\contentsline {figure}{\numberline {29}{\ignorespaces \glqq Code\grqq {} in Grafana Loki für manuelle die Eingabe des \gls {logql}-Codes}}{37}{figure.caption.41}%
+\contentsline {figure}{\numberline {30}{\ignorespaces \glqq Builder\grqq {} in Grafana Loki für nutzerfreundlichere Eingabe des \gls {logql}-Codes.}}{37}{figure.caption.42}%
 \contentsline {figure}{\numberline {31}{\ignorespaces Ausführliche Information über die Abfrage}}{38}{figure.caption.43}%
 \contentsline {figure}{\numberline {32}{\ignorespaces Bearbeitung der \gls {ssh} Logdateien von Grafana Loki}}{39}{figure.caption.44}%
 \contentsline {figure}{\numberline {33}{\ignorespaces Ausführliche Darstellung der \gls {ssh} Logdateien von Grafana Loki}}{40}{figure.caption.45}%

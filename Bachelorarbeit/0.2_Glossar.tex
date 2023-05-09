@@ -19,7 +19,7 @@
 
 \newglossaryentry{bruteforce} {
     name={Brute-Force Angriffe},
-    description={systematische Versuche, Credentials oder andere sensible Daten zu erraten, indem verschiedene Buchstaben, Ziffern und Symbole kombiniert werde \citep{Sowmya_BruteForce}}}
+    description={systematische Versuche, Zugangsdaten oder andere sensible Daten zu erraten, indem verschiedene Buchstaben, Ziffern und Symbole kombiniert werde \citep{Sowmya_BruteForce}}}
 
 \newglossaryentry{BSI}{
     type=\acronymtype,
@@ -31,7 +31,7 @@
 \newglossaryentry{container} {
     name={Container},
     plural={Containers},
-    description={funktionieren ähnlich wie virtuelle Maschinen (VMs), jedoch werden Container auf der Ebene der Betriebssystemvirtualisierung erstellt und ausgeführt, während VMs eine komplette virtuelle Hardwareumgebung emulieren. Container werden oft für einzelne Anwendungen verwendet und teilen Ressourcen wie den Kernel des Host-Betriebssystems. Jeder Container ist in einer isolierten Umgebung mit den notwendigen Ressourcen für den Betrieb der ausgewählten Anwendung. Docker ist eine der bekanntesten Plattformen zur Verwaltung von Containern \citep{Douglis_Container}}}
+    description={funktionieren ähnlich wie virtuelle Maschinen (VMs), jedoch sind Container Anwendungen mit den notwendigen Ressourcen, um eingepackte Anwendungen auszuführen. Container werden oft für einzelne verwendet und teilen Ressourcen wie den Kernel des Host-Betriebssystems. Jeder Container ist in einer isolierten Umgebung mit den notwendigen Ressourcen für den Betrieb der ausgewählten Anwendung. Docker ist eine der bekanntesten Plattformen zur Verwaltung von Containern \citep{Douglis_Container}}}
 
 \newglossaryentry{cortex} {
     name={Cortex},
@@ -41,7 +41,7 @@
 \newglossaryentry{Cyberangriff} {
     name={Cyberangriff},
     plural={Cyberangriffe},
-    description={Angriffe, die über Cyberspace stattfinden. Solche Angriffe zielen darauf ab, Unternehmen und ihre Infrastrukturen zu zerstören, zu lähmen, zu kontrollieren oder die Integrität ihrer Daten zu stehlen oder zu manipulieren \citep{NIST_Definitions}}}
+    description={Angriffe über Cyberspace. Solche Angriffe zielen darauf ab, Unternehmen und ihre Infrastrukturen zu zerstören, zu lähmen, zu kontrollieren oder die Integrität ihrer Daten zu stehlen oder zu manipulieren \citep{NIST_CyberAttack}}}
 
 % here goes to the description
 \newglossaryentry{CIA2}{
@@ -58,22 +58,36 @@
 % =====
 
 % here goes to the description
+\newglossaryentry{ttp2}{
+    name=\glslink{ttp}{Taktiken, Techniken, Prozeduren (\gls{ttp})},
+    description={beschreiben in der Mittre ATT\&CK Matrix Verhalten, Methode un Mustern bei Cyberangriffe \citep{Maymi_ttp}}}
+
+% here goes to the acronym
+\newglossaryentry{ttp}{
+    type=\acronymtype,
+    name=TTP,
+    first={Taktiken, Techniken, Prozeduren (TTP)\glsadd{ttp2}},
+    see=[Glossary:]{\gls{ttp2}}, 
+    description=\glslink{ttp2}{Taktiken, Techniken, Prozeduren}}
+% =====
+
+% here goes to the description
 \newglossaryentry{CKC2}{
-    name=\glslink{CKC}{Cyber Kill Chain\textregistered (\gls{CKC})},
+    name=\glslink{CKC}{Cyber Kill Chain (\gls{CKC})},
     description={auch \textit{Cyberattack Lifecycle} genannt, bezieht sich auf ein Sicherheitsmodell für die Identifizierung, Analyse und Unterbrechung von fortgeschrittenen Cyberangriffen. Dieses Modell hat sieben festgelegte Phasen: \textit{Reconnaissance}, \textit{Weaponization}, \textit{Delivery}, \textit{Exploitation}, \textit{Installation}, \textit{Command \& Control (C2)} und \textit{Actions on Objectives} } \citep{Martin_CyberKillChain}}
 
 % here goes to the acronym
 \newglossaryentry{CKC}{
     type=\acronymtype,
-    name=CKC\textregistered,
-    first={Cyber Kill Chain (CKC\textregistered)\glsadd{CKC2}},
+    name=CKC,
+    first={Cyber Kill Chain (CKC)\glsadd{CKC2}},
     see=[Glossary:]{\gls{CKC2}}, 
     description=\glslink{CKC2}{Cyber Kill Chain}}
 % =====
 
 \newglossaryentry{Cybersicherheit} {
     name={Cybersicherheit},
-    description={ - Diese Domäne umfasst Kenntnisse und Methoden für den Schutz, die Prävention und Wiederherstellung von elektronischen Kommunikationsmitteln und deren Inhalten. Dabei konzentriert sie sich auf deren Verfügbarkeit, Integrität, Authentizität, Vertraulichkeit und Verbindlichkeit. \citep{NIST_Definitions}}}
+    description={ - Diese Domäne umfasst Kenntnisse und Methoden für den Schutz, die Prävention und Wiederherstellung von elektronischen Kommunikationsmitteln und deren Inhalten. Dabei konzentriert sie sich auf deren Verfügbarkeit, Integrität, Authentizität, Vertraulichkeit und Nichtabstreitbarkeit. \citep{NIST_CyberAttack}}}
 
 \newglossaryentry{Endpoint} {
     name={Endpoint},
@@ -83,7 +97,7 @@
 \newglossaryentry{hash} {
     name={Hashwerte},
     plural={Hashwerte},
-    description={sind Zeichenfolgen, die durch Anwenden einer mathematischen Funktion (Hashfunktion) auf einen Text oder eine Datei erzeugt werden. Die Rückführung auf das ursprüngliche Objekt aus dem Hashwert sollte jedoch schwierig sein \citep{Wendzel_IS}}}
+    description={sind Zeichenfolgen, die durch Anwenden einer mathematischen Funktion (Hashfunktion) auf einen Text oder eine Datei erzeugt werden. Die Rückführung auf das ursprüngliche Objekt aus dem Hashwert sollte jedoch unmöglich sein \citep{Wendzel_IS}}}
 
 % here goes to the description
 \newglossaryentry{http2}{
@@ -114,12 +128,12 @@
 
 \newglossaryentry{falsch positiv} {
     name={Falsch Positiv},
-    description={ist eine aus einer fehlerhaften erkannten Verwundbarkeit Warnmeldung \citep{NIST_Definitions}}}
+    description={ist eine Warnmeldung einer nicht vorhandenen Verwundbarkeit \citep{NIST_FP}}}
 
 %===========
 \newglossaryentry{GUI2}{
     name=\glslink{GUI}{grafische Benutzeroberfläche (\gls{GUI})},
-    description={ - Es handelt sich dabei um eine visuelle Schnittstelle, die es dem Benutzer ermöglicht, mit Anwendungen mittels Symbolen und grafischen Elementen zu interagieren. Im Gegensatz dazu verwendet die textbasierte Benutzeroberfläche (CLI) Befehlszeilen und Texteingabe zur Steuerung von Anwendungen. Die Verwendung von GUIs hat die Benutzerfreundlichkeit von Anwendungen erhöht und sie für eine breitere Zielgruppe zugänglich gemacht \citep{Fu_GUI}}}
+    description={ - Es handelt sich dabei um eine visuelle Schnittstelle, die es dem Benutzer ermöglicht, mit Anwendungen mittels Symbolen und grafischen Elementen zu interagieren. Im Gegensatz dazu verwendet die textbasierte Benutzeroberfläche (CLI) Befehlszeilen und Texteingabe zur Steuerung von Anwendungen \citep{Fu_GUI}}}
 
 % here goes to the acronym
 \newglossaryentry{GUI}{
@@ -146,7 +160,7 @@
 
 \newglossaryentry{hydra} {
     name={Hydra},
-    description={ist eine in Kali Native Open Source Tool für die Entdeckung von Anmeldedaten \citep{kali_hydra}}}
+    description={ist eine Open Source Tool für Brute-Force Angriffe \citep{kali_hydra}}}
 
 %=====
 \newglossaryentry{HIPAA2}{
@@ -168,7 +182,7 @@
 % here goes to the description
 \newglossaryentry{KI2}{
     name=\glslink{KI}{Künstliche Intelligenz (\gls{KI})},
-    description={bezieht sich darauf, dass Maschinen in der Lage sind, menschenähnliche kognitive Fähigkeiten wie Verständnis, Entscheidungsfindung, Lernen und Problemlösung zu entwickeln \citep{Collins_KI}}}
+    description={bezeichnet die Fähigkeit, Maschinen menschenähnliche kognitive Fähigkeiten wie Verständnis, Entscheidungsfindung, Lernen und Problemlösung zu entwickeln \citep{Collins_KI}}}
 % here goes to the acronym
 \newglossaryentry{KI}{
     type=\acronymtype,
@@ -184,7 +198,7 @@
 % here goes to the description
 \newglossaryentry{mfa2}{
     name=\glslink{mfa}{Multi-Faktor-Authentisierung (\gls{mfa})},
-    description={bezeichnet ein Authentifizierungsverfahren, bei dem mindestens zwei unabhängige Komponenten zur Identitätsprüfung verwendet werden, um eine höhere Sicherheit zu gewährleisten. Zum Beispiel kann ein Benutzer aufgefordert werden, sich mit einem Passwort und einem Fingerabdruck oder einem Token und einer Gesichtserkennung zu authentifizieren \citep{Ibrokhimov_MFA}}}
+    description={bezeichnet ein Authentifizierungsverfahren, bei dem mindestens zwei unabhängige Komponenten zur Identitätsprüfung verwendet werden, um eine höhere Sicherheit zu gewährleisten. Zum Beispiel kann ein Benutzer aufgefordert werden, sich mit einem Passwort und einem Fingerabdruck oder einem Token und/oder einer Gesichtserkennung zu authentifizieren \citep{Ibrokhimov_MFA}}}
 
 % here goes to the acronym
 \newglossaryentry{mfa}{
@@ -199,7 +213,7 @@
 %=====
 \newglossaryentry{ML2}{
     name=\glslink{ML}{Machine Learning (\gls{ML})},
-    description={bezieht sich auf die Fähigkeit von Systemen, automatisch Probleme zu lösen und spezifische Aufgabe zu erledigen mithilfe von Datenbeziehung und Bearbeitung \citep{Janiesch_ML}}}
+    description={bezieht sich auf die Fähigkeit von Systemen, automatisch und menschenähnlich Probleme zu lösen und spezifische Aufgabe zu erledigen \citep{Janiesch_ML}}}
 
 \newglossaryentry{ML}{
     type=\acronymtype,
@@ -210,7 +224,7 @@
 % =====
 
 \newglossaryentry{mitre} {
-    name={Mitre ATT\&CK\textregistered},
+    name={Mitre ATT\&CK},
     description={Abkürzung für \textit{Adversarial Tactics, Techniques and Common Knowledge}. Es bezieht sich auf eine weltweit zugängliche Wissensbasis mit detaillierter Beschreibung, Klassifizierung und Bekämpfung von verschiedenen Angriffstechniken \citep{Mitre_Definition}}}
 
 \newglossaryentry{mimir} {
@@ -221,7 +235,7 @@
 %=====
 \newglossaryentry{NIST2}{
     name=\glslink{NIST}{National Institute of Standards and Technology (\gls{NIST})},
-    description={ist eine US-Behörde, die für die Regelungen, Vereinheitlichung und Weiterentwicklung im Bereich Informationstechnologie zuständig ist \citep{NIST_AboutNist}}}
+    description={ist eine US-Behörde, die für die Regelungen, Vereinheitlichung und Weiterentwicklung von Standards im Bereich Informationstechnologie zuständig ist \citep{NIST_AboutNist}}}
 
 \newglossaryentry{NIST}{
     type=\acronymtype,
@@ -247,7 +261,7 @@
 
 \newglossaryentry{opensource} {
     name={Open Source},
-    description={beschreibt einen Code, an den jeder zugreifen, modifizieren und verbreiten kann, ohne dafür Lizenzen bezahlen zu müssen \citep{OpenSource_Def}}}
+    description={beschreibt Software, die folgende Voraussetzungen erfüllen: freie Verteilung, Kopierung, Modifizierung und Nutzung und keine Diskriminierung gegenüber Personen und/oder Gruppe \citep{OpenSource_Def}}}
 
 \newglossaryentry{OSSIM}{
     type=\acronymtype,
@@ -258,11 +272,11 @@
 
 \newglossaryentry{spraying} {
     name={Password Spraying},
-    description={ist ein Angriff gegen Anmeldedaten, indem mögliche Passwörter gegen verschiedenen viele Benutzername verwendet werden. Das Ziel dieses Angriffes ist eine Kontosperrung zu vermeiden, indem wenige Versuche pro Nutzer stattfindet \citep{Swathi_spraxy}}}
+    description={ist ein Angriff gegen Anmeldedaten, indem mögliche Passwörter gegen verschiedenen viele Benutzernamen verwendet werden. Das Ziel dieses Angriffes ist eine Kontosperrung zu vermeiden, indem wenige Versuche pro Nutzer stattfindet \citep{Swathi_spraxy}}}
 
 \newglossaryentry{stuffing} {
     name={Password Stuffing},
-    description={ist ein Angriff gegen Passwörtern, indem schon bekannte Anmeldedaten von vorherigen Angriffen verwendet werden. Dieser Angriff basiert sich auf die Idee, dass Nutzer dasselbe Passwort für verschiedenen Systemen verwenden \citep{Nguyen_stuffing}}}
+    description={ist ein Angriff gegen Passwörtern, indem bekannte Anmeldedaten von vorherigen Angriffen verwendet werden. Dieser Angriff basiert sich auf die Idee, dass Nutzer dasselbe Passwort für verschiedenen Systemen verwenden \citep{Nguyen_stuffing}}}
     
 %=====
 \newglossaryentry{PCIDSS2}{
@@ -279,7 +293,7 @@
 
 \newglossaryentry{polyphomicMalware} {
     name={Polymorphe Malware},
-    description={sind Schadprogramme, deren Erkennungsregeln sich an die Umgebung anpassen, um nicht von Anti-Malware-Systemen erkannt zu werden \citep{Syuhada_Polymorphic}}   
+    description={sind Schadprogramme, deren Signatur sich ständig ändern, um nicht von Anti-Malware-Systemen erkannt zu werden \citep{Syuhada_Polymorphic}}   
     }
 
 %=====
@@ -297,16 +311,16 @@
 
 %=====
 \newglossaryentry{owasp2}{
-    name=\glslink{owasp}{Open Web Application Security Project\textregistered (\gls{owasp})},
+    name=\glslink{owasp}{Open Web Application Security Project (\gls{owasp})},
     description={ist eine Non-Profit-Organisation, die sich auf die Gewährleistung der Sicherheit im Umgang mit Webanwendungen konzentriert. Die Organisation verbreitet Open-Source-Informationen über sichere Entwicklung, Dokumentation, Best Practices für sicheren Umgang im Internet und Bildung \citep{owasp}}
 }
 
 \newglossaryentry{owasp}{
     type=\acronymtype,
-    name=owasp\textregistered,
-    first={Open Web Application Security Project\textregistered (OWASP\textregistered)\glsadd{owasp}},
+    name=owasp,
+    first={Open Web Application Security Project (OWASP)\glsadd{owasp}},
     see=[Glossary:]{\gls{owasp2}}, 
-    description=\glslink{owasp2}{Open Web Application Security Project\textregistered}
+    description=\glslink{owasp2}{Open Web Application Security Project}
 }
 %=====
 
@@ -318,14 +332,15 @@
 \newglossaryentry{port} {
     name={Port},
     plural={Ports},
-    description={ist eine numerische Identifikation eines Dienstes oder einer Verbindung. Es handelt sich um eine logische Adressierung, die zur Identifikation eines oder mehrerer Prozesse verwendet wird \citep{Tanembaum_CN}}}
+    description={ist eine numerische Identifikation eines Dienstes oder einer Verbindung. Es handelt sich um eine logische Adressierung, die zur Identifikation eines oder mehrerer Prozesse verwendet wird \citep{Tanenbaum_CN}}}
 
 \newglossaryentry{prometheus} {
     name={Prometheus},
     description={ist ein Open-Source-Tool der Firma SoundCloud. Es dient der Überwachung und Erstellung von Warnmeldungen, die auf der Grundlage von vordefinierten Regeln konfiguriert werden \citep{Prometheus_doc}}}
 
 \newglossaryentry{Proprietary} {
-    name={Proprietary},
+    name={Proprietär},
+    plural={Proprietäre},
     description={bezieht sich auf Software, die einer Firma oder Person gehört. Für die Nutzung ist in der Regel der Kauf einer Lizenz erforderlich. In diesem Fall haben Kunden nur begrenzten oder keinen Zugriff auf den Quellcode \citep{Nexcess_P}}}
 
 %=====
@@ -402,12 +417,12 @@
 
 \newglossaryentry{ubuntu} {
     name={Ubuntu},
-    description={ist eine Open Source Linux-Distribution, die oft für Servers, Desktops und Internet of Things (IoT) verwendet wird \citep{Ubuntu_ubuntu}}}
+    description={ist eine Linux-Distribution, die oft für Server, Clients und Internet of Things (IoT) verwendet wird \citep{Ubuntu_ubuntu}}}
 
 \newglossaryentry{usecases} {
     name={Use Cases},
     plural={Uses Cases},
-    description={Use Cases beschreiben die Interaktionen zwischen Systemen und Benutzern. Sie dienen der Anforderungserhebung für ein System \citep{Savic_UseCase}}}
+    description={sind narrative Beschreibungen der Interaktionen zwischen Systemen und Benutzern. Sie dienen der Anforderungserhebung für ein System \citep{Savic_UseCase}}}
 
 \newglossaryentry{USM}{
     type=\acronymtype,
@@ -423,8 +438,8 @@
 
 %=====
 \newglossaryentry{vm2}{
-    name=\glslink{vm}{virtuelle Maschine (\gls{vm})},
-    description={ist eine Kopie der Hardware-Struktur mit einer eigenen Aufteilung von Ressourcen und einem eigenen Betriebssystem. Auf einer physischen Maschine, auch Host genannt, können mehrere solcher VMs ausgeführt werden. Sie emulieren ein echtes und unabhängiges System \citep{Tanembaum_MBS}}}
+    name=\glslink{vm}{Virtuelle Maschine (\gls{vm})},
+    description={ist eine Kopie der Hardware-Struktur mit einer eigenen Aufteilung von Ressourcen und einem eigenen Betriebssystem. Auf einer physischen Maschine, auch Host genannt, können mehrere solcher VMs ausgeführt werden. Sie emulieren ein echtes und unabhängiges System \citep{Tanenbaum_MBS}}}
 
 \newglossaryentry{vm}{
     type=\acronymtype,
@@ -438,7 +453,7 @@
 \newglossaryentry{webhook} {
     name={Webhook},
     plural={Webhooks},
-    description={Webhooks funktionieren ähnlich wie APIs, ohne dass die Client-Seite ständig nach Aktualisierungen fragen muss. Bei Webhooks sendet der Server die Aktualisierung, sobald sie verfügbar ist. Die Kommunikation findet in Echtzeit statt \citep{Tas_webhook}}}
+    description={Webhooks funktionieren ähnlich wie APIs, ohne dass die Client-Seite nach Aktualisierungen fragen muss. Bei Webhooks sendet der Server die Aktualisierung, sobald sie verfügbar ist. Die Kommunikation findet in Echtzeit statt \citep{Tas_webhook}}}
 
 
 

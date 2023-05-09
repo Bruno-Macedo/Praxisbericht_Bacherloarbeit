@@ -16,7 +16,7 @@ Die folgende Abbildung stellt didaktisch eine allgemeine Struktur von \gls{SIEM}
    \centering
    \includegraphics[width=0.55\textwidth]{assets/2_p1.png}
    \caption[Allgemeine Struktur von \gls{SIEM}]
-   {Allgemeine Struktur von \gls{SIEM}\\Quelle: \citep{Mohanan_What} }
+   {Allgemeine Struktur eines \gls{SIEM}\\Quelle: \citep{Mohanan_What} }
    \label{fig:SIEM_Allg_Struktur}
    \centering
 \end{figure}
@@ -28,7 +28,7 @@ Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisie
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p2.png}
    \caption[Allgemeine Informationsfluss von \gls{SIEM}]
-   {Allgemeine Informationsfluss von \gls{SIEM} \\Quelle: \citep{Granadillo_SIEM} }
+   {Allgemeine Informationsfluss eines \gls{SIEM} \\Quelle: \citep{Granadillo_SIEM} }
    \label{fig:SIEM_Allg_Informationsfluss}
    \centering
 \end{figure}
@@ -64,7 +64,7 @@ Die existierenden \glsplural{SIEM} und Log-Analyse-Tools können in zwei Kategor
    \item Prelude %(nein)
    \item AlienVault \glsfirst{OSSIM} %(nein)
    \item FortiSIEM %(nein)
-   \item ELK-Stack %(nein)
+   \item Elastic Stack %(nein)
    \item Grafana %(ja)
 \end{itemize}
 
@@ -138,8 +138,8 @@ In einer dezentralisierten Umgebung werden Daten von verschiedenen und getrennte
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p5.png}
-   \caption[Erweiterte Architektur von Prelude mit der Nutzung von dezentralisierten Datenquellen und Bearbeitung]
-   {Erweiterte Architektur von Prelude mit der Nutzung von dezentralisierten Datenquellen und Bearbeitung\\Quelle: \citep{Prelude_MU} }
+   \caption[Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen und Datenverarbeitung]
+   {Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen Datenverarbeitung\\Quelle: \citep{Prelude_MU} }
    \centering
 \end{figure}
 
@@ -148,16 +148,16 @@ Die wissenschaftliche Literatur über Prelude ist sehr eingeschränkt. Wenige Pu
 \begin{itemize}[noitemsep]
    \item \textbf{technische Kriterien}
    \begin{itemize}[noitemsep]
-      \item \textit{Real-time performance}, 
-      \item \textit{Range and flexibility of reporting}
-      \item \textit{Alert correlation}
+      \item Echtzeige Leistung\textit{Real-time performance}, 
+      \item Umfang und Flexibilität der Meldungen \textit{Range and flexibility of reporting}
+      \item Zusammenhang von Warnmeldung \textit{Alert correlation}
    \end{itemize}
 
    \item \textbf{nutzerfreundliche Kriterien}
    \begin{itemize}[noitemsep]
-      \item \textit{Documentation comprehensiveness}
-      \item \textit{Complexity of the installation process}
-      \item \textit{Complexity of the system configuration}
+      \item Vollständige Dokumentation \textit{Documentation comprehensiveness}
+      \item Komplexität der Installation \textit{Complexity of the installation process}
+      \item Komplexität der Einstellung \textit{Complexity of the system configuration}
    \end{itemize}
 \end{itemize}
 
@@ -211,12 +211,12 @@ Auch zu dieser \gls{SIEM}-Lösung ist die wissenschaftliche Produktion eingeschr
    \item Datenauswertung
 \end{itemize}
 
-\subsubsection{ELK-Stack}
-ELK Stack stammt aus der Verbindung von drei Tools: Elasticsearch, Logstash und Kibana. Das Erste ist eine Such-und Analyse-Maschine. Das Zweite ist eine serverseitige Anwendung zur Datenverarbeitung und -Weiterleitung. Schließlich Kibana \label{kibana} ist dafür zuständig, visuelle Darstellungen in einem Grafik-Format auszugeben (packt, 2019). Von diesen drei Tools Logstasch ist der einzige \gls{opensource} \citep{elastic_OSI}. Obwohl die anderen zwei 
+\subsubsection{Elastic Stack}
+Elastic Stack stammt aus der Verbindung von drei Tools: Elasticsearch, Logstash und Kibana. Das Erste ist eine Such-und Analyse-Maschine. Das Zweite ist eine serverseitige Anwendung zur Datenverarbeitung und -Weiterleitung. Schließlich Kibana \label{kibana} ist dafür zuständig, visuelle Darstellungen in einem Grafik-Format auszugeben (packt, 2019). Von diesen drei Tools Logstasch ist der einzige \gls{opensource} \citep{elastic_OSI}. Obwohl die anderen zwei 
 kostenlos verwendet werden können, gehören sie nicht zu der \gls{opensource} Kategorie \citep{OpenSource_Def}. Dieses Tool besitzt viele Eigenschaften einer \gls{SIEM}-Lösung und wird von vielen SOC verwendet, ist aber für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungssystem, Daten Zusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren. 
 
 \newpage
-Das folgende Diagramm stellt die Architektur von ELK Stack mit ihren integrierten Elementen dar:
+Das folgende Diagramm stellt die Architektur von Elastic Stack mit ihren integrierten Elementen dar:
 
 \begin{figure}[H]
    \centering
@@ -228,9 +228,9 @@ Das folgende Diagramm stellt die Architektur von ELK Stack mit ihren integrierte
 
 Die Beats auf dem Bild sind an der \glsplural{Endpoint} installiert und leiten Daten entweder zu Elasticsearch oder zu Logstash weiter, wo sie schließlich bearbeitet werden \citep{Jain_LMELK}. 
 
-Ein Teil der wissenschaftlichen Literatur zeigt die Log Analyse-Funktionalitäten von ELK Stack und die Unterstützung bei Normalisierung und Indexierung von Daten für eine lesbare Ausgabe \citep{Advani_elkstakc}. Die starke Skalierbarkeit wurde auch bei einer Studie erwähnt, wo ELK Stack für Wi-Fi Logging eingesetzt wurde \citep{Wang_elkwifi}. 
+Ein Teil der wissenschaftlichen Literatur zeigt die Log Analyse-Funktionalitäten von Elastic Stack und die Unterstützung bei Normalisierung und Indexierung von Daten für eine lesbare Ausgabe \citep{Advani_elkstakc}. Die starke Skalierbarkeit wurde auch bei einer Studie erwähnt, wo Elastic Stack für Wi-Fi Logging eingesetzt wurde \citep{Wang_elkwifi}. 
 
-Die offizielle Dokumentation von ELK Stack betont, dass die Anwendung folgende Funktionalitäten besitzt \citep{elastic_docs}: 
+Die offizielle Dokumentation von Elastic Stack betont, dass die Anwendung folgende Funktionalitäten besitzt \citep{elastic_docs}: 
 
 \begin{itemize}[noitemsep]
    \item Datensuche, -Normalisierung, -Analyse und 
@@ -238,7 +238,7 @@ Die offizielle Dokumentation von ELK Stack betont, dass die Anwendung folgende F
    \item visuelle Ausgabe
 \end{itemize}
 
-Folgendes Diagramm aus der offiziellen Dokumentation zeigt die Aufteilung der Funktionalitäten pro Element von ELK Stack:
+Folgendes Diagramm aus der offiziellen Dokumentation zeigt die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
 
 \begin{figure}[H]
    \centering
@@ -248,7 +248,7 @@ Folgendes Diagramm aus der offiziellen Dokumentation zeigt die Aufteilung der Fu
    \centering
 \end{figure}
 
-Die wissenschaftliche Publikation über ELK-Stack ist vielfältiger als bei anderen recherchierten Tools. Es ist aber wichtig zu betonen, dass die Mehrheit von denen sich eher mit dem Logging als mit den \gls{SIEM}-Eigenschaften der Anwendung beschäftigt.
+Die wissenschaftliche Publikation über Elastic Stack ist vielfältiger als bei anderen recherchierten Tools. Es ist aber wichtig zu betonen, dass die Mehrheit von denen sich eher mit dem Logging als mit den \gls{SIEM}-Eigenschaften der Anwendung beschäftigt.
 
 \subsubsection{Grafana}
 Von allen recherchierten Lösungen ist Grafana die Einzige, die nicht als \gls{SIEM} dargestellt ist. Grafana wird aber als Plattform für Visualisierung von Daten beschrieben. Mit dem Tool ist es möglich eine Graphik zu erstellen und Meldungen zu definieren. Das Ziel der Anwendung ist, Information in einer einfachen und verständlichen Art und Weise zur Verfügung zu stellen \citep{redhat_grafana}.  
@@ -262,8 +262,8 @@ Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail is
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p10.png}
-   \caption[Integration von Log-Quellen mit Grafana Loki und Promptail]
-   {Integration von verschiedenen Log-Quellen mit Grafana Loki und Promptail \\Quelle: \citep{Grafana_Logs}}
+   \caption[Integration von Log-Quellen mit Promptail, Loki und Grafana]
+   {Integration von Log-Quellen mit Promptail (links), Loki (mitte) und Grafana (rechts) \\Quelle: \citep{Grafana_Logs}}
    \centering
 \end{figure}
 

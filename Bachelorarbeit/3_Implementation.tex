@@ -1,4 +1,4 @@
-\section{Implementation}
+\section{Implementierung}
 In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um \gls{Cyberangriff} mithilfe der \gls{mitre} Matrix zu erkennen. Das Arbeitslabor wird mit \gls{container} und \glsfirst{vm} aufgebaut, wie im Diagramm in der folgenden Abbildung dargestellt.
 
 \begin{figure}[H]
@@ -22,8 +22,8 @@ Der gezielte Ablauf ist in dem folgenden Diagramm dargestellt:
    \centering
 \end{figure}
 
-\subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix\textregistered}
-Es gibt verschiedene Methoden und Frameworks zur Vermeidung, Erkennung und Unterbrechung von \glsplural{Cyberangriff}. Zu den Beispielen gehören das \glsfirst{owasp}, das \glsfirst{CKC}und die \gls{mitre} Matrix, die von \gls{SOC}-Teams verwendet werden, um die Sicherheit von Systemen und/oder Netzwerken zu gewährleisten. Da sich die Richtlinien und Schwerpunkte dieser Frameworks unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, haben wir uns entschieden, die \gls{mitre} Matrix zur Erkennung von \glsplural{Cyberangriff} anzuwenden, insbesondere da dieses Framework auch in Splunk integriert ist.
+\subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix}
+Es gibt verschiedene Methoden und Frameworks zur Vermeidung, Erkennung und Unterbrechung von \glsplural{Cyberangriff}. Zu den Beispielen gehören das \glsfirst{owasp}, das \glsfirst{CKC}und die \gls{mitre} Matrix, die von \gls{SOC}-Teams verwendet werden, um die Sicherheit von Systemen und/oder Netzwerken zu gewährleisten. Da sich die Richtlinien und Schwerpunkte dieser Frameworks unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, haben wir uns entschieden, die \gls{mitre} Matrix zur Erkennung von \glsplural{Cyberangriff} anzuwenden, insbesondere da dieses Framework auch in Splunk integriert ist. Die \gls{mitre} Matrix ist auf \glsfirst{ttp} basiert. Angriffe, Gegenmaßnahmen und Erkennung werden nach \gls{ttp} definiert.
 
 Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 
@@ -36,7 +36,7 @@ Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 \end{itemize}
 }
 
-Die \gls{mitre} Matrix bietet Unternehmen und \gls{SOC}-Teams umfassende Möglichkeiten, um ihre wertvollen Ressourcen zu schützen und ihr Fachwissen im Bereich der \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. In dieser Arbeit konzentrieren wir uns auf die Entwicklung und Implementierung einer Methode zur automatischen Erkennung und Analyse von Angriffstechniken in Grafana.
+Die Matrix bietet Unternehmen und \gls{SOC}-Teams umfassende Möglichkeiten, um ihre wertvollen Ressourcen zu schützen und ihr Fachwissen im Bereich der \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. In dieser Arbeit konzentrieren wir uns auf die Entwicklung und Implementierung einer Methode zur automatischen Erkennung und Analyse von Angriffstechniken in Grafana.
 
 Das \gls{mitre} Framework besteht aus 14 Taktiken, zu denen jeweils Techniken gehören, die wiederum in Sub-Techniken unterteilt sind. Jede Sub-Technik wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln beschrieben.
 
@@ -85,12 +85,12 @@ In dieser Arbeit beschäftigen wir uns mit der Taktik \quotes{Zugang zu Anmelded
 Da unser Ziel hier ist, Grafana zu verwenden, um Angriffe zu erkennen, haben wir uns für einen einfachen und reproduzierbaren Angriff entschieden, der wenige Ressourcen erfordert. In diesem Fall kann ein \gls{bruteforce} mit zwei \glsplural{vm} problemlos durchgeführt werden. Für diesen Angriff verwenden wir die Sub-Technik "Erraten von Anmeldedaten und \textit{\gls{stuffing}}, da sie ähnliche Erkennungsmethoden aufweisen. Andere Maßnahmen schließen wir hierbei aus.
 
 \newpage
-Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs:
+Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs mithifel von \gls{mitre}:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/T1110.drawio.png}
-   \caption[Analysestruktur für diese Arbeit \glsplural{Cyberangriff}]
-   {Analysestruktur für diese Arbeit \glsplural{Cyberangriff} \\Quelle: Eigene Quelle und \citep{Mitre_t1110}}
+   \caption[\glsfirst{ttp} für unseren Angriff]
+   {\glsfirst{ttp} für unseren Angriff \\Quelle: Eigene Quelle und \citep{Mitre_t1110}}
    \centering
 \end{figure}
 
@@ -99,7 +99,7 @@ In diesem Abschnitt konzentrieren wir uns auf die folgenden Punkte:
 
 \begin{enumerate}[noitemsep]
    \item Einrichtung von \glsplural{vm} für das Opfersystem und den Angreifer
-   \item Simulation des Angriffs zur Erzeugung von Logdateien
+   \item Simulation des Angriffe zur Erzeugung von Logdateien
    \item Installation und Konfiguration von Grafana Loki und Promtail mit \gls{container}
    \item Weiterleitung der Logdateien an Grafana
    \end{enumerate}
@@ -222,7 +222,7 @@ Die folgenden Screenshots zeigen die Ausführung von \gls{spraying}:
 \end{figure}
 
 \newpage
-\subsubsection{Installation und Einrichtung von Grafana Loki und Promtail mit \gls{container}}
+\subsubsection{Installation und Einrichtung von Grafana Loki und Promtail}
 Die offizielle Dokumentation von Grafana war nicht immer eindeutig in Bezug auf die Ausführung, daher haben wir auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unter befinden sich die von Grafana zur Verfügung gestellten Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}:
 
 {\setstretch{1.0}
@@ -267,7 +267,7 @@ Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \
    \end{center}
 \end{landscape}
 
-\subsubsection{Weiterleitung der Logdateien zum Grafana}
+\subsubsection{Weiterleitung der Logdateien zu Grafana}
 Grafana Loki bietet mehrere Möglichkeiten, Logdateien zu empfangen. In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und bearbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Wenn wir verschiedene Arten von Logdateien hätten, würde jeder Typ einem eigenen \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat seine eigenen Regeln, um nach den gewünschten Informationen zu suchen.
 
 In einer produktiven Umgebung wäre die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. In diesem Fall würde jeder \gls{Endpoint} mithilfe von Promtail die Dateien weiterleiten \citep{Grafana_Agents}. Wie bei unserer Lösung müsste der Nutzer für jeden Typ von Logdateien einen spezifischen \quotes{job} konfigurieren.
