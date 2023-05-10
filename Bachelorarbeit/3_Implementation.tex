@@ -228,7 +228,7 @@ Die folgenden Screenshots zeigen die Ausführung von \gls{spraying}:
 
 \newpage
 \subsubsection{Installation und Einrichtung von Grafana Loki und Promtail}
-Die offizielle Dokumentation von Grafana war nicht immer eindeutig in Bezug auf die Ausführung, daher haben wir auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unter befinden sich die von Grafana zur Verfügung gestellten Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}:
+Die offizielle Dokumentation von Grafana war nicht immer eindeutig in Bezug auf die Ausführung, daher haben wir auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unten befinden sich die von Grafana zur Verfügung gestellten Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}:
 
 {\setstretch{1.0}
 \begin{lstlisting}[frame=single]
@@ -244,36 +244,37 @@ docker-compose -f docker-compose.yaml up
 \end{lstlisting}
 }
 
-Im Anhang befinden sich die originalen (Siehe Anhang \ref{appendix:orgGrafana}) und die angepassten Dateien (Siehe Anhang \ref{appendix:AngepasstGrafana}).
+Im Anhang \ref{appendix:orgGrafana} befinden sich die originalen und die angepassten Dateien in Anhang \ref{appendix:AngepasstGrafana}.
 
 Die obigen Kommandos haben folgende Bedeutungen:
 \begin{enumerate}[noitemsep]
    \item Herunterladen der Konfigurationsdatei von Loki
    \item Herunterladen der Konfigurationsdatei von Promptail
-   \item Ausführung von den \glsplural{container}, indem beide Konfigurationsdateien in eine eingepackt und angepasst wurden und schließlich von der \gls{container}-Anwendung gelesen werden
+   \item Ausführung von dem \glsplural{container}, indem beide Konfigurationsdateien in eine eingepackt und angepasst wurden und schließlich von der \gls{container}-Anwendung gelesen werden
 \end{enumerate}
 
-Für spezifische Versionen oder weitere Einstellungen bietet die Dokumentation umfangreiche Möglichkeiten an \citep{GrafanaLoki_run}.
+%Für spezifische Versionen oder weitere Einstellungen bietet die Dokumentation umfangreiche Möglichkeiten an \citep{GrafanaLoki_run}.
 
-Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen.
+Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen, da wir hier nur eine Instanz von Promtail verwedent haben.
 
 \newpage
+\newgeometry{right=30mm, left=30mm} 
 \thispagestyle{lscape}
 \begin{landscape}
-   Nach der Ausführung des Kommandos ist die Anwendung schon benutzbar, wie in dem folgenden Screenshot:
-   \begin{center}
-      \begin{figure}[H]
-         \centering
-         \includegraphics[width=1.3\textwidth]{assets/Installation_Grafana.png}.
-         \caption[Screenshot der Willkommensseite von Grafana Loki]
-         {Screenshot der Willkommensseite von Grafana Loki\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
-         \centering
-      \end{figure}
-   \end{center}
+   Nach der Ausführung des Kommandos ist die Anwendung benutzbar, wie in dem folgenden Screenshot:
+    \begin{figure}[H]
+       % \centering
+        \centerline{\includegraphics[width=1.5\textwidth]{assets/Installation_Grafana.png}}
+        %\includegraphics[width=1.2\textwidth]{assets/5.4.2_1_Abb.jpeg}
+        \caption[Screenshot der Willkommensseite von Grafana Loki]
+        {Screenshot der Willkommensseite von Grafana Loki\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
+        \centering
+    \end{figure} 
 \end{landscape}
+\restoregeometry  
 
 \subsubsection{Weiterleitung der Logdateien zu Grafana}
-Grafana Loki bietet mehrere Möglichkeiten, Logdateien zu empfangen. In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und bearbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Wenn wir verschiedene Arten von Logdateien hätten, würde jeder Typ einem eigenen \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat seine eigenen Regeln, um nach den gewünschten Informationen zu suchen.
+Grafana Loki bietet mehrere Möglichkeiten Logdateien zu empfangen. In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Wenn wir verschiedene Arten von Logdateien hätten, würde jeder Typ einem eigenen \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat seine eigenen Regeln, um nach den gewünschten Informationen zu suchen.
 
 In einer produktiven Umgebung wäre die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. In diesem Fall würde jeder \gls{Endpoint} mithilfe von Promtail die Dateien weiterleiten \citep{Grafana_Agents}. Wie bei unserer Lösung müsste der Nutzer für jeden Typ von Logdateien einen spezifischen \quotes{job} konfigurieren.
 
@@ -362,7 +363,6 @@ Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} 
    \centering
 \end{figure}
 
-
 In dem nächsten Abschnitt beschreiben wir, wie diese Regel in \gls{logql} geschrieben werden.
 
 \newpage
@@ -407,8 +407,6 @@ Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen:
 %    \end{tabular}
 % \end{table}
 
-
-
 \textbf{\textcolor{red}{Das sollte verbessert werden}}
 Eine Erkennungsregel hätte folgende Logik:
 {\setstretch{1.0}
@@ -427,8 +425,6 @@ Eine Erkennungsregel hätte folgende Logik:
       weiterBeobachten()
 \end{Verbatim}
 }
-
-
 
 
 \subsection{Hinzufügen der Regelsätze Grafana Loki}
@@ -460,36 +456,52 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
    \centering
 \end{figure}
 
+
 \newpage
+\newgeometry{right=30mm, left=30mm} 
 \thispagestyle{lscape}
 \begin{landscape}
    Nachdem die \gls{ssh}-Logdateien gelesen und bearbeiten wurden, bekommen wir von Grafana Loki folgende Zasammenfasung der Ergebnissen:
-   \begin{center}
-      \begin{figure}[H]
-         \centering
-         \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_sshDetailed.png}.
-         \caption[Bearbeitung der \gls{ssh} Logdateien von Grafana Loki]
-         {Bearbeitung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
-         \centering
-      \end{figure}
-   \end{center}
+    \begin{figure}[H]
+       % \centering
+        \centerline{\includegraphics[width=1.7\textwidth]{assets/GrafanaLoki_sshDetailed.png}}
+        %\includegraphics[width=1.2\textwidth]{assets/5.4.2_1_Abb.jpeg}
+        \caption[Bearbeitung der \gls{ssh} Logdateien von Grafana Loki]
+        {Bearbeitung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
+        \centering
+    \end{figure} 
 \end{landscape}
+\restoregeometry
+
 
 \newpage
+\newgeometry{right=30mm, left=30mm} 
 \thispagestyle{lscape}
 \begin{landscape}
    Das nächste Bild gibt ausführliche Informationen der Logdateien:
-   \textbf{Bild Korrigieren}
-   \begin{center}
-      \begin{figure}[H]
-         \centering
-         \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_sshDetailed.png}.
-         \caption[Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki]
-         {Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
-         \centering
-      \end{figure}
-   \end{center}
+    \begin{figure}[H]
+       % \centering
+        \centerline{\includegraphics[width=1.7\textwidth]{assets/GrafanaLoki_sshDetailed.png}}
+        \caption[Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki]
+        {Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
+        \centering
+    \end{figure} 
 \end{landscape}
+\restoregeometry
+
+% \thispagestyle{lscape}
+% \begin{landscape}
+%    Das nächste Bild gibt ausführliche Informationen der Logdateien:
+%    \begin{center}
+%       \begin{figure}[H]
+%          \centering
+%          \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_sshDetailed.png}.
+%          \caption[Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki]
+%          {Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
+%          \centering
+%       \end{figure}
+%    \end{center}
+% \end{landscape}
 
 \subsection{Einrichtung des Warnmeldungskomponent}
 In den vorherigen Teilen dieser Arbeit haben wir uns damit auseinandergesetzt, Grafana so einzustellen, dass wir schließlich eine Lösung ähnlich einer \gls{SIEM} erhalten. Von unseren ursprünglichen Vorschlägen haben wir bereits Folgendes erreicht:

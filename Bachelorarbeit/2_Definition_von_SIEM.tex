@@ -127,7 +127,10 @@ Die folgende Abbildung,\ref{fig:Module_preludes}, zeigt die Integration verschie
 
 Aus der Abbildung und der Dokumentation können wir folgenden Informationsfluss erkennen - die Daten werden von Endanwendung generiert und zum Loganalyzer (Prelude \glsfirst{LML}) (1) geschickt, wo sie normalisiert und bewertet werden Für die Logs, wo es verdächtige Werte nach dem vordefinierten Regelsätze in \gls{LML} gibt, werden Warnmeldungen generiert. Diese Meldungen werden zum Manager Module (2) weitergeleitet. Der Correlator oben sucht nach einem Zusammenhang (5) zwischen anderen Daten. Das Ergebnis von Correlator wird wieder zum Manager (4) geschickt und danach zu der Datenbank (6). Schließlich stehen die Berichte in dem User-Interface zur Verfügung (7)\citep{Prelude_Doc}.
 
-Die Architektur der Anwendung ermöglicht sowohl einen zentralisierten als auch einen dezentralisierten Aufbau. In der ersten funktioniert Prelude als zentral und empfängt Daten von verschiedenen Datenquelle und in den zweiten gibt es mehrere Instanzen von Preludes, dessen Ergenisse sich in einem \gls{GUI} darstellen lassen \citep{Prelude_MU}. In der nächsten Abbildung, \ref{fig:Prelude}, sehen wir eine einfache Darstellung des Informationsflusses von Prelude:
+Die Architektur der Anwendung ermöglicht sowohl einen zentralisierten als auch einen dezentralisierten Aufbau. In der ersten funktioniert Prelude als zentral und empfängt Daten von verschiedenen Datenquelle und in den zweiten gibt es mehrere Instanzen von Preludes, dessen Ergenisse sich in einem \gls{GUI} darstellen lassen \citep{Prelude_MU}. 
+
+\newpage
+In der nächsten Abbildung, \ref{fig:Prelude}, sehen wir eine einfache Darstellung des Informationsflusses von Prelude:
 
 \begin{figure}[H]
    \centering
@@ -148,6 +151,7 @@ Die dezentralisierte Umgebung von Preludes lässt sich in der folgenden Abbildun
    \centering
 \end{figure}
 
+\newpage
 %Die Publikationen über Preludes fokussieren sich auf die Entwicklung, Implementation und unternehmerische Anwendung dieses Tools. 
 In \citep{Grammatikis_Prelude} wurde Preludes, AlienVault und Cyberoam iView anhand technischer und nutzerfreundlicher Kriterien zu verglichen. Von diesn Kriterien nennen wir folgende \citep{Grammatikis_Prelude}: 
 
@@ -176,6 +180,7 @@ AlienVault OSSIM ist eine im Jahr 2007 entwickelte \gls{opensource} \gls{SIEM} L
 
 AlienVault hat eine kostenpflichtige Version, die Alien Vault \glsfirst{USM} heißt. Auf der Webseite von AT\&T steht, dass es keine dedizierte Dokumentation für die \gls{opensource} Version AlienVault OSSIM gibt, da viele Funktionalitäten von der kostenpflichtigen Version stammen \citep{ATT_AVO}. 
 
+\newpage
 Die folgende Abbildung, \ref{fig:AlienVault_Architektur}, zeigt das von dem Anbieter freigelegte Architekturdiagramm von der \gls{USM} Version:
 
 \begin{figure}[H]
@@ -191,7 +196,7 @@ Unten im Bild sehen wir die mit einem Sensor verbundenen \glsplural{Endpoint}. D
 
 Laut der Website Comparitech steht AlienVault auf dem 13ten Platz von den bestbewertetsten \gls{SIEM}-Lösungen. Die Seite beschreibt auch, dass zu dem Tool einen \gls{IDS}, ein Verhaltensüberwachungssystem und einen Schwachstellen-Scanner integriert sind. Die Anwendung ist auch mit der Plattform \gls{OTX} verbunden - diese ermöglicht eine Teilung von Informationen über die Schwachstelle. Comparitech highlighted, dass die Anwendung wegen ihrer niedrigen Kosten besser für kleine oder mittelständige Unternehmen geeignet ist \citep{comparitech_SIEM}. 
 
-Die Anwendung bietet konsistenten Daten Zusammenhang an und soll das Auftauchen von \gls{falsch positiv} vermeiden. AlienVault kommt auch mit vordefinierten Use-Cases, die dabei unterstützen, gewöhnliche Angriffsszenarien zu erkennen. Die Installation, die Einstellung und die Integration mit anderen Tools ist auch benutzerfreundlich \citep{Gomes_AV}. Aus einer anderen wissenschaftlichen Quelle fanden wir heraus, dass für viele Quellen eine manuelle Normalisierung der Logdatein notwendig ist \citep{Nabil_AV}.
+Die Anwendung bietet konsistenten Daten Zusammenhang an und soll das Auftauchen von \gls{falsch positiv} vermeiden. AlienVault kommt mit vordefinierten \glsplural{usecases}, die dabei unterstützen, gewöhnliche Angriffsszenarien zu erkennen. Die Installation, die Einstellung und die Integration mit anderen Tools ist auch benutzerfreundlich \citep{Gomes_AV}. \citep{Nabil_AV} behauptet, dass für viele Quellen eine manuelle Normalisierung der Logdatein notwendig ist.
 
 %Die Anwendung hat aber einen zuverlässigen Berichtsmechanismus. 
 
