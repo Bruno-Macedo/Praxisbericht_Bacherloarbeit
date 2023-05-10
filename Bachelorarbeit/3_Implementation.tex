@@ -154,9 +154,9 @@ Die folgende Abbildung zeigt, wie das \gls{stuffing} abläuft:
 hydra -l [Benutzername] -P rockyou.txt [Opfersystem] ssh -V -t 4
 
 # Erklärung
--l: Spezifikation des Benutzernamens, den wir angreifen wollen
+-l: Spezifikation des Benutzernamens, den wir angreifen
 -P: Auswahl der Datei mit bekannten Passwörtern
-ssh: Auswahl der Anwendung, die wir angreifen wollen
+ssh: Auswahl der Anwendung, die wir angreifen
 -V: Ausführliche Ausgabe über Versuche, Fehler und Erfolg
 -t 4: Anzahl von gleichzeitigen Verbindungen
 \end{Verbatim}
@@ -371,7 +371,7 @@ from 10.0.2.15 port 58036 ssh2
 \end{Verbatim}
 }
 
-Um \gls{ssh}-Einträge zu erkennen und bestimmte Informationen zu extrahieren, die anzeigen, ob es sich um einen fehlgeschlagenen Anmeldeversuch handelt, möchten wir die hervorgehobenen Elemente extrahierenund später hochzählen:
+Um \gls{ssh}-Einträge zu erkennen und bestimmte Informationen zu extrahieren, die anzeigen, ob es sich um einen fehlgeschlagenen Anmeldeversuch handelt, extrahieren und später summieren wir die hervorgehobenen Elemente auf:
 
 {\setstretch{1.0}
 \begin{Verbatim}[commandchars=\\\{\},frame=single]
@@ -542,7 +542,7 @@ Die Warnmeldungen können direkt in der \gls{GUI} von Grafana konfiguriert werde
 \end{enumerate}
 }
 
-Für unseren ersten Test möchten wir Warnmeldungen für fehlgeschlagene Anmeldeversuche erstellen. Wir haben die oben genannten Elemente definiert und die folgenden Regelsätze verwendet \citep{VoidQuark_sshlogs}:
+Für unseren ersten Test erstellen wir Warnmeldungen für fehlgeschlagene Anmeldeversuche. Wir haben die oben genannten Elemente definiert und die folgenden Regelsätze verwendet \citep{VoidQuark_sshlogs}:
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]

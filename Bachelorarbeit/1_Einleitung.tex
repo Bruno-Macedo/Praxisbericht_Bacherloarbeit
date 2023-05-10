@@ -4,7 +4,7 @@ Der heutige Netzwerkverkehr ist fast tausendfach größer als vor 20 Jahre \cite
 
 Das \glsfirst{NIST} definiert \gls{SIEM} als Software für die Sammlung, Anpassung, Analyse, Überwachung und Bedrohungserkennung von Sicherheitsdaten aus verschiedenen Quellen \citep{NIST_Definitions}. Die Bewertung dieser Daten spielt eine wesentliche Rolle bei solchen Anwendungen, um zu entscheiden, ob es sich um legitime Anfrage oder um einen \glsplural{Cyberangriff} handelt. Mit den Daten von \gls{SIEM} kann das \glsfirst{SOC} Team Maßnahmen ergreifen. Log Analysis und Log Management beziehen sich auf die Sammlung, Bearbeitung, Speicherung und/oder Löschen, Weiterleitung und Überwachung von Loginformationen. In dieser Arbeit benutzen wir den Begriff \quotes{Log-Analyse-Tools}, um diese Systeme zu referenzieren.
 
-In diesem Projekt recherchieren und vergleichen wir existierende \gls{SIEM} und Log-Analyse-Tools. Danach entscheiden wir uns für eine \gls{opensource} Lösung, um eine kostengünstige Verbreitung und Implementierung zu ermöglichen. Mit dem ausgewählten Tool wollen wir spezifische Logdateien analysieren und bewerten, damit wir demnächst potenzielle Angriffe erkennen können. Die Regelsätzen für die Angriffserkennung sollen automatisch mithilfe der \glsfirst{ttp} von \gls{mitre} aufgebaut werden.
+In diesem Projekt recherchieren und vergleichen wir existierende \gls{SIEM} und Log-Analyse-Tools. Danach entscheiden wir uns für eine \gls{opensource} Lösung, um eine kostengünstige Verbreitung und Implementierung zu ermöglichen. Mit dem ausgewählten Tool analysieren und bewerten wir spezifische Logdateien, damit wir demnächst potenzielle Angriffe erkennen können. Die Regelsätzen für die Angriffserkennung sollen automatisch mithilfe der \glsfirst{ttp} von \gls{mitre} aufgebaut werden.
 
 \newpage
 Unser Ziel ist es, eine umfangreiche \gls{opensource} Lösung zu finden bzw. zu gesltaten, die uns ermöglicht, \glsplural{Cyberangriff} nach vordefinierten Regelsätzen zu detektieren. \glsplural{Proprietary} Lösungen gibt es viele auf dem Markt. Sie sind meistens kostenpflichtig und verlangen spezielle Wartung. Da sich solche Lösungen eher an große Konzerne richten, beschäftigen wir uns mit dem Aufbau und Strukturierung einer eigenen Lösung mithilfe von \gls{opensource} Tools. 
@@ -35,7 +35,7 @@ Diese Arbeit wird in folgende Teile geteilt:
 }
 
 \subsection{Problemstellung}
-Während der Entwicklung dieser Arbeit wollen wir uns mit folgenden Fragenstellung beschäftigen: 
+Während der Entwicklung dieser Arbeit beschäftigen wir uns mit folgenden Fragenstellung: 
 
 {\setstretch{1.5}
 % Regeln anhand mittre, automatisieren
@@ -60,7 +60,7 @@ Während der Entwicklung dieser Arbeit wollen wir uns mit folgenden Fragenstellu
 % }
 
 \newpage
-Das folgende Diagramm stellt den Aufbau und Entwicklung dieser Arbeit dar, wie oben beschrieben:
+Das folgende Diagramm, \ref{fig:AblaufderArbeit}, stellt den Aufbau und Entwicklung dieser Arbeit dar, wie oben beschrieben:
 % Diagram anpassen mit korrenkten Zielen
 
 \begin{figure}[H]
@@ -68,6 +68,7 @@ Das folgende Diagramm stellt den Aufbau und Entwicklung dieser Arbeit dar, wie o
    \includegraphics[width=1\textwidth]{assets/1_p1.jpg}
    \caption[Aufbau dieser wissenschaftlichen Recherche]
    {Aufbau dieser wissenschaftlichen Recherche \\Quelle: Eigene Darstellung }
+   \label{fig:AblaufderArbeit}
    \centering
 \end{figure}
 

@@ -1,16 +1,13 @@
 \section{Definition von SIEMs und Log-Analyse-Tools}
 
-\gls{SIEM} ist das Ergebnis einer Kombination zwischen dem \glsfirst{SEM} und \glsfirst{SIM} \citep{Dorigo_SIEM}. Das Erste bezieht sich auf die Identifizierung, Bewertung, Beobachtung und den Bericht von Sicherheitsvorfällen mithilfe von verschiedenen Log Dateien \citep{techopedia_SEM}. Das Zweite ist eine Software, die bei der automatischen Sammlung von Loginformationen aus vielen Quellen, wie Firewall und Servern unterstützt \citep{techopedia_SIM}. Da die meisten \gls{SIEM}-Lösungen kostenpflichtig sind, existieren auch viele \gls{opensource} Log-Analyse-Tools, die eine ähnliche Aufgabe erledigen, ohne die Kernelementen von \gls{SIEM} zu besitzen. 
+Sowohl in der wissenschaftlichen als auch in der kommerziellen Literatur gibt es verschiedene Definitionen von \gls{SIEM}. Diese widersprechen sich nicht, aber zeigen unterschiedliche Perspektiven. Eine von dieser Definitionen behaupt, dass \gls{SIEM} das Ergebnis einer Kombination zwischen dem \glsfirst{SEM} und \glsfirst{SIM} ist \citep{Dorigo_SIEM}. Das Erste bezieht sich auf die Identifizierung, Bewertung, Beobachtung und den Bericht von Sicherheitsvorfällen mithilfe von verschiedenen Log Dateien \citep{techopedia_SEM}. Das Zweite ist eine Software, die bei der automatischen Sammlung von Loginformationen aus vielen Quellen, wie Firewall und Servern unterstützt \citep{techopedia_SIM}. Da die meisten \gls{SIEM}-Lösungen kostenpflichtig sind, existieren auch viele \gls{opensource} Log-Analyse-Tools, die eine ähnliche Aufgabe erledigen, ohne die Kernelemente von \gls{SIEM} zu besitzen. 
 
-Log-Analyse-Tools sind meistens Anwendungen die Logdateien empfangen, speichern, bearbeiten und nach spezifisichen eingegebenen Regeln bewerten. Diese Tools unterstützen Programmierer und Systemadministratoren bei der Überwachung des Zustands eines Systems oder einer Software. Ein solches Tools kann Logdateien von verschiedenen \glsplural{Endpoint} und mit verschiedenen Formatierungen bekommen und editieren, so dass es schließlich einen Bericht oder eine Grafik erzeugt \citep{Korzeniowski_LATDef}. Die Nutzung dieser Tools schränkt sich nicht in dem Sicherheitsbereich ein, sondern kann für gesamte Rechenzentren nützlich sein.
+Log-Analyse-Tools sind in der Regel Anwendungen die Logdateien empfangen, speichern, bearbeiten und nach spezifisichen  Regeln bewerten. Diese Tools unterstützen Programmierer und Systemadministratoren bei der Überwachung des Zustands von Systems oder einer Software. Ein solches Tools kann Logdateien von verschiedenen \glsplural{Endpoint} und in verschiedenen Formaten bekommen, so dass es schließlich einen Bericht oder eine Grafik erzeugt \citep{Korzeniowski_LATDef}. Die Nutzung dieser Tools beschränkt sich nicht auf den Sicherheitsbereich ein, sondern kann für gesamte IT-Bereich  nützlich sein.
 
-
-In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutungen und Verantwortungen haben. \glsfirst{IDS}, \glsfirst{IPS}, \glsfirst{SIEM} und Log-Analyse-Tools werden von \textit{nonnative users}  und sogar von Spezialisten oft verwechselt, da ihre Aufgaben mehr Gemeinsamkeiten als Unterschiede haben. Um den Umfang dieser Arbeit wegen der zeitlichen Einschränkungen zu verringern, fassen wir kurz die Unterschiede zwischen denen zusammen und legen unsere Grenze auf den \glspl{SIEM} Lösungen und auf Log-Analyse-Tools fest. 
+In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutungen haben und Verantwortungen abdecken. \glsfirst{IDS}, \glsfirst{IPS}, \glsfirst{SIEM} und Log-Analyse-Tools werden von Laien und sogar von Spezialisten oft verwechselt, da ihre Aufgaben mehr Gemeinsamkeiten als Unterschiede haben. Diese Tools sind feste Bestandteil eines \gls{SOC}, jedoch konzentrieren wir uns auf Log-Analyse. Um den Fokus der Arbeit zu vergrenzen, erläutern wir im folgenden Abschnitt die erwähnten Begriffe.
 
 \newpage
-\glsfirst{IDS} sind Software oder Hardware, die \glsplural{Cyberangriff} identifizieren und berichten. Sie haben eine passive Rolle, da sie die \glsplural{Cyberangriff} weder stoppen noch verhindern können. \glsfirst{IPS}allerdings haben sie eine aktive Haltung gegenüber \glsplural{Cyberangriff} - die sie automatisch behandeln können, indem sie Blocking-Mechanismen einschalten, um den Angriff zu stoppen \citep{Wendzel_IS}. Wie das \gls{IDS}, kann das \gls{IPS} auch Logdateien generieren, die von einer \gls{SIEM}-Lösung gesammelt werden können. \glsplural{SIEM} können einerseits die Logdateien von diesen und von anderen \glsplural{Endpoint} bekommen und diese nach vordefinierten Regeln bewerten, um dem \gls{SOC}-Team über Sicherheitsvorfälle zu informieren oder automatisch Maßnahmen ergreifen. Wie \glsplural{SIEM} bekommen Log-Analyse-Tools auch Logdateien, um Bericht oder Darstellung zu genieren. Ihre Nutzung ist aber nicht so spezifisch wie die von \glsplural{SIEM}. 
-
-Die folgende Abbildung stellt didaktisch eine allgemeine Struktur von \gls{SIEM}-Lösungen dar:
+\glsfirst{IDS}, \glsfirst{IPS} und \glsfirst{SIEM} sind Sicherheitstool als Software und/oder Hardware, die zusammenarbeiten können, um einen umfangreiche Netzwerksicherheit anzubieten. \gls{IDS} identifizieren und berichten über \glsplural{Cyberangriff}, indem er Netzwerkverkehr überwacht. Nach der Erkennung eines verdächtigen Verkehrs, muss das \gls{SOC} Team zur Handlung kommen. \gls{IPS} überwacht den Netzwerkverkehr und kann die Verbindung automatisch unterbrechen, falls es verdächtig ist \citep{Wendzel_IS}. Ein \gls{IPS} kann konfiguriert werden, um automatisch nach festgelegten Muster zu handeln. Beide Tools können Logdateien generieren, die von einer \gls{SIEM}-Lösung oder Log-Analyse-Tools gesammelt werden können. Die folgende Abbildung, \ref{fig:SIEM_Allg_Struktur}, stellt eine allgemeine Struktur von \gls{SIEM}-Lösungen dar:
 
 \begin{figure}[H]
    \centering
@@ -21,8 +18,9 @@ Die folgende Abbildung stellt didaktisch eine allgemeine Struktur von \gls{SIEM}
    \centering
 \end{figure}
 
-\newpage
-Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisierung von Sicherheitsdaten zuständig ist. Diese werden dann bearbeitet und in einem oder mehreren Berichten dargestellt, damit das \gls{SOC}-Team schnellere und effektive Entscheidungen treffen können. Der Informationsfluss einer \gls{SIEM}-Lösung können wieder in der folgenden Abbildung dargestellt werden:
+Obem auf dem Bild, sehen wir, dass es zwei wichtige Datenquelle gibt, auf der linken Seite sind die Logdateien der \glsplural{Endpoint} und auf der rechten Seite die Informationen, um Anomalie zu erkennen. Nur der linken Seite stellt ein Log-Analyse-Tool dar. Mit der Nutzung der Elementen der rechten Seite, werden die Daten verarbeitet, um Muster zu erkennen und Information herauszuholen. Diese Zusammenarbeit repräsentiert eine \gls{SIEM}-Lösung, die als Ergebnis ein oder mehrere Berichten und/oder Graphik ausgeben kann. 
+
+Aus der Perspektive eines Log-Analyse-Tools haben wir folgenden Informationsfluss:
 
 \begin{figure}[H]
    \centering
@@ -33,48 +31,47 @@ Aus dem Bild können wir feststellen, dass \glsplural{SIEM} für die Zentralisie
    \centering
 \end{figure}
 
-Die folgende Abbildung zeigt eine allgemeine Architektur von Log-Analyse-Tools:
+In der Abbildung sehen wir, dass die Logdatei des \gls{Endpoint}s gesammelt werden und an dem Tool angepasst. Diese Information wird dann verarbeitet, um nach Muster zu suchen. Diese Daten werden schließlich gespeichern und zur Überwachung geschickt.
 
-\begin{figure}[H]
-   \centering
-   \includegraphics[width=0.8\textwidth]{assets/2.1_p2.png}
-   \caption[Allgemeine Struktur von Log-Analyse-Tools]
-   {Allgemeine Struktur von Log-Analyse-Tools\\Quelle: \citep{Tek-Tools_LGTArchitektur} }
-   \centering
-\end{figure}
+% Die folgende Abbildung zeigt eine allgemeine Architektur von Log-Analyse-Tools:
 
-Den Informationsfluss eines Log Analyse Tools bildet folgende Grafik ab:
+% \begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{assets/2.1_p2.png}
+%    \caption[Allgemeine Struktur von Log-Analyse-Tools]
+%    {Allgemeine Struktur von Log-Analyse-Tools\\Quelle: \citep{Tek-Tools_LGTArchitektur} }
+%    \centering
+% \end{figure}
 
-\begin{figure}[H]
-   \centering
-   \includegraphics[width=0.55\textwidth]{assets/2.2_p2.png}
-   \caption[Allgemeine Informationsfluss von Log-Analyse-Tools]
-   {Allgemeine Informationsfluss von Log-Analyse-Tools\\Quelle: \citep{Neptune_LATInfoFluss} }
-   \centering
-\end{figure}
+% Den Informationsfluss eines Log Analyse Tools bildet folgende Grafik ab:
 
-Aus bisheriger Beschreibung stellen wir fest, dass \gls{SIEM} viel mehr als eine Sammlung von Logdateien sind. Das Ziel dieser Software ist es die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereichen, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM}s eine gesetzliche Verpflichtung \citep{Jog_SIEM}. In Deutschland verpflichtet das zweite Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme Organisationen mit kritischen Infrastrukturen die Anwendungen solcher Lösungen, um Störungen der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log-Analyse-Tools sind seinerseits allgemeine Tools zu der Speicherung, Anpassung, Bewertung und Darstellung von Logdateien, ohne dass sie sich auf die Sicherheitsebenen fokussieren.
+% \begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.55\textwidth]{assets/2.2_p2.png}
+%    \caption[Allgemeine Informationsfluss von Log-Analyse-Tools]
+%    {Allgemeine Informationsfluss von Log-Analyse-Tools\\Quelle: \citep{Neptune_LATInfoFluss} }
+%    \centering
+% \end{figure}
+
+Aus bisheriger Abbildung stellen wir fest, dass \gls{SIEM} das Ergebnis der Integration von zwei wichtigen Komponenten ist, Datensammlung und Verarbeitung. Das Ziel dieser Software ist es die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereichen, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} eine gesetzliche vorgegeben \citep{Jog_SIEM}. In Deutschland verpflichtet das \gls{IT-Sicherheitsgesetz 2.0} die Anwendungen solcher Lösungen, um Schädigung der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log-Analyse-Tools sind seinerseits allgemeine Tools zu der Speicherung, Anpassung, Bewertung und Darstellung von Logdateien, ohne dass sie sich auf die Sicherheitsebenen fokussieren.
 
 
 \subsection{Existierende SIEMs Lösungen und Log-Analyse-Tools}
 % über Splunk schreiben, state of the art, nicht open source, aber andere müssen ähnliche funktionaliten haben
-Die existierenden \glsplural{SIEM} und Log-Analyse-Tools können in zwei Kategorien getrennt werden: \textit{\gls{Proprietary}} und  \textit{\gls{opensource}}. In folgenden Abschnitten präsentieren wir die proprietäre \gls{SIEM} Splunk, um einen Maßstab für unsere Auswahl zu definieren, wenn es um Funktionalitäten geht. Wir analysieren folgende \glsplural{SIEM} und Log-Analyse-Tools: 
+Die existierenden \glsplural{SIEM} und Log-Analyse-Tools werden in zwei Kategorien getrennt werden: \textit{\gls{Proprietary}} und  \textit{\gls{opensource}}. In folgenden Abschnitten präsentieren wir das proprietäre Tool Splunk, um einen Maßstab für unsere Auswahl zu definieren, wenn es um Funktionalität geht. Wir analysieren folgende Tools: %\glsplural{SIEM} und Log-Analyse-Tools: 
 
 \begin{itemize}[noitemsep]
    \item Prelude %(nein)
    \item AlienVault \glsfirst{OSSIM} %(nein)
    \item FortiSIEM %(nein)
    \item Elastic Stack %(nein)
-   \item Grafana %(ja)
+   \item Grafana integriert mit Loki %(ja)
 \end{itemize}
 
 %\textbf{\textcolor{red}{Wie konnte ich Grafana hier erwähnen? Grafane ist eher allgemein und nicht so zu Alert orientiert, habe ich hier gefunden: \href{https://www.metricfire.com/blog/grafana-vs-splunk/}{Splunk x Grafana} und hier \href{https://www.researchgate.net/publication/350730340_Implementation_of_Grafana_as_open_source_visualization_and_query_processing_platform_for_data_scientists_and_researchers}{What is Grafana}}  }
 
-\newpage
 \subsubsection{Splunk}
-Splunk von dem Unternehmen Splunk Technology wurde 2003 in den USA veröffentlicht \citep{Splunk_splunk}. Er gehört weltweit zu der meistverwendeten \gls{SIEM}-Software und gilt als \textit{State of the art} für andere ähnliche Lösungen \citep{Kazarov_Splunk}. Zu ihren Kunden gehören große Konzerne wie Airbus, Coca-Cola, Intel und die Deutsche Bahn. 
-
-Splunk bietet laut seiner Webseite folgende Funktionalitäten an \citep{Splunk_SPE}:
+Splunk, von dem gleichnamigen Unternehmen, wurde 2003 in den USA auf dem Markt gebracht \citep{Splunk_splunk}. Splunk ermögliche einfache Wartung, benutzerfreundliche \gls{GUI} und Skalierbarkeit \citep{Kazarov_Splunk}. Er gehört weltweit zu der meistverwendeten \gls{SIEM}-Lösung und zu ihren Kunden gehören große Konzerne wie Airbus, Coca-Cola, Intel und die Deutsche Bahn. Splunk bietet laut seiner Webseite folgende Funktionalitäten an \citep{Splunk_SPE}:
 
 \begin{itemize}[noitemsep]
    \item Skalierbare Datenplattform 
@@ -84,23 +81,28 @@ Splunk bietet laut seiner Webseite folgende Funktionalitäten an \citep{Splunk_S
    \item Unkomplizierte Installation und Anwendung 
 \end{itemize}
 
-Die allgemeine Architektur und der Informationsfluss von Splunk unterscheidet sich nicht von der oben dargestellten Struktur \ref{fig:SIEM_Allg_Struktur}, Seite \pageref{fig:SIEM_Allg_Struktur}, und Informationsfluss\ref{fig:SIEM_Allg_Informationsfluss}, Seite \pageref{fig:SIEM_Allg_Informationsfluss}. Da es sich hier um eine proprietäre Lösung handelt, lässt sich Splunk mit vielen anderen Funktionalitäten verwalten und erweitern. Die folgende Abbildung zeigt ein zusammenfassendes Diagramm über den Umfang des Informationsflusses von Splunk:
+Die allgemeine Architektur und der Informationsfluss von Splunk unterscheidet sich nicht von der oben dargestellten Struktur in der Abbildung \ref{fig:SIEM_Allg_Struktur}, Seite \pageref{fig:SIEM_Allg_Struktur}, und Abbildung \ref{fig:SIEM_Allg_Informationsfluss}, Seite \pageref{fig:SIEM_Allg_Informationsfluss}. Da es sich hier um eine proprietäre Lösung handelt, lässt sich Splunk mit vielen anderen Funktionalitäten verwalten und erweitern. 
+
+Die nächste Abbildung, \ref{fig:Allgemein_Splunk}, zeigt ein zusammenfassendes Diagramm über den Umfang des Informationsflusses von Splunk:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/Splunk_informationsfluss.png}
    \caption[Allgemeine Informationsfluss von Splunk]
    {Allgemeine Informationsfluss von Splunk\\Quelle: \citep{Splunk_platform} }
+   \label{fig:Allgemein_Splunk}
    \centering
 \end{figure}
 
-In Splunk funktioniert die Bedrohungserkennung mithilfe von \glsplural{usecases}. Laut der Dokumentation existieren sie in folgenden Szenarien: Überwachung, Untersuchung und Erkennung. Die Software ist sowohl mit gls{mitre} Matrix als auch mit \glsfirst{CKC} für die Gestaltung ihrer \glsplural{usecases} integriert \citep{Splunk_usecases}. 
+Auf dem Bild sehen wir unten die \glsplural{Endpoint}, dessen Daten und Logdateien von Splunk und seine \glsplural{plugin} und Funktionalitäten verarbeitet und analysiert werden.
 
-In einer spezifischen Arbeit wurden Angriffe auf einem System simuliert und schließlich mit Splunk analysiert, um Gefahren zu identifizieren und diese im Voraus zu sehen \citep{Su_SplunkDDOS}. In anderer Arbeit beschrieben die Autoren, wie eine Splunk-Instanz installiert und konfiguriert wurde, um spezifische \gls{bruteforce} zu erkennen \citep{Selvaganesh_SplunkBruteForce}.
+Wie in anderen Tools, funktioniert die Bedrohungserkennung mithilfe von Regelsätzen, die aus \glsplural{usecases} können. Laut der Dokumentation existieren sie in folgenden Szenarien: Überwachung, Untersuchung und Erkennung. Die Software ist sowohl mit \gls{mitre} Matrix als auch mit \glsfirst{CKC} für die Gestaltung ihrer \glsplural{usecases} integriert \citep{Splunk_usecases}. 
+
+In \citep{Su_SplunkDDOS} wurden Angriffe auf einem System simuliert und schließlich mit Splunk analysiert, um Gefahren zu identifizieren und diese im Voraus zu sehen. In \citep{Selvaganesh_SplunkBruteForce} wurde beschrieben, wie eine Splunk-Instanz installiert und konfiguriert wird, um spezifische \gls{bruteforce} zu erkennen.
  
 \subsubsection{Prelude}
 % suche nach Modulen, die man separat benutzen kann (Correlator)
-Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere freigegebene Tool Prelude zählt zu einer europäischen \gls{opensource} \gls{SIEM} Lösung. Laut dem Anbieter verfügt Prelude unter anderem folgende Funktionalitäten \citep{Prelude_SIEM}: 
+Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere released Tool Prelude zählt zu einer europäischen \gls{opensource} \gls{SIEM} Lösung. Laut dem Anbieter verfügt Prelude unter anderem folgende Funktionalitäten \citep{Prelude_SIEM}: 
 
 \begin{itemize}[noitemsep]
    \item	Informationszentralisierung 
@@ -109,31 +111,34 @@ Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere freigegebene Tool Prelud
    \item	Datennormalisierung 
 \end{itemize}
 
-Die Anwendung besteht aus verschiedenen unabhängigen Modulen. Unter denen highlighten wir Warnmeldung, Archivierung, Analyse und Verwaltung. Das Erste gehört zu der zentralen Aufgabe dieser Lösung - es ist dafür zuständig, Daten zu empfangen, zu normalisieren, Zusammenhänge zu erschließen und Meldungen zu generieren. Das zweite Modul - Archivierung konzentriert sich auf die Speicherung und Verfügbarkeit der Daten. Zu dem Analyse-Modul gehören statistische Aufgaben und Darstellungen in verschiedenen Formaten. Das letzte Modul dient dazu, die Anwendung zu steuern, Nutzer zu erstellen dessen Rechte zu konfigurieren \citep{EC_Prelude}. 
+Die Anwendung besteht aus verschiedenen unabhängigen Modulen. Unter denen nennen wir Warnmeldung, Archivierung, Analyse und Verwaltung. Erstens gehört zu der zentralen Aufgabe dieser Lösung - es kan folgendens: Daten empfangen, normalisieren, Zusammenhänge erschließen und Meldungen generieren. Das zweite Modul \quotes{Archivierung} konzentriert sich auf die Speicherung und Verfügbarkeit der Daten. Der Analyse-Modul stett Daten in verschiedenen Formaten dar. Das letzte Modul dient dazu, die Anwendung zu steuern, Nutzer zu erstellen und deren Rechte zu konfigurieren \citep{EC_Prelude}. 
 
-Die folgende Abbildung zeigt die Integration verschiedener Module von Prelude und wie sie mit einander kommunizieren, um Analyse, Meldung und Speicherung zu generieren:
+\newpage
+Die folgende Abbildung,\ref{fig:Module_preludes}, zeigt die Integration verschiedener Module von Prelude und wie sie mit einander kommunizieren, um Analyse, Meldung und Speicherung zu generieren:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.5\textwidth]{assets/2_p3.png}
    \caption[Integration zwischen den Modulen von Prelude ]
    {Integration zwischen den Modulen von Prelude \\Quelle: \citep{Prelude_MU} }
+   \label{fig:Module_preludes}
    \centering
 \end{figure}
 
-Aus der Abbildung und der Dokumentation können wir folgenden Informationsfluss erkennen - die Daten werden von Endanwendung generiert und zum Loganalyzer (Prelude \glsfirst{LML}) geschickt, wo sie normalisiert und bewertet werden. Für solche Logs, wo es verdächtige Werte gibt, werden Warnmeldungen generiert. Diese Meldungen werden zum Manager Module weitergeleitet. Der Correlator oben sucht nach einem Zusammenhang zwischen anderen Daten. Das Ergebnis von Correlator wird wieder zum Manager geschickt und danach zu der Datenbank. Schließlich stehen die Berichte in dem User-Interface zur Verfügung \citep{Prelude_Doc}.
+Aus der Abbildung und der Dokumentation können wir folgenden Informationsfluss erkennen - die Daten werden von Endanwendung generiert und zum Loganalyzer (Prelude \glsfirst{LML}) (1) geschickt, wo sie normalisiert und bewertet werden Für die Logs, wo es verdächtige Werte nach dem vordefinierten Regelsätze in \gls{LML} gibt, werden Warnmeldungen generiert. Diese Meldungen werden zum Manager Module (2) weitergeleitet. Der Correlator oben sucht nach einem Zusammenhang (5) zwischen anderen Daten. Das Ergebnis von Correlator wird wieder zum Manager (4) geschickt und danach zu der Datenbank (6). Schließlich stehen die Berichte in dem User-Interface zur Verfügung (7)\citep{Prelude_Doc}.
 
-Die Architektur der Anwendung ermöglicht sowohl einen zentralisierten als auch einen dezentralisierten Aufbau. In der nächsten Abbildung sehen wir eine einfache Darstellung des Informationsflusses von Prelude:
+Die Architektur der Anwendung ermöglicht sowohl einen zentralisierten als auch einen dezentralisierten Aufbau. In der ersten funktioniert Prelude als zentral und empfängt Daten von verschiedenen Datenquelle und in den zweiten gibt es mehrere Instanzen von Preludes, dessen Ergenisse sich in einem \gls{GUI} darstellen lassen \citep{Prelude_MU}. In der nächsten Abbildung, \ref{fig:Prelude}, sehen wir eine einfache Darstellung des Informationsflusses von Prelude:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/2_p4.png}
    \caption[Informationsfluss in Prelude]
    {Informationsflussin Prelude \\Quelle: \citep{Prelude_MU} }
+   \label{fig:Prelude}
    \centering
 \end{figure}
 
-In einer dezentralisierten Umgebung werden Daten von verschiedenen und getrennten Quellen generiert und bearbeitet. Schließlich können die Nutzer auf diesen Daten über eine \glsfirst{GUI} zugreifen.
+Die dezentralisierte Umgebung von Preludes lässt sich in der folgenden Abbildung darstellen:
 
 \begin{figure}[H]
    \centering
@@ -143,7 +148,8 @@ In einer dezentralisierten Umgebung werden Daten von verschiedenen und getrennte
    \centering
 \end{figure}
 
-Die wissenschaftliche Literatur über Prelude ist sehr eingeschränkt. Wenige Publikationen fokussieren sich auf die Entwicklung, Implementation und unternehmerische Anwendung dieses Tools. Eine Studie von 2021 versuchte dieses und zwei andere Tools (AlienVault und Cyberoam iView) anhand technischer und nutzerfreundlicher Kriterien zu vergleichen. Von diesn Kriterien highlighten wir folgende\citep{Grammatikis_Prelude}: 
+%Die Publikationen über Preludes fokussieren sich auf die Entwicklung, Implementation und unternehmerische Anwendung dieses Tools. 
+In \citep{Grammatikis_Prelude} wurde Preludes, AlienVault und Cyberoam iView anhand technischer und nutzerfreundlicher Kriterien zu verglichen. Von diesn Kriterien nennen wir folgende \citep{Grammatikis_Prelude}: 
 
 \begin{itemize}[noitemsep]
    \item \textbf{technische Kriterien}
@@ -161,47 +167,59 @@ Die wissenschaftliche Literatur über Prelude ist sehr eingeschränkt. Wenige Pu
    \end{itemize}
 \end{itemize}
 
-In den technischen Kriterien lag Prelude auf dem dritten Platz und in den benutzerfreundlichen Kriterien bekam Prelude den ersten. 
+In den technischen Kriterien lag Prelude auf dem dritten Platz und bei Benutzerfreundlichkeit bekam Prelude den ersten. 
 
-Auch in den nicht wissenschaftlichen Publikationen existiert eine begrenzte Anzahl von Texten über Preludes. Die existierenden Texte kommentieren ganz zusammenfassend die ausreichende Dokumentation und heben hervor, dass es eher eine in Europa verbreitete Lösung ist.
+%Auch in den nicht wissenschaftlichen Publikationen existiert eine begrenzte Anzahl von Texten über Preludes. Die existierenden Texte kommentieren ganz zusammenfassend die ausreichende Dokumentation und heben hervor, dass es eher eine in Europa verbreitete Lösung ist.
 
 \subsubsection{AlienVault OSSIM}
 AlienVault OSSIM ist eine im Jahr 2007 entwickelte \gls{opensource} \gls{SIEM} Lösung. Im Jahr 2018 wurden sie von der Firma AT\&T Communication gekauft  \citep{CBN_AV}. In der Beschreibung des Anbieters steht, dass er sie auch dabei unterstützt, Daten zu sammeln, zu normalisieren und zu bewerten. Er behauptet auch, dass sein Tool in der Lage ist, Schwachstellen und Angriffe zu erkennen, das Verhältnis zu beobachten und Datenzusammenhänge zu erschließen \citep{ATT_AVO}. 
 
-AlienVault hat eine kostenpflichtige Version, die Alien Vault \glsfirst{USM} heißt. Auf der Webseite von AT\&T steht, dass es keine spezifische Dokumentation für die \gls{opensource} Version AlienVault OSSIM gibt, da viele Funktionalitäten von der anderen Version stammen \citep{ATT_AVO}. 
+AlienVault hat eine kostenpflichtige Version, die Alien Vault \glsfirst{USM} heißt. Auf der Webseite von AT\&T steht, dass es keine dedizierte Dokumentation für die \gls{opensource} Version AlienVault OSSIM gibt, da viele Funktionalitäten von der kostenpflichtigen Version stammen \citep{ATT_AVO}. 
 
-\newpage
-Die folgende Abbildung zeigt das von dem Anbieter freigelegte Architekturdiagramm von der \gls{USM} Version:
+Die folgende Abbildung, \ref{fig:AlienVault_Architektur}, zeigt das von dem Anbieter freigelegte Architekturdiagramm von der \gls{USM} Version:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.6\textwidth]{assets/2_p6.png}
    \caption[Architekturdiagramm von AlienVault \gls{USM}]
    {Architekturdiagramm von AlienVault \gls{USM} \\Quelle: \citep{ATT_AVO} }
+   \label{fig:AlienVault_Architektur}
    \centering
 \end{figure}
 
+Unten im Bild sehen wir die mit einem Sensor verbundenen \glsplural{Endpoint}. Der Sensor analysiert die Daten und leitet diese zu dem Server weiter \citep{AV_Sensor}. Die Daten werden auf Logger (rechts) gespeichert und über die \gls{GUI} (links) dargestellt. 
+
 Laut der Website Comparitech steht AlienVault auf dem 13ten Platz von den bestbewertetsten \gls{SIEM}-Lösungen. Die Seite beschreibt auch, dass zu dem Tool einen \gls{IDS}, ein Verhaltensüberwachungssystem und einen Schwachstellen-Scanner integriert sind. Die Anwendung ist auch mit der Plattform \gls{OTX} verbunden - diese ermöglicht eine Teilung von Informationen über die Schwachstelle. Comparitech highlighted, dass die Anwendung wegen ihrer niedrigen Kosten besser für kleine oder mittelständige Unternehmen geeignet ist \citep{comparitech_SIEM}. 
 
-Die Anwendung soll konsistenten Daten Zusammenhang anbieten und soll das Auftauchen von \gls{falsch positiv} vermeiden. AlienVault kommt auch mit vordefinierten Use-Cases, die dabei unterstützen, gewöhnliche Angriffsszenarien zu erkennen. Die Installation, die Einstellung und die Integration mit anderen Tools ist auch benutzerfreundlich \citep{Gomes_AV}. Aus einer anderen wissenschaftlichen Quelle fanden wir heraus, dass für viele Quellen eine manuelle Normalisierung der Logdatein notwendig ist \citep{Nabil_AV}. Die Anwendung hat aber einen zuverlässigen Berichtsmechanismus. 
+Die Anwendung bietet konsistenten Daten Zusammenhang an und soll das Auftauchen von \gls{falsch positiv} vermeiden. AlienVault kommt auch mit vordefinierten Use-Cases, die dabei unterstützen, gewöhnliche Angriffsszenarien zu erkennen. Die Installation, die Einstellung und die Integration mit anderen Tools ist auch benutzerfreundlich \citep{Gomes_AV}. Aus einer anderen wissenschaftlichen Quelle fanden wir heraus, dass für viele Quellen eine manuelle Normalisierung der Logdatein notwendig ist \citep{Nabil_AV}.
 
-Während unserer Recherche gab es wenig wissenschaftliche Literatur, die sich um AlienVault OSSIM kümmert. Die meisten Publikationen waren aus kommerziellen Quellen und diese konzentrierten sich auf eine kostenpflichtige \gls{SIEM}-Lösung von AT\&T..
+%Die Anwendung hat aber einen zuverlässigen Berichtsmechanismus. 
+
+%Während unserer Recherche gab es wenig wissenschaftliche Literatur, die sich um AlienVault OSSIM kümmert.
+Die meisten Publikationen über AlienVault OSSIM stammen aus kommerziellen Quellen und diese konzentrierten sich auf eine kostenpflichtige \gls{SIEM}-Lösung von AT\&T.
 
 \subsubsection{FortiSIEM}
-FortiSIEM ist eine US-amerikanische \gls{SIEM}-Lösung von der Firma Fortinet. Fortinet kaufte im Jahr 2016 das Unternehmen AccelOps und dessen \gls{SIEM}-Lösung und benannte es zum FortSIEM \citep{Fortinet_Press}. 
+FortiSIEM ist eine \gls{SIEM}-Lösung von der US-amerikanische Firma Fortinet. Fortinet kaufte im Jahr 2016 das Unternehmen AccelOps und dessen \gls{SIEM}-Lösung und benannte es zum FortSIEM \citep{Fortinet_Press}. 
 
-Laut dem Anbieter hat FortiSIEM eine robuste Integration mit anderen Tools und lässt sich leicht und einwandfrei skalieren. Andere Versionen des Tools sind mit \glsfirst{ML} integriert, sodass die Anwendung auch Verhältnisanalysen durchführen kann \citep{Fortinet_Solutions}. Das Tool bietet auch eine umfangreiche und ausführliche Dokumentation an. Die nächste Abbildung zeigt die skalierbare Architektur des Tools:
+Laut dem Anbieter hat FortiSIEM eine robuste Integration mit anderen Tools und lässt sich leicht und einwandfrei skalieren. Andere Versionen des Tools sind mit \glsfirst{ML} integriert, sodass die Anwendung auch Verhältnisanalysen durchführen kann \citep{Fortinet_Solutions}. Das Tool bietet auch eine umfangreiche und ausführliche Dokumentation an. 
+
+Die nächste Abbildung, \ref{fig:FortiSIEM}, zeigt die skalierbare Architektur von FortiSIEM:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/2_p7.png}
    \caption[Skalierbare Architektur von FortiSIEM]
    {Skalierbare Architektur von FortiSIEM \\Quelle: \citep{Fortinet_Arch} }
+   \label{fig:FortiSIEM}
    \centering
 \end{figure}
 
-\newpage
-Auch zu dieser \gls{SIEM}-Lösung ist die wissenschaftliche Produktion eingeschränkt. Eine von der gefundenen Publikation betont, dass FortiSIEM eine schnelle Erkennung von Angriffen anbietet und über  \glsfirst{NOC} Funktionalitäten verfügt \citep{Ramires_fortisiem}. Wie andere \glspl{SIEM} Lösungen, hat FortiSIEM folgende Funktionalitäten:
+
+%Auch zu dieser \gls{SIEM}-Lösung ist die wissenschaftliche Produktion eingeschränkt.
+\newpage 
+\citep{Ramires_fortisiem} behauptet, dass FortiSIEM eine schnelle Erkennung von Angriffen bietet und über \glsfirst{NOC} Funktionalität verfügt, wie Netzmanagement. 
+
+Wie andere \glspl{SIEM} Lösungen, hat FortiSIEM folgende Funktionalitäten:
 
 \begin{itemize}[noitemsep]
    \item Datensammlung und Normalisierung
@@ -216,13 +234,14 @@ Elastic Stack stammt aus der Verbindung von drei Tools: Elasticsearch, Logstash 
 kostenlos verwendet werden können, gehören sie nicht zu der \gls{opensource} Kategorie \citep{OpenSource_Def}. Dieses Tool besitzt viele Eigenschaften einer \gls{SIEM}-Lösung und wird von vielen SOC verwendet, ist aber für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungssystem, Daten Zusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren. 
 
 \newpage
-Das folgende Diagramm stellt die Architektur von Elastic Stack mit ihren integrierten Elementen dar:
+Die nächste Abbildung, \ref{fig:Intregation_ELK}, stellt die Architektur von Elastic Stack mit ihren integrierten Elementen dar:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p8.png}
    \caption[Integration zwischen Elasticsearch, Logstash und Kibana]
    {Integration zwischen Elasticsearch, Logstash und Kibana\\Quelle: \citep{packt_elkstack} }
+   \label{fig:Intregation_ELK}
    \centering
 \end{figure}
 
@@ -238,13 +257,14 @@ Die offizielle Dokumentation von Elastic Stack betont, dass die Anwendung folgen
    \item visuelle Ausgabe
 \end{itemize}
 
-Folgendes Diagramm aus der offiziellen Dokumentation zeigt die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
+Die folgende Abbildung, \ref{fig:ElasticKomponenten}, aus der offiziellen Dokumentation zeigt die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p9.png}
    \caption[Aufteilung der Funktionalitäten zwischen den Komponenten]
    {Aufteilung der Funktionalitäten zwischen den Komponenten\\Quelle: \citep{elastic_docs}}
+   \label{fig:ElasticKomponenten}
    \centering
 \end{figure}
 
