@@ -1,5 +1,5 @@
 \section{Implementierung}
-In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um \gls{Cyberangriff} mithilfe der \gls{mitre} Matrix zu erkennen. Das Arbeitslabor wird mit \gls{container} und \glsfirst{vm} aufgebaut, wie im Diagramm in der folgenden Abbildung dargestellt.
+In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um \gls{Cyberangriff} mithilfe der \gls{mitre} Matrix zu erkennen. Das Labor wird mit einem \gls{container} und \glsfirst{vm} aufgebaut, wie im Diagramm in der folgenden Abbildung dargestellt.
 
 \begin{figure}[H]
    \centering
@@ -9,10 +9,10 @@ In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um 
    \centering
 \end{figure}
 
-Von unserem Aufbau aus streben wir folgende Ziele an: die Aufnahme und Anpassung von Logdateien für Grafana, die Mustererkennung für ausgewählte \glsplural{Cyberangriff} und schließlich die Erstellung von Warnmeldungen für die Endnutzer, damit sie geeignete Sicherheitsmaßnahmen ergreifen können.
+Unser Aufbau verfolg folgende Ziele: die Aufnahme und Anpassung von Logdateien für Grafana, die Mustererkennung für ausgewählte \glsplural{Cyberangriff} und schließlich die Erstellung von Warnmeldungen für die Endnutzer, damit sie geeignete Sicherheitsmaßnahmen ergreifen können.
 
 \newpage
-Der gezielte Ablauf ist in dem folgenden Diagramm dargestellt:
+Der gezielte Ablauf unserer Arbeit ist in dem folgenden Diagramm dargestellt:
 
 \begin{figure}[H]
    \centering
@@ -23,9 +23,9 @@ Der gezielte Ablauf ist in dem folgenden Diagramm dargestellt:
 \end{figure}
 
 \subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix}
-Es gibt verschiedene Methoden und Frameworks zur Vermeidung, Erkennung und Unterbrechung von \glsplural{Cyberangriff}. Zu den Beispielen gehören das \glsfirst{owasp}, das \glsfirst{CKC}und die \gls{mitre} Matrix, die von \gls{SOC}-Teams verwendet werden, um die Sicherheit von Systemen und/oder Netzwerken zu gewährleisten. Da sich die Richtlinien und Schwerpunkte dieser Frameworks unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, haben wir uns entschieden, die \gls{mitre} Matrix zur Erkennung von \glsplural{Cyberangriff} anzuwenden, insbesondere da dieses Framework auch in Splunk integriert ist. Die \gls{mitre} Matrix ist auf \glsfirst{ttp} basiert. Angriffe, Gegenmaßnahmen und Erkennung werden nach \gls{ttp} definiert.
+Es gibt verschiedene Methoden und Frameworks, die von \gls{SOC}-Teams verwendet wird, um \glsplural{Cyberangriff} zu vermeiden, zu erkennen und zu unterbrechen.  Da sich die Richtlinien und Schwerpunkte dieser Frameworks und Methoden unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, entschieden wir uns für die \gls{mitre} Matrix, insbesondere da dieses Framework auch in Splunk integriert ist. 
 
-Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
+Die \gls{mitre} Matrix hat folgenden Zweck \citep{Mitre_Started}:
 
 {\setstretch{1.5}
 \begin{itemize}[noitemsep]
@@ -36,37 +36,38 @@ Die \gls{mitre} Matrix hat folgende Hauptnutzung \citep{Mitre_Started}:
 \end{itemize}
 }
 
-Die Matrix bietet Unternehmen und \gls{SOC}-Teams umfassende Möglichkeiten, um ihre wertvollen Ressourcen zu schützen und ihr Fachwissen im Bereich der \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. In dieser Arbeit konzentrieren wir uns auf die Entwicklung und Implementierung einer Methode zur automatischen Erkennung und Analyse von Angriffstechniken in Grafana.
+Die Matrix ermöglichen Unternehmen und \gls{SOC}-Teams umfassende Möglichkeiten, um ihre Ressourcen zu schützen und ihr Fachwissen im Bereich der \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. In dieser Arbeit konzentrieren wir uns auf die Entwicklung und Implementierung einer Methode zur automatischen Erkennung und Analyse von Angriffstechniken in Grafana.
 
-Das \gls{mitre} Framework besteht aus 14 Taktiken, zu denen jeweils Techniken gehören, die wiederum in Sub-Techniken unterteilt sind. Jede Sub-Technik wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln beschrieben.
+Die \gls{mitre} Matrix ist auf \glsfirst{ttp} basiert. Angriffe, Gegenmaßnahmen und Erkennung werden nach \gls{ttp} definiert. Die Matrix besteht aus 14 Taktiken, zu denen jeweils Techniken gehören, die wiederum in Sub-Techniken unterteilt sind. Jede Sub-Technik wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln beschrieben. Die nächste Abbildung, \ref{fig:ttp}, zeigt, wie die \gls{ttp} aufgebaut werden:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Mitre_structure.drawio.png}
    \caption[Struktur der \gls{mitre} Matrix]
    {Struktur der \gls{mitre} Matrix \\Quelle: Eigene Quelle und \citep{Mitre_Started}}
+   \label{fig:ttp}
    \centering
 \end{figure}
 
-{\setstretch{1}
-Die 14 Taktiks sind folgende:
-\begin{itemize}[noitemsep]
-   \item Informationssammlung für zukünftige Angriffe 
-   \item	Entwicklung von Ressource von Angreifer
-   \item Erster Zugang zum Opfersysteme 
-   \item Ausführung von bösartigen Coden
-   \item Beharrlichkeit von System
-   \item	Privilegienausweitung
-   \item Vermeidung von Verteidigungssysteme
-   \item \textbf{Zugang zu Anmeldedaten}
-   \item Umgebungserkennung
-   \item Seitliche Bewegung zu anderem Systemen innerhalb des Angriffsziels
-   \item interne Informationssammlung
-   \item Steuerung und Kontrolle (C2 - Command and Control im Original)
-   \item Datenextrahierung 
-   \item	Auswirkung auf die Integrität
-\end{itemize}
-}
+% {\setstretch{1}
+% Die 14 Taktiks sind folgende:
+% \begin{itemize}[noitemsep]
+%    \item Informationssammlung für zukünftige Angriffe 
+%    \item	Entwicklung von Ressource von Angreifer
+%    \item Erster Zugang zum Opfersysteme 
+%    \item Ausführung von bösartigen Coden
+%    \item Beharrlichkeit von System
+%    \item	Privilegienausweitung
+%    \item Vermeidung von Verteidigungssysteme
+%    \item \textbf{Zugang zu Anmeldedaten}
+%    \item Umgebungserkennung
+%    \item Seitliche Bewegung zu anderem Systemen innerhalb des Angriffsziels
+%    \item interne Informationssammlung
+%    \item Steuerung und Kontrolle (C2 - Command and Control im Original)
+%    \item Datenextrahierung 
+%    \item	Auswirkung auf die Integrität
+% \end{itemize}
+% }
 
 \subsection{Auswahl des Angriffes}
 In dieser Arbeit beschäftigen wir uns mit der Taktik \quotes{Zugang zu Anmeldedaten} und deren Technik \gls{bruteforce}. Diese Technik ist in vier Untertechniken aufteilt:
@@ -75,16 +76,15 @@ In dieser Arbeit beschäftigen wir uns mit der Taktik \quotes{Zugang zu Anmelded
 
 {\setstretch{1}
 \begin{itemize}[noitemsep]
-   \item Erraten von Anmeldedaten 
+   \item \gls{bruteforce}
    \item	Entschlüsselung von \glsplural{hash}
    \item \textit{\gls{stuffing}}
    \item \textit{\gls{spraying}}
 \end{itemize}
 }
 
-Da unser Ziel hier ist, Grafana zu verwenden, um Angriffe zu erkennen, haben wir uns für einen einfachen und reproduzierbaren Angriff entschieden, der wenige Ressourcen erfordert. In diesem Fall kann ein \gls{bruteforce} mit zwei \glsplural{vm} problemlos durchgeführt werden. Für diesen Angriff verwenden wir die Sub-Technik "Erraten von Anmeldedaten und \textit{\gls{stuffing}}, da sie ähnliche Erkennungsmethoden aufweisen. Andere Maßnahmen schließen wir hierbei aus.
+Da unser Ziel hier ist, Grafana zu verwenden, um Angriffe zu erkennen, haben wir uns für einen einfachen und reproduzierbaren Angriff entschieden, der wenige Ressourcen erfordert. In diesem Fall kann ein \gls{bruteforce} mit zwei \glsplural{vm} problemlos durchgeführt werden. Für diesen Angriff verwenden wir die Sub-Technik "Erraten von Anmeldedaten und \textit{\gls{stuffing}}, da sie ähnliche Erkennungsmethoden aufweisen. Da unser Fokus bei dieser wissenschaftlichen Arbeit auf der Angriffserkennung schließen andere Maßnahmen  wir hierbei aus.
 
-\newpage
 Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs mithifel von \gls{mitre}:
 \begin{figure}[H]
    \centering
@@ -94,7 +94,8 @@ Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs mithifel
    \centering
 \end{figure}
 
-\subsection{Installation und Erstellung von Logdateien}
+\newpage
+\subsection{Installation und Generierung von Logdateien}
 In diesem Abschnitt konzentrieren wir uns auf die folgenden Punkte:
 
 \begin{enumerate}[noitemsep]
@@ -104,26 +105,26 @@ In diesem Abschnitt konzentrieren wir uns auf die folgenden Punkte:
    \item Weiterleitung der Logdateien an Grafana
    \end{enumerate}
 
-Die Installation und Verwendung können entweder über die \glsfirst{GUI} oder über die Kommandozeile durchgeführt werden. In dieser Arbeit verwenden wir die Kommandozeile.
+Die Installation und Verwendung können entweder über eine \glsfirst{GUI} des Betriebssystems oder über die Kommandozeile durchgeführt werden. In dieser Arbeit verwenden wir die Kommandozeile.
 
 \subsubsection{Einrichtung der \glsplural{vm} für Opfersystem und Angreifen}
-Die beiden \glsplural{vm} sind eine vorgebaute \quotes{\gls{kali} \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} in ihren standardmäßigen Einstellungen. Beide Maschinen wurden entsprechend ihrer jeweiligen Dokumentation installiert \citep{kali_vm} und \citep{Ubuntu_server}.
+Die beiden \glsplural{vm} sind eine \quotes{\gls{kali} \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} mit standardmäßigen Einstellungen. Beide Maschinen wurden entsprechend ihrer jeweiligen Dokumentation installiert \citep{kali_vm} und \citep{Ubuntu_server}.
 
-\newpage
 Für das Opfersystem haben wir uns für die Passwörter \quotes{qwertz} und \quotes{password} entschieden. Laut einer Umfrage gehören diese Passwörter zu den zehn am häufigsten verwendeten Passwörtern in Deutschland \citep{silicon_passwort}.
 
-Für die Durchführung des \gls{spraying} haben wir folgende Passwortkombinationen erstellt:
+Für die Durchführung des \gls{spraying} haben wir folgende Benutzername-Passwort Kombinationen erstellt:
 
 {\setstretch{1.0}
 \begin{lstlisting}[frame=single]
-   Opfersystem 1          Opfersystem 2  
-   admin:123456           bob:hallo
-   user1:passwort         master:alice
-   user2:abc123           hans:daniel
-   user3:qwertyuiop       bruno:super123
+            Opfersystem 1          Opfersystem 2  
+            admin:123456           bob:hallo
+            user1:passwort         master:alice
+            user2:abc123           hans:daniel
+            user3:qwertyuiop       bruno:super123
 \end{lstlisting}
 }
 
+\newpage
 \subsubsection{Generierung von Logdateien mit der Angrifsssimulation}
 Für den Angriff verwenden wir folgende Tools:
 
@@ -134,9 +135,8 @@ Für den Angriff verwenden wir folgende Tools:
 \end{itemize}
 }
 
-In diesem Szenario sendet \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche an das Opfersystem, um eine \gls{ssh}-Verbindung herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannte \gls{rockyou}-Datei.
+In diesem Szenario sendet \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche an das Opfersystem, um eine \gls{ssh}-Verbindung herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannte \gls{rockyou}-Wörterbuch.
 
-\newpage
 Die folgende Abbildung zeigt, wie das \gls{stuffing} abläuft:
 
 \begin{figure}[H]
@@ -147,6 +147,9 @@ Die folgende Abbildung zeigt, wie das \gls{stuffing} abläuft:
    \centering
 \end{figure}
 
+In diesem Angriff versucht der Angreifer sich mit einem Konto anzumelden, indem er mit vielen Passwörter aus dem Wörterbuch probiert, bis eins richtige gefunden ist. Es können mehrere Anmeldungsversuche geschickt werden, bis eine von denen funktioniert.
+
+\newpage
 \gls{stuffing} wurde mit folgendem Kommando durchgeführt \citep{kali_hydra}:
 %Verbatim
 {\setstretch{1.0}
@@ -162,7 +165,6 @@ ssh: Auswahl der Anwendung, die wir angreifen
 \end{Verbatim}
 }
 
-\newpage
 Das folgende Bild zeigt einen Teil der Ausgabe von \gls{hydra} während der Ausführung von \gls{stuffing} gegen das Opfersystem1:
 \begin{figure}[H]
    \centering
@@ -188,8 +190,11 @@ Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
    \includegraphics[width=1\textwidth]{assets/Spraying.jpg}
    \caption[Darstellung von \textit{\gls{spraying}}]
    {Darstellung von \textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
+   \label{fig:spraying}
    \centering
 \end{figure}
+
+Aus der Abbildung, \ref{fig:spraying}, sehen wir, dass bei \gls{spraying}, weniger Passwörter im Vergleich zum \gls{stuffing} verwendet wird, aber es werden mit mehreren Benutzername probiert. In diesem Fall will der Angreifer  Kontosperrungen vermeiden und Unauffälig gegenüber existierenden Sicherheitsmaßnamen bleiben.
 
 Für diesen Angriff benutzen wir folgendes Kommando:
 {\setstretch{1.0}
@@ -201,9 +206,9 @@ hydra -L username2.txt -P passwoerter.txt [Opfersystem2] ssh -V -t 4
 \end{Verbatim}
 }
 
+\newpage
 In diesem Fall gehen wir davon aus, dass der Angreifer einige oder alle Benutzernamen bereits kennt. Da bei diesem Angriff weniger Anmeldeversuche pro Nutzer durchgeführt werden, verwenden wir eine selbst erstellte Datei mit weniger Passwörtern als die \gls{rockyou}-Datei. Unsere Datei enthält die am häufigsten verwendeten Passwörter in Deutschland \citep{silicon_passwort}.
 
-\newpage
 Die folgenden Screenshots zeigen die Ausführung von \gls{spraying}:
 \begin{figure}[H]
    \centering

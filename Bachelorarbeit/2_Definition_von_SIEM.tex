@@ -230,7 +230,7 @@ Wie andere \glspl{SIEM} Lösungen, hat FortiSIEM folgende Funktionalitäten:
 \end{itemize}
 
 \subsubsection{Elastic Stack}
-Elastic Stack stammt aus der Verbindung von drei Tools: Elasticsearch, Logstash und Kibana. Das Erste ist eine Such-und Analyse-Maschine. Das Zweite ist eine serverseitige Anwendung zur Datenverarbeitung und -Weiterleitung. Schließlich Kibana \label{kibana} ist dafür zuständig, visuelle Darstellungen in einem Grafik-Format auszugeben (packt, 2019). Von diesen drei Tools Logstasch ist der einzige \gls{opensource} \citep{elastic_OSI}. Obwohl die anderen zwei 
+Elastic Stack stammt aus der Verbindung von drei Tools: Elasticsearch, Logstash und Kibana. Erstes ist eine Such-und Analyse-Maschine. Das Zweite ist eine serverseitige Anwendung zur Datenverarbeitung, -Weiterleitung und Sammlung von Logdateien. Schließlich Kibana \label{kibana} ist eine \gls{abfragesprache} dafür zuständig, Daten zu filtern und visuelle Darstellungen in einem Grafik-Format auszugeben \citep{packt_elkstack}. Von diesen drei Tools Logstasch ist das einzige \gls{opensource} \citep{elastic_OSI}. Obwohl die anderen zwei 
 kostenlos verwendet werden können, gehören sie nicht zu der \gls{opensource} Kategorie \citep{OpenSource_Def}. Dieses Tool besitzt viele Eigenschaften einer \gls{SIEM}-Lösung und wird von vielen SOC verwendet, ist aber für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungssystem, Daten Zusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren. 
 
 \newpage
@@ -247,9 +247,9 @@ Die nächste Abbildung, \ref{fig:Intregation_ELK}, stellt die Architektur von El
 
 Die Beats auf dem Bild sind an der \glsplural{Endpoint} installiert und leiten Daten entweder zu Elasticsearch oder zu Logstash weiter, wo sie schließlich bearbeitet werden \citep{Jain_LMELK}. 
 
-Ein Teil der wissenschaftlichen Literatur zeigt die Log Analyse-Funktionalitäten von Elastic Stack und die Unterstützung bei Normalisierung und Indexierung von Daten für eine lesbare Ausgabe \citep{Advani_elkstakc}. Die starke Skalierbarkeit wurde auch bei einer Studie erwähnt, wo Elastic Stack für Wi-Fi Logging eingesetzt wurde \citep{Wang_elkwifi}. 
+In \citep{Advani_elkstakc} wird über die Log Analyse-Funktionalitäten von Elastic Stack und die Unterstützung bei Normalisierung und Indexierung von Daten für eine lesbare Ausgabe recherchiert. Die Skalierbarkeit wurde in der Studie von \citep{Wang_elkwifi} erwähnt, wo Elastic Stack für Wi-Fi Logging eingesetzt wurde. 
 
-Die offizielle Dokumentation von Elastic Stack betont, dass die Anwendung folgende Funktionalitäten besitzt \citep{elastic_docs}: 
+Die offizielle Dokumentation von Elastic Stack beschreibt, dass die Anwendung folgende Funktionalitäten besitzt \citep{elastic_docs}: 
 
 \begin{itemize}[noitemsep]
    \item Datensuche, -Normalisierung, -Analyse und 
@@ -257,7 +257,7 @@ Die offizielle Dokumentation von Elastic Stack betont, dass die Anwendung folgen
    \item visuelle Ausgabe
 \end{itemize}
 
-Die folgende Abbildung, \ref{fig:ElasticKomponenten}, aus der offiziellen Dokumentation zeigt die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
+Die folgende Abbildung, \ref{fig:ElasticKomponenten}, aus der offiziellen Dokumentation, zeigt die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
 
 \begin{figure}[H]
    \centering
@@ -268,33 +268,35 @@ Die folgende Abbildung, \ref{fig:ElasticKomponenten}, aus der offiziellen Dokume
    \centering
 \end{figure}
 
-Die wissenschaftliche Publikation über Elastic Stack ist vielfältiger als bei anderen recherchierten Tools. Es ist aber wichtig zu betonen, dass die Mehrheit von denen sich eher mit dem Logging als mit den \gls{SIEM}-Eigenschaften der Anwendung beschäftigt.
+Die wissenschaftliche Publikation über Elastic Stack ist vielfältiger als bei anderen recherchierten Tools. Die Mehrheit von denen sich eher mit dem Logging als mit den \gls{SIEM}-Eigenschaften der Anwendung beschäftigt.
 
 \subsubsection{Grafana}
-Von allen recherchierten Lösungen ist Grafana die Einzige, die nicht als \gls{SIEM} dargestellt ist. Grafana wird aber als Plattform für Visualisierung von Daten beschrieben. Mit dem Tool ist es möglich eine Graphik zu erstellen und Meldungen zu definieren. Das Ziel der Anwendung ist, Information in einer einfachen und verständlichen Art und Weise zur Verfügung zu stellen \citep{redhat_grafana}.  
+Von allen recherchierten Lösungen ist Grafana die Einzige, die weder \gls{SIEM} noch Log-Analyse-Tools ist. Grafana wird als Plattform für Visualisierung von Daten beschrieben. Mit dem Tool ist es möglich eine Graphik zu erstellen und Meldungen zu generieren. Das Ziel der Anwendung ist, Information in einer einfachen und verständlichen Art und Weise zur Verfügung zu stellen \citep{redhat_grafana}.  
 
 Im Jahr 2014 wurde Grafana von der Firma Grafana Labs veröffentlicht. Das Tool basiert auf Kibana3,\ref{kibana}. Ursprünglich sollte Grafana ein einfacheres Bearbeitungstool für Grafiken sein und ermöglichen, Datenanfragen unkomplizierter zu machen. Die neuste Version, 9.4.3. wurde im März 2023 veröffentlicht und bietet viele Funktionalitäten an. Es ist auch möglich das Tool mithilfe von  \glsplural{plugin} zu erweitern \citep{Oedegaard_historyGrafana}.. 
 
 In der Webseite betont der Anbieter, dass Grafana die Zentralisierung und Zugang von Daten vereinfachen. Alle Art von Daten lassen sich analysieren und darstellen, von der Leistung von Anwendungen bis Verkaufsdaten und Krankheitsfällen. Die Anwendung soll auch den Zusammenhang von Daten ermöglichen, um wichtige Informationen herauszunehmen \citep{Grafana_Grafana}.
 
-Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig. Promptail wird an jeden \gls{Endpoint} installiert. In Loki werden diese Logdateien ohne Index für den schnellen Zugriff gespeichert. Diese Daten können dann in Grafana mithilfe der \gls{abfragesprache} LogQL aufgerufen werden. Schließlich können Warnmeldungen mit spezfisichen Regeln generiert werden, die in Loki eingeführt werden \citep{Grafana_loki}. Auf dem Folgenden Bild wird die Struktur von Grafana Loki  dargestellt:
+Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig. Promptail wird an jeden \gls{Endpoint} installiert. Die Logdatein werden als Stream zu Loki geschickt und diese Streams werden dann identifiziert mithilfe von Index. Jeder Stream bezieht sich auf eine Gruppe von Logdateien. Der Inhalt der Logdateien bleiben aber ohne Index \citep{Grafana_fundamentals}. Diese Daten können dann in Grafana mithilfe der \gls{abfragesprache} LogQL aufgerufen werden. Schließlich können Warnmeldungen mit spezifischen Regelsätze in \gls{logql} generiert werden, die in dem Alerting Tool von Grafana eingeführt werden \citep{Grafana_loki}. Auf der nächsten Abbildung, \ref{fig:Integration_Loki_Promtail_Grafana}, wird die Struktur von Grafana Loki  dargestellt:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p10.png}
    \caption[Integration von Log-Quellen mit Promptail, Loki und Grafana]
    {Integration von Log-Quellen mit Promptail (links), Loki (mitte) und Grafana (rechts) \\Quelle: \citep{Grafana_Logs}}
+   \label{fig:Integration_Loki_Promtail_Grafana}
    \centering
 \end{figure}
 
-Das Tool hat auch eine umfangreiche Dokumentation, die ausführlich erklärt, wie es zu installieren, bedienen und mit anderen Tools integrierbar ist. 
+Das Tool hat eine umfangreiche Dokumentation, die ausführlich erklärt, wie es zu installieren, bedienen und mit anderen Tools integrierbar ist. 
 
 %\newpage
 %Obwohl Grafana nicht spezifisch für den Sicherheitsbereich konzipiert wurde, kann das Tool so eingerichtet werden, dass spezifische Logdateien gesammelt, bearbeitet und analysiert werden. Die Warnmeldung lässt sich mit Regeln oder Filter definieren. In einer Recherche von 2022 wurde Grafana dafür benutzt, Daten aus Netzwerkverkehr graphisch darzustellen \citep{Manases_grafananetwork}. 
 
-Die wissenschaftlichen Literatur über Grafana konzentriert sich eher auf die Anwendung des Tools für die grafische Darstellung von Daten als für ihre Nutzung in dem Sicherheitsbereich. Eine Recherche, z.B., wollte das Ergebnis von der Überwachung von Cloud-basierten Systemen, von Netzwerkaktivitäten und von Netzwerkverkehr mithilfe von Grafana darstellen \citep{Manases_grafananetwork}. In dieser Hinsicht gibt es wenige wissenschaftliche Arbeit, wo die Implementation und Integration von Grafana mit anderen Tools für den Sicherheitsbereich die Hauptfigur ist.
+Die wissenschaftlichen Literatur über Grafana konzentriert sich eher auf die Anwendung des Tools für die grafische Darstellung von Daten als für ihre Nutzung in dem Sicherheitsbereich. Eine Recherche, z.B., wollte das Ergebnis von der Überwachung von Cloud-basierten Systemen, von Netzwerkaktivitäten und von Netzwerkverkehr mithilfe von Grafana darstellen \citep{Manases_grafananetwork}. 
+Die wissenschaftliche Recherche über die Implementierung und Integration von Grafana mit anderen Tools zum Sicherheitszweck ist neu und bietet deshalb viele  Perspektive für das Weiterlernen an.
 
-\subsection{Auswahlkriterien}
-Eine umfangreiche \gls{SIEM} Software die viele automatische Lösungen für die Erkennung und Bekämpfung von Cyberangriffen würde perfekt für jede Situation passen. Da solche Lösungen meistens (oder alle) \gls{Proprietary} sind und nur für teure Preise angeboten werden, entschieden wir uns für die Anpassung eines \gls{opensource}Tools, das zu unserem Kontext und Einschränkungen gehört. 
+\subsection{Auswahlkriterium}
+Der Erwerb einer \gls{SIEM} Lösung würde wahrscheinlich die Anforderungen dieser wissenschaftlichen Arbeit decken. Da solche Lösungen meistens (oder alle) \gls{Proprietary} und kostenpflichtig sind, legten wir als Auswahlkriterium fest, dass die Anwendungen für unsere Arbeit \gls{opensource} sein müssen. Deshalb arbeiten wir mit Grafana, Loki und Promtail.
 
-Demnächst beschäftigen wir uns mit Grafana. Wir beschreiben, wie wir das Tool installieren, konfigurieren und mit verschiedenen Logdateien eingeben. Nachdem die Grundfunktionalitäten eingerichtet sind und einwandfrei funktionieren, generieren wir anhand der \gls{mitre} Matrix \glsplural{usecases} für die zukünftigen ausgewählten Angriffe. Unser Ziel ist Grafana so einzustellen, dass es in der Lage ist, die Muster dieser Angriffe zu erkennen und darüber zu berichten.
+In den nächsten Kapiteln beschäftigen wir mit der Integration dieser Tools, um eine ähnliche \gls{SIEM} Lösung zu präsentieren. Wir beschreiben die Installation, Einstellungen und Sammlungen von Logdateien und nachdem die Grundfunktionalitäten eingerichtet sind und einwandfrei funktionieren, untersuchen wir anhand der \glsfirst{ttp} der \gls{mitre} Matrix Regelsätze für die Erkennung und Warnmeldung von potenziellen Angriff. Unser Ziel ist Grafana, Loki und Promtail so einzustellen, dass es in der Lage ist, die Muster dieser Angriffe zu erkennen und darüber zu berichten.
