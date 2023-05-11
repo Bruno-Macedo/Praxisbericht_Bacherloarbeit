@@ -103,16 +103,14 @@ In diesem Abschnitt konzentrieren wir uns auf die folgenden Punkte:
    \item Simulation des Angriffe zur Erzeugung von Logdateien
    \item Installation und Konfiguration von Grafana Loki und Promtail mit \gls{container}
    \item Weiterleitung der Logdateien an Grafana
-   \end{enumerate}
+\end{enumerate}
 
 Die Installation und Verwendung können entweder über eine \glsfirst{GUI} des Betriebssystems oder über die Kommandozeile durchgeführt werden. In dieser Arbeit verwenden wir die Kommandozeile.
 
 \subsubsection{Einrichtung der \glsplural{vm} für Opfersystem und Angreifen}
 Die beiden \glsplural{vm} sind eine \quotes{\gls{kali} \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} mit standardmäßigen Einstellungen. Beide Maschinen wurden entsprechend ihrer jeweiligen Dokumentation installiert \citep{kali_vm} und \citep{Ubuntu_server}.
 
-Für das Opfersystem haben wir uns für die Passwörter \quotes{qwertz} und \quotes{password} entschieden. Laut einer Umfrage gehören diese Passwörter zu den zehn am häufigsten verwendeten Passwörtern in Deutschland \citep{silicon_passwort}.
-
-Für die Durchführung des \gls{spraying} haben wir folgende Benutzername-Passwort Kombinationen erstellt:
+Für das Opfersystem haben wir uns für die Passwörter \quotes{qwertz} und \quotes{password} entschieden. Laut einer Umfrage gehören diese Passwörter zu den zehn am häufigsten verwendeten Passwörtern in Deutschland \citep{silicon_passwort}. Für die Durchführung des \gls{spraying} haben wir folgende Benutzername-Passwort Kombinationen erstellt:
 
 {\setstretch{1.0}
 \begin{lstlisting}[frame=single]
@@ -137,13 +135,14 @@ Für den Angriff verwenden wir folgende Tools:
 
 In diesem Szenario sendet \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche an das Opfersystem, um eine \gls{ssh}-Verbindung herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannte \gls{rockyou}-Wörterbuch.
 
-Die folgende Abbildung zeigt, wie das \gls{stuffing} abläuft:
+Die folgende Abbildung, \ref{fig:stuffing}, zeigt, wie das \gls{stuffing} abläuft:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Stuffing.jpg}
    \caption[Darstellung von \textit{\gls{stuffing}}]
    {Darstellung von \textit{\gls{stuffing}}\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \label{fig:stuffing}
    \centering
 \end{figure}
 
@@ -165,12 +164,13 @@ ssh: Auswahl der Anwendung, die wir angreifen
 \end{Verbatim}
 }
 
-Das folgende Bild zeigt einen Teil der Ausgabe von \gls{hydra} während der Ausführung von \gls{stuffing} gegen das Opfersystem1:
+Die folgende Abbildung, \ref{fig:Stuffing_Opfer1}, zeigt einen Teil der Ausgabe von \gls{hydra} während der Ausführung von \gls{stuffing} gegen das Opfersystem1:
 \begin{figure}[H]
    \centering
-   \includegraphics[width=1\textwidth]{assets/stuffing_kali.png}
+   \includegraphics[width=0.9\textwidth]{assets/stuffing_kali.png}
    \caption[Ausführung von \textit{\gls{stuffing}} gegen Opfersystem1]
    {Ausführung von \textit{\gls{stuffing}} gegen Opfersystem1\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \label{fig:Stuffing_Opfer1}
    \centering
 \end{figure}
 
@@ -183,7 +183,6 @@ Und gegen Opfersystem2:
    \centering
 \end{figure}
 
-\newpage
 Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
 \begin{figure}[H]
    \centering
@@ -209,12 +208,13 @@ hydra -L username2.txt -P passwoerter.txt [Opfersystem2] ssh -V -t 4
 \newpage
 In diesem Fall gehen wir davon aus, dass der Angreifer einige oder alle Benutzernamen bereits kennt. Da bei diesem Angriff weniger Anmeldeversuche pro Nutzer durchgeführt werden, verwenden wir eine selbst erstellte Datei mit weniger Passwörtern als die \gls{rockyou}-Datei. Unsere Datei enthält die am häufigsten verwendeten Passwörter in Deutschland \citep{silicon_passwort}.
 
-Die folgenden Screenshots zeigen die Ausführung von \gls{spraying}:
+Die nächsten Abbildungen,\ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2}, zeigen die Ausführung von \gls{spraying}:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Spraying_Kali.png}
    \caption[Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1]
    {Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1\\Quelle: Eigene Quelle}
+   \label{fig:spraying_opfer1}
    \centering
 \end{figure}
 
@@ -223,6 +223,7 @@ Die folgenden Screenshots zeigen die Ausführung von \gls{spraying}:
    \includegraphics[width=1\textwidth]{assets/Spraying_Kali2.png}
    \caption[Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2]
    {Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2\\Quelle: Eigene Quelle}
+   \label{fig:spraying_opfer2}
    \centering
 \end{figure}
 
@@ -274,54 +275,92 @@ Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \
 \restoregeometry  
 
 \subsubsection{Weiterleitung der Logdateien zu Grafana}
-Grafana Loki bietet mehrere Möglichkeiten Logdateien zu empfangen. In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Wenn wir verschiedene Arten von Logdateien hätten, würde jeder Typ einem eigenen \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat seine eigenen Regeln, um nach den gewünschten Informationen zu suchen.
+Grafana Loki bietet interne und externe Möglichkeiten Logdateien zu empfangen. Die internen beziehen sich auf Grafana Tools, während die externen unabhängige Methode von Grafana benutzen:
 
-In einer produktiven Umgebung wäre die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. In diesem Fall würde jeder \gls{Endpoint} mithilfe von Promtail die Dateien weiterleiten \citep{Grafana_Agents}. Wie bei unserer Lösung müsste der Nutzer für jeden Typ von Logdateien einen spezifischen \quotes{job} konfigurieren.
+\begin{enumerate}[noitemsep]
+   \item \textbf{interne Methode}:
+   \begin{enumerate}[noitemsep]
+      \item Promtail 
+      \item Grafana Agents
+   \end{enumerate}
+   \item \textbf{externe Methode}
+   \begin{enumerate}[noitemsep]
+      \item \glsfirst{API}
+      \item \gls{opentelemetry} 
+   \end{enumerate}
+\end{enumerate}
 
-Der Inhalt von Logdateien lässt sich auch mithilfe der \textbf{\glsfirst{API}} an Grafana Loki senden. In dieser Situation sendet der \gls{Endpoint} eine \gls{http} POST-Anfrage an den Endpunkt von Grafana Loki mit dem Inhalt der Logdateien \citep{Grafana_api}:
+In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdatein nur zu Grafana Loki oder zu anderen Promtail-Instanz schicken \citep{Grafana_Promtail}. Die folgende Abbildung, \ref{fig: Promtail_Diagram}, zeigt die \glsplural{Endpoint} (links), wo Promtail installiert ist. Jeder Instanz von Promtail schickt Logdateien zu Loki (mitte), wo die Daten dann in Grafana (rechts) dargestellt werden.
 
-{\setstretch{1.0}
-\begin{lstlisting}[frame=single][language=json]
-# Endpoint 
-POST [Addresse_von_Grafana_Loki_Instanz]/loki/api/v1/push
+%Bei verschiedenen wird jeder Typ einem eigenen \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat seine eigenen Regeln, um nach gefilterten Informationen zu suchen. 
 
-# Inhalt
-{
-  "streams": [
-    {
-      "stream": {
-        "label": "value"
-      },
-      "values": [
-          [ "Zeit in Unixformat", "<Inhalt der Logdateie>" ],
-      ]
-    }
-  ]
-}
-\end{lstlisting}
-}
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.6\textwidth]{assets/Promtail_Diagramm.png}
+   \caption[Promtail in jeden \glsplural{Endpoint} kommuniziert sich mit Grafana Loki]
+   {Promtail in jeden \glsplural{Endpoint} kommuniziert sich mit Grafana Loki\\Quelle: \citep{SpringCloud_Promtail}}
+   \label{fig:Promtail_Diagramm}
+   \centering
+\end{figure}
 
-Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool OpenTelemetry an, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Im Allgemeinen wird OpenTelemetry verwendet, um Daten zu senden, zu verarbeiten und zu empfangen. Laut dem Anbieter ist OpenTelemetry mit verschiedenen anderen Tools integriert, um die Datenübertragung zu ermöglichen. Das Tool besteht aus \textit{Agents} und \textit{Collectors}. Der Agent wird auf jedem Endpunkt installiert, um Daten zu sammeln und der Collector empfängt die Daten und leitet sie weiter \citep{Grafana_opentelemetry}. Die Integration mit Grafana Loki erfolgt über die Nutzung von APIs. Der Collector läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem Endpunkt und kommunizieren mit dem \textit{Collector}. Die folgende Abbildung soll diesen Vorgang besser darstellen:
+In einer produktiven Umgebung ist die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. Während Promtail Logdatei nur zu Loki schickt, kann Grafana Agents Logdateien zu \gls{prometheus}, OpenTelemetry und zu Tools von \gls{GrafanaSystem}, wie \gls{mimir}, \gls{tempo}, \gls{phlare}, Loki und Grafana \citep{Grafana_Agents}. Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwischen Grafana Agents und die integrieten Tools:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.6\textwidth]{assets/GrafanaAgents.drawio.png}
+   \caption[Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \gls{GrafanaSystem}]
+   {Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \gls{GrafanaSystem}\\Quelle: \citep{Grafana_Agents}}
+   \label{fig:GrafAgents}
+   \centering
+\end{figure}
+
+Der Kommunikationsfluss bei Grafana Agents funktioniert ähnlich, wie bei Promtail. Die \glsplural{Endpoint} (links), wo die Agents installiert sind, schicken die Logdateien zu den kompatiblen Tools (mitte), die sich wiederum mit Grafana (rechts) kommunizieren.
+
+Die Sendung des Inhalts der Logdateien findet auch mithilfe von Grafana Loki \gls{http} \textbf{\gls{API}} statt. In diesem Fall werden die Zeile der Logdateien und nicht der Datei zum \gls{Endpoint} von Loki mit \gls{http} POST-Anfrage geschickt. 
+
+% {\setstretch{1.0}
+% \begin{lstlisting}[frame=single][language=json]
+% # Endpoint 
+% POST [Addresse_von_Grafana_Loki_Instanz]/loki/api/v1/push
+
+% # Inhalt
+% {
+%   "streams": [
+%     {
+%       "stream": {
+%         "label": "value"
+%       },
+%       "values": [
+%           [ "Zeit in Unixformat", "<Inhalt der Logdateie>" ],
+%       ]
+%     }
+%   ]
+% }
+% \end{lstlisting}
+% }
+
+Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool \gls{opentelemetry} an, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Die Integration mit Grafana Loki erfolgt über die Nutzung von \glsplural{API}. Der \textit{Collector} läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem Endpunkt und kommunizieren mit dem \textit{Collector}. Die folgende Abbildung stellt das Kommunikationsverfahren zwischen \gls{opentelemetry} und Grafana Liki:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Grafana_OpenTelemtry.png}
-   \caption[Datenfluss zwischen OpenTelemetry und Grafana Loki]
-   {Datenfluss zwischen OpenTelemetry und Grafana Loki\\Quelle: \citep{Grafana_WhatOpentelemetry}}
+   \caption[Datenfluss zwischen \gls{opentelemetry} und die Tools von \gls{GrafanaSystem}]
+   {Datenfluss zwischen \gls{opentelemetry} und\gls{GrafanaSystem}\\Quelle: \citep{Grafana_WhatOpentelemetry}}
    \centering
 \end{figure}
 
-An der linken Seite haben wir die verschiedenen \glsplural{Endpoint}, auf denen jeweils ein \textit{Agent} läuft. In der Mitte haben wir den \textit{Collector}, der die Logdateien schließlich an Grafana Loki und/oder an andere Tools weiterleitet.
+Auf der linken Seite haben wir die verschiedenen \glsplural{Endpoint}, auf denen jeweils ein \textit{Agent} läuft. In der Mitte ist der \textit{Collector}, der die Logdateien schließlich an die Tools von \gls{GrafanaSystem} weiterleitet.
 
 \newpage
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
-Ein \gls{bruteforce} lässt sich durch die Anzahl der fehlgeschlagenen Anmeldeversuche erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir betrachten eine Situation, in der keine Gegenmaßnahmen wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Aktivitätsdiagramm stellt einen allgemeinen Ablauf eines Anmeldungsverfahrens dar
+Ein \gls{bruteforce} lässt sich durch die Anzahl der fehlgeschlagenen Anmeldeversuche erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir betrachten eine Situation, in der keine Gegenmaßnahmen wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Abbildung, \ref{fig:Aktivitaetsdiagramm_Anmeldung}, stellt Diagramm mit einem allgemeinen Ablauf eines Anmeldungsverfahrens dar:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Anmeldeverfahren.drawio.png}
    \caption[Allgemeiner Ablauf eines Anmeldungsverfahrens]
    {Allgemeiner Ablauf eines Anmeldungsverfahrens \\Quelle: Eigene Quelle und \citep{Selvaganesh_SplunkBruteForce}}
+   \label{fig:Aktivitaetsdiagramm_Anmeldung}
    \centering
 \end{figure}
 
@@ -428,6 +467,8 @@ Eine Erkennungsregel hätte folgende Logik:
 
 
 \subsection{Hinzufügen der Regelsätze Grafana Loki}
+
+Citar regra API %https://grafana.com/docs/loki/latest/api/
 
 Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} als auch über die \gls{GUI} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen zeigen diese beiden Optionen:
 

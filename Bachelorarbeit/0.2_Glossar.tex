@@ -12,6 +12,7 @@
 \newglossaryentry{API}{
     type=\acronymtype,
     name=API,
+    plural=APIs
     first={ Application Programming Interface (API)\glsadd{API2}},
     see=[Glossary:]{\gls{API2}}, 
     description=\glslink{API2}{Application Programming Interface}}
@@ -227,10 +228,24 @@
     name={Mitre ATT\&CK},
     description={Abkürzung für \textit{Adversarial Tactics, Techniques and Common Knowledge}. Es bezieht sich auf eine weltweit zugängliche Wissensbasis mit detaillierter Beschreibung, Klassifizierung und Bekämpfung von verschiedenen Angriffstechniken \citep{Mitre_Definition}}}
 
+\newglossaryentry{GrafanaSystem} {
+    name={Grafana Ecosystem},
+    description={beinhalt die Tools Loki, Grafana, \gls{tempo}, \gls{mimir} und \gls{phlare} \citep{Grafana_Agents}}   
+}
+
 \newglossaryentry{mimir} {
     name={Mimir},
-    description={ ein in Grafana integriertes Tool, das ähnlich wie Grafana Loki funktioniert. Es ermgölicht skalierbare Dateispeicherung, Bearbeitung und Abfrage mit der Abfragesprache LogQl \citep{Grafana_mimir}}   
-    }
+    description={ist ein in Grafana integriertes Tool, das ähnlich wie Grafana Loki funktioniert. Es ermgölicht skalierbare Dateispeicherung, Bearbeitung und Abfrage mit der Abfragesprache LogQl \citep{Grafana_mimir}}   
+}
+
+\newglossaryentry{tempo} {
+    name={Tempo},
+    description={ist ein Tool von Grafana Ecosystem, das sich für die Unterscheidung und Erkennung von Prozessen beschäftigt, dieses Verfahren heißt verteilte Rückverfolgung \citep{Grafana_tempo} und \citep{DevInsider_DistributedTracing}}   
+}
+\newglossaryentry{phlare} {
+    name={Phlare},
+    description={ist auch ein Tool vom Grafana Ecosystem, das sich mit der Sammlung und der Analyse von Daten über die Leistung von Anwendung beschäftigt \citep{Grafana_Phlare} und \citep{Salinger_Profiling}}   
+}
 
 %=====
 \newglossaryentry{NIST2}{
@@ -323,6 +338,10 @@
     description=\glslink{owasp2}{Open Web Application Security Project}
 }
 %=====
+
+\newglossaryentry{opentelemetry} {
+    name={OpenTelemetry},
+    description={ist eine Sammlung von Tools zu Generierung, Sammlung und Exportierung von Messdaten, auch telemetrische Daten genannt. Das Tool besteht aus \textit{Agents} und \textit{Collectors}. Der Agent wird auf jedem Endpunkt installiert, um Daten zu sammeln. Der Collector empfängt die Daten und leitet sie weiter \citep{Grafana_opentelemetry}, \citep{OpenTelemetry_opentelemetry} und \citep{Hoefling_telemetry}}}
 
 \newglossaryentry{plugin} {
     name={Plugin},
