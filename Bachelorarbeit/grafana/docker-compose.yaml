@@ -16,9 +16,23 @@ services:
 
   promtail:
     image: grafana/promtail:2.3.0
+    container_name: Opfersystem_1
     volumes:
-      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/promtail-local-config.yaml:/etc/promtail/promtail-config.yaml
-      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh1.log:/opt/ssh1.log
+      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/promtail-local-config_opfer1.yaml:/etc/promtail/promtail-config.yaml
+      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh2.log:/opt/ssh.log
+      #- /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh1.log:/opt/ssh3.log
+      #- /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh2.log:/opt/ssh2.log
+      #- /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh3.log:/opt/ssh3.log
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+      - loki
+  promtail2:
+    image: grafana/promtail:2.3.0
+    container_name: Opfersystem_2
+    volumes:
+      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/promtail-local-config_opfer2.yaml:/etc/promtail/promtail-config.yaml
+      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh3.log:/opt/ssh.log
+      #- /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh1.log:/opt/ssh3.log
       #- /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh2.log:/opt/ssh2.log
       #- /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/ssh3.log:/opt/ssh3.log
     command: -config.file=/etc/promtail/promtail-config.yaml

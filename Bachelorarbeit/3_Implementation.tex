@@ -353,7 +353,7 @@ Auf der linken Seite haben wir die verschiedenen \glsplural{Endpoint}, auf denen
 
 \newpage
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
-Ein \gls{bruteforce} lässt sich durch die Anzahl der fehlgeschlagenen Anmeldeversuche erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir betrachten eine Situation, in der keine Gegenmaßnahmen wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Abbildung, \ref{fig:Aktivitaetsdiagramm_Anmeldung}, stellt Diagramm mit einem allgemeinen Ablauf eines Anmeldungsverfahrens dar:
+Ein \gls{bruteforce} lässt sich durch eine hohe Anzahl der fehlgeschlagenen Anmeldeversuche erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir betrachten eine Situation, in der keine Gegenmaßnahmen wie Kontosperre nach \textit{n} beliebigen Versuchen oder \gls{mfa}, implementiert sind. Das folgende Abbildung, \ref{fig:Aktivitaetsdiagramm_Anmeldung}, stellt Diagramm mit einem allgemeinen Ablauf eines Anmeldungsverfahrens dar:
 
 \begin{figure}[H]
    \centering
@@ -364,30 +364,35 @@ Ein \gls{bruteforce} lässt sich durch die Anzahl der fehlgeschlagenen Anmeldeve
    \centering
 \end{figure}
 
-Grafana Loki bietet ein Konfigurationsmuster für die Eingabe und Darstellung von \gls{ssh} Logdateien an. In dieser Konfiguration sind bereits Grafiken und Regelsets enthalten, die eine umfassende Analyse dieser Daten ermöglichen \citep{VoidQuark_sshlogs}. Die extrahierten Logdateien werden mithilfe der folgenden Elemente gelesen und bearbeitet:
+Grafana bietet ein Konfigurationsmuster für die Eingabe und Darstellung von \gls{ssh} Eventds an. In dieser Konfiguration sind bereits Regesätze für die 
+Verarbeirtung der Log-Einträge in Loki und Quellcode für die Generierung von Grafik in Grafana. Diese Konfigurationsdatei ermöglicht eine umfassende Analyse dieser Daten \citep{VoidQuark_sshlogs}. Die gesentet Logdateien werden mithilfe der folgenden Elemente gelesen und verarbeitet:
+
+% % \begin{table}[H]
+% %    \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
+% %    \caption[Elementen eines Regelsätzes in Grafana Loki]
+% %    {Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+% % \end{table}
+
 
 \begin{table}[H]
-   \includegraphics[width=\linewidth]{assets/tabelle_sshgrafana.png}
+   \setstretch{1.2}
+   \begin{tabularx}{\textwidth}{|c|X|}
+   \hline
+   \multicolumn{1}{|c|}{\textbf{Element}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
+   \hline
+      json & Lesbare Dateiformat, deren Daten nach dem Regel Schlüssel:Wert gespeichert sind \\
+   \hline
+      Muster & Lesen und Extraktion der Information der Logdateien \\
+   \hline
+      \glsfirst{RegExp} & Mustererkennung aus der Logdatei \\
+   \hline
+      Logfmt & Extraktion von Schlüssel:Wert Paar der Logdateien \\
+   \hline
+   \end{tabularx}
    \caption[Elementen eines Regelsätzes in Grafana Loki]
    {Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
 
-
-
-% \begin{table}[]
-%    \begin{tabular}{|c|c|}
-%    \hline
-%    sum by(add) (rate({job=\quotes{varlogs}, instance=~\quotes{\$instance}} & Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in LogQL definiert haben. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den Job \quotes{varlogs} beziehen. Wir können auch nach spezifischen Endpoint filtern, indem wir das Schlüsselwort \quotes{instance} benutzen. \\ \hline
-
-%    | &  \\ \hline
-
-%    |= `\textbf{\textcolor{red}{sshd}}[` \\ |= `: \textbf{\textcolor{red}{Failed}}` & \quotes{|} funktioniert in LogQL wie eine Pipeline für die Verkettung von mehreren Suchmustern. \\ \hline
-
-%    !~ `invalid user` \\ !~ `test` !~ `10.0.2.15` & Regular Expression für die Suche nach Zeilen \textbf{ohne} diese Einträge. Wir können beispielsweise Einträge ausschließen, die sich nicht bösartige Nutzer sind, um falsche Positive zu vermeiden \\ \hline
-
-%    | pattern `<_> for <\textbf{\textcolor{blue}{Benutzername}}> from \<\textbf{\textcolor{blue}{QuelleAddress}}\> port <_>` [\$__range])) &  Die Definition der Wörter \quotes{Benutzername} \quote{QuelleAddress} und als \quote{Pattern} dienen dazu, einen Benutzernamen und eine Quelle IP-Adresse aus der Logdatei zu extrahieren. Die Platzhalter \quote{<_>}sind unbenannte Elemente, die in diesem Fall auf die Einträge  \quote{“password”} und Portnummber in der Zeile verweisen.\\ \hline
-%    \end{tabular}
-% \end{table}
 
 %https://grafana.com/docs/loki/latest/fundamentals/labels/
 %https://prometheus.io/docs/concepts/jobs_instances/
@@ -406,7 +411,7 @@ In dem nächsten Abschnitt beschreiben wir, wie diese Regel in \gls{logql} gesch
 
 \newpage
 \subsubsection{Regelsätze in LogQL}
-In diesem Abschnitt fassen wir zusammen, wie eine Abfrage in \gls{logql} für eine Logdatei mit \gls{ssh} Einträge aussieht. Für ausführliche Informationen über den Aufbau der Abfrage empfehlen wir die offizielle Dokumentation, auf die diese Erklärung basiert ist \citep{Grafana_logql}. Unsere Logdatei enthält unter anderem folgende Zeile:
+In diesem Abschnitt fassen wir zusammen, wie eine Abfrage in \gls{logql} für eine Logdatei mit \gls{ssh} Einträgen aussieht. Für ausführliche Informationen über den Aufbau der Abfrage verweisen wir die offizielle Dokumentation, auf die diese Erklärung basiert ist \citep{Grafana_logql}. Unsere Logdatei enthält unter anderem folgende Zeile:
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
@@ -415,7 +420,9 @@ from 10.0.2.15 port 58036 ssh2
 \end{Verbatim}
 }
 
-Um \gls{ssh}-Einträge zu erkennen und bestimmte Informationen zu extrahieren, die anzeigen, ob es sich um einen fehlgeschlagenen Anmeldeversuch handelt, extrahieren und später summieren wir die hervorgehobenen Elemente auf:
+Um fehlgeschlagene Anmeldeversuche zu erkennen, extrahieren wir folgende Felder aus den \gls{ssh}-Logdateien. Diese Information verwenden wir um gleiche Events zu erkennen und deren Anzhal festzustellen. 
+
+%Um \gls{ssh}-Einträge zu erkennen und bestimmte Informationen zu extrahieren, die anzeigen, ob es sich um einen fehlgeschlagenen Anmeldeversuch handelt, extrahieren und später summieren wir die hervorgehobenen Elemente auf:
 
 {\setstretch{1.0}
 \begin{Verbatim}[commandchars=\\\{\},frame=single]
@@ -425,26 +432,33 @@ from \textbf{\textcolor{blue}{10.0.2.15}} port 58036 ssh2
 }
 
 Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen: 
+
+% \begin{table}[H]
+%    \setstretch{1.2}
+%    \begin{tabularx}{\textwidth}{|X|X|}
+%    \hline
+%    \multicolumn{1}{|c|}{\textbf{\gls{logql}-Code-Schnipsel}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
+%    \hline
+%    sum by(add) (rate(\{job=\grqq{}varlogs\grqq{}, \newline instance=~\grqq{}\$instance\grqq{}\} & Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in \gls{logql} definierten. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den Job \quotes{SSH\_LOGS} beziehen. Wir können auch nach spezifischen Endpoint filtern, indem wir das Schlüsselwort \quotes{instance} benutzen.. \\
+%    \hline
+%    | & \quotes{|} funktioniert in \gls{logql} wie eine Pipeline für die Verkettung von mehreren Suchmustern. \\
+%    \hline
+%       \glsfirst{RegExp} & Mustererkennung aus der Logdatei \\
+%    \hline
+%       Logfmt & Extraktion von Schlüssel:Wert Paar der Logdateien \\
+%    \hline
+%    \end{tabularx}
+%    \caption[Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien]
+%    {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
+% \end{table}
+
+
 \begin{table}[H]
    \includegraphics[width=1\linewidth]{assets/tabelle_logql.png}
    \caption[Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien]
    {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
 \end{table}
 
-% \begin{table}[]
-%    \begin{tabular}{|c|X|}
-%    \hline
-%    % sum by(add) (rate({job=\quotes{varlogs},\\ instance=~\quotes{\$instance}} & Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in LogQL definiert haben. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den Job \quotes{varlogs} beziehen. Wir können auch nach spezifischen Endpoint filtern, indem wir das Schlüsselwort \quotes{instance} benutzen. \\ \hline
-
-%    | &  \\ \hline
-
-%    |= `\textbf{\textcolor{red}{sshd}}[` \\ |= `: \textbf{\textcolor{red}{Failed}}` & \quotes{|} funktioniert in LogQL wie eine Pipeline für die Verkettung von mehreren Suchmustern. \\ \hline
-
-%    !~ `invalid user` \\ !~ `test` !~ `10.0.2.15` & Regular Expression für die Suche nach Zeilen \textbf{ohne} diese Einträge. Wir können beispielsweise Einträge ausschließen, die sich nicht bösartige Nutzer sind, um falsche Positive zu vermeiden \\ \hline
-
-%   % | pattern `<_> for <\textbf{\textcolor{blue}{Benutzername}}> from \<\textbf{\textcolor{blue}{QuelleAddress}}\> port <_>` [\$__range])) &  Die Definition der Wörter \quotes{Benutzername} \quote{QuelleAddress} und als \quote{Pattern} dienen dazu, einen Benutzernamen und eine Quelle IP-Adresse aus der Logdatei zu extrahieren. Die Platzhalter \quote{<_>}sind unbenannte Elemente, die in diesem Fall auf die Einträge  \quote{“password”} und Portnummber in der Zeile verweisen.\\ \hline
-%    \end{tabular}
-% \end{table}
 
 \textbf{\textcolor{red}{Das sollte verbessert werden}}
 Eine Erkennungsregel hätte folgende Logik:
@@ -467,14 +481,13 @@ Eine Erkennungsregel hätte folgende Logik:
 
 
 \subsection{Hinzufügen der Regelsätze Grafana Loki}
-
-Citar regra API %https://grafana.com/docs/loki/latest/api/
+\textcolor{red}{\textbf{TODO Citar regra API https://grafana.com/docs/loki/latest/api/}}
 
 Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} als auch über die \gls{GUI} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen zeigen diese beiden Optionen:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=1\textwidth]{assets/manuellerCodeLoki.png}
+   \includegraphics[width=0.85\textwidth]{assets/manuellerCodeLoki.png}
    \caption[\quotes{Code} in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes]
    {\quotes{Code} in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes. \\ Quelle: \citep{VoidQuark_sshlogs}}
    \centering
@@ -482,7 +495,7 @@ Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} al
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=1\textwidth]{assets/klickibuntyGrafana.png}
+   \includegraphics[width=0.85\textwidth]{assets/klickibuntyGrafana.png}
    \caption[\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes.]
    {\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes. Quelle: \citep{VoidQuark_sshlogs}}
    \centering
@@ -496,7 +509,6 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
    {Ausführliche Information über die Abfrage\\Quelle: \citep{Grafana_QueryEditor}}
    \centering
 \end{figure}
-
 
 \newpage
 \newgeometry{right=30mm, left=30mm} 
@@ -513,7 +525,6 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
     \end{figure} 
 \end{landscape}
 \restoregeometry
-
 
 \newpage
 \newgeometry{right=30mm, left=30mm} 
@@ -544,18 +555,19 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
 %    \end{center}
 % \end{landscape}
 
-\subsection{Einrichtung des Warnmeldungskomponent}
-In den vorherigen Teilen dieser Arbeit haben wir uns damit auseinandergesetzt, Grafana so einzustellen, dass wir schließlich eine Lösung ähnlich einer \gls{SIEM} erhalten. Von unseren ursprünglichen Vorschlägen haben wir bereits Folgendes erreicht:
+\subsection{Einrichtung der Warnmeldungen in Grafana}
+In den vorherigen Teilen dieser Arbeit haben wir uns damit auseinandergesetzt, Grafana so einzurichten, dass wir schließlich eine Lösung ähnlich einer \gls{SIEM} erhalten. Von unseren ursprünglichen Ziele haben wir bereits Folgendes erreicht:
 
 {\setstretch{1}
 \begin{enumerate}[noitemsep]
-   \item	Sammlung der Logdateien aus den \glsplural{Endpoint} mit Promtail
-   \item Anpassung der Logdateien für die nachträgliche visuelle Darstellung mit Loki
+   \item	Sammlung der Logdateien von den \glsplural{Endpoint} mit Promtail
+   \item Anpassung der Logdateien für die Weiterleitung an Grafana Loki
    \item Nutzung von Regelsätzen in Loki für die Analysierung der \gls{ssh} Logdateien
-   \item Graphische Darstellung der Logdateien in Grafana mit den in Loki verwendeten Regelsätzen
+   \item Graphische Darstellung der Ergebnissen in Grafana mit den in Loki verwendeten Regelsätzen
 \end{enumerate}
 }
-Unser letztes Ziel besteht darin, Warnmeldungen für potenzielle Angriffe mithilfe der Ergebnisse von Loki zu generieren. Grafana kann intern und extern mit Tools integriert werden, um Warnmeldungen zu erstellen. Eines dieser externen Tools ist der \textbf{Alertmanager}, der bereits integriert ist. Dieses Tool kann Daten von \gls{prometheus}, \gls{cortex} und \gls{mimir} als Datenquelle verwenden \citep{Grafana_Alertmanager} und kann Daten von beliebigen \glsplural{Endpoint} empfangen. Die Regelsätze des Alertmanagers haben folgendes Muster:
+
+Unser letztes Ziel besteht darin, Warnmeldungen für potenzielle Angriffe mithilfe der Ergebnisse von Loki zu generieren. Grafana kann sowohl intern mit der Funktionalität \quotes{Alerting} als auch extern mit \glsplural{plugin}, wie \textbf{Alertmanager}, Warnmeldungen generieren. Der zweite kann Daten von \gls{prometheus}, \gls{cortex} und \gls{mimir} als Datenquelle verwenden \citep{Grafana_Alertmanager} und kann Daten von beliebigen \glsplural{Endpoint} empfangen. Die Regelsätze des Alertmanagers haben folgendes Muster:
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
@@ -572,7 +584,7 @@ groups:
 
       # LogQL-Regelsätze für die Erkennung der Warnmeldung, welche die 
       in den vorherigen Schritten definierten Abfragen verwenden.
-      expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
+      expr: job:request_latency_seconds:mean5m{job="SSH_LOGS"} > 0.5
       for: 10m
        labels:
          severity: page
@@ -626,7 +638,7 @@ die Warnmeldung als E-Mail an dem Ziel geschickt.
 
 % discard lines with Server Ansible - https://grafana.com/docs/loki/latest/logql/log_queries/
 
-Im Anhang (Siehe Anhang \ref{appendix:Warnmedungskonfiguration}) befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten:
+Im Anhang \ref{appendix:Warnmedungskonfiguration} befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten:
 
 \begin{figure}[H]
    \centering
@@ -636,7 +648,7 @@ Im Anhang (Siehe Anhang \ref{appendix:Warnmedungskonfiguration}) befindet sich d
    \centering
 \end{figure}
 
-Das Alerting-Tool von Grafana bietet keine direkte Integration zu einem \gls{IDS}, \gls{IPS}, \gls{SIEM} oder einer \gls{API} an. Die Kommunikation mit solchen \glsplural{Endpoint} lässt sich jedoch mithilfe von \textbf{\gls{webhook}} konfigurieren \citep{Grafana_Notifications}.
+%Das Alerting-Tool von Grafana bietet keine direkte Integration zu einem \gls{IDS}, \gls{IPS}, \gls{SIEM} oder einer \gls{API} an. Die Kommunikation mit solchen \glsplural{Endpoint} lässt sich jedoch mithilfe von \textbf{\gls{webhook}} konfigurieren \citep{Grafana_Notifications}.
 
 % enabled = true
 % host = smtp.gmail.com:587

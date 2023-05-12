@@ -16,7 +16,7 @@ scrape_configs:
   - targets:
       - loki
     labels:
-      instance: Opfersystem
+      instance: Opfersystem_1
       env: voidquark
       job: SSH_LOGS
       __path__: /opt/*.log
