@@ -452,12 +452,38 @@ Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen:
 %    {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
 % \end{table}
 
+\begin{table}[H]
+   \includegraphics[width=1\linewidth]{assets/tabelle_logql_1.png}
+\end{table}
 
 \begin{table}[H]
-   \includegraphics[width=1\linewidth]{assets/tabelle_logql.png}
+   \includegraphics[width=1\linewidth]{assets/tabelle_logql_2.png}
    \caption[Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien]
    {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
 \end{table}
+
+Schließlich sieht der Regelsatz so aus:
+{\setstretch{1.0}
+\begin{Verbatim}[commandchars=\\\{\},frame=single]
+sum by(add) (rate({job="\textit{JOBNAME}”, instance=~"$instance"} |= `\textbf{\textcolor{red}{sshd[}}[` |= `: 
+\textbf{\textcolor{red}{Failed}}` !~ `invalid user` !~ `\textit{Legitimer_Nutzer}` !~ `\textit{Legitime_Adresse}` 
+| pattern `<_> for < \textbf{\textcolor{blue}{Benutzername}}> from  \textbf{\textcolor{blue}{Quelladresse}}port <_>` 
+[$__range]))
+
+sum by(add) (rate({job="JOBNAME”, instance=~"$instance"} |= `sshd[` |= `: 
+Failed` !~ `invalid user` !~ `Legitimer_Nutzer` !~ `Legitime_Adresse` 
+| pattern `<_> for <Benutzername> from <Quelladresse> port <_>` 
+[$__range]))
+\end{Verbatim}
+}
+
+
+
+% \begin{table}[H]
+%    \includegraphics[width=1\linewidth]{assets/tabelle_logql_2.png}
+%    \caption[Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien]
+%    {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
+% \end{table}
 
 
 \textbf{\textcolor{red}{Das sollte verbessert werden}}
