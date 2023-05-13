@@ -433,46 +433,81 @@ from \textbf{\textcolor{blue}{10.0.2.15}} port 58036 ssh2
 
 Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen: 
 
+\begin{table}[H]
+   \setstretch{1.2}
+   \begin{tabularx}{\textwidth}{|m{5cm}|X|}
+   \hline
+   \multicolumn{1}{|c|}{\textbf{Element}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
+   \hline
+   \centering
+   sum by(add)
+   (rate(\{job=\verb|"|\textit{JOBNAME}\verb|"|
+   instance=~\verb|"|\$instance\verb|"|\} 
+
+   & Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in \gls{logql} definiert haben. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den von uns definierten Job beziehen. Wir können auch nach spezifischen Endpoint filtern, indem wir das Schlüsselwort \quotes{instance} benutzen. \\
+   \hline
+   \centering
+   | 
+   & \quotes{|} funktioniert in \gls{logql} wie eine Pipeline für die Verkettung von mehreren Suchmustern. \\
+   \hline
+   \centering
+         |= \lq \textbf{\textcolor{red}{sshd}}[\rq 
+      \\ |= \lq: \textbf{\textcolor{red}{Failed}}\rq 
+    & 
+    Suche nach Zeilen mit den in den rot markierten Einträgen. \\
+   \hline
+   \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+   \setstretch{1.2}
+   \begin{tabularx}{\textwidth}{|m{5cm}|X|}
+   \hline
+   \multicolumn{1}{|c|}{\textbf{Element}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
+   \hline
+   \centering
+      !\verb|~| \lq \textbf{\textcolor{red}{invalid user}}\rq \\
+      !\verb|~| \lq \textbf{\textcolor{red}{Legitimer\_Nutzer}}\rq \\
+      !\verb|~| \lq \textbf{\textcolor{red}{Legitime\_Adresse}}\rq 
+   & Suche nach Zeilen \textbf{ohne} diese Einträge. Wir können beispielsweise Einträge ausschließen, die auf legitimen Nutzer oder IP-Adresse beziehen, um falsche Positive zu vermeiden \\
+   \hline
+   \centering
+      | pattern \lq<\_> for \\
+      <\textbf{\textcolor{blue}{Benutzername}}> from \\
+      <\textbf{\textcolor{blue}{Quelladresse}}> port <\_>\rq \\
+      \verb|[|\$ \verb|__|range\verb|]|\verb|))| 
+      
+   & Die Definition der Wörter \quotes{Benutzername}, \quotes{Quelladresse} und als \quotes{Patterns} dienen dazu, einen Benutzernamen und eine Quelle IP-Adresse aus der Logdatei zu extrahieren. Die Platzhalter \quotes{<\_>} sind unbenannte Elemente, die in diesem Fall auf die Einträge \quotes{password} und \gls{port} in der Zeile verweisen. \\
+   \hline
+   \end{tabularx}
+   \caption[Elementen eines Regelsätzes in Grafana Loki]
+   {Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+\end{table}
+
+
 % \begin{table}[H]
-%    \setstretch{1.2}
-%    \begin{tabularx}{\textwidth}{|X|X|}
-%    \hline
-%    \multicolumn{1}{|c|}{\textbf{\gls{logql}-Code-Schnipsel}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
-%    \hline
-%    sum by(add) (rate(\{job=\grqq{}varlogs\grqq{}, \newline instance=~\grqq{}\$instance\grqq{}\} & Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in \gls{logql} definierten. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den Job \quotes{SSH\_LOGS} beziehen. Wir können auch nach spezifischen Endpoint filtern, indem wir das Schlüsselwort \quotes{instance} benutzen.. \\
-%    \hline
-%    | & \quotes{|} funktioniert in \gls{logql} wie eine Pipeline für die Verkettung von mehreren Suchmustern. \\
-%    \hline
-%       \glsfirst{RegExp} & Mustererkennung aus der Logdatei \\
-%    \hline
-%       Logfmt & Extraktion von Schlüssel:Wert Paar der Logdateien \\
-%    \hline
-%    \end{tabularx}
+%    \includegraphics[width=1\linewidth]{assets/tabelle_logql_1.png}
+% \end{table}
+
+% \begin{table}[H]
+%    \includegraphics[width=1\linewidth]{assets/tabelle_logql_2.png}
 %    \caption[Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien]
 %    {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
 % \end{table}
 
-\begin{table}[H]
-   \includegraphics[width=1\linewidth]{assets/tabelle_logql_1.png}
-\end{table}
-
-\begin{table}[H]
-   \includegraphics[width=1\linewidth]{assets/tabelle_logql_2.png}
-   \caption[Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien]
-   {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
-\end{table}
-
 Schließlich sieht der Regelsatz so aus:
+\verb
+
 {\setstretch{1.0}
 \begin{Verbatim}[commandchars=\\\{\},frame=single]
-sum by(add) (rate({job="\textit{JOBNAME}”, instance=~"$instance"} |= `\textbf{\textcolor{red}{sshd[}}[` |= `: 
-\textbf{\textcolor{red}{Failed}}` !~ `invalid user` !~ `\textit{Legitimer_Nutzer}` !~ `\textit{Legitime_Adresse}` 
-| pattern `<_> for < \textbf{\textcolor{blue}{Benutzername}}> from  \textbf{\textcolor{blue}{Quelladresse}}port <_>` 
+sum by(add) (rate({job="\textit{JOBNAME}", instance=~"$instance"} |= '\textbf{\textcolor{red}{sshd}}[' |= ': 
+\textbf{\textcolor{red}{Failed}}' !~ '\textbf{\textcolor{red}{invalid user}}' !~ '\textbf{\textcolor{red}{Legitimer_Nutzer}}' !~ '\textbf{\textcolor{red}{Legitime_Adresse}}' 
+| pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from  <\textbf{\textcolor{blue}{Quelladresse}}> port <_>' 
 [$__range]))
 
-sum by(add) (rate({job="JOBNAME”, instance=~"$instance"} |= `sshd[` |= `: 
-Failed` !~ `invalid user` !~ `Legitimer_Nutzer` !~ `Legitime_Adresse` 
-| pattern `<_> for <Benutzername> from <Quelladresse> port <_>` 
+sum by(add) (rate({job="JOBNAME", instance=~"$instance"} |= 'sshd[' |= ': 
+Failed' !~ 'invalid user' !~ 'Legitimer_Nutzer' !~ 'Legitime_Adresse' 
+| pattern '<_> for <Benutzername> from <Quelladresse> port <_>' 
 [$__range]))
 \end{Verbatim}
 }
@@ -647,14 +682,14 @@ Benutzernamen:
 sum by (username) (count_over_time({$label_name=~"$label_value", 
 job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: 
 Connection closed by authenticating user|: Failed .* user" | 
-pattern `<_> user <username> <_> port` | __error__="" 
+pattern '<_> user <username> <_> port' | __error__="" 
 [$__interval]))
 
 # (B) Anzahl von Fehlgeschlagenen Anmeldeversuche für nicht 
 existierenden Benutzernamen:
 sum by (username) (count_over_time({$label_name=~"$label_value", 
 job=~"$job", instance=~"$instance"} |="sshd[" |=": Failed" !~"invalid 
-user" | pattern `<_> for <username> from <_> port` | __error__=""
+user" | pattern '<_> for <username> from <_> port' | __error__=""
 [$__interval]))
 
 # Wenn die Anzahl von (A) oder von (B) größer als fünf ist, dann wird
