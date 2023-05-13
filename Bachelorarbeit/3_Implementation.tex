@@ -69,6 +69,7 @@ Die \gls{mitre} Matrix ist auf \glsfirst{ttp} basiert. Angriffe, Gegenmaßnahmen
 % \end{itemize}
 % }
 
+\newpage
 \subsection{Auswahl des Angriffes}
 In dieser Arbeit beschäftigen wir uns mit der Taktik \quotes{Zugang zu Anmeldedaten} und deren Technik \gls{bruteforce}. Diese Technik ist in vier Untertechniken aufteilt:
 
@@ -318,27 +319,6 @@ Der Kommunikationsfluss bei Grafana Agents funktioniert ähnlich, wie bei Promta
 
 Die Sendung des Inhalts der Logdateien findet auch mithilfe von Grafana Loki \gls{http} \textbf{\gls{API}} statt. In diesem Fall werden die Zeile der Logdateien und nicht der Datei zum \gls{Endpoint} von Loki mit \gls{http} POST-Anfrage geschickt. 
 
-% {\setstretch{1.0}
-% \begin{lstlisting}[frame=single][language=json]
-% # Endpoint 
-% POST [Addresse_von_Grafana_Loki_Instanz]/loki/api/v1/push
-
-% # Inhalt
-% {
-%   "streams": [
-%     {
-%       "stream": {
-%         "label": "value"
-%       },
-%       "values": [
-%           [ "Zeit in Unixformat", "<Inhalt der Logdateie>" ],
-%       ]
-%     }
-%   ]
-% }
-% \end{lstlisting}
-% }
-
 Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool \gls{opentelemetry} an, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Die Integration mit Grafana Loki erfolgt über die Nutzung von \glsplural{API}. Der \textit{Collector} läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem Endpunkt und kommunizieren mit dem \textit{Collector}. Die folgende Abbildung stellt das Kommunikationsverfahren zwischen \gls{opentelemetry} und Grafana Liki:
 
 \begin{figure}[H]
@@ -397,7 +377,8 @@ Verarbeirtung der Log-Einträge in Loki und Quellcode für die Generierung von G
 %https://grafana.com/docs/loki/latest/fundamentals/labels/
 %https://prometheus.io/docs/concepts/jobs_instances/
 
-Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zweil Labels \quotes{Instance} und \quotes{Job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. \quotes{Jobs} beziehen sich auf die Bearbeitung der Logdateien nach dem spezifizieren Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{Instance} werden in einem \quotes{Job} eingepackt, wo sie nach den gleichen Regeln verarbeitet. Das folgende Diagramm stellt die Beziehung zwischen dieser beiden Labels dar:
+Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zweil Labels \quotes{Instance} und \quotes{Job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. \quotes{Jobs} beziehen sich auf die Bearbeitung der Logdateien nach dem spezifizieren Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{Instance} werden in einem \quotes{Job} eingepackt, wo sie nach den gleichen Regeln verarbeitet.
+Das folgende Diagramm stellt die Beziehung zwischen dieser beiden Labels dar:
 
 \begin{figure}[H]
    \centering
@@ -421,8 +402,6 @@ from 10.0.2.15 port 58036 ssh2
 }
 
 Um fehlgeschlagene Anmeldeversuche zu erkennen, extrahieren wir folgende Felder aus den \gls{ssh}-Logdateien. Diese Information verwenden wir um gleiche Events zu erkennen und deren Anzhal festzustellen. 
-
-%Um \gls{ssh}-Einträge zu erkennen und bestimmte Informationen zu extrahieren, die anzeigen, ob es sich um einen fehlgeschlagenen Anmeldeversuch handelt, extrahieren und später summieren wir die hervorgehobenen Elemente auf:
 
 {\setstretch{1.0}
 \begin{Verbatim}[commandchars=\\\{\},frame=single]
@@ -499,20 +478,14 @@ Schließlich sieht der Regelsatz so aus:
 \verb
 
 {\setstretch{1.0}
-\begin{Verbatim}[commandchars=\\\{\},frame=single]
+\begin{Verbatim}[fontsize=\small, commandchars=\\\{\}, frame=single]
 sum by(add) (rate({job="\textit{JOBNAME}", instance=~"$instance"} |= '\textbf{\textcolor{red}{sshd}}[' |= ': 
-\textbf{\textcolor{red}{Failed}}' !~ '\textbf{\textcolor{red}{invalid user}}' !~ '\textbf{\textcolor{red}{Legitimer_Nutzer}}' !~ '\textbf{\textcolor{red}{Legitime_Adresse}}' 
-| pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from  <\textbf{\textcolor{blue}{Quelladresse}}> port <_>' 
-[$__range]))
-
-sum by(add) (rate({job="JOBNAME", instance=~"$instance"} |= 'sshd[' |= ': 
-Failed' !~ 'invalid user' !~ 'Legitimer_Nutzer' !~ 'Legitime_Adresse' 
-| pattern '<_> for <Benutzername> from <Quelladresse> port <_>' 
-[$__range]))
+\textbf{\textcolor{red}{Failed}}' !~ '\textbf{\textcolor{red}{invalid user}}' !~ '\textbf{\textcolor{red}{Legitimer_Nutzer}}' !~ '\textbf{\textcolor{red}{Legitime_Adresse}}' |
+pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from  <\textbf{\textcolor{blue}{Quelladresse}}> port <_>' [$__range]))
 \end{Verbatim}
 }
 
-
+%sum by(add) (rate({job="JOBNAME", instance=~"$instance"} |= 'sshd[' |= ': Failed' !~ 'invalid user' !~ 'Legitimer_Nutzer' !~ 'Legitime_Adresse' | pattern '<_> for <Benutzername> from <Quelladresse> port <_>' [$__range]))
 
 % \begin{table}[H]
 %    \includegraphics[width=1\linewidth]{assets/tabelle_logql_2.png}
