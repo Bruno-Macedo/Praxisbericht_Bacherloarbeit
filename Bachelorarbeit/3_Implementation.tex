@@ -169,9 +169,9 @@ Die folgende Abbildung, \ref{fig:Stuffing_Opfer1}, zeigt einen Teil der Ausgabe 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.9\textwidth]{assets/stuffing_kali.png}
-   \caption[Ausführung von \textit{\gls{stuffing}} gegen Opfersystem1]
-   {Ausführung von \textit{\gls{stuffing}} gegen Opfersystem1\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
-   \label{fig:Stuffing_Opfer1}
+   \caption[Ausgabe von \textit{\gls{stuffing}} gegen Opfersystem1]
+   {Ausgabe von \textit{\gls{stuffing}} gegen Opfersystem1}
+   \label{fig:Ausgabe_Stuffing_Opfer1}
    \centering
 \end{figure}
 
@@ -179,42 +179,42 @@ Und gegen Opfersystem2:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/stuffing_kali2.png}
-   \caption[Ausführung von \textit{\gls{stuffing}} gegen Opfersystem2]
-   {Ausführung von \textit{\gls{stuffing}} gegen Opfersystem2\\Quelle: Eigene Quelle und \citep{Nguyen_stuffing}}
+   \caption[Ausgabe von \textit{\gls{stuffing}} gegen Opfersystem2]
+   {Ausgabe von \textit{\gls{stuffing}} gegen Opfersystem2}
+   \label{fig:Ausgabe_Stuffing_Opfer2}
    \centering
 \end{figure}
+
+Auf den Abbildungen \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_Opfer2} sehen wir in rot markiert, dass der Angriff den Benutzernamen \quotes{test} im Opfersystem1 und \quotes{Administrator} Opfersystem2 zielt. In grün werden die verschiedenen Passwörter aus \gls{rockyou}-Wörterbuch verwendet. Auf der Abbildung \ref{fig:Ausgabe_Stuffing_Opfer2} wird das gefundene Passwört grün geschrieben. 
 
 Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
 \begin{figure}[H]
    \centering
-   \includegraphics[width=1\textwidth]{assets/Spraying.jpg}
+   \includegraphics[width=0.9\textwidth]{assets/Spraying.jpg}
    \caption[Darstellung von \textit{\gls{spraying}}]
    {Darstellung von \textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
    \label{fig:spraying}
    \centering
 \end{figure}
 
-Aus der Abbildung, \ref{fig:spraying}, sehen wir, dass bei \gls{spraying}, weniger Passwörter im Vergleich zum \gls{stuffing} verwendet wird, aber es werden mit mehreren Benutzername probiert. In diesem Fall will der Angreifer  Kontosperrungen vermeiden und Unauffälig gegenüber existierenden Sicherheitsmaßnamen bleiben.
+Aus der Abbildung \ref{fig:spraying} sehen wir, dass bei \gls{spraying} weniger Passwörter im Vergleich zum \gls{stuffing} verwendet werden. In diesem Fall werden gegen mögliche viele existierenden Benutzername versucht. Hier will der Angreifer  Kontosperrungen vermeiden und gegenüber Sicherheitsmaßnamen Unauffälig bleiben. 
 
 Für diesen Angriff benutzen wir folgendes Kommando:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
 hydra -L username2.txt -P passwoerter.txt [Opfersystem2] ssh -V -t 4
-
-# Erklärung
 -L: Auswahl der Datei mit gefunden Benutzernamen
 \end{Verbatim}
 }
 
-\newpage
 In diesem Fall gehen wir davon aus, dass der Angreifer einige oder alle Benutzernamen bereits kennt. Da bei diesem Angriff weniger Anmeldeversuche pro Nutzer durchgeführt werden, verwenden wir eine selbst erstellte Datei mit weniger Passwörtern als die \gls{rockyou}-Datei. Unsere Datei enthält die am häufigsten verwendeten Passwörter in Deutschland \citep{silicon_passwort}.
 
-Die nächsten Abbildungen,\ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2}, zeigen die Ausführung von \gls{spraying}:
+Die Abbildungen \ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2} zeigen die Ausgabe von \gls{spraying}:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Spraying_Kali.png}
-   \caption[Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1]
-   {Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1\\Quelle: Eigene Quelle}
+   \caption[Ausgabe von \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1]
+   {Ausgabe von \textit{\gls{spraying}} in Kali Linux gegen Opfersystem1}
    \label{fig:spraying_opfer1}
    \centering
 \end{figure}
@@ -222,11 +222,13 @@ Die nächsten Abbildungen,\ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Spraying_Kali2.png}
-   \caption[Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2]
-   {Ausführung \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2\\Quelle: Eigene Quelle}
+   \caption[Ausgabe von \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2]
+   {Ausgabe von \textit{\gls{spraying}} in Kali Linux gegen Opfersystem2}
    \label{fig:spraying_opfer2}
    \centering
 \end{figure}
+
+Die Abbildungen \ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2} zeigen die verschiedenen Benutzername (rot markiert) aber wenige Passwörter pro Nutzer (grün markiert). Auf beiden Abbildungen werden die gefundenen Passwört grün geschrieben.
 
 \newpage
 \subsubsection{Installation und Einrichtung von Grafana Loki und Promtail}

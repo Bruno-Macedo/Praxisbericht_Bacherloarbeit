@@ -2,7 +2,7 @@
 
 Sowohl in der wissenschaftlichen als auch in der kommerziellen Literatur gibt es verschiedene Definitionen von \gls{SIEM}. Diese widersprechen sich nicht, aber zeigen unterschiedliche Perspektiven. Eine von dieser Definitionen behaupt, dass \gls{SIEM} das Ergebnis einer Kombination zwischen dem \glsfirst{SEM} und \glsfirst{SIM} ist \citep{Dorigo_SIEM}. Das Erste bezieht sich auf die Identifizierung, Bewertung, Beobachtung und den Bericht von Sicherheitsvorfällen mithilfe von verschiedenen Log Dateien \citep{techopedia_SEM}. Das Zweite ist eine Software, die bei der automatischen Sammlung von Loginformationen aus vielen Quellen, wie Firewall und Servern unterstützt \citep{techopedia_SIM}. Da die meisten \gls{SIEM}-Lösungen kostenpflichtig sind, existieren auch viele \gls{opensource} Log-Analyse-Tools, die eine ähnliche Aufgabe erledigen, ohne die Kernelemente von \gls{SIEM} zu besitzen. 
 
-Log-Analyse-Tools sind in der Regel Anwendungen die Logdateien empfangen, speichern, bearbeiten und nach spezifisichen Regeln bewerten. Diese Tools unterstützen Programmierer und Systemadministratoren bei der Überwachung des Zustands von Systems oder einer Software. Ein solches Tools kann Logdateien von verschiedenen \glsplural{Endpoint} und in verschiedenen Formaten bekommen, so dass es schließlich einen Bericht oder eine Grafik erzeugt \citep{Korzeniowski_LATDef}. Ihre Nutzung  beschränkt sich nicht auf den Sicherheitsbereich ein, sondern kann für gesamte IT-Bereich  nützlich sein.
+Log-Analyse-Tools sind in der Regel Anwendungen die Logdateien empfangen, speichern, bearbeiten und nach spezifisichen Regeln bewerten. Diese Tools unterstützen Programmierer und Systemadministratoren bei der Überwachung des Zustands von Systems oder einer Software. Ein solches Tools kann Logdateien von verschiedenen \glsplural{Endpoint} und in verschiedenen Formaten bekommen, so dass es schließlich einen Bericht oder eine Grafik erzeugt \citep{Korzeniowski_LATDef}. Ihre Nutzung beschränkt sich nicht auf den Sicherheitsbereich ein, sondern kann für gesamte IT-Bereich nützlich sein.
 
 In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutungen haben und Verantwortungen abdecken. \glsfirst{IDS}, \glsfirst{IPS}, \glsfirst{SIEM} und Log-Analyse-Tools werden von Laien und sogar von Spezialisten oft verwechselt, da ihre Aufgaben mehr Gemeinsamkeiten als Unterschiede haben. Diese Tools sind feste Bestandteil eines \gls{SOC}, jedoch konzentrieren wir uns auf Log-Analyse. Um den Fokus der Arbeit zu vergrenzen, erläutern wir demnächst Abschnitt die erwähnten Begriffe.
 
@@ -56,7 +56,6 @@ Aus bisheriger Abbildung stellen wir fest, dass \gls{SIEM} das Ergebnis der Inte
 
 
 \subsection{Existierende SIEMs Lösungen und Log-Analyse-Tools}
-% über Splunk schreiben, state of the art, nicht open source, aber andere müssen ähnliche funktionaliten haben
 Die existierenden \glsplural{SIEM} und Log-Analyse-Tools werden in \textit{\gls{Proprietary}} und \textit{\gls{opensource}} getrennt. In folgenden Abschnitten präsentieren wir das \textit{\gls{Proprietary}}e Tool Splunk, um einen Maßstab für unsere Auswahl über Funktionalität zu definieren. Wir analysieren folgende Tools: %\glsplural{SIEM} und Log-Analyse-Tools: 
 
 \begin{itemize}[noitemsep]
@@ -67,14 +66,12 @@ Die existierenden \glsplural{SIEM} und Log-Analyse-Tools werden in \textit{\gls{
    \item Grafana integriert mit Loki %(ja)
 \end{itemize}
 
-%\textbf{\textcolor{red}{Wie konnte ich Grafana hier erwähnen? Grafane ist eher allgemein und nicht so zu Alert orientiert, habe ich hier gefunden: \href{https://www.metricfire.com/blog/grafana-vs-splunk/}{Splunk x Grafana} und hier \href{https://www.researchgate.net/publication/350730340_Implementation_of_Grafana_as_open_source_visualization_and_query_processing_platform_for_data_scientists_and_researchers}{What is Grafana}}  }
-
 \subsubsection{Splunk}
 Splunk, von dem gleichnamigen Unternehmen, wurde 2003 in den USA auf dem Markt gebracht \citep{Splunk_splunk}. Splunk bietet einfache Wartung, benutzerfreundliche \gls{GUI} und Skalierbarkeit \citep{Kazarov_Splunk}. Er gehört zu der meistverwendeten \gls{SIEM} und zu ihren Kunden gehören große Konzerne wie Airbus, Coca-Cola, Intel und die Deutsche Bahn. Splunk bietet laut seiner Webseite folgende Funktionalitäten an \citep{Splunk_SPE}:
 
 \begin{itemize}[noitemsep]
    \item Skalierbare Datenplattform 
-   \item Risk-based Warnmeldung  
+   \item Risk-based Warnmeldung
    \item Bedrohungserkennung mithilfe von \glsfirst{ML} 
    \item Automatische Aktualisierung von der Bedrohungs- und Schwachstelle-Database 
    \item Unkomplizierte Installation und Anwendung 
@@ -151,7 +148,6 @@ Die dezentralisierte Umgebung von Preludes lässt sich in der folgenden Abbildun
 \end{figure}
 
 \newpage
-%Die Publikationen über Preludes fokussieren sich auf die Entwicklung, Implementation und unternehmerische Anwendung dieses Tools. 
 In \citep{Grammatikis_Prelude} wurde Preludes, AlienVault und Cyberoam iView anhand technischer und nutzerfreundlicher Kriterien zu verglichen. Von diesn Kriterien nennen wir folgende \citep{Grammatikis_Prelude}: 
 
 \begin{itemize}[noitemsep]
@@ -171,8 +167,6 @@ In \citep{Grammatikis_Prelude} wurde Preludes, AlienVault und Cyberoam iView anh
 \end{itemize}
 
 In den technischen Kriterien lag Prelude auf dem dritten Platz und bei Benutzerfreundlichkeit bekam Prelude den ersten. 
-
-%Auch in den nicht wissenschaftlichen Publikationen existiert eine begrenzte Anzahl von Texten über Preludes. Die existierenden Texte kommentieren ganz zusammenfassend die ausreichende Dokumentation und heben hervor, dass es eher eine in Europa verbreitete Lösung ist.
 
 \subsubsection{AlienVault OSSIM}
 AlienVault OSSIM ist eine im Jahr 2007 entwickelte \gls{opensource} \gls{SIEM} Lösung. Im Jahr 2018 wurden sie von der Firma AT\&T Communication gekauft  \citep{CBN_AV}. In der Beschreibung des Anbieters steht, dass er sie auch dabei unterstützt, Daten zu sammeln, zu normalisieren und zu bewerten. Er behauptet auch, dass sein Tool in der Lage ist, Schwachstellen und Angriffe zu erkennen, das Verhältnis zu beobachten und Datenzusammenhänge zu erschließen \citep{ATT_AVO}. 
@@ -295,9 +289,6 @@ Diese Daten können dann in Grafana mithilfe der \gls{abfragesprache} LogQL aufg
 \end{figure}
 
 Das Tool hat eine umfangreiche Dokumentation, die ausführlich erklärt, wie es zu installieren, bedienen und mit anderen Tools integrierbar ist. 
-
-%\newpage
-%Obwohl Grafana nicht spezifisch für den Sicherheitsbereich konzipiert wurde, kann das Tool so eingerichtet werden, dass spezifische Logdateien gesammelt, bearbeitet und analysiert werden. Die Warnmeldung lässt sich mit Regeln oder Filter definieren. In einer Recherche von 2022 wurde Grafana dafür benutzt, Daten aus Netzwerkverkehr graphisch darzustellen \citep{Manases_grafananetwork}. 
 
 Die wissenschaftlichen Literatur über Grafana konzentriert sich eher auf die Anwendung des Tools für die grafische Darstellung von Daten als für ihre Nutzung in dem Sicherheitsbereich. Eine Recherche, z.B., wollte das Ergebnis von der Überwachung von Cloud-basierten Systemen, von Netzwerkaktivitäten und von Netzwerkverkehr mithilfe von Grafana darstellen \citep{Manases_grafananetwork}. 
 Die wissenschaftliche Recherche über die Implementierung und Integration von Grafana mit anderen Tools zum Sicherheitszweck ist neu und bietet deshalb viele  Perspektive für das Weiterlernen an.
