@@ -572,13 +572,13 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
 \newgeometry{right=30mm, left=30mm} 
 \thispagestyle{lscape}
 \begin{landscape}
-   Nachdem die \gls{ssh}-Logdateien gelesen und bearbeiten wurden, bekommen wir von Grafana Loki folgende Zasammenfasung der Ergebnissen:
+   Nachdem die \gls{ssh}-Logdateien gelesen und verarbeitet wurden, bekommen wir von Grafana Loki folgende Zasammenfasung der Ergebnissen:
     \begin{figure}[H]
        % \centering
         \centerline{\includegraphics[width=1.7\textwidth]{assets/GrafanaLoki_sshDetailed.png}}
         %\includegraphics[width=1.2\textwidth]{assets/5.4.2_1_Abb.jpeg}
-        \caption[Bearbeitung der \gls{ssh} Logdateien von Grafana Loki]
-        {Bearbeitung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
+        \caption[Ausgabe der Verarbeitung der \gls{ssh} Logdateien von Grafana Loki]
+        {Ausgabe der Verarbeitung der \gls{ssh} Logdateien von Grafana Loki}
         \centering
     \end{figure} 
 \end{landscape}
@@ -593,7 +593,7 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
        % \centering
         \centerline{\includegraphics[width=1.7\textwidth]{assets/GrafanaLoki_sshDetailed.png}}
         \caption[Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki]
-        {Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
+        {Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki}
         \centering
     \end{figure} 
 \end{landscape}
@@ -672,10 +672,10 @@ Die Warnmeldungen können direkt in der \gls{GUI} von Grafana konfiguriert werde
 Für unseren ersten Test erstellen wir Warnmeldungen für fehlgeschlagene Anmeldeversuche. Wir haben die oben genannten Elemente definiert und die folgenden Regelsätze verwendet \citep{VoidQuark_sshlogs}:
 
 {\setstretch{1.0}
-\begin{Verbatim}[fontsize=\small, commandchars=\\\{\}, frame=single]
+\begin{Verbatim}[frame=single]
 # (A) Anzahl von fehlgeschlagenen Anmeldeversuche für existierenden
 Benutzernamen:
-sum by (username) (count_over_time({$label_name=~"$label_value", 
+sum by (username) (count_over_time({$label_name=~"$label_value",
 job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: 
 Connection closed by authenticating user|: Failed .* user" | 
 pattern '<_> user <username> <_> port' | __error__="" 
@@ -695,13 +695,14 @@ die Warnmeldung als E-Mail an dem Ziel geschickt.
 
 % discard lines with Server Ansible - https://grafana.com/docs/loki/latest/logql/log_queries/
 
-Im Anhang \ref{appendix:Warnmedungskonfiguration} befindet sich die Konfigurationsdatei für unsere Warnmeldung. Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten:
+Im Anhang \ref{appendix:Warnmedungskonfiguration} befindet sich die Konfigurationsdatei für unsere Warnmeldung.
 
+Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/GrafanaWarnmeldung.png}
    \caption[E-Mail Warnmeldung von Grafana]
-   {E-Mail Warnmeldung von Grafana \\Quelle: Eigene Quelle und \citep{Grafana_alerting}}
+   {E-Mail Warnmeldung von Grafana}
    \centering
 \end{figure}
 

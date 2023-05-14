@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-11T21:29:34.966Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0" etag="_GKc0jnHj3m7KO9w_wLE" version="21.2.9" type="device">
+<mxfile host="app.diagrams.net" modified="2023-05-14T19:42:09.860Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0" etag="pIIbzDERDTJWUtPue0lu" version="21.2.9" type="device">
   <diagram name="Page-1" id="CWH5NlU9q9CjvMd9MiRt">
     <mxGraphModel dx="1434" dy="782" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -60,25 +60,19 @@
         <mxCell id="TSLGlhMcsG2Oh3ILdl1S-2" value="" style="points=[[0.13,0.02,0],[0.5,0,0],[0.87,0.02,0],[0.885,0.4,0],[0.985,0.985,0],[0.5,1,0],[0.015,0.985,0],[0.115,0.4,0]];verticalLabelPosition=bottom;sketch=0;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.laptop;fillColor=#005073;strokeColor=none;" parent="1" vertex="1">
           <mxGeometry x="60" y="190" width="50" height="35" as="geometry" />
         </mxCell>
-        <mxCell id="TSLGlhMcsG2Oh3ILdl1S-4" value="" style="points=[[0.22,0.185,0],[0.5,0,0],[0.78,0.185,0],[0.975,0.49,0],[1,0.73,0],[0.975,0.97,0],[0.5,1,0],[0.025,0.97,0],[0,0.73,0],[0.025,0.49,0]];verticalLabelPosition=bottom;sketch=0;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.printer;fillColor=#005073;strokeColor=none;" parent="1" vertex="1">
-          <mxGeometry x="61.25" y="260" width="50" height="45" as="geometry" />
-        </mxCell>
         <mxCell id="TSLGlhMcsG2Oh3ILdl1S-5" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/firewall.svg;" parent="1" vertex="1">
-          <mxGeometry x="70.75" y="345" width="30.5" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="TSLGlhMcsG2Oh3ILdl1S-6" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_server.svg;" parent="1" vertex="1">
-          <mxGeometry x="71" y="100" width="28.000000000000004" height="50" as="geometry" />
+          <mxGeometry x="71" y="342" width="30.5" height="50" as="geometry" />
         </mxCell>
         <mxCell id="TSLGlhMcsG2Oh3ILdl1S-8" value="&lt;b&gt;Instances&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="55" y="410" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TSLGlhMcsG2Oh3ILdl1S-9" value="Server" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="TSLGlhMcsG2Oh3ILdl1S-9" value="WebServer" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="56.25" y="140" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="TSLGlhMcsG2Oh3ILdl1S-10" value="Workstation" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="55" y="220" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TSLGlhMcsG2Oh3ILdl1S-11" value="Printer" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="TSLGlhMcsG2Oh3ILdl1S-11" value="Database" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="59" y="299" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="TSLGlhMcsG2Oh3ILdl1S-13" value="Firewall" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -158,6 +152,12 @@
         </mxCell>
         <mxCell id="TSLGlhMcsG2Oh3ILdl1S-109" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Table.svg;" parent="1" vertex="1">
           <mxGeometry x="385" y="300" width="51.69" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="SxoJwaR5E7pAsazSeaif-2" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/web_server.svg;" vertex="1" parent="1">
+          <mxGeometry x="70" y="100" width="40" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SxoJwaR5E7pAsazSeaif-3" value="" style="image;html=1;image=img/lib/clip_art/computers/Database_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="61.25" y="255" width="50" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
