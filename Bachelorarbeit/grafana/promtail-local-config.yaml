@@ -11,12 +11,32 @@ clients:
     tenant_id: tenant1
 
 scrape_configs:
-- job_name: Processing SSH Logs
+- job_name: sshlogs
   static_configs:
   - targets:
       - loki
     labels:
-      instance: Opfersystem
+      #instance: Opfersystem
       env: voidquark
-      job: SSH_LOGS
+      job: sshlogs
       __path__: /opt/*.log
+- job_name: error
+  static_configs:
+  - targets:
+      - loki
+    labels:
+      #instance: Opfersystem
+      #env: voidquark
+      job: error_log
+      __path__: /opt/*.error.log
+- job_name: syslog
+  static_configs:
+  - targets:
+      - loki
+    labels:
+      #instance: Opfersystem
+      #env: voidquark
+      job: syslog
+      #__path__: /opt/*.error.log
+
+

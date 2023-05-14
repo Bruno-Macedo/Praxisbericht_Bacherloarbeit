@@ -11,12 +11,48 @@ clients:
     tenant_id: tenant1
 
 scrape_configs:
-- job_name: Processing SSH Logs
+- job_name: sshlogs
   static_configs:
   - targets:
       - loki
     labels:
-      instance: Opfersystem_2
+      instance: Opfersystem2
       env: voidquark
-      job: SSH_LOGS
+      job: sshlogs
       __path__: /opt/*.log
+- job_name: aptlogs
+  static_configs:
+  - targets:
+      - loki
+    labels:
+      instance: Opfersystem2
+      #env: voidquark
+      job: aptlogs
+      __path__: /var/log/apt/*.log
+- job_name: dpkg
+  static_configs:
+  - targets:
+      - loki
+    labels:
+      instance: Opfersystem2
+      #env: voidquark
+      job: dpkg
+      __path__: /var/log/apt/dpkg.log
+- job_name: db
+  static_configs:
+  - targets:
+      - loki
+    labels:
+      instance: Opfersystem2
+      #env: voidquark
+      job: db
+      __path__:  /var/log/mysql.log
+- job_name: cortex
+  static_configs:
+  - targets:
+      - loki
+    labels:
+      instance: Opfersystem2
+      #env: voidquark
+      job: cortex
+      __path__:  /opt/cortex.log

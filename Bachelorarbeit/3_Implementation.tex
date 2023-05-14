@@ -248,7 +248,7 @@ docker-compose -f docker-compose.yaml up
 \end{lstlisting}
 }
 
-Im Anhang \ref{appendix:orgGrafana} befinden sich die originalen und die angepassten Dateien in Anhang \ref{appendix:AngepasstGrafana}.
+Im Anhang \ref{appendix:orgGrafana} befinden sich die heruntergeladenen originalen Konfigurationsdatei. Ihre an unserer Umgebung angepassten Version steht im Anhang \ref{appendix:AngepasstGrafana} zur Verfügung.
 
 Die obigen Kommandos haben folgende Bedeutungen:
 \begin{enumerate}[noitemsep]
@@ -379,14 +379,37 @@ Verarbeirtung der Log-Einträge in Loki und Quellcode für die Generierung von G
 %https://grafana.com/docs/loki/latest/fundamentals/labels/
 %https://prometheus.io/docs/concepts/jobs_instances/
 
-Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zweil Labels \quotes{Instance} und \quotes{Job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{Instances} werden einem \quotes{Job} zugewiesen. \quotes{Jobs} beziehen sich auf die Bearbeitung der Logdateien nach dem spezifizieren Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{Instance} werden in einem \quotes{Job} eingepackt, wo sie nach den gleichen Regeln verarbeitet.
-Das folgende Diagramm stellt die Beziehung zwischen dieser beiden Labels dar:
+Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zweil Labels \quotes{instance} und \quotes{job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{Instance} bezeichnet. Eine oder mehrere \quotes{instances} werden einem \quotes{job} zugewiesen. \quotes{jobs} beziehen sich auf die Bearbeitung der Logdateien nach dem spezifizieren Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{instance} werden in einem \quotes{job} eingepackt, wo sie nach den gleichen Regeln verarbeitet. Zusätliche Labels können auch definiert werde \citep{Prometheus_JobInstance}. Das folgende Diagramm, \ref{fig:Labels_GrafanaLoki}, stellt die Beziehung zwischen dieser beiden Labels dar:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Instance_Jobs.drawio.png}
-   \caption[Beziehung zwischen \quotes{Instance} und \quotes{Job}]
-   {Beziehung zwischen \quotes{Instance} und \quotes{Job} \\Quelle: Eigene Quelle und \citep{Prometheus_JobInstance}}
+   \caption[Beziehung zwischen \quotes{instance} und \quotes{job}]
+   {Beziehung zwischen \quotes{instance} und \quotes{job}}
+   \label{fig:Labels_GrafanaLoki}
+   \centering
+\end{figure}
+
+\newpage
+Der Inhalt Logdateien kann dann in Grafana nach dem definierten Labels aufgerufen werden, wie auf der folgenden Abbildung \ref{fig:screenshot_labels} dargestellt:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{assets/Grafana_labels.png}
+   \caption[Aufrufe des Inhalts der Logdateien nach bestimmten Labels]
+   {Aufrufe des Inhalts der Logdateien nach bestimmten Labels}
+   \label{fig:screenshot_labels}
+   \centering
+\end{figure}
+
+Mit \gls{logql} können auch Filterung verwendet, um nach bestimmten \quotes{instance} und/oder \quotes{jobs} die Daten aufzurufen, wie auf der Abbildung \ref{fig:screenshot_logql} dargestellt:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{assets/Logql_labels.png}
+   \caption[Aufrufe des Inhalts der Logdateien mit \gls{logql}]
+   {Aufrufe des Inhalts der Logdateien \gls{logql}}
+   \label{fig:screenshot_logql}
    \centering
 \end{figure}
 
@@ -515,7 +538,6 @@ Eine Erkennungsregel hätte folgende Logik:
 \end{Verbatim}
 }
 
-
 \subsection{Hinzufügen der Regelsätze Grafana Loki}
 \textcolor{red}{\textbf{TODO Citar regra API https://grafana.com/docs/loki/latest/api/}}
 
@@ -611,7 +633,6 @@ Unser letztes Ziel besteht darin, Warnmeldungen für potenzielle Angriffe mithil
 können von den Nutzern entsprechend ihrer Anforderungen und Bedürfnisse 
 definiert werden.
 groups:
-
       # Ab diesem Punkt beginnen wir mit der Definition der Regelsätze 
       für die Erkennung von Warnmeldungen. Diese umfassen:
    - name: example
@@ -651,7 +672,7 @@ Die Warnmeldungen können direkt in der \gls{GUI} von Grafana konfiguriert werde
 Für unseren ersten Test erstellen wir Warnmeldungen für fehlgeschlagene Anmeldeversuche. Wir haben die oben genannten Elemente definiert und die folgenden Regelsätze verwendet \citep{VoidQuark_sshlogs}:
 
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
+\begin{Verbatim}[fontsize=\small, commandchars=\\\{\}, frame=single]
 # (A) Anzahl von fehlgeschlagenen Anmeldeversuche für existierenden
 Benutzernamen:
 sum by (username) (count_over_time({$label_name=~"$label_value", 

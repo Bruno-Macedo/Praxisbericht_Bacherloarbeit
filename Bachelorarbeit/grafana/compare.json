@@ -313,7 +313,7 @@
               "uid": "${DS_LOKI}"
             },
             "editorMode": "code",
-            "expr": "count by (ip) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |~\": Invalid|: Connection closed by authenticating user|: Failed\" |~\".* from .*\" | pattern `<_> from <ip> port` | __error__=\"\" [$__interval]))",
+            "expr": "count by (ipadd) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |~\": Invalid|: Connection closed by authenticating user|: Failed\" |~\".* from .*\" | pattern `<_> from <ipadd> port` | __error__=\"\" [$__interval]))",
             "hide": false,
             "legendFormat": "{{ ip }}",
             "queryType": "range",
@@ -326,7 +326,7 @@
               "uid": "${DS_LOKI}"
             },
             "editorMode": "code",
-            "expr": "count by (ip) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |~\": Invalid|: Connection closed by authenticating user|: Failed\" !~\".* from .*\" | pattern `<_> user <_> <ip> port` | __error__=\"\" [$__interval]))",
+            "expr": "count by (ipadd) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |~\": Invalid|: Connection closed by authenticating user|: Failed\" !~\".* from .*\" | pattern `<_> user <_> <ipadd> port` | __error__=\"\" [$__interval]))",
             "hide": false,
             "legendFormat": "{{ ip }}",
             "queryType": "range",
@@ -774,7 +774,7 @@
               "uid": "${DS_LOKI}"
             },
             "editorMode": "code",
-            "expr": "count by (ip) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |=\": Accepted\" | pattern `<_> Accepted <_> for <_> from <ip> port <_>` | __error__=\"\" [$__interval]))",
+            "expr": "count by (ipadd) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |=\": Accepted\" | pattern `<_> Accepted <_> for <_> from <ipadd> port <_>` | __error__=\"\" [$__interval]))",
             "hide": false,
             "legendFormat": "{{ ip }}",
             "queryType": "range",
@@ -864,7 +864,7 @@
               "uid": "${DS_LOKI}"
             },
             "editorMode": "code",
-            "expr": "count by (ip) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |~\": Invalid|: Connection closed by authenticating user|: Failed\" |~\".* from .*\" | pattern `<_> from <ip> port` | __error__=\"\" [$__interval]))",
+            "expr": "count by (ipadd) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |~\": Invalid|: Connection closed by authenticating user|: Failed\" |~\".* from .*\" | pattern `<_> from <ipadd> port` | __error__=\"\" [$__interval]))",
             "hide": false,
             "legendFormat": "{{ ip }}",
             "queryType": "range",
@@ -877,7 +877,7 @@
               "uid": "${DS_LOKI}"
             },
             "editorMode": "code",
-            "expr": "count by (ip) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |~\": Invalid|: Connection closed by authenticating user|: Failed\" !~\".* from .*\" | pattern `<_> user <_> <ip> port` | __error__=\"\" [$__interval]))",
+            "expr": "count by (ipadd) (count_over_time({$label_name=~\"$label_value\", job=~\"$job\", instance=~\"$instance\"} |=\"sshd[\" |~\": Invalid|: Connection closed by authenticating user|: Failed\" !~\".* from .*\" | pattern `<_> user <_> <ipadd> port` | __error__=\"\" [$__interval]))",
             "hide": false,
             "legendFormat": "{{ ip }}",
             "queryType": "range",
