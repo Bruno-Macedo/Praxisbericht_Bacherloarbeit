@@ -19,17 +19,17 @@ In dieser Arbeit haben wir versucht, mithilfe von Grafana, Loki und Promtail ein
 
 Wir stellen fest, dass die verwendeten Tools eine kosteneffektive Möglichkeit bieten, ein Überwachungssystem zu implementieren. Die Methoden zur Erkennung von Angriffen lassen sich anhand der \gls{ttp} der \gls{mitre}-Matrix definieren. Nach der Auswahl des Angriffe erstellen wir Regelwerke mit der Abfragesprache \gls{logql} in Loki, um Muster zu identifizieren, die auf den ausgewählten Angriff hindeuten. Diese Regelwerke werden dann verwendet, um Warnmeldungen über den Angriff zu generieren und zu versenden.
 
+\subsection{Herausforderungen}
+
 Unser Aufbau birgt zwei große Herausforderungen, wobei die erste einfacher zu bewältigen ist als die zweite. Diese sind:
 
-\begin{itemize}[noitemsep]
-    \item \textbf{Definition der Regelsätzen:}
-\end{itemize}
-
+\subsubsection{Definition der Regelsätzen}
 Für eine präzise Implementierung spielt die richtige Entwicklung der Regelsätzen zur Identifizierung potenzieller Angriffe eine wesentliche Rolle. Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen diese Regelsätzen so definiert werden, dass sie die eindeutigen Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können.
 
 \begin{itemize}[noitemsep]
     \item \textbf{Erkennung von \gls{KI}-basierte Angriffe:}
 \end{itemize}
+\subsubsection{Erkennung von \gls{KI}-basierte Angriffe}
 
 Die von uns definierten Regeln haben statische Elemente wie die \quotes{Anzahl von Anfragen}, den \quotes{Zeitabstand zwischen Requests} und die \quotes{Anzahl von fehlgeschlagenen Anmeldeversuchen}. Die heutigen Angriffe haben jedoch auch einen dynamischen Aspekt, der sich an die Umgebung anpasst, insbesondere durch die starke Entwicklung von \glsfirst{KI} \citep{Guembe_AIHACKER}. Während \gls{KI} einerseits für die Automatisierung von Aufgaben oder für effiziente Datenanalyse verwendet wird, könnte sie auch für Cyberkriminalität genutzt werden. \gls{KI} ist am Ende nur ein Werkzeug, dessen Nutzung von den Absichten ihrer Benutzer abhängt.
 
