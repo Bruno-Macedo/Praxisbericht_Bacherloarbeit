@@ -512,33 +512,40 @@ pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from  <\textbf{\textc
 \end{Verbatim}
 }
 
-%sum by(add) (rate({job="JOBNAME", instance=~"$instance"} |= 'sshd[' |= ': Failed' !~ 'invalid user' !~ 'Legitimer_Nutzer' !~ 'Legitime_Adresse' | pattern '<_> for <Benutzername> from <Quelladresse> port <_>' [$__range]))
-
 % \begin{table}[H]
 %    \includegraphics[width=1\linewidth]{assets/tabelle_logql_2.png}
 %    \caption[Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien]
 %    {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
 % \end{table}
 
-
-\textbf{\textcolor{red}{Das sollte verbessert werden}}
 Eine allgemeine Erkennungsregel in \gls{logql} würde so aussehen:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-# Gefundene Werte in den Logdateien
-# Av = Anzahl fehlgeschlagener Anmeldungsversuche
-# Ia = Intervallzeit zwischen fehlgeschlagenen Anmeldungsversuchen
-
-# Festgelegte Werte für legitime und bösartige Verbindungen
-# Ga = Grenze zwischen legitimen und bösartigen Anmeldungsversuchen
-# Nt = Intervallzeit zwischen legitimen Anmeldungsversuchen
-
-wenn (Av >= Ga) und (Ia < Nt)
-   Warnmeldung(Brutefoce)
-sonst
-   weiterBeobachten()
+Ergebnis = Operation (GesuchterWert) (Operation(label1="LabelWert", 
+label2="Label2Wert") |= 'Gesuchte Inhalt im Logdatei' | !'Inhalt im 
+Logdatei ausschliessen' | Regulärer Ausdrucke | pattern '<_>
+WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>' [\$__range]))
 \end{Verbatim}
 }
+
+% {\setstretch{1.0}
+% \begin{Verbatim}[fontsize=\small, commandchars=\\\{\}, frame=single]
+
+% # Ergebnis wird mithilfe von \gls{logql} aus der Logdatei extrahiert.
+% Ergebnis = Operation (GesuchterWert) (Operation(label1="LabelWert", label2="Label2Wert") |= 'Gesuchte Inhalt im Logdatei' | !'Inhalt im Logdatei ausschliessen' | Regulärer Ausdrucke | pattern '<_> WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>' [$__range]))
+
+% # FehlVersuche = Festgelegter Anzahl von fehlgeschlagenen Anmeldungsversuchen
+% für das Triggern von Warnmeldung
+
+% # \quotes{Operation} bezieht sich auf die Funktionen in Logql, z.B. für Aufsummierung,
+% Mittelwert.
+
+% \textit{while} Ergebnis < FehlVersuche
+%    weiterBeobachten\(\)
+% WarnmeldungTriggern\(\) 
+ 
+% \end{Verbatim}
+% }
 
 \subsection{Hinzufügen der Regelsätze Grafana Loki}
 Die Regelsätze in Grafana Loki können sowohl \textbf{manuell} im Menü \quotes{Code} als auch über die \textbf{\gls{GUI}} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen, \ref{fig:Loki_Code} und \ref{fig:Loki_Builder}, zeigen diese beiden Optionen:
@@ -572,8 +579,22 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen, 
    \centering
 \end{figure}
 
-Mit der Nutzung von \gls{API} ist auch möglich Regelsätze hinzufügen:
-\textcolor{red}{\textbf{TODO Citar regra API https://grafana.com/docs/loki/latest/api/}}
+Mit der Nutzung von \textit{\gls{API}} \gls{Endpoint} von Loki ist es möglich nach dem Inhalt der Logdateien abzufragen, indem die Regelsätze in \gls{logql} geschrieben werden. In diesem Fall bekommen wir die gefilterte Ergebnis als Antwort \citep{Grafana_api}.
+
+{\setstretch{1.0}
+\begin{Verbatim}[fontsize=\small, frame=single]
+# Muster für die Anfrage
+curl -G -s  "http://LokiInstance/Endpoint" --data-urlencode 'Logql Abfrage' 
+| jq
+
+# Beispiel
+curl -G -s  "http://LokiInstance/loki/api/v1/query" --data-urlencode
+'sum by(add) (rate({job="JOBNAME", instance=~"$instance"} |= 'sshd[' |= ': 
+Failed' !~ 'invalid user' !~ 'Legitimer_Nutzer' !~ 'Legitime_Adresse' |
+pattern '<_> for <Benutzername> from  <Quelladresse> port <_>' [$__range]))' 
+| jq
+\end{Verbatim}
+}
 
 \newpage
 \newgeometry{right=30mm, left=30mm} 
@@ -678,7 +699,7 @@ Die Warnmeldungen können direkt in der \gls{GUI} von Grafana konfiguriert werde
 \end{enumerate}
 }
 
-Für unseren ersten Test erstellen wir Warnmeldungen für fehlgeschlagene Anmeldeversuche. Wir haben die oben genannten Elemente definiert und die folgenden Regelsätze verwendet \citep{VoidQuark_sshlogs}:
+Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}} von Grafana für fehlgeschlagene Anmeldeversuche. Wir haben die oben genannten Elemente definiert und die folgenden Regelsätze verwendet \citep{VoidQuark_sshlogs}:
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
@@ -714,6 +735,8 @@ Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten
    {E-Mail Warnmeldung von Grafana}
    \centering
 \end{figure}
+
+Grafana ermöglichte älterer Versionen (bevor v0.9) Warnmeldungen über die \gls{API} zu generieren \citep{Grafana_AlertLegacyApi}.
 
 %Das Alerting-Tool von Grafana bietet keine direkte Integration zu einem \gls{IDS}, \gls{IPS}, \gls{SIEM} oder einer \gls{API} an. Die Kommunikation mit solchen \glsplural{Endpoint} lässt sich jedoch mithilfe von \textbf{\gls{webhook}} konfigurieren \citep{Grafana_Notifications}.
 
