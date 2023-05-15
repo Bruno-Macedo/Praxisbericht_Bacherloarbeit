@@ -1,31 +1,33 @@
 \section{Implementierung}
-In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um \gls{Cyberangriff} mithilfe der \gls{mitre} Matrix zu erkennen. Das Labor wird mit einem \gls{container} und \glsfirst{vm} aufgebaut, wie im Diagramm in der folgenden Abbildung dargestellt.
+In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um \gls{Cyberangriff} mithilfe der \gls{mitre} Matrix zu erkennen. Das Labor wird mit einem \gls{container} und \glsfirst{vm} aufgebaut, wie im Diagramm in der Abbildung \ref{fig:Arbeitslabor} dargestellt.
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Arbeitslabor.jpg}
    \caption[Aufbau unseres Arbeitslabors]
    {Aufbau unseres Arbeitslabors \\Quelle: Eigene Quelle}
+   \label{fig:Arbeitslabor}
    \centering
 \end{figure}
 
 Unser Aufbau verfolg folgende Ziele: die Aufnahme und Anpassung von Logdateien für Grafana, die Mustererkennung für ausgewählte \glsplural{Cyberangriff} und schließlich die Erstellung von Warnmeldungen für die Endnutzer, damit sie geeignete Sicherheitsmaßnahmen ergreifen können.
 
 \newpage
-Der gezielte Ablauf unserer Arbeit ist in dem folgenden Diagramm dargestellt:
+Der gezielte Ablauf unserer Arbeit ist in der Abbildung \ref{fig:Ablauf_grafana2} dargestellt:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Ablauf_grafana2.jpg}
    \caption[Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung]
    {Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung \\ Quelle: Eigene Quelle und \citep{Grafana_loki}}
+   \label{fig:Ablauf_grafana2}
    \centering
 \end{figure}
 
 \subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix}
 Es gibt verschiedene Methoden und Frameworks, die von \gls{SOC}-Teams verwendet wird, um \glsplural{Cyberangriff} zu vermeiden, zu erkennen und zu unterbrechen.  Da sich die Richtlinien und Schwerpunkte dieser Frameworks und Methoden unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, entschieden wir uns für die \gls{mitre} Matrix, insbesondere da dieses Framework auch in Splunk integriert ist. 
 
-Die \gls{mitre} Matrix hat folgenden Zweck \citep{Mitre_Started}:
+Die \gls{mitre} Matrix hat folgenden Zwecke \citep{Mitre_Started}:
 
 {\setstretch{1.5}
 \begin{itemize}[noitemsep]
@@ -86,12 +88,13 @@ In dieser Arbeit beschäftigen wir uns mit der Taktik \quotes{Zugang zu Anmelded
 
 Da unser Ziel hier ist, Grafana zu verwenden, um Angriffe zu erkennen, haben wir uns für einen einfachen und reproduzierbaren Angriff entschieden, der wenige Ressourcen erfordert. In diesem Fall kann ein \gls{bruteforce} mit zwei \glsplural{vm} problemlos durchgeführt werden. Für diesen Angriff verwenden wir die Sub-Technik "Erraten von Anmeldedaten und \textit{\gls{stuffing}}, da sie ähnliche Erkennungsmethoden aufweisen. Da unser Fokus bei dieser wissenschaftlichen Arbeit auf der Angriffserkennung schließen andere Maßnahmen  wir hierbei aus.
 
-Die nächste Abbildung zeigt den Umfang unseres Implementationsversuchs mithifel von \gls{mitre}:
+Die nächste Abbildung, \ref{fig:Unser_ttp}, zeigt den Umfang unseres Implementationsversuchs mithifel von \gls{mitre}:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/T1110.drawio.png}
    \caption[\glsfirst{ttp} für unseren Angriff]
    {\glsfirst{ttp} für unseren Angriff \\Quelle: Eigene Quelle und \citep{Mitre_t1110}}
+   \label{fig:Unser_ttp}
    \centering
 \end{figure}
 
@@ -136,8 +139,7 @@ Für den Angriff verwenden wir folgende Tools:
 
 In diesem Szenario sendet \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche an das Opfersystem, um eine \gls{ssh}-Verbindung herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannte \gls{rockyou}-Wörterbuch.
 
-Die folgende Abbildung, \ref{fig:stuffing}, zeigt, wie das \gls{stuffing} abläuft:
-
+Die Abbildung \ref{fig:stuffing} zeigt, wie das \gls{stuffing} abläuft:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/Stuffing.jpg}
@@ -165,7 +167,7 @@ ssh: Auswahl der Anwendung, die wir angreifen
 \end{Verbatim}
 }
 
-Die folgende Abbildung, \ref{fig:Stuffing_Opfer1}, zeigt einen Teil der Ausgabe von \gls{hydra} während der Ausführung von \gls{stuffing} gegen das Opfersystem1:
+Die Abbildunge \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_Opfer2} zeigen ein Teil der Ausgabe von \gls{hydra} während der Ausführung von \gls{stuffing} gegen das Opfersystem1 und Opfersystem2:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.9\textwidth]{assets/stuffing_kali.png}
@@ -175,7 +177,6 @@ Die folgende Abbildung, \ref{fig:Stuffing_Opfer1}, zeigt einen Teil der Ausgabe 
    \centering
 \end{figure}
 
-Und gegen Opfersystem2:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/stuffing_kali2.png}
@@ -187,7 +188,7 @@ Und gegen Opfersystem2:
 
 Auf den Abbildungen \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_Opfer2} sehen wir in rot markiert, dass der Angriff den Benutzernamen \quotes{test} im Opfersystem1 und \quotes{Administrator} Opfersystem2 zielt. In grün werden die verschiedenen Passwörter aus \gls{rockyou}-Wörterbuch verwendet. Auf der Abbildung \ref{fig:Ausgabe_Stuffing_Opfer2} wird das gefundene Passwört grün geschrieben. 
 
-Unser nächster Angriff, \gls{spraying}, sieht wie folgende aus:
+Unser nächster Angriff, \gls{spraying}, ist in der Abbildung \ref{fig:spraying} dargestellt:
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.9\textwidth]{assets/Spraying.jpg}
@@ -265,13 +266,14 @@ Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \
 \newgeometry{right=30mm, left=30mm} 
 \thispagestyle{lscape}
 \begin{landscape}
-   Nach der Ausführung des Kommandos ist die Anwendung benutzbar, wie in dem folgenden Screenshot:
+   Nach der Ausführung des Kommandos ist die Anwendung benutzbar, wie in der Abbildung \ref{fig:grafana_welcome} dargestellt:
     \begin{figure}[H]
        % \centering
         \centerline{\includegraphics[width=1.5\textwidth]{assets/Installation_Grafana.png}}
         %\includegraphics[width=1.2\textwidth]{assets/5.4.2_1_Abb.jpeg}
         \caption[Screenshot der Willkommensseite von Grafana Loki]
         {Screenshot der Willkommensseite von Grafana Loki\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
+        \label{fig:grafana_welcome}
         \centering
     \end{figure} 
 \end{landscape}
@@ -293,7 +295,7 @@ Grafana Loki bietet interne und externe Möglichkeiten Logdateien zu empfangen. 
    \end{enumerate}
 \end{enumerate}
 
-In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdatein nur zu Grafana Loki oder zu anderen Promtail-Instanz schicken \citep{Grafana_Promtail}. Die folgende Abbildung, \ref{fig: Promtail_Diagram}, zeigt die \glsplural{Endpoint} (links), wo Promtail installiert ist. Jeder Instanz von Promtail schickt Logdateien zu Loki (mitte), wo die Daten dann in Grafana (rechts) dargestellt werden.
+In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdatein nur zu Grafana Loki oder zu anderen Promtail-Instanz schicken \citep{Grafana_Promtail}. Die folgende Abbildung, \ref{fig:Promtail_Diagramm}, zeigt die \glsplural{Endpoint} (links), wo Promtail installiert ist. Jeder Instanz von Promtail schickt Logdateien zu Loki (mitte), wo die Daten dann in Grafana (rechts) dargestellt werden.
 
 %Bei verschiedenen wird jeder Typ einem eigenen \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat seine eigenen Regeln, um nach gefilterten Informationen zu suchen. 
 
@@ -328,10 +330,11 @@ Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool \gls{opentele
    \includegraphics[width=0.8\textwidth]{assets/Grafana_OpenTelemtry.png}
    \caption[Datenfluss zwischen \gls{opentelemetry} und die Tools von \gls{GrafanaSystem}]
    {Datenfluss zwischen \gls{opentelemetry} und\gls{GrafanaSystem}\\Quelle: \citep{Grafana_WhatOpentelemetry}}
+   \label{fig:UsingOpenTelemetry}
    \centering
 \end{figure}
 
-Auf der linken Seite haben wir die verschiedenen \glsplural{Endpoint}, auf denen jeweils ein \textit{Agent} läuft. In der Mitte ist der \textit{Collector}, der die Logdateien schließlich an die Tools von \gls{GrafanaSystem} weiterleitet.
+Auf der linken Seite der Abbildung \ref{fig:UsingOpenTelemetry} haben wir die verschiedenen \glsplural{Endpoint}, auf denen jeweils ein \textit{Agent} läuft. In der Mitte ist der \textit{Collector}, der die Logdateien schließlich an die Tools von \gls{GrafanaSystem} weiterleitet.
 
 \newpage
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
@@ -523,31 +526,32 @@ pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from  <\textbf{\textc
 Eine Erkennungsregel hätte folgende Logik:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-   # Gefundene Werte in den Logdateien
-   # Av = Anzahl fehlgeschlagener Anmeldungsversuche
-   # Ia = Intervallzeit zwischen fehlgeschlagenen Anmeldungsversuchen
+# Gefundene Werte in den Logdateien
+# Av = Anzahl fehlgeschlagener Anmeldungsversuche
+# Ia = Intervallzeit zwischen fehlgeschlagenen Anmeldungsversuchen
 
-   # Festgelegte Werte für legitime und bösartige Verbindungen
-   # Ga = Grenze zwischen legitimen und bösartigen Anmeldungsversuchen
-   # Nt = Intervallzeit zwischen legitimen Anmeldungsversuchen
+# Festgelegte Werte für legitime und bösartige Verbindungen
+# Ga = Grenze zwischen legitimen und bösartigen Anmeldungsversuchen
+# Nt = Intervallzeit zwischen legitimen Anmeldungsversuchen
 
-   wenn (Av >= Ga) und (Ia < Nt)
-      Warnmeldung(Brutefoce)
-   sonst
-      weiterBeobachten()
+wenn (Av >= Ga) und (Ia < Nt)
+   Warnmeldung(Brutefoce)
+sonst
+   weiterBeobachten()
 \end{Verbatim}
 }
 
 \subsection{Hinzufügen der Regelsätze Grafana Loki}
 \textcolor{red}{\textbf{TODO Citar regra API https://grafana.com/docs/loki/latest/api/}}
 
-Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} als auch über die \gls{GUI} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen zeigen diese beiden Optionen:
+Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} als auch über die \gls{GUI} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen, \ref{fig:Loki_Code} und \ref{fig:Loki_Builder}, zeigen diese beiden Optionen:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.85\textwidth]{assets/manuellerCodeLoki.png}
    \caption[\quotes{Code} in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes]
    {\quotes{Code} in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes. \\ Quelle: \citep{VoidQuark_sshlogs}}
+   \label{fig:Loki_Code}
    \centering
 \end{figure}
 
@@ -556,15 +560,18 @@ Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} al
    \includegraphics[width=0.85\textwidth]{assets/klickibuntyGrafana.png}
    \caption[\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes.]
    {\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes. Quelle: \citep{VoidQuark_sshlogs}}
+   \label{fig:Loki_Builder}
    \centering
 \end{figure}
 
-Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
+\newpage
+Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen, wie auf der Abbildung \ref{fig:Loki_CodeInformation} gezeigt wird:
 \begin{figure}[H]
    \centering
    \includegraphics[width=1\textwidth]{assets/erklaerungLoki.png}
    \caption[Ausführliche Information über die Abfrage]
    {Ausführliche Information über die Abfrage\\Quelle: \citep{Grafana_QueryEditor}}
+   \label{fig:Loki_CodeInformation}
    \centering
 \end{figure}
 
@@ -572,13 +579,14 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
 \newgeometry{right=30mm, left=30mm} 
 \thispagestyle{lscape}
 \begin{landscape}
-   Nachdem die \gls{ssh}-Logdateien gelesen und verarbeitet wurden, bekommen wir von Grafana Loki folgende Zasammenfasung der Ergebnissen:
+   Nachdem die \gls{ssh}-Logdateien gelesen und verarbeitet wurden, bekommen wir von Grafana Loki die zusammenfassende Ergebnissen, wie unter auf der Abbildung \ref{fig:Grafana_DetailedStats} dargestellt:
     \begin{figure}[H]
        % \centering
-        \centerline{\includegraphics[width=1.7\textwidth]{assets/GrafanaLoki_sshDetailed.png}}
+        \centerline{\includegraphics[width=1.7\textwidth]{assets/GrafanaLoki_ssh}}
         %\includegraphics[width=1.2\textwidth]{assets/5.4.2_1_Abb.jpeg}
         \caption[Ausgabe der Verarbeitung der \gls{ssh} Logdateien von Grafana Loki]
         {Ausgabe der Verarbeitung der \gls{ssh} Logdateien von Grafana Loki}
+        \label{fig:Grafana_Grafik}
         \centering
     \end{figure} 
 \end{landscape}
@@ -588,12 +596,13 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen:
 \newgeometry{right=30mm, left=30mm} 
 \thispagestyle{lscape}
 \begin{landscape}
-   Das nächste Bild gibt ausführliche Informationen der Logdateien:
+   Das nächste Abbidung, \ref{fig:Grafana_DetailedStats}, gibt ausführliche Informationen der Logdateien:
     \begin{figure}[H]
        % \centering
         \centerline{\includegraphics[width=1.7\textwidth]{assets/GrafanaLoki_sshDetailed.png}}
         \caption[Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki]
         {Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki}
+        \label{fig:Grafana_DetailedStats}
         \centering
     \end{figure} 
 \end{landscape}

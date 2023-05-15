@@ -6,7 +6,7 @@ Log-Analyse-Tools sind in der Regel Anwendungen die Logdateien empfangen, speich
 
 In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal zur Verwirrung führen, weil sie ähnliche Bedeutungen haben und Verantwortungen abdecken. \glsfirst{IDS}, \glsfirst{IPS}, \glsfirst{SIEM} und Log-Analyse-Tools werden von Laien und sogar von Spezialisten oft verwechselt, da ihre Aufgaben mehr Gemeinsamkeiten als Unterschiede haben. Diese Tools sind feste Bestandteil eines \gls{SOC}, jedoch konzentrieren wir uns auf Log-Analyse. Um den Fokus der Arbeit zu vergrenzen, erläutern wir demnächst Abschnitt die erwähnten Begriffe.
 
-\glsfirst{IDS}, \glsfirst{IPS} und \glsfirst{SIEM} sind Sicherheitstool als Software und/oder Hardware, die zusammenarbeiten können, um einen umfangreiche Netzwerksicherheit anzubieten. \gls{IDS} identifizieren und berichten über \glsplural{Cyberangriff}, indem er Netzwerkverkehr überwacht. Nach der Erkennung eines verdächtigen Verkehrs, muss das \gls{SOC} Team zur Handlung kommen. \gls{IPS} überwacht den Netzwerkverkehr und kann die Verbindung automatisch unterbrechen, falls es verdächtig ist \citep{Wendzel_IS}. Ein \gls{IPS} kann konfiguriert werden, um automatisch nach festgelegten Muster zu handeln. Beide Tools können Logdateien generieren, die von einer \gls{SIEM}-Lösung oder Log-Analyse-Tools gesammelt werden können. Die folgende Abbildung, \ref{fig:SIEM_Allg_Struktur}, stellt eine allgemeine Struktur von \gls{SIEM}-Lösungen dar:
+\glsfirst{IDS}, \glsfirst{IPS} und \glsfirst{SIEM} sind Sicherheitstool als Software und/oder Hardware, die zusammenarbeiten können, um einen umfangreiche Netzwerksicherheit anzubieten. \gls{IDS} identifizieren und berichten über \glsplural{Cyberangriff}, indem er Netzwerkverkehr überwacht. Nach der Erkennung eines verdächtigen Verkehrs, muss das \gls{SOC} Team zur Handlung kommen. \gls{IPS} überwacht den Netzwerkverkehr und kann die Verbindung automatisch unterbrechen, falls es verdächtig ist \citep{Wendzel_IS}. Ein \gls{IPS} kann konfiguriert werden, um automatisch nach festgelegten Muster zu handeln. Beide Tools können Logdateien generieren, die von einer \gls{SIEM}-Lösung oder Log-Analyse-Tools gesammelt werden können. Die Abbildung \ref{fig:SIEM_Allg_Struktur} stellt eine allgemeine Struktur von \gls{SIEM}-Lösungen dar:
 
 \begin{figure}[H]
    \centering
@@ -30,7 +30,7 @@ Aus der Perspektive eines Log-Analyse-Tools haben wir folgenden Informationsflus
    \centering
 \end{figure}
 
-In der Abbildung sehen wir, dass die Logdatei des \gls{Endpoint}s gesammelt werden und an dem Tool angepasst. Diese Information wird dann verarbeitet, um nach Muster zu suchen. Diese Daten werden schließlich gespeichern und zur Überwachung geschickt.
+In der Abbildung, \ref{fig:SIEM_Allg_Informationsfluss}, sehen wir, dass die Logdatei des \gls{Endpoint}s gesammelt werden und an dem Tool angepasst. Diese Information wird dann verarbeitet, um nach Muster zu suchen. Diese Daten werden schließlich gespeichern und zur Überwachung geschickt.
 
 % Die folgende Abbildung zeigt eine allgemeine Architektur von Log-Analyse-Tools:
 
@@ -110,7 +110,7 @@ Das im Jahr 2002 in Frankreich von Yoann Vandoorselaere released Tool Prelude z�
 Die Anwendung besteht aus verschiedenen unabhängigen Modulen. Unter denen nennen wir Warnmeldung, Archivierung, Analyse und Verwaltung. Erstens gehört zu der zentralen Aufgabe dieser Lösung - es kan folgendens: Daten empfangen, normalisieren, Zusammenhänge erschließen und Meldungen generieren. Das zweite Modul \quotes{Archivierung} konzentriert sich auf die Speicherung und Verfügbarkeit der Daten. Der Analyse-Modul stett Daten in verschiedenen Formaten dar. Das letzte Modul dient dazu, die Anwendung zu steuern, Nutzer zu erstellen und deren Rechte zu konfigurieren \citep{EC_Prelude}. 
 
 \newpage
-Die folgende Abbildung,\ref{fig:Module_preludes}, zeigt die Integration verschiedener Module von Prelude und wie sie mit einander kommunizieren, um Analyse, Meldung und Speicherung zu generieren:
+Die Abbildung \ref{fig:Module_preludes} zeigt die Integration verschiedener Module von Prelude und wie sie mit einander kommunizieren, um Analyse, Meldung und Speicherung zu generieren:
 
 \begin{figure}[H]
    \centering
@@ -137,13 +137,14 @@ In der nächsten Abbildung, \ref{fig:Prelude}, sehen wir eine einfache Darstellu
    \centering
 \end{figure}
 
-Die dezentralisierte Umgebung von Preludes lässt sich in der folgenden Abbildung darstellen:
+Die dezentralisierte Umgebung von Preludes lässt sich in der folgenden Abbildung, \ref{fig:Prelude_erweitert}, darstellen:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p5.png}
    \caption[Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen und Datenverarbeitung]
-   {Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen Datenverarbeitung\\Quelle: \citep{Prelude_MU} }
+   {Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen Datenverarbeitung\\Quelle: \citep{Prelude_MU}}
+   \label{fig:Prelude_erweitert}
    \centering
 \end{figure}
 
@@ -153,16 +154,16 @@ In \citep{Grammatikis_Prelude} wurde Preludes, AlienVault und Cyberoam iView anh
 \begin{itemize}[noitemsep]
    \item \textbf{technische Kriterien}
    \begin{itemize}[noitemsep]
-      \item Echtzeige Leistung\textit{Real-time performance}, 
-      \item Umfang und Flexibilität der Meldungen \textit{Range and flexibility of reporting}
-      \item Zusammenhang von Warnmeldung \textit{Alert correlation}
+      \item Echtzeige Leistung %\textit{Real-time performance}, 
+      \item Umfang und Flexibilität der Meldungen %\textit{Range and flexibility of reporting}
+      \item Zusammenhang von Warnmeldung %\textit{Alert correlation}
    \end{itemize}
 
    \item \textbf{nutzerfreundliche Kriterien}
    \begin{itemize}[noitemsep]
-      \item Vollständige Dokumentation \textit{Documentation comprehensiveness}
-      \item Komplexität der Installation \textit{Complexity of the installation process}
-      \item Komplexität der Einstellung \textit{Complexity of the system configuration}
+      \item Vollständige Dokumentation %\textit{Documentation comprehensiveness}
+      \item Schwierigkeitsgrad der Installation %\textit{Complexity of the installation process}
+      \item Schwierigkeitsgrad der Einstellung %\textit{Complexity of the system configuration}
    \end{itemize}
 \end{itemize}
 
@@ -174,7 +175,7 @@ AlienVault OSSIM ist eine im Jahr 2007 entwickelte \gls{opensource} \gls{SIEM} L
 AlienVault hat eine kostenpflichtige Version, die Alien Vault \glsfirst{USM} heißt. Auf der Webseite von AT\&T steht, dass es keine dedizierte Dokumentation für die \gls{opensource} Version AlienVault OSSIM gibt, da viele Funktionalitäten von der kostenpflichtigen Version stammen \citep{ATT_AVO}. 
 
 \newpage
-Die folgende Abbildung, \ref{fig:AlienVault_Architektur}, zeigt das von dem Anbieter freigelegte Architekturdiagramm von der \gls{USM} Version:
+Die Abbildung \ref{fig:AlienVault_Architektur} stellt das von dem Anbieter freigelegte Architekturdiagramm von der \gls{USM} Version dar:
 
 \begin{figure}[H]
    \centering
@@ -255,7 +256,7 @@ Die offizielle Dokumentation von Elastic Stack beschreibt, dass die Anwendung fo
    \item visuelle Ausgabe
 \end{itemize}
 
-Die folgende Abbildung, \ref{fig:ElasticKomponenten}, aus der offiziellen Dokumentation, zeigt die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
+Die  nächste Abbildung, \ref{fig:ElasticKomponenten}, aus der offiziellen Dokumentation, zeigt die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
 
 \begin{figure}[H]
    \centering
@@ -271,13 +272,13 @@ Die wissenschaftliche Publikation über Elastic Stack ist vielfältiger als bei 
 \subsubsection{Grafana}
 Von allen recherchierten Lösungen ist Grafana die Einzige, die weder \gls{SIEM} noch Log-Analyse-Tools ist. Grafana wird als Plattform für Visualisierung von Daten beschrieben. Mit dem Tool ist es möglich eine Graphik zu erstellen und Meldungen zu generieren. Das Ziel der Anwendung ist, Information in einer einfachen und verständlichen Art und Weise zur Verfügung zu stellen \citep{redhat_grafana}.  
 
-Im Jahr 2014 wurde Grafana von der Firma Grafana Labs veröffentlicht. Das Tool basiert auf Kibana3,\ref{kibana}. Ursprünglich sollte Grafana ein einfacheres Bearbeitungstool für Grafiken sein und ermöglichen, Datenanfragen unkomplizierter zu machen. Die neuste Version, 9.4.3. wurde im März 2023 veröffentlicht und bietet viele Funktionalitäten an. Es ist auch möglich das Tool mithilfe von  \glsplural{plugin} zu erweitern \citep{Oedegaard_historyGrafana}.. 
+Im Jahr 2014 wurde Grafana von der Firma Grafana Labs veröffentlicht. Das Tool basiert auf Kibana3,\ref{kibana}. Ursprünglich sollte Grafana ein einfacheres Bearbeitungstool für Grafiken sein und ermöglichen, Datenanfragen unkomplizierter zu machen. Die neuste Version, 9.4.3. wurde im März 2023 veröffentlicht und bietet viele Funktionalitäten an. Es ist auch möglich das Tool mithilfe von  \glsplural{plugin} zu erweitern \citep{Oedegaard_historyGrafana}.
 
 In der Webseite betont der Anbieter, dass Grafana die Zentralisierung und Zugang von Daten vereinfachen. Alle Art von Daten lassen sich analysieren und darstellen, von der Leistung von Anwendungen bis Verkaufsdaten und Krankheitsfällen. Die Anwendung soll auch den Zusammenhang von Daten ermöglichen, um wichtige Informationen herauszunehmen \citep{Grafana_Grafana}.
 
 Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig. Promptail wird an jeden \gls{Endpoint} installiert und er schickt als Stream zu Loki. Diese Streams werden dann identifiziert mithilfe von Index. Jeder Stream bezieht sich auf eine Gruppe von Logdateien. Der Inhalt der Logdateien bleiben aber ohne Index \citep{Grafana_fundamentals}. Promtail kann aber Logdateien nur zur Grafana Loki oder zu einem anderen Promtail Instanz schicken. In der Konfigurationsdatei von Promtail kann die Häufigkeit, in der nach neuem Inhalt in der Logdateien gesucht wird, konfiguriert werden. Das Tool kann auch Logdatei entdecken und dekomprimieren \citep{Grafana_Promtail}. 
 
-Diese Daten können dann in Grafana mithilfe der \gls{abfragesprache} LogQL aufgerufen werden. Schließlich können Warnmeldungen mit spezifischen Regelsätze in \gls{logql} generiert werden, die in dem Alerting Tool von Grafana eingeführt werden \citep{Grafana_loki}. Auf der nächsten Abbildung, \ref{fig:Integration_Loki_Promtail_Grafana}, wird die Struktur von Grafana Loki  dargestellt:
+Diese Daten können dann in Grafana mithilfe der \gls{abfragesprache} LogQL aufgerufen werden. Schließlich können Warnmeldungen mit spezifischen Regelsätze in \gls{logql} generiert werden, die in dem Alerting Tool von Grafana eingeführt werden \citep{Grafana_loki}. Auf Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} wird die Struktur von Grafana Loki  dargestellt:
 
 \begin{figure}[H]
    \centering
