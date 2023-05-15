@@ -503,7 +503,6 @@ Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen:
 % \end{table}
 
 Schließlich sieht der Regelsatz so aus:
-\verb
 
 {\setstretch{1.0}
 \begin{Verbatim}[fontsize=\small, commandchars=\\\{\}, frame=single]
@@ -523,7 +522,7 @@ pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from  <\textbf{\textc
 
 
 \textbf{\textcolor{red}{Das sollte verbessert werden}}
-Eine Erkennungsregel hätte folgende Logik:
+Eine allgemeine Erkennungsregel in \gls{logql} würde so aussehen:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
 # Gefundene Werte in den Logdateien
@@ -542,9 +541,7 @@ sonst
 }
 
 \subsection{Hinzufügen der Regelsätze Grafana Loki}
-\textcolor{red}{\textbf{TODO Citar regra API https://grafana.com/docs/loki/latest/api/}}
-
-Die Regelsätze in Grafana Loki können sowohl manuell im Menü \quotes{Code} als auch über die \gls{GUI} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen, \ref{fig:Loki_Code} und \ref{fig:Loki_Builder}, zeigen diese beiden Optionen:
+Die Regelsätze in Grafana Loki können sowohl \textbf{manuell} im Menü \quotes{Code} als auch über die \textbf{\gls{GUI}} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen, \ref{fig:Loki_Code} und \ref{fig:Loki_Builder}, zeigen diese beiden Optionen:
 
 \begin{figure}[H]
    \centering
@@ -574,6 +571,9 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen, 
    \label{fig:Loki_CodeInformation}
    \centering
 \end{figure}
+
+Mit der Nutzung von \gls{API} ist auch möglich Regelsätze hinzufügen:
+\textcolor{red}{\textbf{TODO Citar regra API https://grafana.com/docs/loki/latest/api/}}
 
 \newpage
 \newgeometry{right=30mm, left=30mm} 
