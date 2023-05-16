@@ -19,7 +19,7 @@ scrape_configs:
       job: sshlogs
       env: voidquart
       instance: Opfersystem1
-      __path__: /opt/**.gz
+      __path__: /opt/*
 
 # scrape_configs:
 # - job_name: sshlogs
