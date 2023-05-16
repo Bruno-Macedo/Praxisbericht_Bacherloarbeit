@@ -2,7 +2,7 @@
 In diesem Abschnitt verwendeten wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. Für die Extrahierung der Dateien bekommt unseren Promtail-Instanz folgende Konfiguration:
 
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
+\begin{Verbatim}[frame=single,fontsize=\small]
 scrape_configs:
 - job_name: sshlogs
   decompression:
@@ -26,22 +26,19 @@ Promtail sucht automatisch und nach vordefinierten Zeitabstand nach Logdateien, 
     \hline
     \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
     \hline
-    \centering
-    scrape_configs & Bezieht sich auf die Funktionalität von Promtail automatisch nach Logdatein zu suchen. \\
+    scrape\_configs & Bezieht sich auf die Funktionalität von Promtail automatisch nach Logdatein zu suchen. \\
     \hline
-    \centering
-    decompression \\
-      enabled: true \\
-      initial_sleep: 10s \\
-      format: gz & Promtail kann die einige Komprimierungsformate verarbeiten, unter denen .gz, was wir in unserer Arbeit benutzen. Der field \quotes{initial_sleep} beschreibt der Intervallzeit, bevor Promtail anfängt, die Logdatein zu verarbeiten, während die Indexierung stattfindet. \citep{Grafana_Promtail}. \\
+    decompression \newline
+        enabled: true \newline
+        initial\_sleep: 10s \newline
+        format: gz & Promtail kann die einige Komprimierungsformate verarbeiten, unter denen .gz, was wir in unserer Arbeit benutzen. Der field \quotes{initial\_sleep} beschreibt der Intervallzeit, bevor Promtail anfängt, die Logdatein zu verarbeiten, während die Indexierung stattfindet. \citep{Grafana_Promtail}. \\
     \hline
-    \centering
-    static_configs: \\
-    - targets: \\
-        - localhost \\
-      labels: \\
-        job: sshlogs \\
-        __path__: /var/log/**.gz& Bezieht sich auf die Funktionalität von Promtail automatisch nach Logdatein zu suchen. \\
+    static\_configs: \newline
+    - targets: \newline
+        - localhost \newline
+      labels: \newline
+        job: sshlogs \newline
+        \_\_path\_\_: /var/log/**.gz & \quotes{targets} bezieht sich auf die Kommunikation mit dem Loki-Instanz. \quotes{labels} zeigt, mit welcher Identifizierung den Inhalt dieser Datei im Loki aufgerufen werden kann. \quotes{\_\_path\_\_} gibt an, wo sich die Datei im System befinden\\
     \hline
     \end{tabularx}
  \end{table}
