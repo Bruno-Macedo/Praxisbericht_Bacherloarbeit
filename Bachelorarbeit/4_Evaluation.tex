@@ -1,2 +1,58 @@
 \section{Evaluation der Implementation mit echten Logdateien}
+In diesem Abschnitt verwendeten wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. Für die Extrahierung der Dateien bekommt unseren Promtail-Instanz folgende Konfiguration:
 
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+scrape_configs:
+- job_name: sshlogs
+  decompression:
+    enabled: true
+    initial_sleep: 10s
+    format: gz
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: sshlogs
+      __path__: /var/log/**.gz
+\end{Verbatim}
+}
+
+Promtail sucht automatisch und nach vordefinierten Zeitabstand nach Logdateien, die in der Konfigurationsdatei eintregagen wurden. Unten befindet sich die Erklärung jedes Elements dieser Einstellung:
+
+\begin{table}[H]
+    \setstretch{1.2}
+    \begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
+    \hline
+    \centering
+    scrape_configs & Bezieht sich auf die Funktionalität von Promtail automatisch nach Logdatein zu suchen. \\
+    \hline
+    \centering
+    decompression \\
+      enabled: true \\
+      initial_sleep: 10s \\
+      format: gz & Promtail kann die einige Komprimierungsformate verarbeiten, unter denen .gz, was wir in unserer Arbeit benutzen. Der field \quotes{initial_sleep} beschreibt der Intervallzeit, bevor Promtail anfängt, die Logdatein zu verarbeiten, während die Indexierung stattfindet. \citep{Grafana_Promtail}. \\
+    \hline
+    \centering
+    static_configs: \\
+    - targets: \\
+        - localhost \\
+      labels: \\
+        job: sshlogs \\
+        __path__: /var/log/**.gz& Bezieht sich auf die Funktionalität von Promtail automatisch nach Logdatein zu suchen. \\
+    \hline
+    \end{tabularx}
+ \end{table}
+
+
+%  In the Promtail configuration file, the initial_sleep field is used to specify the initial delay before Promtail starts scraping logs from a given file.
+
+%  When Promtail starts up, it needs to read the log files from the beginning to identify where it left off, and then begin tailing the logs from that point forward. If the log file is large or there are many log files to be read, this initial indexing process can take some time.
+ 
+%  The initial_sleep field specifies the number of seconds that Promtail should wait before starting to read logs from a given file. This delay can be used to give the indexing process more time to complete before Promtail begins tailing the logs.
+ 
+%  For example, if you have a large log file that takes several minutes to index, you might set the initial_sleep field to a few minutes to ensure that the indexing process is complete before Promtail starts scraping logs.
+ 
+%  Note that the initial_sleep field is optional and defaults to 0 seconds if not specified.
