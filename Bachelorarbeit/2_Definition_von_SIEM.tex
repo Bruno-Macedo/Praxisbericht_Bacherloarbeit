@@ -8,6 +8,8 @@ In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal 
 
 \glsfirst{IDS}, \glsfirst{IPS} und \glsfirst{SIEM} sind Sicherheitstool als Software und/oder Hardware, die zusammenarbeiten können, um einen umfangreiche Netzwerksicherheit anzubieten. \gls{IDS} identifizieren und berichten über \glsplural{Cyberangriff}, indem er Netzwerkverkehr überwacht. Nach der Erkennung eines verdächtigen Verkehrs, muss das \gls{SOC} Team zur Handlung kommen. \gls{IPS} überwacht den Netzwerkverkehr und kann die Verbindung automatisch unterbrechen, falls es verdächtig ist \citep{Wendzel_IS}. Ein \gls{IPS} kann konfiguriert werden, um automatisch nach festgelegten Muster zu handeln. Beide Tools können Logdateien generieren, die von einer \gls{SIEM}-Lösung oder Log-Analyse-Tools gesammelt werden können. Die Abbildung \ref{fig:SIEM_Allg_Struktur} stellt eine allgemeine Struktur von \gls{SIEM}-Lösungen dar:
 
+\textbf{\textcolor{red}{Graphik selbst bauen}}
+
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.55\textwidth]{assets/2_p1.png}
@@ -20,6 +22,8 @@ In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal 
 Obem auf dem Bild, sehen wir, dass es zwei wichtige Datenquelle gibt, auf der linken Seite sind die Logdateien der \glsplural{Endpoint} und auf der rechten Seite die Informationen, um Anomalie zu erkennen. Nur der linken Seite stellt ein Log-Analyse-Tool dar. Mit der Nutzung der Elementen der rechten Seite, werden die Daten verarbeitet, um Muster zu erkennen und Information herauszuholen. Diese Zusammenarbeit repräsentiert eine \gls{SIEM}-Lösung, die als Ergebnis ein oder mehrere Berichten und/oder Graphik ausgeben kann. 
 
 Aus der Perspektive eines Log-Analyse-Tools haben wir folgenden Informationsfluss:
+
+\textbf{\textcolor{red}{Graphik selbst bauen}}
 
 \begin{figure}[H]
    \centering
@@ -54,7 +58,6 @@ In der Abbildung, \ref{fig:SIEM_Allg_Informationsfluss}, sehen wir, dass die Log
 
 Aus bisheriger Abbildung stellen wir fest, dass \gls{SIEM} das Ergebnis der Integration von zwei wichtigen Komponenten ist, Datensammlung und Verarbeitung. Das Ziel dieser Software ist es die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereichen, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} eine gesetzliche vorgegeben \citep{Jog_SIEM}. In Deutschland verpflichtet das \gls{IT-Sicherheitsgesetz 2.0} die Anwendungen solcher Lösungen, um Schädigung der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log-Analyse-Tools sind seinerseits allgemeine Tools zu der Speicherung, Anpassung, Bewertung und Darstellung von Logdateien, ohne dass sie sich auf die Sicherheitsebenen fokussieren.
 
-
 \subsection{Existierende SIEMs Lösungen und Log-Analyse-Tools}
 Die existierenden \glsplural{SIEM} und Log-Analyse-Tools werden in \textit{\gls{Proprietary}} und \textit{\gls{opensource}} getrennt. In folgenden Abschnitten präsentieren wir das \textit{\gls{Proprietary}}e Tool Splunk, um einen Maßstab für unsere Auswahl über Funktionalität zu definieren. Wir analysieren folgende Tools: %\glsplural{SIEM} und Log-Analyse-Tools: 
 
@@ -80,6 +83,8 @@ Splunk, von dem gleichnamigen Unternehmen, wurde 2003 in den USA auf dem Markt g
 Die Architektur und der Informationsfluss von Splunk unterscheidet sich nicht von der oben dargestellten Struktur in der Abbildung \ref{fig:SIEM_Allg_Struktur} und Abbildung \ref{fig:SIEM_Allg_Informationsfluss}. Da es sich hier um eine proprietäre Lösung handelt, lässt sich Splunk mit anderen Funktionalitäten verwalten und erweitern. 
 
 Die nächste Abbildung, \ref{fig:Allgemein_Splunk}, zeigt ein zusammenfassendes Diagramm über den Umfang des Informationsflusses von Splunk:
+
+\textbf{\textcolor{red}{Graphik selbst bauen}}
 
 \begin{figure}[H]
    \centering
@@ -112,6 +117,8 @@ Die Anwendung besteht aus verschiedenen unabhängigen Modulen. Unter denen nenne
 \newpage
 Die Abbildung \ref{fig:Module_preludes} zeigt die Integration verschiedener Module von Prelude und wie sie mit einander kommunizieren, um Analyse, Meldung und Speicherung zu generieren:
 
+\textbf{\textcolor{red}{Graphik selbst bauen}}
+
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.5\textwidth]{assets/2_p3.png}
@@ -128,6 +135,8 @@ Die Architektur der Anwendung ermöglicht sowohl einen zentralisierten als auch 
 \newpage
 In der nächsten Abbildung, \ref{fig:Prelude}, sehen wir eine einfache Darstellung des Informationsflusses von Prelude:
 
+\textbf{\textcolor{red}{Graphik selbst bauen}}
+
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/2_p4.png}
@@ -138,6 +147,9 @@ In der nächsten Abbildung, \ref{fig:Prelude}, sehen wir eine einfache Darstellu
 \end{figure}
 
 Die dezentralisierte Umgebung von Preludes lässt sich in der folgenden Abbildung, \ref{fig:Prelude_erweitert}, darstellen:
+
+
+\textbf{\textcolor{red}{Graphik selbst bauen}}
 
 \begin{figure}[H]
    \centering
@@ -177,6 +189,8 @@ AlienVault hat eine kostenpflichtige Version, die Alien Vault \glsfirst{USM} hei
 \newpage
 Die Abbildung \ref{fig:AlienVault_Architektur} stellt das von dem Anbieter freigelegte Architekturdiagramm von der \gls{USM} Version dar:
 
+\textbf{\textcolor{red}{Graphik selbst bauen}}
+
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.6\textwidth]{assets/2_p6.png}
@@ -203,6 +217,8 @@ FortiSIEM ist eine \gls{SIEM}-Lösung von der US-amerikanische Firma Fortinet. F
 Laut dem Anbieter hat FortiSIEM eine robuste Integration mit anderen Tools und lässt sich leicht und einwandfrei skalieren. Andere Versionen des Tools sind mit \glsfirst{ML} integriert, sodass die Anwendung auch Verhältnisanalysen durchführen kann \citep{Fortinet_Solutions}. Das Tool bietet auch eine umfangreiche und ausführliche Dokumentation an. 
 
 Die nächste Abbildung, \ref{fig:FortiSIEM}, zeigt die skalierbare Architektur von FortiSIEM:
+
+\textbf{\textcolor{red}{Graphik selbst bauen}}
 
 \begin{figure}[H]
    \centering
@@ -235,6 +251,8 @@ kostenlos verwendet werden können, gehören sie nicht zu der \gls{opensource} K
 \newpage
 Die nächste Abbildung, \ref{fig:Intregation_ELK}, stellt die Architektur von Elastic Stack mit ihren integrierten Elementen dar:
 
+\textbf{\textcolor{red}{Graphik selbst bauen}}
+
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.8\textwidth]{assets/2_p8.png}
@@ -246,7 +264,7 @@ Die nächste Abbildung, \ref{fig:Intregation_ELK}, stellt die Architektur von El
 
 Die Beats auf dem Bild sind an der \glsplural{Endpoint} installiert und leiten Daten entweder zu Elasticsearch oder zu Logstash weiter, wo sie schließlich bearbeitet werden \citep{Jain_LMELK}. 
 
-In \citep{Advani_elkstakc} wird über die Log Analyse-Funktionalitäten von Elastic Stack und die Unterstützung bei Normalisierung und Indexierung von Daten für eine lesbare Ausgabe recherchiert. Die Skalierbarkeit wurde in der Studie von \citep{Wang_elkwifi} erwähnt, wo Elastic Stack für Wi-Fi Logging eingesetzt wurde. 
+In \citep{Advani_elkstakc} wird über die Log Analyse-Funktionalitäten von Elastic Stack und die Unterstützung bei Normalisierung und Indexierung von Daten für eine lesbare Ausgabe recherchiert. Die Skalierbarkeit wurde in der Studie von \citep{Wang_elkwifi} erwähnt, wo Elastic Stack für Wi-Fi Logging eingesetzt wurde.
 
 Die offizielle Dokumentation von Elastic Stack beschreibt, dass die Anwendung folgende Funktionalitäten besitzt \citep{elastic_docs}: 
 
@@ -257,6 +275,8 @@ Die offizielle Dokumentation von Elastic Stack beschreibt, dass die Anwendung fo
 \end{itemize}
 
 Die  nächste Abbildung, \ref{fig:ElasticKomponenten}, aus der offiziellen Dokumentation, zeigt die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
+
+\textbf{\textcolor{red}{Graphik selbst bauen}}
 
 \begin{figure}[H]
    \centering
@@ -278,7 +298,13 @@ In der Webseite betont der Anbieter, dass Grafana die Zentralisierung und Zugang
 
 Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig. Promptail wird an jeden \gls{Endpoint} installiert und er schickt als Stream zu Loki. Diese Streams werden dann identifiziert mithilfe von Index. Jeder Stream bezieht sich auf eine Gruppe von Logdateien. Der Inhalt der Logdateien bleiben aber ohne Index \citep{Grafana_fundamentals}. Promtail kann aber Logdateien nur zur Grafana Loki oder zu einem anderen Promtail Instanz schicken. In der Konfigurationsdatei von Promtail kann die Häufigkeit, in der nach neuem Inhalt in der Logdateien gesucht wird, konfiguriert werden. Das Tool kann auch Logdatei entdecken und dekomprimieren \citep{Grafana_Promtail}. 
 
+\textbf{\textcolor{red}{Was ist Indexierung???}}
+\textbf{\textcolor{red}{Vorteil, schneller, Vergleich mit andere=}}
+\textbf{\textcolor{red}{Grafik???}}
+
 Diese Daten können dann in Grafana mithilfe der \gls{abfragesprache} LogQL aufgerufen werden. Schließlich können Warnmeldungen mit spezifischen Regelsätze in \gls{logql} generiert werden, die in dem Alerting Tool von Grafana eingeführt werden \citep{Grafana_loki}. Auf Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} wird die Struktur von Grafana Loki  dargestellt:
+
+
 
 \begin{figure}[H]
    \centering
@@ -298,3 +324,14 @@ Die wissenschaftliche Recherche über die Implementierung und Integration von Gr
 Der Erwerb einer \gls{SIEM} Lösung würde wahrscheinlich die Anforderungen dieser wissenschaftlichen Arbeit decken. Da solche Lösungen meistens (oder alle) \gls{Proprietary} und kostenpflichtig sind, legten wir als Auswahlkriterium fest, dass die Anwendungen für unsere Arbeit \gls{opensource} sein müssen. Deshalb arbeiten wir mit Grafana, Loki und Promtail.
 
 In den nächsten Kapiteln beschäftigen wir mit der Integration dieser Tools, um eine ähnliche \gls{SIEM} Lösung zu präsentieren. Wir beschreiben die Installation, Einstellungen und Sammlungen von Logdateien und nachdem die Grundfunktionalitäten eingerichtet sind und einwandfrei funktionieren, untersuchen wir anhand der \glsfirst{ttp} der \gls{mitre} Matrix Regelsätze für die Erkennung und Warnmeldung von potenziellen Angriff. Unser Ziel ist Grafana, Loki und Promtail so einzustellen, dass es in der Lage ist, die Muster dieser Angriffe zu erkennen und darüber zu berichten.
+
+
+\textbf{\textcolor{red}{Tabella mit Vergleich Loki x Grafana}}
+
+\textbf{\textcolor{red}{Grafana - Kibana}}
+
+\textbf{\textcolor{red}{Loki - Elastic}}
+
+\textbf{\textcolor{red}{Promtail - Forwarder}}
+
+\textbf{\textcolor{red}{Mehr Gründen - Elastic}}
