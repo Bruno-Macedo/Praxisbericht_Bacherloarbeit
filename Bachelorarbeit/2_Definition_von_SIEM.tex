@@ -19,22 +19,34 @@ In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal 
    \centering
 \end{figure}
 
-Obem auf dem Bild, sehen wir, dass es zwei wichtige Datenquelle gibt, auf der linken Seite sind die Logdateien der \glsplural{Endpoint} und auf der rechten Seite die Informationen, um Anomalie zu erkennen. Nur der linken Seite stellt ein Log-Analyse-Tool dar. Mit der Nutzung der Elementen der rechten Seite, werden die Daten verarbeitet, um Muster zu erkennen und Information herauszuholen. Diese Zusammenarbeit repräsentiert eine \gls{SIEM}-Lösung, die als Ergebnis ein oder mehrere Berichten und/oder Graphik ausgeben kann. 
+Obem auf dem Bild, sehen wir, dass es zwei wichtige Datenquelle gibt, auf der linken Seite sind die Logdateien der \glsplural{Endpoint} und auf der rechten Seite die Informationen, um Anomalie zu erkennen. Nur der linken Seite stellt ein Log-Analyse-Tool dar. Mit der Nutzung der Elementen der rechten Seite, werden die Daten verarbeitet, um Muster zu erkennen und Information herauszuholen. Diese Zusammenarbeit repräsentiert eine \gls{SIEM}-Lösung, die als Ergebnis ein oder mehrere Berichten und/oder Graphik ausgeben kann. \cite{Granadillo_SIEM} teilt ein \gls{SIEM} in unabhängige Blöcke auf, wo jeder Block eine spezifische Funktion hat. Diese Blöcke und die Richtung der Information werden werden in der Abbildung \ref{fig:SIEM_Allg_Informationsfluss} dargestellt: 
 
-Aus der Perspektive eines Log-Analyse-Tools haben wir folgenden Informationsfluss:
 
-\textbf{\textcolor{red}{Graphik selbst bauen}}
+% \textbf{\textcolor{red}{Graphik selbst bauen}}
+
+% \begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{assets/2_p2.png}
+%    \caption[Allgemeine Informationsfluss von \gls{SIEM}]
+%    {Allgemeine Informationsfluss eines laut \cite{Granadillo_SIEM} }
+%    \label{fig:SIEM_Allg_Informationsfluss}
+%    \centering
+% \end{figure}
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/2_p2.png}
+   \includegraphics[width=0.8\textwidth]{assets/InfoFluss_SIEM.png}
    \caption[Allgemeine Informationsfluss von \gls{SIEM}]
-   {Allgemeine Informationsfluss eines \gls{SIEM} \\Quelle: \citep{Granadillo_SIEM} }
+   {Allgemeine Informationsfluss eines nach \cite{Granadillo_SIEM} }
    \label{fig:SIEM_Allg_Informationsfluss}
    \centering
 \end{figure}
 
-In der Abbildung, \ref{fig:SIEM_Allg_Informationsfluss}, sehen wir, dass die Logdatei des \gls{Endpoint}s gesammelt werden und an dem Tool angepasst. Diese Information wird dann verarbeitet, um nach Muster zu suchen. Diese Daten werden schließlich gespeichern und zur Überwachung geschickt.
+
+
+In der Abbildung \ref{fig:SIEM_Allg_Informationsfluss} sehen wir den Informationsfluss, wo die Logdateien erstellt werden, bis ihr Inhalt bearbeitet und verarbeitet wird. Die Logdateien der \glsplural{Endpoint} werden von einem sogenannten \textit{collector} gesammelt (1). Diese werden dann angepasst, damit sie eine einheitliche Formatierung bekommen (2), da sie verschiedene Format und Inhalte beinhalten. Danach werden die normalisierten Daten analysiert und nach Angriffsmuster verarbeitet (3). Der Inhalt wird dann in einer Datenbank gespeichert (4) und sowohl das Ergebnis der Analyse als auch der Inhalt können von einer Überwachungstool in Graphik- und/oder Textformat aufgerufen werden (5) \cite{Granadillo_SIEM}. 
+
+Information wird dann verarbeitet, um nach Muster zu suchen. Diese Daten werden schließlich gespeichern und zur Überwachung geschickt.
 
 % Die folgende Abbildung zeigt eine allgemeine Architektur von Log-Analyse-Tools:
 
@@ -82,20 +94,30 @@ Splunk, von dem gleichnamigen Unternehmen, wurde 2003 in den USA auf dem Markt g
 
 Die Architektur und der Informationsfluss von Splunk unterscheidet sich nicht von der oben dargestellten Struktur in der Abbildung \ref{fig:SIEM_Allg_Struktur} und Abbildung \ref{fig:SIEM_Allg_Informationsfluss}. Da es sich hier um eine proprietäre Lösung handelt, lässt sich Splunk mit anderen Funktionalitäten verwalten und erweitern. 
 
-Die nächste Abbildung, \ref{fig:Allgemein_Splunk}, zeigt ein zusammenfassendes Diagramm über den Umfang des Informationsflusses von Splunk:
+Die nächste Abbildung, \ref{fig:Allgemein_Splunk}, zeigt ein zusammenfassendes Diagramm über den Umfang des Informationsflusses von Splunk laut \cite{Splunk_platform}:
 
-\textbf{\textcolor{red}{Graphik selbst bauen}}
+% % \begin{figure}[H]
+% %    \centering
+% %    \includegraphics[width=0.7\textwidth]{assets/Splunk_informationsfluss.png}
+% %    \caption[Allgemeine Informationsfluss von Splunk]
+% %    {Allgemeine Informationsfluss von Splunk\\Quelle: \citep{Splunk_platform} }
+% %    \label{fig:Allgemein_Splunk}
+% %    \centering
+% % \end{figure}
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.7\textwidth]{assets/Splunk_informationsfluss.png}
+   \includegraphics[width=0.5\textwidth]{assets/Splunk.drawio.png}
    \caption[Allgemeine Informationsfluss von Splunk]
-   {Allgemeine Informationsfluss von Splunk\\Quelle: \citep{Splunk_platform} }
+   {Allgemeine Informationsfluss von Splunk}
    \label{fig:Allgemein_Splunk}
    \centering
 \end{figure}
 
-Auf dem Bild sehen wir unten die \glsplural{Endpoint}, dessen Daten und Logdateien von Splunk und seine \glsplural{plugin} und Funktionalitäten verarbeitet und analysiert werden.
+%Auf der Abbildung \ref{fig:Allgemein_Splunk} haben wir unten die \glsplural{Endpoint}, dessen Logdateien von Splunk und seine \glsplural{plugin} und Funktionalitäten verarbeitet und analysiert werden. 
+
+Auf der Abbildung \ref{fig:Allgemein_Splunk} haben wir links die \glsplural{Endpoint}, dessen Logdateien von Splunk und seine \glsplural{plugin} und Funktionalitäten (rechts) verarbeitet und analysiert werden. Der Konzept von Splunk lässt sich von der Idee formulieren, dass verschiedenen und unabhängige Funktalitäten zusammenarbeiten \citep{Splunk_platform}.
+
 
 Wie in anderen Tools, funktioniert die Bedrohungserkennung mithilfe von Regelsätzen, die aus \glsplural{usecases} können. Laut der Dokumentation existieren sie in folgenden Szenarien: Überwachung, Untersuchung und Erkennung. Die Software ist sowohl mit \gls{mitre} Matrix als auch mit \glsfirst{CKC} für die Gestaltung ihrer \glsplural{usecases} integriert \citep{Splunk_usecases}. 
 
