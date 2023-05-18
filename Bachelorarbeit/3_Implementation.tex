@@ -295,18 +295,7 @@ Grafana Loki bietet interne und externe Möglichkeiten Logdateien zu empfangen. 
    \end{enumerate}
 \end{enumerate}
 
-In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdatein nur zu Grafana Loki oder zu anderen Promtail-Instanz schicken \citep{Grafana_Promtail}. Die folgende Abbildung, \ref{fig:Promtail_Diagramm}, zeigt die \glsplural{Endpoint} (links), wo Promtail installiert ist. Jeder Instanz von Promtail schickt Logdateien zu Loki (mitte), wo die Daten dann in Grafana (rechts) dargestellt werden.
-
-%Bei verschiedenen wird jeder Typ einem eigenen \quotes{job} zugewiesen \citep{Grafana_CollectLogs}. Jeder \quotes{job} hat seine eigenen Regeln, um nach gefilterten Informationen zu suchen. 
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[width=0.6\textwidth]{assets/Promtail_Diagramm.png}
-   \caption[Promtail in jeden \glsplural{Endpoint} kommuniziert sich mit Grafana Loki]
-   {Promtail in jeden \glsplural{Endpoint} kommuniziert sich mit Grafana Loki\\Quelle: \citep{SpringCloud_Promtail}}
-   \label{fig:Promtail_Diagramm}
-   \centering
-\end{figure}
+In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdatein nur zu Grafana Loki oder zu anderen Promtail-Instanz schicken \citep{Grafana_Promtail}. Die Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} auf der Seite \pageref{fig:Integration_Loki_Promtail_Grafana} zeigt diese beschriebene Struktur. 
 
 In einer produktiven Umgebung ist die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. Während Promtail Logdatei nur zu Loki schickt, kann Grafana Agents Logdateien zu \gls{prometheus}, OpenTelemetry und zu Tools von \gls{GrafanaSystem}, wie \gls{mimir}, \gls{tempo}, \gls{phlare}, Loki und Grafana \citep{Grafana_Agents}. Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwischen Grafana Agents und die integrieten Tools:
 

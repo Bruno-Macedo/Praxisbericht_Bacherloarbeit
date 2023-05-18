@@ -285,6 +285,21 @@
     see=[Glossary:]{\gls{OSSIM}}, 
     description=\glslink{OSSIM}{Open Source Security Information Management}}
 
+%=====
+\newglossaryentry{DLS2}{
+    name=\glslink{DSL}{Query Domain Specific Language (\gls{DSL})},
+    description={Abfragesprache von Elasticsearch für die Kommunikation mit der Databank. Diese Abfragesprache hat zwei verschiedene Typen: \quotes{Leaf} für die Suche nach spezifischen Muster und \quotes{Compound} für die logische Kombination von mehrere Abfrage \citep{elastic_DSL}}}
+
+\newglossaryentry{DSL}{
+    type=\acronymtype,
+    name=DSL,
+    first={Query Domain Specific Language (Query DSL)\glsadd{DLS2}},
+    see=[Glossary:]{\gls{DLS2}}, 
+    description=\glslink{DLS2}{Query Domain Specific Language}}
+% =====
+    
+
+
 \newglossaryentry{spraying} {
     name={Password Spraying},
     description={ist ein Angriff gegen Anmeldedaten, indem mögliche Passwörter gegen verschiedenen viele Benutzernamen verwendet werden. Das Ziel dieses Angriffes ist eine Kontosperrung zu vermeiden, indem wenige Versuche pro Nutzer stattfindet \citep{Swathi_spraxy}}}
