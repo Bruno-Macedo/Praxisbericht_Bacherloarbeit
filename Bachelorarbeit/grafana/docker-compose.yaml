@@ -5,7 +5,7 @@ networks:
 
 services:
   loki:
-    image: grafana/loki:2.3.0
+    image: grafana/loki:2.8.2
     volumes:
       - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/promtail-local-config_opfer1.yaml:/etc/loki/loki-config.yaml
     ports:
@@ -15,7 +15,7 @@ services:
       - loki
 
   promtail:
-    image: grafana/promtail:2.3.0
+    image: grafana/promtail:2.8.2
     container_name: Opfersystem1
     volumes:
       - ${PWD}/promtail-local-config_opfer1.yaml:/etc/promtail/promtail-config.yaml

@@ -7,14 +7,15 @@ In dieser Arbeit haben wir versucht, mithilfe von Grafana, Loki und Promtail ein
     \setstretch{1.2}
     \begin{tabular}{|c|c|}
     \hline
-    \textbf{Funktionalität}         & \textbf{Tool}    \\ \hline
-    Datensammlung                   & Promtail         \\ \hline
-    Normalisierung und Vearbeitung  & Loki             \\ \hline
-    Berichts- und Grafikgenerierung & Grafana          \\ \hline
-    Generierung von Warnmeldung     & Grafana:Alerting \\ \hline
+    \textbf{Tool}    & \textbf{Funktionalität}         \\ \hline
+    Promtail         & Datensammlung                   \\ \hline
+    Loki             & Normalisierung und Vearbeitung  \\ \hline
+    Grafana          & Berichts- und Grafikgenerierung \\ \hline
+    Grafana:Alerting & Generierung von Warnmeldung     \\ \hline
     \end{tabular}
-    \caption{Verwendete Tools für den Aufbau einer \gls{SIEM} ähnlichen Lösung\\Quelle: Eigene Quelle und \citep{Granadillo_SIEM}}
-    \label{tab:my-table}
+    \caption{Verwendete Tools und ihre Funktionalitäten für den Aufbau einer \gls{SIEM} ähnlichen Lösung}
+    {Verwendete Tools und ihre Funktionalitäten für den Aufbau einer \gls{SIEM} ähnlichen Lösung}
+    \label{tab:VerewendeteTools}
 \end{table}
 
 Wir stellen fest, dass die verwendeten Tools eine kosteneffektive Möglichkeit bieten, ein Überwachungssystem zu implementieren. Die Methoden zur Erkennung von Angriffen lassen sich anhand der \gls{ttp} der \gls{mitre}-Matrix definieren. Nach der Auswahl des Angriffe erstellen wir Regelwerke mit der Abfragesprache \gls{logql} in Loki, um Muster zu identifizieren, die auf den ausgewählten Angriff hindeuten. Diese Regelwerke werden dann verwendet, um Warnmeldungen über den Angriff zu generieren und zu versenden.

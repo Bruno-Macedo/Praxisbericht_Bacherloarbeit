@@ -1,4 +1,4 @@
-\section{Implementierung von Grafana, Loki und Promtail}
+\section{Implementierung}
 In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um \gls{Cyberangriff} mithilfe der \gls{mitre} Matrix zu erkennen. Das Labor wird mit einem \gls{container} und \glsfirst{vm} aufgebaut, wie im Diagramm in der Abbildung \ref{fig:Arbeitslabor} dargestellt.
 
 \begin{figure}[H]
@@ -232,35 +232,49 @@ Die Abbildungen \ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2} zeigen d
 Die Abbildungen \ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2} zeigen die verschiedenen Benutzername (rot markiert) aber wenige Passwörter pro Nutzer (grün markiert). Auf beiden Abbildungen werden die gefundenen Passwört grün geschrieben.
 
 \newpage
-\subsubsection{Installation und Einrichtung von Grafana Loki und Promtail}
-Die offizielle Dokumentation von Grafana war nicht immer eindeutig in Bezug auf die Ausführung, daher haben wir auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. Unten befinden sich die von Grafana zur Verfügung gestellten Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}:
+\subsubsection{Installation und Einrichtung von Grafana, Loki und Promtail}
+Für die Einrichtung haben wir sowohl offizielle Dokumentation von Grafana als auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. In den Anhänge \ref{appendix:orgGrafana} und \ref{appendix:AngepasstGrafana} befinden sich die heruntergeladenen originalen Konfigurationsdatei und die an unsere Umgebung angepasst. Diese Dateien benutzten wir für die Installation, Einstellung und Verwendung der Applikationen in \glsplural{container}.
 
-{\setstretch{1.0}
-\begin{lstlisting}[frame=single]
-wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/
-loki/loki-local-config.yaml -O loki-config.yaml
-(die Datei wurde angepasst)
+% Unten befinden sich die von Grafana zur Verfügung gestellten Konfigurationsdateien und Installationsverfahren \citep{GrafanaLoki_run}:
 
-wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/
-clients/cmd/promtail/promtail-docker-config.yaml
--O promtail-config.yaml (die Datei wurde angepasst)
+% {\setstretch{1.0}
+% \begin{lstlisting}[frame=single]
+% wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/
+% loki/loki-local-config.yaml -O loki-config.yaml
+% (die Datei wurde angepasst)
 
-docker-compose -f docker-compose.yaml up 
-\end{lstlisting}
-}
+% wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/
+% clients/cmd/promtail/promtail-docker-config.yaml
+% -O promtail-config.yaml (die Datei wurde angepasst)
 
-Im Anhang \ref{appendix:orgGrafana} befinden sich die heruntergeladenen originalen Konfigurationsdatei. Ihre an unserer Umgebung angepassten Version steht im Anhang \ref{appendix:AngepasstGrafana} zur Verfügung.
+% docker-compose -f docker-compose.yaml up 
+% \end{lstlisting}
+% }
 
-Die obigen Kommandos haben folgende Bedeutungen:
-\begin{enumerate}[noitemsep]
-   \item Herunterladen der Konfigurationsdatei von Loki
-   \item Herunterladen der Konfigurationsdatei von Promptail
-   \item Ausführung von dem \glsplural{container}, indem beide Konfigurationsdateien in eine eingepackt und angepasst wurden und schließlich von der \gls{container}-Anwendung gelesen werden
-\end{enumerate}
+% \begin{enumerate}[noitemsep]
+%    \item Herunterladen der Konfigurationsdatei von Loki
+%    \item Herunterladen der Konfigurationsdatei von Promptail
+%    \item Ausführung von dem \glsplural{container}, indem beide Konfigurationsdateien in eine eingepackt und angepasst wurden und schließlich von der \gls{container}-Anwendung gelesen werden
+% \end{enumerate}
 
 %Für spezifische Versionen oder weitere Einstellungen bietet die Dokumentation umfangreiche Möglichkeiten an \citep{GrafanaLoki_run}.
 
-Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen, da wir hier nur eine Instanz von Promtail verwedent haben.
+Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen, da wir hier nur eine Instanz von Promtail verwendeten. Für unsere Arbeit nahmen wir die folgenden Versionen von den Anwendungen:
+\begin{table}[h]
+   \centering
+   \setstretch{1.2}
+   \begin{tabular}{|c|c|}
+   \hline
+   \textbf{Anwendung}  & \textbf{Version}    \\ \hline
+   Grafana             & 9.5.2          \\ \hline
+   Loki                & 2.8.2             \\ \hline
+   Promtail            & 2.8.2          \\ \hline
+   \end{tabular}
+   \caption[Verwendete Versionen der Anwendungen]
+   {Verwendete Versionen der Anwendungen \\Quelle: \citep{Grafana_Version} und \citep{GrafanaLoki_Version}}
+   \label{tab:Versions}
+\end{table}
+
 
 \newpage
 \newgeometry{right=30mm, left=30mm} 
@@ -354,7 +368,7 @@ Verarbeirtung der Log-Einträge in Loki und Quellcode für die Generierung von G
    \hline
    \multicolumn{1}{|c|}{\textbf{Element}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
    \hline
-      json & Lesbare Dateiformat, deren Daten nach dem Regel Schlüssel:Wert gespeichert sind \\
+      json & Lesbare Dateiformat, deren Daten nach dem Regel Schlüssel-Wert-Paar  gespeichert sind \\
    \hline
       Muster & Lesen und Extraktion der Information der Logdateien \\
    \hline

@@ -20,16 +20,6 @@
 \renewcommand{\footrulewidth}{0pt}% No footer rule
 }
 
-% \newenvironment{frshaded}{%
-% \def\FrameCommand{\fboxrule=\FrameRule\fboxsep=\FrameSep \fcolorbox{framecolor}{shadecolor}}%
-% \MakeFramed {\FrameRestore}}%
-% {\endMakeFramed}
-
-% \newenvironment{frshaded*}{%
-% \def\FrameCommand{\fboxrule=\FrameRule\fboxsep=\FrameSep \fcolorbox{framecolor}{shadecolor}}%
-% \MakeFramed {\advance\hsize-\width \FrameRestore}}%
-% {\endMakeFramed}
-
 \begin{document}
   \pagenumbering{roman}
   \include{0.1_titelblat}
@@ -45,6 +35,13 @@
   \phantomsection
   \addcontentsline{toc}{section}{\listfigurename}
   \listoffigures
+
+  \phantomsection
+  \newpage
+  \clearpage
+  \addcontentsline{toc}{section}{\listtablename}
+  \listoftables
+
   \clearpage
   {\setstretch{1}
   \printglossary[title=Glossar,toctitle=Glossar]
