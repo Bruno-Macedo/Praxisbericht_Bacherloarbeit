@@ -12,12 +12,16 @@ clients:
 
 scrape_configs:
 - job_name: sshlogs
+  decompression:
+    enabled: true
+    initial_sleep: 10s
+    format: gz
   static_configs:
   - targets:
       - loki
     labels:
       job: sshlogs
-      env: voidquart
+      #env: voidquart
       instance: Opfersystem1
       __path__: /opt/*
 

@@ -7,7 +7,7 @@ services:
   loki:
     image: grafana/loki:2.8.2
     volumes:
-      - /home/bruno/git/Praxisbericht_Bacherloarbeit/Bachelorarbeit/grafana/promtail-local-config_opfer1.yaml:/etc/loki/loki-config.yaml
+      -  ${PWD}/loki-config.yaml:/etc/loki/loki-config.yaml
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml

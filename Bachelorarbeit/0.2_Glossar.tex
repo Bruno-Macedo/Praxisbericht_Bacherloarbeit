@@ -1,22 +1,30 @@
 \newglossaryentry{abfragesprache} {
-    name={Abfragesprache },
+    name={Abfragesprache},
     description={oder \textit{Query Language} funktioniert wie ein Filter für die Suche nach spezifischen Daten in einer Datenbank \citep{at_query}}}
 
 
-% here goes to the description
+
 \newglossaryentry{API2}{
-    name=\glslink{API}{Application Programming Interface (\gls{API})},
+    name=\glslink{API}{Application Programming Interface(\gls{API})},
     description={bezieht sich auf Code und Regeln, die die Kommunikation zwischen verschiedenen Anwendungen ermöglichen. In diesem Fall kann eine Anwendung eine Anfrage an eine andere Anwendung senden, um Daten zu holen oder zu senden \citep{ibm_api}}}
 
 % here goes to the acronym
 \newglossaryentry{API}{
     type=\acronymtype,
     name=API,
-    plural=APIs
-    first={ Application Programming Interface (API)\glsadd{API2}},
+    first={Application Programming Interface (API)\glsadd{API2}},
     see=[Glossary:]{\gls{API2}}, 
-    description=\glslink{API2}{Application Programming Interface}}
+    description=\glslink{API2}{Application Programming Interface (API)}}
 % =====
+
+\newglossaryentry{frontend} {
+    name={Frontend},
+    description={bezieht sich auf die Benutzeroberfläche und die Elementen, mit denen die Benutzer direkt interagieren \citep{at_query}}}
+
+\newglossaryentry{backend} {
+    name={Backend},
+    description={bezieht sich auf Elementen, mit denen die Benutzer keine direkte Kontakt haben, wie Server und Database\citep{at_query}}}
+    
 
 \newglossaryentry{bruteforce} {
     name={Brute-Force Angriffe},
@@ -174,6 +182,20 @@
     first={Health Insurance Portability and Accountability Act (HIPAA)\glsadd{HIPAA2}},
     see=[Glossary:]{\gls{HIPAA2}}, 
     description=\glslink{HIPAA2}{Health Insurance Portability and Accountability Act}}
+% =====
+
+% here goes to the description
+\newglossaryentry{json2}{
+    name=\glslink{json}{JavaScript Object Notation (\gls{json})},
+    description={ist eine Standard text-basierte Dateiformat, die von Menschen leicht zu verstehen ist und von Maschine einfach zu analysieren und strukturieren (parsen). Es ist eine Untermenge der JavaScript Programmiersprache \citep{Json_Json}}}
+
+% here goes to the acronym
+\newglossaryentry{json}{
+    type=\acronymtype,
+    name=JSON,
+    first={JavaScript Object Notation (JSON)\glsadd{json2}},
+    see=[Glossary:]{\gls{json2}}, 
+    description=\glslink{json2}{JavaScript Object Notation }}
 % =====
 
 \newglossaryentry{kali} {

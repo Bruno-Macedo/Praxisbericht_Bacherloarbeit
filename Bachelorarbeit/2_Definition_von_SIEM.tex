@@ -277,7 +277,7 @@ Auf der linken Seite der Abbildung \ref{fig:FortiSIEM} haben wir eine einfache S
 % \end{itemize}
 
 \subsubsection{Elastic Stack}
-Elastic Stack stammt aus der Verbindung von drei Tools: Elasticsearch, Logstash und Kibana. Erstes ist eine Such-und Analyse-Maschine. Das Zweite ist eine serverseitige Anwendung zur Datenverarbeitung, -Weiterleitung und Sammlung von Logdateien. Schließlich Kibana \label{kibana} ist eine \gls{abfragesprache} dafür zuständig, Daten zu filtern und visuelle Darstellungen in einem Grafik-Format auszugeben \citep{packt_elkstack}. Von diesen drei Tools Logstasch ist das einzige \gls{opensource} \citep{elastic_OSI}. Obwohl die anderen zwei
+Elastic Stack stammt aus der Verbindung von drei Tools: Elasticsearch, Logstash und Kibana. Erstes ist eine Such-und Analyse-Maschine. Das Zweite ist eine serverseitige Anwendung zur Datenverarbeitung, -Weiterleitung und Sammlung von Logdateien. Schließlich Kibana \label{kibana} ist eine \gls{abfragesprache} dafür zuständig, Daten zu filtern und visuelle Darstellungen in einem Grafik-Format auszugeben \citep{packt_elkstack}. Von diesen drei Tools Logstash ist das einzige \gls{opensource} \citep{elastic_OSI}. Obwohl die anderen zwei
 kostenlos verwendet werden können, gehören sie nicht zu der \gls{opensource} Kategorie \citep{OpenSource_Def}. Dieses Tool besitzt viele Eigenschaften einer \gls{SIEM}-Lösung und wird von vielen SOC verwendet, ist aber für viele Experten, kein \gls{SIEM} für sich, da es über keine Warnmeldungssystem, Daten Zusammenhang und Vorfälleverwaltung verfügt \citep{Miller_ELK}. Diese und anderen Funktionalitäten lassen sich aber durch \glsplural{plugin} integrieren.
 
 Die nächste Abbildung, \ref{fig:Intregation_ELK}, stellt die Architektur von Elastic Stack mit ihren integrierten Elementen dar:
@@ -375,19 +375,100 @@ Promtail kann aber Logdateien nur zur Grafana Loki oder zu einem anderen Promtai
 Die wissenschaftlichen Literatur über Grafana konzentriert sich eher auf die Anwendung des Tools für die grafische Darstellung von Daten als für ihre Nutzung in dem Sicherheitsbereich. Eine Recherche, z.B., wollte das Ergebnis von der Überwachung von Cloud-basierten Systemen, von Netzwerkaktivitäten und von Netzwerkverkehr mithilfe von Grafana darstellen \citep{Manases_grafananetwork}.
 Die wissenschaftliche Recherche über die Implementierung und Integration von Grafana mit anderen Tools zum Sicherheitszweck ist neu und bietet deshalb viele  Perspektive für das Weiterlernen an.
 
-\subsection{Auswahlkriterium}
-Der Erwerb einer \gls{SIEM} Lösung würde wahrscheinlich die Anforderungen dieser wissenschaftlichen Arbeit decken. Da solche Lösungen meistens (oder alle) \gls{Proprietary} und kostenpflichtig sind, legten wir als Auswahlkriterium fest, dass die Anwendungen für unsere Arbeit \gls{opensource} sein müssen. Deshalb arbeiten wir mit Grafana, Loki und Promtail.
+\subsection{Auswahlkriterien}
+Der Erwerb einer \gls{SIEM} Lösung würde wahrscheinlich die Anforderungen dieser wissenschaftlichen Arbeit decken. Da solche Lösungen meistens (oder alle) \gls{Proprietary} und kostenpflichtig sind, legten wir als Auswahlkriterium fest, dass die Anwendungen für unsere Arbeit \gls{opensource} sein müssen. Von allen analysierten Tools sind die Kombinationen Grafana, Loki, Promtail und Kibana, Elasticsearch, Logstash  am geeignetsten für unsere Auswahl. In der Tabelle \ref{tab:Vergleich_GrafanaELK} zeigen wir einen Vergleich zwischen beiden diesen Konbinationstool \citep{Anand_LokixELK}:
 
-In den nächsten Kapiteln beschäftigen wir mit der Integration dieser Tools, um eine ähnliche \gls{SIEM} Lösung zu präsentieren. Wir beschreiben die Installation, Einstellungen und Sammlungen von Logdateien und nachdem die Grundfunktionalitäten eingerichtet sind und einwandfrei funktionieren, untersuchen wir anhand der \glsfirst{ttp} der \gls{mitre} Matrix Regelsätze für die Erkennung und Warnmeldung von potenziellen Angriff. Unser Ziel ist Grafana, Loki und Promtail so einzustellen, dass es in der Lage ist, die Muster dieser Angriffe zu erkennen und darüber zu berichten.
+\begin{table}[H]
+   \setstretch{1.2}
+   \begin{tabularx}{\textwidth}{|c|c|X|}
+   \hline
+   \multicolumn{1}{|c|}{\textbf{Grafana}} & \multicolumn{1}{|c|}{\textbf{Elastic Stack}} & \multicolumn{1}{|c|}{\textbf{Gemeisame Rolle}} \\
+   \hline
+      Grafana & Kibana & \gls{frontend}, graphische Darstellung\\
+   \hline
+      Loki & Elasticsearch & \gls{backend}, Verarbeitung des Inhalts der Logdateien \\
+   \hline
+      Promtail & Logstash & \gls{backend}, Sammlung von Logdateien \\
+      \hline
+   \end{tabularx}
+   \caption[Gemeinsamkeiten zwischen den Kombinationen Grafana, Loki, Promtail und Kibana, Elasticsearch, Logstash]
+   {Gemeinsamkeiten zwischen den Kombinationen Grafana, Loki, Promtail und Kibana, Elasticsearch, Logstash}
+   \label{tab:Vergleich_GrafanaELK}
+\end{table}
 
-%%https://signoz.io/blog/loki-vs-elasticsearch/
+Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen den Tools zusammen:
 
-\textbf{\textcolor{red}{Tabella mit Vergleich Loki x Grafana}}
+{\setstretch{1}
+\begin{table}[H]
+   \centering
+\begin{tabular}{|m{5cm}|m{4.2cm}|>{\centering\arraybackslash}m{4.2cm}|}
+   \hline
+   \centering\textbf{Eigenschaft} & \centering\textbf{Grafana, Loki und Promtail} & \textbf{Kibana, Elasticsearch und Logstash} \\ 
+   \hline 
 
-\textbf{\textcolor{red}{Grafana - Kibana}}
+   Opensource                  & \centering
+   ja & 
+   nicht im Elasticsearch \\ 
+    \hline
+ \end{tabular}
+\end{table}
+}
 
-\textbf{\textcolor{red}{Loki - Elastic}}
+{\setstretch{1}
+\begin{table}[H]
+   \centering
+\begin{tabular}{|m{5cm}|m{4.2cm}|>{\centering\arraybackslash}m{4.2cm}|}
+   \hline
+   \centering\textbf{Eigenschaft} & \centering\textbf{Grafana, Loki und Promtail} & \textbf{Kibana, Elasticsearch und Logstash} \\ \hline \centering
+   Dokumentation von Promtail und Logstash \citep{Kray_LogstashxPromtail} & \centering 
+   einfach  & 
+   Umfangreich  \\ \hline \centering
 
-\textbf{\textcolor{red}{Promtail - Forwarder}}
+   Entwickelt spezifisch für Vearbeitung von Logdateien \citep{Yigal_GrafanaKibanan}  & \centering
+   nein                    & 
+   ja                      \\ \hline \centering
 
-\textbf{\textcolor{red}{Mehr Gründen - Elastic}}
+   Komplexität bei der Installation und Einstellung \citep{BetterStac_KG} & \centering 
+   niedrig                &
+   hoch                   \\ \hline \centering
+
+   Graphische Darstellung & \centering
+   ja                     & 
+   ja                     \\ \hline \centering
+
+   Dashboards und Graphik  & \centering
+   ja                      & 
+   ja                      \\ \hline \centering
+
+   Eigene \gls{abfragesprache} & \centering
+   abhängig von dier Datenquelle (Grafana), \gls{logql} (Loki) & 
+   \gls{DSL}               \\ \hline \centering
+
+   Indexierung                & \centering
+   nur Metadata (Loki)        &
+    vollständog (Elasticsearch) \\ \hline \centering
+
+   Dekomprimierung von Datei & \centering
+   ja (Promtail)             &
+   ja (Logstash)             \\ \hline \centering
+
+   Integration mit anderen Database Tools & \centering
+   ja                         & 
+   nur mit Elasticsearch      \\ \hline \centering
+
+   Weiterleitung des Loginhalts & \centering
+   nur an Promtail und an Loki (Promtail) &
+   umfangreiche Integration mit anderen Tools (Logstash) \\ \hline \centering
+
+   Integrietes Tool für Generierung von Warnmeldungen \citep{Yigal_GrafanaKibanan} & \centering
+   ja (Alerting) & 
+   von \glsplural{plugin} abhängig  \\ \hline
+ \end{tabular}
+ \caption{Unterschiede zwischen den Kombinationen Grafana, Loki, Promtail und Kibana, Elasticsearch, Logstash}
+ \label{tab:Unterschiede}
+\end{table}
+}
+
+Grafana erfüllt die folgende Voraussetzungen für unsere Auswahl: 100\% \gls{opensource}, einfacher Installation und Einstellung, integriertes Alerting Tool und breiter Kompatibilität (außer Promtail). Da Grafana nicht spezifisch für Logdateien konzipert wurde \citep{Yigal_GrafanaKibanan}, verlangt die Einstellung spezifische Anpassungen, um unseren Bedürfnisse vollständig zu erfüllen.
+
+In den nächsten Kapiteln beschäftigen wir mit der Integration dieser Tools, um eine ähnliche \gls{SIEM} Lösung zu präsentieren. Wir beschreiben, wie Angriffe anhand der \glsfirst{ttp} der \gls{mitre} Matrix erkennt werden können. Wir simmulieren zwei Angriffe, um Logdateien zu generieren. Danach beschäftigen wir uns mit der Installation, Einstellungen und Sammlungen von Logdateien in Promtail, Grafana und Loki. Nachdem die Grundfunktionalitäten eingerichtet sind und einwandfrei funktionieren, untersuchen wir Regelsätze für die Erkennung und Warnmeldung von potenziellen Angriffe. Unser Ziel ist Grafana, Loki und Promtail so einzustellen, dass es in der Lage ist, die Muster dieser Angriffe zu erkennen und darüber zu berichten.
