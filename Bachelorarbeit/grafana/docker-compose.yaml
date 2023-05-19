@@ -7,7 +7,7 @@ services:
   loki:
     image: grafana/loki:2.8.2
     volumes:
-      -  ${PWD}/loki-config.yaml:/etc/loki/loki-config.yaml
+      -  ${PWD}/loki-config2.yaml:/etc/loki/loki-config.yaml
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
@@ -21,8 +21,10 @@ services:
       - ${PWD}/promtail-local-config_opfer1.yaml:/etc/promtail/promtail-config.yaml
       #- ${PWD}/ssh1.log:/opt/ssh.log
       - ${PWD}/temp/:/opt/
-    command: -config.file=/etc/promtail/promtail-config.yaml
-             -config.expand-env=true
+      #- ${PWD}/temp/auth.log.2.gz:/opt/auth.log.2.gz
+    command: -config.file=/etc/promtail/promtail-config.yaml 
+             -config.expand-env=true 
+             #-querier.max-outstanding-requests-per-tenant= 2048
     networks:
       - loki
 

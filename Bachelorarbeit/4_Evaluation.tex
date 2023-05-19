@@ -70,28 +70,41 @@ Promtail sucht automatisch und nach vordefinierten Zeitabstand nach Logdateien, 
 
 Auf der Abbildung \ref{fig:Eskalation_Labels} haben wir vier Ebenen. Die erste ist die Zeile der Logdatei, die zweite ist die von den Benutzer definierten \quotes{labels} und die dritte und vierte beziehen sich auf die Antwort und auf die verwendeten \gls{http}-Anfrage, um nach Inhalt abzufragen, hinzuzufügen und zu indexieren. Aus einer Zeile der Logdatei werden drei \quotes{labels} (3x), diese haben wiederum drei potentielen Status (3x3x) aus drei notwendigen \gls{http}-Pfad (3x3x3). Aus einer Zeilen hätten wir schließlich 27 Streams, um die Zeile zu lesen, zu indexieren und zu speichern. Das kann laut \cite{Grafana_labels} zu mangelnden Leistungsfähigkeit führen.
 
+Unsere Logdateien haben ungefähr 4 Megabyte, was eine kleine Menge entspricht, wenn man an produktive Umgebung denkt, wo Logdateien schon den Terabyte-Bereich erreichen. Trotz dieser große, war unsere Synchronisation nicht immer präzise. Die Abfrage, die bei der Implementierung einwandfrei funktionierten, lieferten hier folgende Fehlermeldung:
 
-\textcolor{red}{\textbf{Noch etwas zu unserem Ergebnis hinzufügen}}
-\textcolor{red}{\textbf{Status: 500. Message: too many outstanding requests}}
+{\setstretch{1.0}
+\begin{Verbatim}[fontsize=\small, frame=single]
+maximum of series (500) reached for a single query  
+\end{Verbatim}
+}
 
+Die offiziele Dokumentation und die verschiedenen Forums waren nicht in der Lage, uns dabei zu helfen, diese Situation zu lösen. Egal welche Kombination, wir für unsere Abfrage benutzten oder welcher Intervalzeit wir verwendeten, waren unsere Ergebnisse immer das gleiche. Bei der Zeit, in der wir uns mit diesem Teil der Arbeit beschäftigen (19.5.2022), haben wir versucht, in Kontakt mit \quotes{VoidQuark} zu setzen, um eine mögliche Fehlerbehebung zu finden.
 
+Trotz dieser Situation, waren wir in der Lage eine Allgemeine Warnmeldung für hohe Anzahl von fehlgeschlagenen Anmeldeversuche: Für diese Warnmeldung haben wir folgenden Regelsatz \citep{VoidQuark_sshlogs}:
 
-\newpage
-\newgeometry{right=30mm, left=30mm} 
-\thispagestyle{lscape}
-\begin{landscape}
-   Die Ausgabe in Grafana nach dem Hinzufügen unserer Logdateien ist auf der Abbildung \ref{fig:Unserssh} dargestellt:
-    \begin{figure}[H]
-       % \centering
-        \centerline{\includegraphics[width=1.8\textwidth]{assets/unserssh}}
-        %\includegraphics[width=1.2\textwidth]{assets/5.4.2_1_Abb.jpeg}
-        \caption[Ausgabe in Grafana von unseren \gls{ssh} Logdateien]
-        {Ausgabe in Grafana von unseren \gls{ssh} Logdateien}
-        \label{fig:Unserssh}
-        \centering
-    \end{figure} 
-\end{landscape}
-\restoregeometry
+{\setstretch{1.0}
+\begin{Verbatim}[fontsize=\small, frame=single]
+count_over_time({job=~"secure"} |="sshd[" |~": Failed|: Invalid|: Connection
+closed by authenticating user" | __error__="" [15m]) > 15
+\end{Verbatim}
+}
+
+% \newpage
+% \newgeometry{right=30mm, left=30mm} 
+% \thispagestyle{lscape}
+% \begin{landscape}
+%    Nach manuellen Aktualiserung sah unsere Graphik so aus:
+%     \begin{figure}[H]
+%        % \centering
+%         \centerline{\includegraphics[width=1.8\textwidth]{assets/unserssh}}
+%         %\includegraphics[width=1.2\textwidth]{assets/5.4.2_1_Abb.jpeg}
+%         \caption[Ausgabe in Grafana von unseren \gls{ssh} Logdateien]
+%         {Ausgabe in Grafana von unseren \gls{ssh} Logdateien}
+%         \label{fig:Unserssh}
+%         \centering
+%     \end{figure} 
+% \end{landscape}
+% \restoregeometry
 
 
 %  In the Promtail configuration file, the initial_sleep field is used to specify the initial delay before Promtail starts scraping logs from a given file.
