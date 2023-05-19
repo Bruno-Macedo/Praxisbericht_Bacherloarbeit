@@ -311,11 +311,14 @@ Grafana Loki bietet interne und externe Möglichkeiten Logdateien zu empfangen. 
 
 In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdatein nur zu Grafana Loki oder zu anderen Promtail-Instanz schicken \citep{Grafana_Promtail}. Die Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} auf der Seite \pageref{fig:Integration_Loki_Promtail_Grafana} zeigt diese beschriebene Struktur. 
 
-In einer produktiven Umgebung ist die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. Während Promtail Logdatei nur zu Loki schickt, kann Grafana Agents Logdateien zu \gls{prometheus}, OpenTelemetry und zu Tools von \gls{GrafanaSystem}, wie \gls{mimir}, \gls{tempo}, \gls{phlare}, Loki und Grafana \citep{Grafana_Agents}. Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwischen Grafana Agents und die integrieten Tools:
+In einer produktiven Umgebung ist die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. Während Promtail Logdatei nur zu Loki schickt, kann Grafana Agents Logdateien zu \gls{prometheus}, OpenTelemetry und zu Tools von \gls{GrafanaSystem}, wie \gls{mimir}, \gls{tempo}, \gls{phlare}, Loki und Grafana \citep{Grafana_Agents}. 
+
+\newpage
+Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwischen Grafana Agents und die integrieten Tools:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.6\textwidth]{assets/GrafanaAgents.drawio.png}
+   \includegraphics[width=0.7\textwidth]{assets/GrafanaAgents.drawio.png}
    \caption[Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \gls{GrafanaSystem}]
    {Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \gls{GrafanaSystem}\\Quelle: \citep{Grafana_Agents}}
    \label{fig:GrafAgents}
@@ -326,7 +329,10 @@ Der Kommunikationsfluss bei Grafana Agents funktioniert ähnlich, wie bei Promta
 
 Die Sendung des Inhalts der Logdateien findet auch mithilfe von Grafana Loki \gls{http} \textbf{\gls{API}} statt. In diesem Fall werden die Zeile der Logdateien und nicht der Datei zum \gls{Endpoint} von Loki mit \gls{http} POST-Anfrage geschickt. 
 
-Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool \gls{opentelemetry} an, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Die Integration mit Grafana Loki erfolgt über die Nutzung von \glsplural{API}. Der \textit{Collector} läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem Endpunkt und kommunizieren mit dem \textit{Collector}. Die folgende Abbildung stellt das Kommunikationsverfahren zwischen \gls{opentelemetry} und Grafana Liki:
+Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool \gls{opentelemetry} an, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Die Integration mit Grafana Loki erfolgt über die Nutzung von \glsplural{API}. Der \textit{Collector} läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem Endpunkt und kommunizieren mit dem \textit{Collector}. 
+
+\newpage
+Die folgende Abbildung stellt das Kommunikationsverfahren zwischen \gls{opentelemetry} und Grafana Liki:
 
 \begin{figure}[H]
    \centering
@@ -550,6 +556,7 @@ WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>' [\$__range]))
 % \end{Verbatim}
 % }
 
+\newpage
 \subsection{Hinzufügen der Regelsätze Grafana Loki}
 Die Regelsätze in Grafana Loki können sowohl \textbf{manuell} im Menü \quotes{Code} als auch über die \textbf{\gls{GUI}} im Menü \quotes{Builder} geschrieben werden. Letzteres bietet eine benutzerfreundlichere Umgebung, um die Regeln zu schreiben. Die folgenden Abbildungen, \ref{fig:Loki_Code} und \ref{fig:Loki_Builder}, zeigen diese beiden Optionen:
 

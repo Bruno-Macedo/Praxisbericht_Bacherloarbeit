@@ -22,9 +22,9 @@ services:
       #- ${PWD}/ssh1.log:/opt/ssh.log
       - ${PWD}/temp/:/opt/
     command: -config.file=/etc/promtail/promtail-config.yaml
+             -config.expand-env=true
     networks:
       - loki
-
 
   grafana:
     image: grafana/grafana:latest
