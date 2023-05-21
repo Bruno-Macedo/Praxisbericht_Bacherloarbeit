@@ -1,6 +1,6 @@
 \section{Fazit}
 
-In dieser Arbeit versuchten wir, mithilfe von Grafana, Loki und Promtail eine \gls{SIEM} Lösung zu emulieren, um Überwachungsmechanismen anhand von Logdateien zu erstellen. In der folgenden Tabelle zeigen wir die Rolle jedes vewendeten Tools, um unser Ziel zu erreichen
+In dieser Arbeit haben wir versucht, mithilfe von Grafana, Loki und Promtail eine \gls{SIEM}-Lösung zu emulieren, um Überwachungsmechanismen anhand von Logdateien zu erstellen. In der folgenden Tabelle zeigen wir die Rolle jedes verwendeten Tools bei der Erreichung unseres Ziels:
 
 \begin{table}[h]
     \centering
@@ -11,29 +11,27 @@ In dieser Arbeit versuchten wir, mithilfe von Grafana, Loki und Promtail eine \g
     Promtail         & Datensammlung                   \\ \hline
     Loki             & Normalisierung und Vearbeitung  \\ \hline
     Grafana          & Berichts- und Grafikgenerierung \\ \hline
-    Grafana:Alerting & Generierung von Warnmeldung     \\ \hline
+    Grafana:Alerting & Generierung von Warnmeldungen   \\ \hline
     \end{tabular}
-    \caption{Verwendete Tools und ihre Funktionalitäten für den Aufbau einer \gls{SIEM} ähnlichen Lösung}
-    {Verwendete Tools und ihre Funktionalitäten für den Aufbau einer \gls{SIEM} ähnlichen Lösung}
+    \caption{Verwendete Tools und ihre Hauptfunktionalitäten} 
+    {Verwendete Tools und ihre Hauptfunktionalitäten}
     \label{tab:VerewendeteTools}
 \end{table}
 
-Wir stellen fest, dass die verwendeten Tools mit Einschränkungen eine kosteneffektive Möglichkeit bieten, ein Überwachungssystem zu implementieren. Die Methoden zur Erkennung von Angriffen lassen sich anhand der \gls{ttp} der \gls{mitre}-Matrix definieren. Nach der Auswahl des Angriffe erstellen wir Regelwerke mit der Abfragesprache \gls{logql} in Loki, um Muster zu identifizieren, die auf den ausgewählten Angriff hindeuten. Diese Regelwerke werden dann verwendet, um Warnmeldungen über den Angriff zu generieren und zu versenden.
+Wir stellen fest, dass die verwendeten Tools trotz einiger Einschränkungen eine kosteneffektive Möglichkeit bieten, ein Überwachungssystem zu implementieren. Die Methoden zur Erkennung von Angriffen lassen sich anhand der \glsfirst{ttp} der \gls{mitre} Matrix definieren. Nach der Auswahl eines Angriffs erstellen wir Regelwerke mit der Abfragesprache \gls{logql} in Loki, um Muster zu identifizieren, die auf den ausgewählten Angriff hindeuten. Diese Regelwerke werden dann verwendet, um Warnmeldungen über den Angriff zu generieren und zu versenden.
 
-Die Einschränkungen beziehen sich auf die verschiedenen Problemen in der neuer Version von Loki, die seit 2022 gemeldet wurden und für die noch keine Lösung existiert.
+Die Einschränkungen beziehen sich auf verschiedene Probleme in der neueren Version von Loki, die seit 2022 gemeldet wurden und für die bisher keine Lösung existiert.
 
 \subsection{Herausforderungen}
-In dem richtigen Aufbau der Regelsätze birgt die größte Herausfordung dieser Implementierung. Für eine präzise Anwendung der Tools spielt die richtige Entwicklung der Regelsätzen zur Identifizierung potenzieller Angriffe eine wichtige Rolle. Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen diese Regelsätzen so definiert werden, dass sie die eindeutigen Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können. Die Lernkurve für den Aufbau der richtigen Regelsätzen kann eine große Herausforderung darstellen, was in unserem Fall war. 
+Die korrekte Erstellung der Regelwerke stellt die größte Herausforderung bei dieser Implementierung dar. Um die Tools präzise anzuwenden, ist es entscheidend, die Regelwerke richtig zu entwickeln, um potenzielle Angriffe identifizieren zu können. Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen die Regelwerke so definiert werden, dass sie die relevanten Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können. Die Lernkurve für den Aufbau der richtigen Regelwerke kann eine große Herausforderung darstellen, wie auch in unserem Fall.
 
-Die richtige und präzise Indexierung kann einen entscheidende Faktor für die Leistung der Anwendung. Die Nutzung von vielen \quotes{labels} verlangt intensive Rechenkapazität und kann auch zu fehlerhafte Ergebnisse führen, wie in unserem Fall. Die Rechenkapazität soll auch angepasst werden, damit die steigende Anzahl von Anfragen (Siehe Abbildung \ref{fig:Eskalation_Labels} auf der Seite \pageref{fig:Eskalation_Labels}) nicht zu Abstürzt führt.
+Die korrekte und präzise Indexierung spielt eine entscheidende Rolle für die Leistung der Anwendung. Die Verwendung vieler Labels erfordert eine hohe Rechenkapazität und kann auch zu fehlerhaften Ergebnissen führen, wie bei uns. Die Rechenkapazität muss ebenfalls angepasst werden, um sicherzustellen, dass die steigende Anzahl von Anfragen (siehe Abbildung \ref{fig:Eskalation_Labels} auf Seite \pageref{fig:Eskalation_Labels}) nicht zu Abstürzen führt.
 
-\subsection{Zukünftige Recherche}
-%\textbf{\textcolor{red}{was kann in diesem Projekt erweitert werden.}}
-%\textbf{\textcolor{red}{Neue Integration.}}
+\subsection{Zukünftige Forschung}
 
-Die von uns definierten Regeln haben statische Elemente wie die \quotes{Anzahl von Anfragen}, den \quotes{Zeitabstand zwischen Requests} und die \quotes{Anzahl von fehlgeschlagenen Anmeldeversuchen}. Die heutigen Angriffe haben jedoch auch einen dynamischen Aspekt, der sich an die Umgebung anpasst, insbesondere durch die starke Entwicklung von \glsfirst{KI} \citep{Guembe_AIHACKER}. 
+Die von uns definierten Regeln basieren auf statischen Elementen wie der \quotes{Anzahl von Anfragen}, dem \quotes{Zeitabstand zwischen Requests} und der \quotes{Anzahl von fehlgeschlagenen Anmeldeversuchen}. Moderne Angriffe haben jedoch auch einen dynamischen Aspekt, der sich an die Umgebung anpasst, insbesondere durch die fortschreitende Entwicklung von \glsfirst{KI} \citep{Guembe_AIHACKER}.
 
-\gls{KI} kann für die Automatisierung von Aufgaben oder für effiziente Datenanalyse verwendet werden. Für die Weiterentwicklung dieser Arbeit kann dieses Tool große Unterstützung leisten, indem performanter und effizienter Regelsätze vorschlägt, um die Loganalyse effizienter und zuverlässiger zu machen. All dies würde dabei helfen, einen sicheren Netzwerkverkehr zu gewährleisten.
+\gls{KI} kann zur Automatisierung von Aufgaben oder zur effizienten Datenanalyse eingesetzt werden. Für die zukünftige Weiterentwicklung dieser Arbeit kann dieses Werkzeug eine große Unterstützung bieten, indem es performantere und effizientere Regelwerke vorschlägt, um die Log-Analyse effizienter und zuverlässiger zu gestalten. Dies würde dazu beitragen, einen sicheren Netzwerkverkehr zu gewährleisten.
 
 
 %Während \gls{KI} einerseits für die Automatisierung von Aufgaben oder für effiziente Datenanalyse verwendet wird, könnte sie auch für Cyberkriminalität genutzt werden. \gls{KI} ist am Ende nur ein Werkzeug, dessen Nutzung von den Absichten ihrer Benutzer abhängt.

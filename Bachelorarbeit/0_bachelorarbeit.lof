@@ -32,5 +32,5 @@
 \contentsline {figure}{\numberline {32}{\ignorespaces Ausgabe der Verarbeitung der \gls {ssh} Logdateien von Grafana Loki}}{43}{figure.caption.51}%
 \contentsline {figure}{\numberline {33}{\ignorespaces Ausführliche Darstellung der \gls {ssh} Logdateien von Grafana Loki}}{44}{figure.caption.52}%
 \contentsline {figure}{\numberline {34}{\ignorespaces E-Mail Warnmeldung von Grafana}}{47}{figure.caption.53}%
-\contentsline {figure}{\numberline {35}{\ignorespaces Eskalation bei der Indexierung}}{49}{figure.caption.56}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Eskalation bei Verwendung von \glqq labels\grqq {}}}{49}{figure.caption.55}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

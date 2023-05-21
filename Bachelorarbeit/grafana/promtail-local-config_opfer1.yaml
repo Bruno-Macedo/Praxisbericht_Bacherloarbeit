@@ -12,15 +12,6 @@ clients:
 
 scrape_configs:
 - job_name: sshlogs
-  pipeline_stages:
-  - match:
-      selector: '{name="sshlogs"} |= "sshd["'
-      stages:
-      - regex:
-          expression: '|= <_> user (?P<username>\w+) <_> port'
-          #expression: '.*user=(?P<username>[^,]+),.*'
-      - output:
-          source: output
   decompression:
     enabled: true
     initial_delay: 15s
@@ -37,21 +28,4 @@ scrape_configs:
 
 
 
-  # pipeline_stages:
-  #   - match:
-  #     selector: '{job="sshlogs"}'
-  #     stages:
-  # - match:
-  #     selector: '{job="server01_varlogs"} !~ "pam_unix"'
-  #     action: drop
-  #     drop_counter_reason: promtail_non_error
-  # - output:
-  #     source: msg
-  # - match:
-  #     selector: '{job="server01_varlogs"} |~ ".*Failed password for invalid user.*"'
-  #     action: drop
-  #     drop_counter_reason: promtail_noisy_error
-  # - output:
-  #     source: msg
-    
-
+ 
