@@ -25,7 +25,7 @@ Der gezielte Ablauf unserer Arbeit ist in der Abbildung \ref{fig:Ablauf_grafana2
 \end{figure}
 
 \subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix}
-Es gibt verschiedene Methoden und Frameworks, die von \gls{SOC}-Teams verwendet wird, um \glsplural{Cyberangriff} zu vermeiden, zu erkennen und zu unterbrechen.  Da sich die Richtlinien und Schwerpunkte dieser Frameworks und Methoden unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, entschieden wir uns für die \gls{mitre} Matrix, insbesondere da dieses Framework auch in Splunk integriert ist. 
+Es gibt verschiedene Methoden und Frameworks, die von \gls{SOC}-Teams verwendet wird, um \glsplural{Cyberangriff} zu vermeiden, zu erkennen und zu unterbrechen.  Da sich die Richtlinien und Schwerpunkte dieser Frameworks und Methoden unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, entschieden wir uns für die \gls{mitre} Matrix, insbesondere da dieses Framework auch in Splunk integriert ist.
 
 Die \gls{mitre} Matrix hat folgenden Zwecke \citep{Mitre_Started}:
 
@@ -54,9 +54,9 @@ Die \gls{mitre} Matrix ist auf \glsfirst{ttp} basiert. Angriffe, Gegenmaßnahmen
 % {\setstretch{1}
 % Die 14 Taktiks sind folgende:
 % \begin{itemize}[noitemsep]
-%    \item Informationssammlung für zukünftige Angriffe 
+%    \item Informationssammlung für zukünftige Angriffe
 %    \item	Entwicklung von Ressource von Angreifer
-%    \item Erster Zugang zum Opfersysteme 
+%    \item Erster Zugang zum Opfersysteme
 %    \item Ausführung von bösartigen Coden
 %    \item Beharrlichkeit von System
 %    \item	Privilegienausweitung
@@ -66,7 +66,7 @@ Die \gls{mitre} Matrix ist auf \glsfirst{ttp} basiert. Angriffe, Gegenmaßnahmen
 %    \item Seitliche Bewegung zu anderem Systemen innerhalb des Angriffsziels
 %    \item interne Informationssammlung
 %    \item Steuerung und Kontrolle (C2 - Command and Control im Original)
-%    \item Datenextrahierung 
+%    \item Datenextrahierung
 %    \item	Auswirkung auf die Integrität
 % \end{itemize}
 % }
@@ -118,7 +118,7 @@ Für das Opfersystem haben wir uns für die Passwörter \quotes{qwertz} und \quo
 
 {\setstretch{1.0}
 \begin{lstlisting}[frame=single]
-            Opfersystem 1          Opfersystem 2  
+            Opfersystem 1          Opfersystem 2
             admin:123456           bob:hallo
             user1:passwort         master:alice
             user2:abc123           hans:daniel
@@ -186,7 +186,7 @@ Die Abbildunge \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_O
    \centering
 \end{figure}
 
-Auf den Abbildungen \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_Opfer2} sehen wir in rot markiert, dass der Angriff den Benutzernamen \quotes{test} im Opfersystem1 und \quotes{Administrator} Opfersystem2 zielt. In grün werden die verschiedenen Passwörter aus \gls{rockyou}-Wörterbuch verwendet. Auf der Abbildung \ref{fig:Ausgabe_Stuffing_Opfer2} wird das gefundene Passwört grün geschrieben. 
+Auf den Abbildungen \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_Opfer2} sehen wir in rot markiert, dass der Angriff den Benutzernamen \quotes{test} im Opfersystem1 und \quotes{Administrator} Opfersystem2 zielt. In grün werden die verschiedenen Passwörter aus \gls{rockyou}-Wörterbuch verwendet. Auf der Abbildung \ref{fig:Ausgabe_Stuffing_Opfer2} wird das gefundene Passwört grün geschrieben.
 
 Unser nächster Angriff, \gls{spraying}, ist in der Abbildung \ref{fig:spraying} dargestellt:
 \begin{figure}[H]
@@ -198,7 +198,7 @@ Unser nächster Angriff, \gls{spraying}, ist in der Abbildung \ref{fig:spraying}
    \centering
 \end{figure}
 
-Aus der Abbildung \ref{fig:spraying} sehen wir, dass bei \gls{spraying} weniger Passwörter im Vergleich zum \gls{stuffing} verwendet werden. In diesem Fall werden gegen mögliche viele existierenden Benutzername versucht. Hier will der Angreifer  Kontosperrungen vermeiden und gegenüber Sicherheitsmaßnamen Unauffälig bleiben. 
+Aus der Abbildung \ref{fig:spraying} sehen wir, dass bei \gls{spraying} weniger Passwörter im Vergleich zum \gls{stuffing} verwendet werden. In diesem Fall werden gegen mögliche viele existierenden Benutzername versucht. Hier will der Angreifer  Kontosperrungen vermeiden und gegenüber Sicherheitsmaßnamen Unauffälig bleiben.
 
 Für diesen Angriff benutzen wir folgendes Kommando:
 {\setstretch{1.0}
@@ -231,6 +231,8 @@ Die Abbildungen \ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2} zeigen d
 
 Die Abbildungen \ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2} zeigen die verschiedenen Benutzername (rot markiert) aber wenige Passwörter pro Nutzer (grün markiert). Auf beiden Abbildungen werden die gefundenen Passwört grün geschrieben.
 
+Nach den Durchführungen dieser Simulationen generierten wir drei Logdateien mit insgesamt 40 KB Größe.
+
 \newpage
 \subsubsection{Installation und Einrichtung von Grafana, Loki und Promtail}
 Für die Einrichtung haben wir sowohl offizielle Dokumentation von Grafana als auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. In den Anhänge \ref{appendix:orgGrafana} und \ref{appendix:AngepasstGrafana} befinden sich die heruntergeladenen originalen Konfigurationsdatei und die an unsere Umgebung angepasst. Diese Dateien benutzten wir für die Installation, Einstellung und Verwendung der Applikationen in \glsplural{container}.
@@ -247,7 +249,7 @@ Für die Einrichtung haben wir sowohl offizielle Dokumentation von Grafana als a
 % clients/cmd/promtail/promtail-docker-config.yaml
 % -O promtail-config.yaml (die Datei wurde angepasst)
 
-% docker-compose -f docker-compose.yaml up 
+% docker-compose -f docker-compose.yaml up
 % \end{lstlisting}
 % }
 
@@ -259,25 +261,26 @@ Für die Einrichtung haben wir sowohl offizielle Dokumentation von Grafana als a
 
 %Für spezifische Versionen oder weitere Einstellungen bietet die Dokumentation umfangreiche Möglichkeiten an \citep{GrafanaLoki_run}.
 
-Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen, da wir hier nur eine Instanz von Promtail verwendeten. Für unsere Arbeit nahmen wir die folgenden Versionen von den Anwendungen:
+Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen, da wir hier nur eine Instanz von Promtail verwendeten.  Für unsere Arbeit nahmen wir die folgenden Versionen von den Anwendungen:
 \begin{table}[h]
    \centering
    \setstretch{1.2}
-   \begin{tabular}{|c|c|}
+   \begin{tabular}{|c|c|c|}
    \hline
-   \textbf{Anwendung}  & \textbf{Version}    \\ \hline
-   Grafana             & 9.5.2          \\ \hline
-   Loki                & 2.8.2             \\ \hline
-   Promtail            & 2.8.2          \\ \hline
+   \textbf{Anwendung}  & \textbf{Angewandte Version} & \textbf{Neuste Version}    \\ \hline
+   Grafana             & \cellcolor{green!25}9.5.2   & \cellcolor{green!25}9.5.2 \\ \hline
+   Loki                & \cellcolor{green!25}2.8.2   & \cellcolor{green!25}2.4.1 \\ \hline
+   Promtail            & \cellcolor{green!25}2.8.2    & \cellcolor{red!25}2.8.2\\ \hline
    \end{tabular}
    \caption[Verwendete Versionen der Anwendungen]
    {Verwendete Versionen der Anwendungen \\Quelle: \citep{Grafana_Version} und \citep{GrafanaLoki_Version}}
    \label{tab:Versions}
 \end{table}
 
+Die Entscheidung für eine älterer Version für Loki kam nach Recherche in offizielen Forum von Grafana Loki. Viele Nutzer behaupten, dass sie Problem mit ihren Abfragen hatten. Unterschiedliche Kommentaren schlugen vor, einige Werte in der Konfigurationsdatei von Loki zu anzupassen, um die Leistung der Anwendung zu verbessern. Diese Lösungen waren für die meisten Forumsteilnehmer erfolglos. Die Mehrheit der Teilnehmer behaupteten auch, dass die Versionen (>2.4.1) dasselbe Problem lieferten und deshalb benutzeten sie die Version 2.4.1 \citep{githubforum}.
 
 \newpage
-\newgeometry{right=30mm, left=30mm} 
+\newgeometry{right=30mm, left=30mm}
 \thispagestyle{lscape}
 \begin{landscape}
    Nach der Ausführung des Kommandos ist die Anwendung benutzbar, wie in der Abbildung \ref{fig:grafana_welcome} dargestellt:
@@ -289,9 +292,9 @@ Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \
         {Screenshot der Willkommensseite von Grafana Loki\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
         \label{fig:grafana_welcome}
         \centering
-    \end{figure} 
+    \end{figure}
 \end{landscape}
-\restoregeometry  
+\restoregeometry
 
 \subsubsection{Weiterleitung der Logdateien zu Grafana}
 Grafana Loki bietet interne und externe Möglichkeiten Logdateien zu empfangen. Die internen beziehen sich auf Grafana Tools, während die externen unabhängige Methode von Grafana benutzen:
@@ -299,19 +302,19 @@ Grafana Loki bietet interne und externe Möglichkeiten Logdateien zu empfangen. 
 \begin{enumerate}[noitemsep]
    \item \textbf{interne Methode}:
    \begin{enumerate}[noitemsep]
-      \item Promtail 
+      \item Promtail
       \item Grafana Agents
    \end{enumerate}
    \item \textbf{externe Methode}
    \begin{enumerate}[noitemsep]
       \item \glsfirst{API}
-      \item \gls{opentelemetry} 
+      \item \gls{opentelemetry}
    \end{enumerate}
 \end{enumerate}
 
-In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdatein nur zu Grafana Loki oder zu anderen Promtail-Instanz schicken \citep{Grafana_Promtail}. Die Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} auf der Seite \pageref{fig:Integration_Loki_Promtail_Grafana} zeigt diese beschriebene Struktur. 
+In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdatein nur zu Grafana Loki oder zu anderen Promtail-Instanz schicken \citep{Grafana_Promtail}. Die Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} auf der Seite \pageref{fig:Integration_Loki_Promtail_Grafana} zeigt diese beschriebene Struktur.
 
-In einer produktiven Umgebung ist die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. Während Promtail Logdatei nur zu Loki schickt, kann Grafana Agents Logdateien zu \gls{prometheus}, OpenTelemetry und zu Tools von \gls{GrafanaSystem}, wie \gls{mimir}, \gls{tempo}, \gls{phlare}, Loki und Grafana \citep{Grafana_Agents}. 
+In einer produktiven Umgebung ist die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. Während Promtail Logdatei nur zu Loki schickt, kann Grafana Agents Logdateien zu \gls{prometheus}, OpenTelemetry und zu Tools von \textit{\gls{GrafanaSystem}}, wie \gls{mimir}, \gls{tempo}, \gls{phlare}, Loki und Grafana \citep{Grafana_Agents}.
 
 \newpage
 Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwischen Grafana Agents und die integrieten Tools:
@@ -319,31 +322,32 @@ Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwisc
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/GrafanaAgents.drawio.png}
-   \caption[Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \gls{GrafanaSystem}]
-   {Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \gls{GrafanaSystem}\\Quelle: \citep{Grafana_Agents}}
+   \caption[Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \textit{\gls{GrafanaSystem}}]
+   {Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \textit{\gls{GrafanaSystem}}\\Quelle: \citep{Grafana_Agents}}
    \label{fig:GrafAgents}
    \centering
 \end{figure}
 
 Der Kommunikationsfluss bei Grafana Agents funktioniert ähnlich, wie bei Promtail. Die \glsplural{Endpoint} (links), wo die Agents installiert sind, schicken die Logdateien zu den kompatiblen Tools (mitte), die sich wiederum mit Grafana (rechts) kommunizieren.
 
-Die Sendung des Inhalts der Logdateien findet auch mithilfe von Grafana Loki \gls{http} \textbf{\gls{API}} statt. In diesem Fall werden die Zeile der Logdateien und nicht der Datei zum \gls{Endpoint} von Loki mit \gls{http} POST-Anfrage geschickt. 
+Die Sendung des Inhalts der Logdateien findet auch mithilfe von Grafana Loki \gls{http} \textbf{\gls{API}} statt. In diesem Fall werden die Zeile der Logdateien und nicht der Datei zum \gls{Endpoint} von Loki mit \gls{http} POST-Anfrage geschickt.
 
-Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool \gls{opentelemetry} an, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Die Integration mit Grafana Loki erfolgt über die Nutzung von \glsplural{API}. Der \textit{Collector} läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem Endpunkt und kommunizieren mit dem \textit{Collector}. 
+Grafana Loki bietet auch eine Integration mit dem Open-Source-Tool \gls{opentelemetry} an, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Die Integration mit Grafana Loki erfolgt über die Nutzung von \glsplural{API}. Der \textit{Collector} läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem Endpunkt und kommunizieren mit dem \textit{Collector}.
 
 \newpage
-Die folgende Abbildung stellt das Kommunikationsverfahren zwischen \gls{opentelemetry} und Grafana Liki:
+Die folgende Abbildung stellt das Kommunikationsverfahren zwischen \gls{opentelemetry} und die Tools von \textit{\gls{GrafanaSystem}}:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.8\textwidth]{assets/Grafana_OpenTelemtry.png}
-   \caption[Datenfluss zwischen \gls{opentelemetry} und die Tools von \gls{GrafanaSystem}]
-   {Datenfluss zwischen \gls{opentelemetry} und\gls{GrafanaSystem}\\Quelle: \citep{Grafana_WhatOpentelemetry}}
+   \includegraphics[width=0.8\textwidth]{assets/OpenTelemtry.png}
+   \caption[Datenfluss zwischen \gls{opentelemetry} und die Tools von \textit{\gls{GrafanaSystem}}]
+   {Datenfluss zwischen \gls{opentelemetry} und \textit{\gls{GrafanaSystem}}\\Quelle: \citep{Grafana_WhatOpentelemetry}}
    \label{fig:UsingOpenTelemetry}
    \centering
 \end{figure}
 
-Auf der linken Seite der Abbildung \ref{fig:UsingOpenTelemetry} haben wir die verschiedenen \glsplural{Endpoint}, auf denen jeweils ein \textit{Agent} läuft. In der Mitte ist der \textit{Collector}, der die Logdateien schließlich an die Tools von \gls{GrafanaSystem} weiterleitet.
+
+Auf der linken Seite der Abbildung \ref{fig:UsingOpenTelemetry} haben wir die verschiedenen \glsplural{Endpoint}, auf denen jeweils ein \textit{Collector} läuft. In der Mitte ist der OpenTelemetry \glsplural{Endpoint}, der die Datei sammelt und dessen Inhalt verarbeitet. Diese werden schließlich an die Tools von \textit{\gls{GrafanaSystem}} weiterleitet.
 
 \newpage
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
@@ -358,7 +362,7 @@ Ein \gls{bruteforce} lässt sich durch eine hohe Anzahl der fehlgeschlagenen Anm
    \centering
 \end{figure}
 
-Grafana bietet ein Konfigurationsmuster für die Eingabe und Darstellung von \gls{ssh} Eventds an. In dieser Konfiguration sind bereits Regesätze für die 
+Grafana bietet ein Konfigurationsmuster für die Eingabe und Darstellung von \gls{ssh} Eventds an. In dieser Konfiguration sind bereits Regesätze für die
 Verarbeirtung der Log-Einträge in Loki und Quellcode für die Generierung von Grafik in Grafana. Diese Konfigurationsdatei ermöglicht eine umfassende Analyse dieser Daten \citep{VoidQuark_sshlogs}. Die gesentet Logdateien werden mithilfe der folgenden Elemente gelesen und verarbeitet:
 
 % % \begin{table}[H]
@@ -433,12 +437,12 @@ In diesem Abschnitt fassen wir zusammen, wie eine Abfrage in \gls{logql} für ei
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-14 14:05:30 opfersystem2 sshd[1698]: Failed password for administrator 
+14 14:05:30 opfersystem2 sshd[1698]: Failed password for administrator
 from 10.0.2.15 port 58036 ssh2
 \end{Verbatim}
 }
 
-Um fehlgeschlagene Anmeldeversuche zu erkennen, extrahieren wir folgende Felder aus den \gls{ssh}-Logdateien. Diese Information verwenden wir um gleiche Events zu erkennen und deren Anzhal festzustellen. 
+Um fehlgeschlagene Anmeldeversuche zu erkennen, extrahieren wir folgende Felder aus den \gls{ssh}-Logdateien. Diese Information verwenden wir um gleiche Events zu erkennen und deren Anzhal festzustellen.
 
 {\setstretch{1.0}
 \begin{Verbatim}[commandchars=\\\{\},frame=single]
@@ -447,7 +451,7 @@ from \textbf{\textcolor{blue}{10.0.2.15}} port 58036 ssh2
 \end{Verbatim}
 }
 
-Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen: 
+Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen:
 
 \begin{table}[H]
    \setstretch{1.2}
@@ -458,18 +462,18 @@ Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen:
    \centering
    sum by(add)
    (rate(\{job=\verb|"|\textit{JOBNAME}\verb|"|
-   instance=~\verb|"|\$instance\verb|"|\} 
+   instance=~\verb|"|\$instance\verb|"|\}
 
    & Hiermit wird die Aufsummierung der Benutzernamen definiert, die wir mit \quotes{Patterns} in \gls{logql} definiert haben. \quotes{Patterns} ermöglichen die einfache Extrahierung von Informationen aus einer Zeile. Wir holen alle Log-Einträge, die sich auf den von uns definierten Job beziehen. Wir können auch nach spezifischen Endpoint filtern, indem wir das Schlüsselwort \quotes{instance} benutzen. \\
    \hline
    \centering
-   | 
+   |
    & \quotes{|} funktioniert in \gls{logql} wie eine Pipeline für die Verkettung von mehreren Suchmustern. \\
    \hline
    \centering
-         |= \lq \textbf{\textcolor{red}{sshd}}[\rq 
-      \\ |= \lq: \textbf{\textcolor{red}{Failed}}\rq 
-    & 
+         |= \lq \textbf{\textcolor{red}{sshd}}[\rq
+      \\ |= \lq: \textbf{\textcolor{red}{Failed}}\rq
+    &
     Suche nach Zeilen mit den in den rot markierten Einträgen. \\
    \hline
    \end{tabularx}
@@ -484,15 +488,15 @@ Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen:
    \centering
       !\verb|~| \lq \textbf{\textcolor{red}{invalid user}}\rq \\
       !\verb|~| \lq \textbf{\textcolor{red}{Legitimer\_Nutzer}}\rq \\
-      !\verb|~| \lq \textbf{\textcolor{red}{Legitime\_Adresse}}\rq 
+      !\verb|~| \lq \textbf{\textcolor{red}{Legitime\_Adresse}}\rq
    & Suche nach Zeilen \textbf{ohne} diese Einträge. Wir können beispielsweise Einträge ausschließen, die auf legitimen Nutzer oder IP-Adresse beziehen, um falsche Positive zu vermeiden \\
    \hline
    \centering
       | pattern \lq<\_> for \\
       <\textbf{\textcolor{blue}{Benutzername}}> from \\
       <\textbf{\textcolor{blue}{Quelladresse}}> port <\_>\rq \\
-      \verb|[|\$ \verb|__|range\verb|]|\verb|))| 
-      
+      \verb|[|\$ \verb|__|range\verb|]|\verb|))|
+
    & Die Definition der Wörter \quotes{Benutzername}, \quotes{Quelladresse} und als \quotes{Patterns} dienen dazu, einen Benutzernamen und eine Quelle IP-Adresse aus der Logdatei zu extrahieren. Die Platzhalter \quotes{<\_>} sind unbenannte Elemente, die in diesem Fall auf die Einträge \quotes{password} und \gls{port} in der Zeile verweisen. \\
    \hline
    \end{tabularx}
@@ -515,7 +519,7 @@ Schließlich sieht der Regelsatz so aus:
 
 {\setstretch{1.0}
 \begin{Verbatim}[fontsize=\small, commandchars=\\\{\}, frame=single]
-sum by(add) (rate({job="\textit{JOBNAME}", instance=~"$instance"} |= '\textbf{\textcolor{red}{sshd}}[' |= ': 
+sum by(add) (rate({job="\textit{JOBNAME}", instance=~"$instance"} |= '\textbf{\textcolor{red}{sshd}}[' |= ':
 \textbf{\textcolor{red}{Failed}}' !~ '\textbf{\textcolor{red}{invalid user}}' !~ '\textbf{\textcolor{red}{Legitimer_Nutzer}}' !~ '\textbf{\textcolor{red}{Legitime_Adresse}}' |
 pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from  <\textbf{\textcolor{blue}{Quelladresse}}> port <_>' [$__range]))
 \end{Verbatim}
@@ -530,8 +534,8 @@ pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from  <\textbf{\textc
 Eine allgemeine Erkennungsregel in \gls{logql} würde so aussehen:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-Ergebnis = Operation (GesuchterWert) (Operation(label1="LabelWert", 
-label2="Label2Wert") |= 'Gesuchte Inhalt im Logdatei' | !'Inhalt im 
+Ergebnis = Operation (GesuchterWert) (Operation(label1="LabelWert",
+label2="Label2Wert") |= 'Gesuchte Inhalt im Logdatei' | !'Inhalt im
 Logdatei ausschliessen' | Regulärer Ausdrucke | pattern '<_>
 WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>' [\$__range]))
 \end{Verbatim}
@@ -551,8 +555,8 @@ WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>' [\$__range]))
 
 % \textit{while} Ergebnis < FehlVersuche
 %    weiterBeobachten\(\)
-% WarnmeldungTriggern\(\) 
- 
+% WarnmeldungTriggern\(\)
+
 % \end{Verbatim}
 % }
 
@@ -594,20 +598,20 @@ Mit der Nutzung von \textit{\gls{API}} \gls{Endpoint} von Loki ist es möglich n
 {\setstretch{1.0}
 \begin{Verbatim}[fontsize=\small, frame=single]
 # Muster für die Anfrage
-curl -G -s  "http://LokiInstance/Endpoint" --data-urlencode 'Logql Abfrage' 
+curl -G -s  "http://LokiInstance/Endpoint" --data-urlencode 'Logql Abfrage'
 | jq
 
 # Beispiel
 curl -G -s  "http://LokiInstance/loki/api/v1/query" --data-urlencode
-'sum by(add) (rate({job="JOBNAME", instance=~"$instance"} |= 'sshd[' |= ': 
+'sum by(add) (rate({job="JOBNAME", instance=~"$instance"} |= 'sshd[' |= ':
 Failed' !~ 'invalid user' !~ 'Legitimer_Nutzer' !~ 'Legitime_Adresse' |
-pattern '<_> for <Benutzername> from  <Quelladresse> port <_>' [$__range]))' 
+pattern '<_> for <Benutzername> from  <Quelladresse> port <_>' [$__range]))'
 | jq
 \end{Verbatim}
 }
 
 \newpage
-\newgeometry{right=30mm, left=30mm} 
+\newgeometry{right=30mm, left=30mm}
 \thispagestyle{lscape}
 \begin{landscape}
    Nachdem die \gls{ssh}-Logdateien gelesen und verarbeitet wurden, bekommen wir von Grafana Loki die zusammenfassende Ergebnissen, wie unter auf der Abbildung \ref{fig:Grafana_DetailedStats} dargestellt:
@@ -619,12 +623,12 @@ pattern '<_> for <Benutzername> from  <Quelladresse> port <_>' [$__range]))'
         {Ausgabe der Verarbeitung der \gls{ssh} Logdateien von Grafana Loki}
         \label{fig:Grafana_Grafik}
         \centering
-    \end{figure} 
+    \end{figure}
 \end{landscape}
 \restoregeometry
 
 \newpage
-\newgeometry{right=30mm, left=30mm} 
+\newgeometry{right=30mm, left=30mm}
 \thispagestyle{lscape}
 \begin{landscape}
    Das nächste Abbidung, \ref{fig:Grafana_DetailedStats}, gibt ausführliche Informationen der Logdateien:
@@ -635,7 +639,7 @@ pattern '<_> for <Benutzername> from  <Quelladresse> port <_>' [$__range]))'
         {Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki}
         \label{fig:Grafana_DetailedStats}
         \centering
-    \end{figure} 
+    \end{figure}
 \end{landscape}
 \restoregeometry
 
@@ -670,16 +674,16 @@ Unser letztes Ziel besteht darin, Warnmeldungen für potenzielle Angriffe mithil
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
 # Warnmeldungen können in beliebigen Gruppen kategorisiert werden. Diese
-können von den Nutzern entsprechend ihrer Anforderungen und Bedürfnisse 
+können von den Nutzern entsprechend ihrer Anforderungen und Bedürfnisse
 definiert werden.
 groups:
-      # Ab diesem Punkt beginnen wir mit der Definition der Regelsätze 
+      # Ab diesem Punkt beginnen wir mit der Definition der Regelsätze
       für die Erkennung von Warnmeldungen. Diese umfassen:
    - name: example
      rules:
     - alert: HighRequestLatency
 
-      # LogQL-Regelsätze für die Erkennung der Warnmeldung, welche die 
+      # LogQL-Regelsätze für die Erkennung der Warnmeldung, welche die
       in den vorherigen Schritten definierten Abfragen verwenden.
       expr: job:request_latency_seconds:mean5m{job="SSH_LOGS"} > 0.5
       for: 10m
@@ -716,15 +720,15 @@ Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}
 # (A) Anzahl von fehlgeschlagenen Anmeldeversuche für existierenden
 Benutzernamen:
 sum by (username) (count_over_time({$label_name=~"$label_value",
-job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: 
-Connection closed by authenticating user|: Failed .* user" | 
-pattern '<_> user <username> <_> port' | __error__="" 
+job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|:
+Connection closed by authenticating user|: Failed .* user" |
+pattern '<_> user <username> <_> port' | __error__=""
 [$__interval]))
 
-# (B) Anzahl von Fehlgeschlagenen Anmeldeversuche für nicht 
+# (B) Anzahl von Fehlgeschlagenen Anmeldeversuche für nicht
 existierenden Benutzernamen:
-sum by (username) (count_over_time({$label_name=~"$label_value", 
-job=~"$job", instance=~"$instance"} |="sshd[" |=": Failed" !~"invalid 
+sum by (username) (count_over_time({$label_name=~"$label_value",
+job=~"$job", instance=~"$instance"} |="sshd[" |=": Failed" !~"invalid
 user" | pattern '<_> for <username> from <_> port' | __error__=""
 [$__interval]))
 
@@ -746,7 +750,7 @@ Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten
    \centering
 \end{figure}
 
-Grafana ermöglichte älterer Versionen (bevor v0.9) Warnmeldungen über die \gls{API} zu generieren \citep{Grafana_AlertLegacyApi}.
+%Grafana ermöglichte älterer Versionen (bevor v0.9) Warnmeldungen über die \gls{API} zu generieren \citep{Grafana_AlertLegacyApi}.
 
 %Das Alerting-Tool von Grafana bietet keine direkte Integration zu einem \gls{IDS}, \gls{IPS}, \gls{SIEM} oder einer \gls{API} an. Die Kommunikation mit solchen \glsplural{Endpoint} lässt sich jedoch mithilfe von \textbf{\gls{webhook}} konfigurieren \citep{Grafana_Notifications}.
 
@@ -760,4 +764,3 @@ Grafana ermöglichte älterer Versionen (bevor v0.9) Warnmeldungen über die \gl
 %Password: alertsgrafanaBA1
 
 
-Failed to send test alert.: SMTP not configured, check your grafana.ini config file's 

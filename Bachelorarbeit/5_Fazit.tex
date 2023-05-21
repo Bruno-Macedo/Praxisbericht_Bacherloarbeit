@@ -1,6 +1,6 @@
 \section{Fazit}
 
-In dieser Arbeit haben wir versucht, mithilfe von Grafana, Loki und Promtail eine \gls{SIEM} Lösung zu emulieren, um Überwachungsmechanismen anhand von Logdateien zu erstellen. In der folgenden Tabelle zeigen wir die Rolle jedes vewendeten Tools, um unser Ziel zu erreichen
+In dieser Arbeit versuchten wir, mithilfe von Grafana, Loki und Promtail eine \gls{SIEM} Lösung zu emulieren, um Überwachungsmechanismen anhand von Logdateien zu erstellen. In der folgenden Tabelle zeigen wir die Rolle jedes vewendeten Tools, um unser Ziel zu erreichen
 
 \begin{table}[h]
     \centering
@@ -20,18 +20,12 @@ In dieser Arbeit haben wir versucht, mithilfe von Grafana, Loki und Promtail ein
 
 Wir stellen fest, dass die verwendeten Tools mit Einschränkungen eine kosteneffektive Möglichkeit bieten, ein Überwachungssystem zu implementieren. Die Methoden zur Erkennung von Angriffen lassen sich anhand der \gls{ttp} der \gls{mitre}-Matrix definieren. Nach der Auswahl des Angriffe erstellen wir Regelwerke mit der Abfragesprache \gls{logql} in Loki, um Muster zu identifizieren, die auf den ausgewählten Angriff hindeuten. Diese Regelwerke werden dann verwendet, um Warnmeldungen über den Angriff zu generieren und zu versenden.
 
-\subsection{Herausforderungen}
-Unser Aufbau birgt zwei große Herausforderungen, wobei die erste einfacher zu bewältigen ist als die zweite. Diese sind:
+Die Einschränkungen beziehen sich auf die verschiedenen Problemen in der neuer Version von Loki, die seit 2022 gemeldet wurden und für die noch keine Lösung existiert.
 
-\subsubsection{Definition der Regelsätzen}
-Für eine präzise Implementierung spielt die richtige Entwicklung der Regelsätzen zur Identifizierung potenzieller Angriffe eine wichtige Rolle. Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen diese Regelsätzen so definiert werden, dass sie die eindeutigen Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können. Die Lernkurve für den Aufbau der richtigen Regelsätzen kann eine große Herausforderung darstellen, was in unserem Fall war. 
+\subsection{Herausforderungen}
+In dem richtigen Aufbau der Regelsätze birgt die größte Herausfordung dieser Implementierung. Für eine präzise Anwendung der Tools spielt die richtige Entwicklung der Regelsätzen zur Identifizierung potenzieller Angriffe eine wichtige Rolle. Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen diese Regelsätzen so definiert werden, dass sie die eindeutigen Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können. Die Lernkurve für den Aufbau der richtigen Regelsätzen kann eine große Herausforderung darstellen, was in unserem Fall war. 
 
 Die richtige und präzise Indexierung kann einen entscheidende Faktor für die Leistung der Anwendung. Die Nutzung von vielen \quotes{labels} verlangt intensive Rechenkapazität und kann auch zu fehlerhafte Ergebnisse führen, wie in unserem Fall. Die Rechenkapazität soll auch angepasst werden, damit die steigende Anzahl von Anfragen (Siehe Abbildung \ref{fig:Eskalation_Labels} auf der Seite \pageref{fig:Eskalation_Labels}) nicht zu Abstürzt führt.
-
-\begin{itemize}[noitemsep]
-    \item \textbf{Erkennung von \gls{KI}-basierte Angriffe:}
-\end{itemize}
-\subsubsection{Erkennung von \gls{KI}-basierte Angriffe}
 
 \subsection{Zukünftige Recherche}
 %\textbf{\textcolor{red}{was kann in diesem Projekt erweitert werden.}}

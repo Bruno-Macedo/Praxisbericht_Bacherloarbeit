@@ -20,8 +20,8 @@
 \contentsline {figure}{\numberline {20}{\ignorespaces Ausgabe von \textit {\gls {spraying}} in Kali Linux gegen Opfersystem1}}{30}{figure.caption.35}%
 \contentsline {figure}{\numberline {21}{\ignorespaces Ausgabe von \textit {\gls {spraying}} in Kali Linux gegen Opfersystem2}}{30}{figure.caption.36}%
 \contentsline {figure}{\numberline {22}{\ignorespaces Screenshot der Willkommensseite von Grafana Loki}}{32}{figure.caption.38}%
-\contentsline {figure}{\numberline {23}{\ignorespaces Kommunikation zwischen Grafana Agents, \gls {prometheus}, OpenTelemetry und \gls {GrafanaSystem}}}{34}{figure.caption.39}%
-\contentsline {figure}{\numberline {24}{\ignorespaces Datenfluss zwischen \gls {opentelemetry} und die Tools von \gls {GrafanaSystem}}}{35}{figure.caption.40}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Kommunikation zwischen Grafana Agents, \gls {prometheus}, OpenTelemetry und \textit {\gls {GrafanaSystem}}}}{34}{figure.caption.39}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Datenfluss zwischen \gls {opentelemetry} und die Tools von \textit {\gls {GrafanaSystem}}}}{35}{figure.caption.40}%
 \contentsline {figure}{\numberline {25}{\ignorespaces Allgemeiner Ablauf eines Anmeldungsverfahrens}}{36}{figure.caption.41}%
 \contentsline {figure}{\numberline {26}{\ignorespaces Beziehung zwischen \glqq instance\grqq {} und \glqq job\grqq {}}}{37}{figure.caption.43}%
 \contentsline {figure}{\numberline {27}{\ignorespaces Aufrufe des Inhalts der Logdateien nach bestimmten Labels}}{38}{figure.caption.44}%
