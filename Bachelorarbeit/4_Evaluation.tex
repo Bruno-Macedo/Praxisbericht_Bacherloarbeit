@@ -2,95 +2,69 @@
 In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. 
 
 Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Konfigurationen:
-
-% {\setstretch{1.0}
-% \begin{Verbatim}[frame=single,fontsize=\small]
-% scrape_configs:
-% - job_name: sshlogs
-%   decompression:
-%     enabled: true
-%     initial_sleep: 15s
-%     format: gz
-%   static_configs:
-%   - targets:
-%       - localhost
-%     labels:
-%       job: sshlogs
-%       instance: Opfersystem1
-%       __path__: /var/log/**.gz
-% \end{Verbatim}
-% }
-
 \begin{table}[H]
     \setstretch{1}
     \begin{tabularx}{\textwidth}{|m{5.5cm}|X|}
     \hline
     \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
     \hline
-    scrape\_configs & Steht für die Funktionalität von Promtail, automatisch nach Logdateien zu suchen. \\
+    \textbf{scrape\_configs} & Steht für die Funktionalität von Promtail, automatisch nach Logdateien zu suchen. \\
     \hline
-    decompression \newline
-    \hphantom{12}enabled: true \newline
-    \hphantom{12}initial\_sleep: 10s \newline
-    \hphantom{12}format: gz & Promtail kann verschiedene Komprimierungsformate verarbeiten, darunter auch .gz, welches wir in unserer Arbeit verwenden. Das Feld \textit{initial\_sleep} beschreibt das Intervall, bevor die Dekomprimierung beginnt. Dieses Feld kann nützlich sein, wenn komprimierte Dateien vorhanden sind, deren Komprimierungsvorgang jedoch noch nicht abgeschlossen ist. Das Feld \textit{format} gibt das Komprimierungsformat an \citep{Grafana_Promtail}.  \\
+    - job\_name: sshlogs & Definition des Names unseres \quotes{job} \\
     \hline
-    static\_configs: \newline
-    \hphantom{1}- targets: \newline
-    \hphantom{123}- localhost \newline
-    \hphantom{1}labels: \newline
-    \hphantom{123}job: sshlogs \newline
-    \hphantom{123}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Datei im System an.\\
+    \textbf{pipeline\_stages:} & Diese Konfigurationen führen Änderungen in jeder Logzeile durch, die zum Loki geschickt wird. \\
+
+    \hphantom{te}- match: \newline
+    \hphantom{tex}selector: '\{job=``sshlogs''\}' \newline
+    \hphantom{tex} action: keep \newline & Nur Logzeilen mit diesem \quotes{label} werden modifiziert und dessen Inhalt wird beibehalten. Alternativ gibt es \quotes{drop}, um diesen Inhalt zu löschen. \\
+
+    \hphantom{tex}\textbf{stages:}  \newline
+    \hphantom{tex}- regex: \newline
+    \hphantom{text}expression:  \verb|`^(?P<time>[A-Za-z]|
+                 \verb|{3}\s{1,2}\d{1,2}\s|
+                 \verb|\d{2}:\d{2}:\d{2})*'| \newline
+    \hphantom{tex}- timestamp: \newline
+    \hphantom{text}source: time \newline
+    \hphantom{text}format: ``Jan \_2 15:04:05'' \newline
+    \hphantom{text}location: \quotes{Europe/Berlin} & Promtail bietet verschiedene Typen von \quotes{stages}, um die Logzeile zu bearbeiten. Diese werden nacheinander verarbeitet. Wir benutzen die \quotes{stages} \gls{RegExp} und dann \quotes{timestamp}. Der erste liest den Zeitstempel aus der \gls{ssh}-Logdatei aus, damit der zweite ihn verarbeiten und zu der von uns ausgewählten Format umwandeln kann. Schließlich speichert Loki den Zeitstempel der Zeile de Logdatei und nicht denen von des Hochladen in Loki. \\
     \hline
+    \textbf{decompression} \newline
+    \hphantom{te}enabled: true \newline
+    \hphantom{te}initial\_sleep: 10s \newline
+    \hphantom{te}format: gz & Promtail kann verschiedene Komprimierungsformate verarbeiten, darunter auch .gz, welches wir in unserer Arbeit verwenden. Das Feld \textit{initial\_sleep} beschreibt das Intervall, bevor die Dekomprimierung beginnt. Dieses Feld kann nützlich sein, wenn komprimierte Dateien vorhanden sind, deren Komprimierungsvorgang jedoch noch nicht abgeschlossen ist. Das Feld \textit{format} gibt das Komprimierungsformat an \citep{Grafana_Promtail}. \\  \hline
+
     \end{tabularx}
-    \caption[Konfigurationsausschnitt von Promtail]
-    {Konfigurationsausschnitt von Promtail}
-    \label{tab:KonfigPromtail}
 \end{table}
 
-Promtail sucht automatisch und in vordefinierten Zeitabständen nach Logdateien, die in der Konfigurationsdatei eingetragen wurden. Die \quotes{labels} und den Zeitstempel werden in dem jeweiligen Abschnitt definiert.
+\begin{table}[H]
+  \setstretch{1}
+  \begin{tabularx}{\textwidth}{|m{5.5cm}|X|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
+  \hline
+  \textbf{static\_configs:} \newline
+  \hphantom{te}- targets: \newline
+  \hphantom{te}- loki \newline
+  \hphantom{te}labels: \newline
+  \hphantom{te}job: sshlogs \newline
+  \hphantom{te}instance: \gls{Endpoint}-Name \newline
+  \hphantom{te}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Datei im System an.\\
+  \hline
+  \end{tabularx}
+  \caption[Konfigurationsausschnitt von Promtail]
+  {Konfigurationsausschnitt von Promtail}
+  \label{tab:KonfigPromtail}
+\end{table}
 
-% \begin{table}[H]
-%   \setstretch{1}
-%   \begin{tabularx}{\textwidth}{|m{5.5cm}|X|}
-%   \hline
-%   \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
-%   \hline
-%   static\_configs: \newline
-%   \hphantom{1}- targets: \newline
-%   \hphantom{123}- localhost \newline
-%   \hphantom{1}labels: \newline
-%   \hphantom{123}job: sshlogs \newline
-%   \hphantom{123}\_\_path\_\_: /var/log/**.gz & \quotes{targets} bezieht sich auf die Kommunikation mit dem Loki-Instanz. \quotes{labels} zeigt, mit welcher Identifizierung den Inhalt dieser Datei im Loki aufgerufen werden kann. \quotes{\_\_path\_\_} gibt an, wo sich die Datei im System befinden\\
-%   \hline
-%   %sample\_rate: 0.1 & , which means that Promtail will sample 10% of the series during scraping. \\
-%   %\hline
-%   \end{tabularx}
-%   \caption[Konfigurationsausschnitt von Promtail]
-%   {Konfigurationsausschnitt von Promtail}
-%   \label{tab:KonfigPromtail}
-% \end{table}
-
+Unsere gesamte Einstellung für Promtail befindet sich im Anhang \ref{appendix:AngepasstGrafana} auf der Seite \pageref{appendix:AngepasstGrafana}.
 
 
-% \quotes{Labels} spielen eine wesentliche Rolle in der Leistung von Loki, da dieses Tool mit weniger Indizierung als andere Tools wie Elastic Stack arbeitet. Laut \cite{Grafana_labels} wird empfohlen, so wenige \quotes{labels} wie möglich zu verwenden und die Extraktion von Inhalten stattdessen mit Hilfe der Abfragesprache durchzuführen, um eine Eskalation des Speicherbedarfs zu vermeiden. Abbildung \ref{fig:Eskalation_Labels} zeigt den Effekt von mehreren \quotes{labels} auf die Anwendung:
+%%% bearbeiten 
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.7\textwidth]{assets/labelstream.png}
-%   \caption[Eskalation bei Verwendung von \quotes{labels}]
-%   {Eskalation bei Verwendung von \quotes{labels} laut \cite{Grafana_labels}}
-%   \label{fig:Eskalation_Labels}
-%   \centering
-% \end{figure}
+Unsere Logdateien haben eine Größe von ungefähr vier Megabyte, was im Vergleich zu produktiven Umgebungen, in denen Logdateien den Terabyte-Bereich erreichen können, gering ist. 
 
-% Auf Abbildung \ref{fig:Eskalation_Labels} haben wir vier Ebenen. Die erste Ebene ist die Zeile der Logdatei (1), die zweite Ebene sind die vom Benutzer definierten \quotes{labels} (2), und die dritte und vierte Ebene beziehen sich auf die Antwort (3) und die verwendete HTTP-Anfrage (4), um nach Inhalten zu suchen, sie hinzuzufügen und zu indizieren. Aus einer Zeile der Logdatei haben wir drei \quotes{labels} definiert (3x), die wiederum drei potenzielle Zustände haben (3x3x), und aus diesen drei Zuständen haben wir drei mögliche HTTP-Pfade (3x3x3). Das ergibt insgesamt 27 Streams, um die Zeile zu lesen, zu indizieren und zu speichern. Dies kann laut \cite{Grafana_labels} zu einer Beeinträchtigung der Leistung führen.
 
-% Formel verständlicher machen
-% l = 3
-% r = 3
-% s = 3
-
-Unsere Logdateien haben eine Größe von ungefähr vier Megabyte, was im Vergleich zu produktiven Umgebungen, in denen Logdateien den Terabyte-Bereich erreichen können, gering ist. Trotz dieser Größe war unsere Synchronisierung nicht immer so präzise wie erwartet. Einige Abfragen, die bei der Implementierung mit 40 KB Logdateien einwandfrei funktionierten, führten hier zu folgender Fehlermeldung:
+Trotz dieser Größe war unsere Synchronisierung nicht immer so präzise wie erwartet. Einige Abfragen, die bei der Implementierung mit 40 KB Logdateien einwandfrei funktionierten, führten hier zu folgender Fehlermeldung:
 
 {\setstretch{1.0}
 \begin{Verbatim}[fontsize=\small, frame=single]

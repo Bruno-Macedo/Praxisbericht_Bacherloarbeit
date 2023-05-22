@@ -127,6 +127,17 @@ Unten befindet sich die angepasste Konfigurationsdateien \citep{Polinowski_PGL}:
   
   scrape_configs:
   - job_name: sshlogs
+    pipeline_stages:
+    - match:
+        selector: '{job="sshlogs"}'
+        action: keep
+        stages:
+        - regex:
+            expression:  '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2})*'
+        - timestamp:
+            source: time
+            format: RFC822Z #"Jan _2 15:04:05"
+            location: "Europe/Berlin"
     decompression:
       enabled: true
       initial_delay: 15s
@@ -138,7 +149,7 @@ Unten befindet sich die angepasste Konfigurationsdateien \citep{Polinowski_PGL}:
         job: sshlogs
         #env: voidquart
         instance: Opfersystem1
-        __path__: /opt/*.gz 
+        __path__: /opt/*.gz
 \end{Verbatim}
 }
 
