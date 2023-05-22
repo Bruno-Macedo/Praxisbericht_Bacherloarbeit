@@ -11,23 +11,51 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
+    #command: -config.file=/etc/loki/loki-config.yaml
     networks:
       - loki
 
-  promtail:
+  Opfersystem1:
     image: grafana/promtail:2.8.2
     container_name: Opfersystem1
     volumes:
       - ${PWD}/promtail-local-config_opfer1.yaml:/etc/promtail/promtail-config.yaml
+      - ${PWD}/temp/:/opt/
       #- ${PWD}/ssh.log:/opt/ssh.log
       #- ${PWD}/ssh1.log:/opt/ssh1.log
       #- ${PWD}/ssh2.log:/opt/ssh2.log
-      - ${PWD}/temp/:/opt/
+      #- ${PWD}/temp/auth.log.1.gz:/opt/auth.log.1.gz
+      #- ${PWD}/temp/auth.log.2.gz:/opt/auth.log.2.gz
     command: -config.file=/etc/promtail/promtail-config.yaml 
              -config.expand-env=true 
              #-querier.max-outstanding-requests-per-tenant= 2048
     networks:
       - loki
+
+  # Opfersystem2:
+  #   image: grafana/promtail:2.8.2
+  #   container_name: Opfersystem2
+  #   volumes:
+  #     - ${PWD}/promtail-local-config_opfer2.yaml:/etc/promtail/promtail-config.yaml
+  #     - ${PWD}/temp/auth.log.3.gz:/opt/auth.log.3.gz
+  #     - ${PWD}/temp/auth.log.4.gz:/opt/auth.log.4.gz
+  #   command: -config.file=/etc/promtail/promtail-config.yaml 
+  #            -config.expand-env=true 
+  #            #-querier.max-outstanding-requests-per-tenant= 2048
+  #   networks:
+  #     - loki
+
+  # Opfersystem3:
+  #   image: grafana/promtail:2.8.2
+  #   container_name: Opfersystem3
+  #   volumes:
+  #     - ${PWD}/promtail-local-config_opfer3.yaml:/etc/promtail/promtail-config.yaml
+  #     - ${PWD}/temp/auth.log.gz:/opt/auth.log.gz
+  #   command: -config.file=/etc/promtail/promtail-config.yaml 
+  #            -config.expand-env=true 
+  #            #-querier.max-outstanding-requests-per-tenant= 2048
+  #   networks:
+  #     - loki
 
   grafana:
     image: grafana/grafana:latest

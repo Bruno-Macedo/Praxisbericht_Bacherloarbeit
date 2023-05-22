@@ -2,3 +2,8 @@ sum by (username) (count_over_time({job=~"sshlogs"} |="sshd[" |=": Failed" !~"in
 
 
 sum by (username) (count_over_time({job=~"sshlogs"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))
+
+sum by (username) (count_over_time({job=~"sshlogs", filename="auth.log.2"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))
+
+
+sum by (username) (count_over_time({job=~"sshlogs", filename="/opt/auth.log.2.gz"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))

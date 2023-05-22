@@ -350,7 +350,32 @@ Im Jahr 2014 wurde Grafana von der Firma Grafana Labs veröffentlicht. Das Tool 
 
 In der Webseite betont der Anbieter, dass Grafana die Zentralisierung und Zugang von Daten vereinfachen. Alle Art von Daten lassen sich analysieren und darstellen, von der Leistung von Anwendungen bis Verkaufsdaten und Krankheitsfällen. Die Anwendung soll auch den Zusammenhang von Daten ermöglichen, um wichtige Informationen herauszunehmen \citep{Grafana_Grafana}.
 
-Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig. Promptail wird an jeden \gls{Endpoint} installiert und er schickt als Stream zu Loki. Diese Streams werden dann in Loki mit Labels (Schlüssel-Wert-Paar) identifiziert. Jeder Stream bezieht sich auf eine Gruppe von Logdateien. Laut \cite{Grafana_fundamentals} bleibt der Inhalt der Logdatei ohne Indexierung, um Effizienz bei der Verwaltung des Inhalts zu gewinnen, im Vergleich zu anderen Tools, wie Elastic Stack, wo der gesammte Inhalt indexiert wird \citep{Anand_LokixELK}. Bei Loki werden die Metadata, wie Zeitstempel oder andere kundenspezifische Labels, dann indexiert.
+Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig. Promptail wird an jeden \gls{Endpoint} installiert und er schickt als Stream zu Loki. Diese Streams werden dann in Loki mit Labels (Schlüssel-Wert-Paar) identifiziert. Jeder Stream bezieht sich auf eine Gruppe von Logdateien. Laut \cite{Grafana_fundamentals} bleibt der Inhalt der Logdateien ohne Indexierung, um Effizienz bei der Verwaltung des Inhalts zu gewinnen, im Vergleich zu anderen Tools, wie Elastic Stack, wo der gesammte Inhalt indexiert wird \citep{Anand_LokixELK}. Bei Loki werden die Metadata, wie Zeitstempel oder andere kundenspezifische Labels, dann indexiert.
+
+Für eine optimale Nutzung wird von Grafana empfohlen, wenig \quotes{labels} zu benutzen, um eine Eskalation des Speicherbedarfs zu vermeiden \cite{Grafana_labels}. Die Abbildung \ref{fig:Eskalation_Labels} zeigt den Eskalationseffekt, der durch die Nutzung von \quotes{labels} entsteht:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{assets/labelstream.png}
+   \caption[Eskalation bei Verwendung von \quotes{labels}]
+   {Eskalation bei Verwendung von \quotes{labels} laut \cite{Grafana_labels}}
+   \label{fig:Eskalation_Labels}
+   \centering
+ \end{figure}
+ 
+Auf Abbildung \ref{fig:Eskalation_Labels} haben wir vier Ebenen. Die erste ist die Zeile der Logdatei (1), die zweite sind die vom Benutzer definierten \quotes{labels} (2), und die dritte und vierte beziehen sich auf die Antwort (3) und die verwendete HTTP-Anfrage (4), um nach Inhalten zu suchen, sie hinzuzufügen und zu indizieren. Aus einer Zeile der Logdatei haben wir drei kundendefinierte \quotes{labels} definiert, die wiederum drei potenzielle Zustände haben. Aus diesen drei Zuständen haben wir drei mögliche \gls{http}-Pfade. Aus drei \quotes{labels} ergibt sich insgesamt 27 Streams, um die Zeile zu lesen, zu indizieren und zu speichern. Dies kann laut \cite{Grafana_labels} zu einer Beeinträchtigung der Leistung führen. Die folgende mathematische Formel zeigt das Ergebnis unserer Beschreibung:
+
+{\setstretch{1.0}
+\begin{Verbatim}[commandchars=\\\{\},frame=single]
+Labels = 3
+Anfrage = 3
+HTTP-Antworte = 3
+Total Streams = Labels x Anfrage x HTTP-Antworte
+Total Streams = 3 x 3 x 3
+Total Streams = 27
+\end{Verbatim}
+}
+
 
 Promtail kann aber Logdateien nur zur Grafana Loki oder zu einem anderen Promtail Instanz schicken. In der Konfigurationsdatei von Promtail kann die Häufigkeit, in der nach neuem Inhalt in der Logdateien gesucht wird, konfiguriert werden. Das Tool kann auch Logdatei entdecken und dekomprimieren \citep{Grafana_Promtail}. Diese Daten können in Grafana mithilfe der \gls{abfragesprache} \gls{logql} aufgerufen werden. Schließlich werden Warnmeldungen mit spezifischen Regelsätze in \gls{logql} generiert. Für die Erstellung von Warnmeldung bietet Grafana das eigene Tool Alerting an oder diese können mit externen Komponenten, wie Alertmanager von \gls{prometheus} generiert werden \citep{Grafana_loki}. Auf Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} wird die Verbindung zwischen Promtail und Grafana Loki dargestellt \citep{Grafana_Logs}:
 
@@ -376,7 +401,7 @@ Die wissenschaftlichen Literatur über Grafana konzentriert sich eher auf die An
 Die wissenschaftliche Recherche über die Implementierung und Integration von Grafana mit anderen Tools zum Sicherheitszweck ist neu und bietet deshalb viele  Perspektive für das Weiterlernen an.
 
 \subsection{Auswahlkriterien}
-Der Erwerb einer \gls{SIEM} Lösung würde wahrscheinlich die Anforderungen dieser wissenschaftlichen Arbeit decken. Da solche Lösungen meistens (oder alle) \gls{Proprietary} und kostenpflichtig sind, legten wir als Auswahlkriterium fest, dass die Anwendungen für unsere Arbeit \gls{opensource} sein müssen. Von allen analysierten Tools sind die Kombinationen Grafana, Loki, Promtail und Kibana, Elasticsearch, Logstash  am geeignetsten für unsere Auswahl. In der Tabelle \ref{tab:Vergleich_GrafanaELK} zeigen wir einen Vergleich zwischen beiden diesen Konbinationstool \citep{Anand_LokixELK}:
+Der Erwerb einer \gls{SIEM} Lösung würde wahrscheinlich die Anforderungen dieser wissenschaftlichen Arbeit decken. Da solche Lösungen meistens (oder alle) \gls{Proprietary} und kostenpflichtig sind, legten wir als Auswahlkriterium fest, dass die Anwendungen für unsere Arbeit \gls{opensource} sein müssen. Von allen analysierten Tools sind die Kombinationen Grafana, Loki, Promtail und Kibana, Elasticsearch, Logstash  am geeignetsten für unsere Auswahl. In der Tabelle \ref{tab:Vergleich_GrafanaELK} vergleichen wir beiden dieser Konbinationstool \citep{Anand_LokixELK}:
 
 \begin{table}[H]
    \setstretch{1.2}
@@ -405,12 +430,55 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
    \hline
    \centering\textbf{Eigenschaft} & \centering\textbf{Grafana, Loki und Promtail} & \textbf{Kibana, Elasticsearch und Logstash} \\ 
    \hline 
-
    Opensource                  & \centering
    ja & 
-   nicht im Elasticsearch \\ 
-    \hline
+   nicht im Elasticsearch \\ \hline
+
+   Dokumentation von Promtail und Logstash \citep{Kray_LogstashxPromtail} & \centering 
+   einfach & Umfangreich \\ \hline
+   
+   Entwickelt spezifisch für Verarbeitung von Logdateien \citep{Yigal_GrafanaKibanan}  & \centering
+   nein                    & 
+   ja                      \\ \hline 
+
+   Komplexität bei der Installation und Einstellung \citep{BetterStac_KG} & \centering 
+   niedrig                &
+   hoch                   \\ \hline 
+
+   Komplexität bei der Installation und Einstellung \citep{BetterStac_KG} & \centering 
+   niedrig                &
+   hoch                   \\ \hline 
+
+   Graphische Darstellung & \centering
+   ja                     & 
+   ja                     \\ \hline 
+
+   Dashboards und Graphik  & \centering
+   ja                      & 
+   ja                      \\ \hline 
+
+   Eigene \gls{abfragesprache} & \centering
+   abhängig von dier Datenquelle (Grafana), \gls{logql} (Loki) & 
+   \gls{DSL}               \\ \hline 
+
+   Indexierung                & \centering
+   nur Metadata (Loki)        &
+    vollständog (Elasticsearch) \\ \hline 
+
+   Dekomprimierung von Datei & \centering
+   ja (Promtail)             &
+   ja (Logstash)             \\ \hline 
+
+   Integration mit anderen Database Tools & \centering
+   ja                         & 
+   nur mit Elasticsearch      \\ \hline
+
+   Weiterleitung des Loginhalts & \centering
+   nur an Promtail und an Loki (Promtail) &
+   umfangreiche Integration mit anderen Tools (Logstash) \\ \hline
+
  \end{tabular}
+ 
 \end{table}
 }
 
@@ -419,50 +487,14 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
    \centering
 \begin{tabular}{|m{5cm}|m{4.2cm}|>{\centering\arraybackslash}m{4.2cm}|}
    \hline
-   \centering\textbf{Eigenschaft} & \centering\textbf{Grafana, Loki und Promtail} & \textbf{Kibana, Elasticsearch und Logstash} \\ \hline \centering
-   Dokumentation von Promtail und Logstash \citep{Kray_LogstashxPromtail} & \centering 
-   einfach  & 
-   Umfangreich  \\ \hline \centering
+   \centering\textbf{Eigenschaft} & \centering\textbf{Grafana, Loki und Promtail} & \textbf{Kibana, Elasticsearch und Logstash} \\ \hline 
 
-   Entwickelt spezifisch für Vearbeitung von Logdateien \citep{Yigal_GrafanaKibanan}  & \centering
-   nein                    & 
-   ja                      \\ \hline \centering
 
-   Komplexität bei der Installation und Einstellung \citep{BetterStac_KG} & \centering 
-   niedrig                &
-   hoch                   \\ \hline \centering
-
-   Graphische Darstellung & \centering
-   ja                     & 
-   ja                     \\ \hline \centering
-
-   Dashboards und Graphik  & \centering
-   ja                      & 
-   ja                      \\ \hline \centering
-
-   Eigene \gls{abfragesprache} & \centering
-   abhängig von dier Datenquelle (Grafana), \gls{logql} (Loki) & 
-   \gls{DSL}               \\ \hline \centering
-
-   Indexierung                & \centering
-   nur Metadata (Loki)        &
-    vollständog (Elasticsearch) \\ \hline \centering
-
-   Dekomprimierung von Datei & \centering
-   ja (Promtail)             &
-   ja (Logstash)             \\ \hline \centering
-
-   Integration mit anderen Database Tools & \centering
-   ja                         & 
-   nur mit Elasticsearch      \\ \hline \centering
-
-   Weiterleitung des Loginhalts & \centering
-   nur an Promtail und an Loki (Promtail) &
-   umfangreiche Integration mit anderen Tools (Logstash) \\ \hline \centering
 
    Integrietes Tool für Generierung von Warnmeldungen \citep{Yigal_GrafanaKibanan} & \centering
    ja (Alerting) & 
    von \glsplural{plugin} abhängig  \\ \hline
+
  \end{tabular}
  \caption{Unterschiede zwischen den Kombinationen Grafana, Loki, Promtail und Kibana, Elasticsearch, Logstash}
  \label{tab:Unterschiede}

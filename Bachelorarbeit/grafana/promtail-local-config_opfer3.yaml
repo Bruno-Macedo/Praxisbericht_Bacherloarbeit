@@ -33,5 +33,5 @@ scrape_configs:
     labels:
       job: sshlogs
       #env: voidquart
-      instance: Opfersystem2
+      instance: Opfersystem3
       __path__: /opt/*.gz

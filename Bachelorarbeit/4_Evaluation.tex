@@ -1,5 +1,7 @@
 \section{Evaluation der Implementation mit echten Logdateien}
-In diesem Abschnitt haben wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule verwendet. Um die Dateien zu extrahieren, hat unsere Promtail-Instanz die folgenden Konfigurationen verwendet:
+In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. 
+
+Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Konfigurationen:
 
 % {\setstretch{1.0}
 % \begin{Verbatim}[frame=single,fontsize=\small]
@@ -45,6 +47,8 @@ In diesem Abschnitt haben wir unsere Implementierung für die Analyse von \gls{s
     \label{tab:KonfigPromtail}
 \end{table}
 
+Promtail sucht automatisch und in vordefinierten Zeitabständen nach Logdateien, die in der Konfigurationsdatei eingetragen wurden. Die \quotes{labels} und den Zeitstempel werden in dem jeweiligen Abschnitt definiert.
+
 % \begin{table}[H]
 %   \setstretch{1}
 %   \begin{tabularx}{\textwidth}{|m{5.5cm}|X|}
@@ -66,20 +70,25 @@ In diesem Abschnitt haben wir unsere Implementierung für die Analyse von \gls{s
 %   \label{tab:KonfigPromtail}
 % \end{table}
 
-Promtail sucht automatisch und in vordefinierten Zeitabständen nach Logdateien, die in der Konfigurationsdatei eingetragen wurden. In Tabelle \ref{tab:KonfigPromtail} finden Sie eine Erklärung jedes Elements dieser Konfiguration.
 
-\quotes{Labels} spielen eine wesentliche Rolle in der Leistung von Loki, da dieses Tool mit weniger Indizierung als andere Tools wie Elastic Stack arbeitet. Laut \cite{Grafana_labels} wird empfohlen, so wenige \quotes{labels} wie möglich zu verwenden und die Extraktion von Inhalten stattdessen mit Hilfe der Abfragesprache durchzuführen, um eine Eskalation des Speicherbedarfs zu vermeiden. Abbildung \ref{fig:Eskalation_Labels} zeigt den Effekt von mehreren \quotes{labels} auf die Anwendung:
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.7\textwidth]{assets/labelstream.png}
-  \caption[Eskalation bei Verwendung von \quotes{labels}]
-  {Eskalation bei Verwendung von \quotes{labels} laut \cite{Grafana_labels}}
-  \label{fig:Eskalation_Labels}
-  \centering
-\end{figure}
+% \quotes{Labels} spielen eine wesentliche Rolle in der Leistung von Loki, da dieses Tool mit weniger Indizierung als andere Tools wie Elastic Stack arbeitet. Laut \cite{Grafana_labels} wird empfohlen, so wenige \quotes{labels} wie möglich zu verwenden und die Extraktion von Inhalten stattdessen mit Hilfe der Abfragesprache durchzuführen, um eine Eskalation des Speicherbedarfs zu vermeiden. Abbildung \ref{fig:Eskalation_Labels} zeigt den Effekt von mehreren \quotes{labels} auf die Anwendung:
 
-Auf Abbildung \ref{fig:Eskalation_Labels} haben wir vier Ebenen. Die erste Ebene ist die Zeile der Logdatei (1), die zweite Ebene sind die vom Benutzer definierten \quotes{labels} (2), und die dritte und vierte Ebene beziehen sich auf die Antwort (3) und die verwendete HTTP-Anfrage (4), um nach Inhalten zu suchen, sie hinzuzufügen und zu indizieren. Aus einer Zeile der Logdatei haben wir drei \quotes{labels} definiert (3x), die wiederum drei potenzielle Zustände haben (3x3x), und aus diesen drei Zuständen haben wir drei mögliche HTTP-Pfade (3x3x3). Das ergibt insgesamt 27 Streams, um die Zeile zu lesen, zu indizieren und zu speichern. Dies kann laut \cite{Grafana_labels} zu einer Beeinträchtigung der Leistung führen.
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.7\textwidth]{assets/labelstream.png}
+%   \caption[Eskalation bei Verwendung von \quotes{labels}]
+%   {Eskalation bei Verwendung von \quotes{labels} laut \cite{Grafana_labels}}
+%   \label{fig:Eskalation_Labels}
+%   \centering
+% \end{figure}
+
+% Auf Abbildung \ref{fig:Eskalation_Labels} haben wir vier Ebenen. Die erste Ebene ist die Zeile der Logdatei (1), die zweite Ebene sind die vom Benutzer definierten \quotes{labels} (2), und die dritte und vierte Ebene beziehen sich auf die Antwort (3) und die verwendete HTTP-Anfrage (4), um nach Inhalten zu suchen, sie hinzuzufügen und zu indizieren. Aus einer Zeile der Logdatei haben wir drei \quotes{labels} definiert (3x), die wiederum drei potenzielle Zustände haben (3x3x), und aus diesen drei Zuständen haben wir drei mögliche HTTP-Pfade (3x3x3). Das ergibt insgesamt 27 Streams, um die Zeile zu lesen, zu indizieren und zu speichern. Dies kann laut \cite{Grafana_labels} zu einer Beeinträchtigung der Leistung führen.
+
+% Formel verständlicher machen
+% l = 3
+% r = 3
+% s = 3
 
 Unsere Logdateien haben eine Größe von ungefähr vier Megabyte, was im Vergleich zu produktiven Umgebungen, in denen Logdateien den Terabyte-Bereich erreichen können, gering ist. Trotz dieser Größe war unsere Synchronisierung nicht immer so präzise wie erwartet. Einige Abfragen, die bei der Implementierung mit 40 KB Logdateien einwandfrei funktionierten, führten hier zu folgender Fehlermeldung:
 
@@ -93,37 +102,7 @@ Die offizielle Dokumentation und die verschiedenen Foren konnten uns keine endg�
 
 Mit der Verwendung der Version 2.4.1 konnten wir die oben genannte Situation teilweise lösen. Unsere Abfragen wurden erfolgreich gesendet und die Diagramme wurden generiert. Der folgende Ausschnitt der Loki-Konfiguration in Tabelle \ref{tab:KonfigLoki} half dabei, die Leistungsparameter der Anwendung zu definieren:
 
-% {\setstretch{1.0}
-% \begin{Verbatim}[fontsize=\small, commandchars=\\\{\},frame=single]
-% \textbf{\textcolor{blue}{limits_config:}}
-%   reject_old_samples: true
-%   reject_old_samples_max_age: 168h
-%   ingestion_rate_mb: 1024
-%   ingestion_burst_size_mb: 1024
-%   ingestion_rate_strategy: local
-%   per_stream_rate_limit: 12MB
-%   max_query_series: 100000
-%   max_query_parallelism: 32
-%   split_queries_by_interval: 24h
-%   max_query_length: 0h
-
-% \textbf{\textcolor{blue}{querier:}}
-%   max_concurrent: 2048
-
-% \textbf{\textcolor{blue}{frontend:}}
-%   max_outstanding_per_tenant: 4096
-%   compress_responses: true
-%   scheduler_worker_concurrency: 20
-
-
-% \textbf{\textcolor{blue}{chunk_store_config:}}
-%   max_look_back_period: 0s
-
-% \textbf{\textcolor{blue}{table_manager:}}
-%   retention_deletes_enabled: false
-%   retention_period: 360s
-% \end{Verbatim}
-% }
+%für diesen testlauf diese konfig aus diesem und diesem grund
 
 \begin{table}[H]
   \setstretch{1}
