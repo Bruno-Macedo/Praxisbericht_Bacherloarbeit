@@ -21,7 +21,12 @@ scrape_configs:
           expression:  '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2})*'
       - timestamp:
           source: time
-          format: "Jan  2 15:04:05" 
+          format: "Jan _2 15:04:05"
+          fallback_formats: 
+            - ANSIC
+            - UnixDate
+            - RFC1123
+          location: "Europe/Berlin"
   decompression:
     enabled: true
     initial_delay: 15s
