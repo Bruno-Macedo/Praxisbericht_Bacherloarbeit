@@ -346,11 +346,21 @@ Die wissenschaftliche Publikation über Elastic Stack ist vielfältiger als bei 
 \subsubsection{Grafana}
 Von allen recherchierten Lösungen ist Grafana die Einzige, die weder \gls{SIEM} noch Log-Analyse-Tools ist. Grafana wird als Plattform für Visualisierung von Daten beschrieben. Mit dem Tool ist es möglich eine Graphik zu erstellen und Meldungen zu generieren. Das Ziel der Anwendung ist, Information in einer einfachen und verständlichen Art und Weise zur Verfügung zu stellen \citep{redhat_grafana}.
 
-Im Jahr 2014 wurde Grafana von der Firma Grafana Labs veröffentlicht. Das Tool basiert auf Kibana3,\ref{kibana}. Ursprünglich sollte Grafana ein einfacheres Bearbeitungstool für Grafiken sein und ermöglichen, Datenanfragen unkomplizierter zu machen. Die neuste Version, 9.4.3. wurde im März 2023 veröffentlicht und bietet viele Funktionalitäten an. Es ist auch möglich das Tool mithilfe von  \glsplural{plugin} zu erweitern \citep{Oedegaard_historyGrafana}.
+Im Jahr 2014 wurde Grafana von der Firma Grafana Labs veröffentlicht. Ursprünglich sollte Grafana ein einfacheres Bearbeitungstool für Grafiken sein und ermöglichen, Datenanfragen unkomplizierter zu machen. Es ist auch möglich das Grafana mithilfe von \glsplural{plugin} zu erweitern \citep{Oedegaard_historyGrafana}.
 
-In der Webseite betont der Anbieter, dass Grafana die Zentralisierung und Zugang von Daten vereinfachen. Alle Art von Daten lassen sich analysieren und darstellen, von der Leistung von Anwendungen bis Verkaufsdaten und Krankheitsfällen. Die Anwendung soll auch den Zusammenhang von Daten ermöglichen, um wichtige Informationen herauszunehmen \citep{Grafana_Grafana}.
+In der Webseite betont der Anbieter, dass Grafana die Zentralisierung und Zugang von Daten vereinfachen. Alle Art von Daten lassen sich analysieren und darstellen, von der Leistung von Anwendungen bis Verkaufsdaten und Krankheitsfällen. Die Anwendung soll auch den Zusammenhang von Daten ermöglichen, um wichtige Informationen herauszunehmen \citep{Grafana_Grafana}. Grafana ermöglicht die Aufrufe der Daten mithilfe von verschiedenen \gls{abfragesprache}, jenachdem mit welchen Datenquelle verwendet wird. Das Tool bietet auch eine eigene Funktionalität, um Warnmeldung zu generieren oder lässt sich mit externen Tools, wie Alertmanager von \gls{prometheus}, integrieren. 
 
-Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig. Promptail wird an jeden \gls{Endpoint} installiert und er schickt als Stream zu Loki. Diese Streams werden dann in Loki mit Labels (Schlüssel-Wert-Paar) identifiziert. Jeder Stream bezieht sich auf eine Gruppe von Logdateien. Laut \cite{Grafana_fundamentals} bleibt der Inhalt der Logdateien ohne Indexierung, um Effizienz bei der Verwaltung des Inhalts zu gewinnen, im Vergleich zu anderen Tools, wie Elastic Stack, wo der gesammte Inhalt indexiert wird \citep{Anand_LokixELK}. Bei Loki werden die Metadata, wie Zeitstempel oder andere kundenspezifische Labels, dann indexiert.
+Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig während Loki sich um die Speicherung, Indexierung und Abfrage kümmert.
+
+Die Architektur von Loki besteht aus bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bilder. \gls{logql} 
+
+%https://grafana.com/blog/2018/12/12/loki-prometheus-inspired-open-source-logging-for-cloud-natives/
+
+bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
+bla bla bla bla bla bla bla bla bla Ingester, Distributor and Querier
+
+
+Promptail wird an jeden \gls{Endpoint} installiert und er schickt als Stream zu Loki. Diese Streams werden dann in Loki mit Labels (Schlüssel-Wert-Paar) identifiziert. Jeder Stream bezieht sich auf eine Gruppe von Logdateien. Laut \cite{Grafana_fundamentals} bleibt der Inhalt der Logdateien ohne Indexierung, um Effizienz bei der Verwaltung des Inhalts zu gewinnen, im Vergleich zu anderen Tools, wie Elastic Stack, wo der gesammte Inhalt indexiert wird \citep{Anand_LokixELK}. Bei Loki werden die Metadata, wie Zeitstempel oder andere kundenspezifische Labels, dann indexiert.
 
 Für eine optimale Nutzung wird von Grafana empfohlen, wenig \quotes{labels} zu benutzen, um eine Eskalation des Speicherbedarfs zu vermeiden \cite{Grafana_labels}. Die Abbildung \ref{fig:Eskalation_Labels} zeigt den Eskalationseffekt, der durch die Nutzung von \quotes{labels} entsteht:
 
@@ -376,8 +386,7 @@ Total Streams = 27
 \end{Verbatim}
 }
 
-
-Promtail kann aber Logdateien nur zur Grafana Loki oder zu einem anderen Promtail Instanz schicken. In der Konfigurationsdatei von Promtail kann die Häufigkeit, in der nach neuem Inhalt in der Logdateien gesucht wird, konfiguriert werden. Das Tool kann auch Logdatei entdecken und dekomprimieren \citep{Grafana_Promtail}. Diese Daten können in Grafana mithilfe der \gls{abfragesprache} \gls{logql} aufgerufen werden. Schließlich werden Warnmeldungen mit spezifischen Regelsätze in \gls{logql} generiert. Für die Erstellung von Warnmeldung bietet Grafana das eigene Tool Alerting an oder diese können mit externen Komponenten, wie Alertmanager von \gls{prometheus} generiert werden \citep{Grafana_loki}. Auf Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} wird die Verbindung zwischen Promtail und Grafana Loki dargestellt \citep{Grafana_Logs}:
+Promtail kann aber Logdateien nur zur Grafana Loki oder zu einem anderen Promtail Instanz schicken. In der Konfigurationsdatei von Promtail kann die Häufigkeit, in der nach neuem Inhalt in der Logdateien gesucht wird, konfiguriert werden. Auf Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} wird die Verbindung zwischen Promtail und Grafana Loki dargestellt \citep{Grafana_Logs}:
 
 % \begin{figure}[H]
 %    \centering
@@ -396,6 +405,8 @@ Promtail kann aber Logdateien nur zur Grafana Loki oder zu einem anderen Promtai
    \label{fig:Integration_Loki_Promtail_Grafana}
    \centering
 \end{figure}
+
+. 
 
 Die wissenschaftlichen Literatur über Grafana konzentriert sich eher auf die Anwendung des Tools für die grafische Darstellung von Daten als für ihre Nutzung in dem Sicherheitsbereich. Eine Recherche, z.B., wollte das Ergebnis von der Überwachung von Cloud-basierten Systemen, von Netzwerkaktivitäten und von Netzwerkverkehr mithilfe von Grafana darstellen \citep{Manases_grafananetwork}.
 Die wissenschaftliche Recherche über die Implementierung und Integration von Grafana mit anderen Tools zum Sicherheitszweck ist neu und bietet deshalb viele  Perspektive für das Weiterlernen an.

@@ -1,7 +1,7 @@
 \section{Evaluation der Implementation mit echten Logdateien}
-In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. 
+In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. Hier hat unsere Logdateien ungefähr vier Megabyte 
 
-Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Konfigurationen:
+Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Konfigurationen aus der offiziellen Dokumentation \citep{Grafana_ConfigPromtail}:
 \begin{table}[H]
     \setstretch{1}
     \begin{tabularx}{\textwidth}{|m{5.5cm}|X|}
@@ -12,7 +12,7 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
     \hline
     - job\_name: sshlogs & Definition des Names unseres \quotes{job} \\
     \hline
-    \textbf{pipeline\_stages:} & Diese Konfigurationen führen Änderungen in jeder Logzeile durch, die zum Loki geschickt wird. \\
+    \textbf{pipeline\_stages:} & Hier können wir den Inhalt der Logzeile definieren, bevor wir es zu Loki schicken. \\
 
     \hphantom{te}- match: \newline
     \hphantom{tex}selector: '\{job=``sshlogs''\}' \newline
@@ -58,86 +58,45 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
 
 Unsere gesamte Einstellung für Promtail befindet sich im Anhang \ref{appendix:AngepasstGrafana} auf der Seite \pageref{appendix:AngepasstGrafana}.
 
-
-%%% bearbeiten 
-
-Unsere Logdateien haben eine Größe von ungefähr vier Megabyte, was im Vergleich zu produktiven Umgebungen, in denen Logdateien den Terabyte-Bereich erreichen können, gering ist. 
-
-
-Trotz dieser Größe war unsere Synchronisierung nicht immer so präzise wie erwartet. Einige Abfragen, die bei der Implementierung mit 40 KB Logdateien einwandfrei funktionierten, führten hier zu folgender Fehlermeldung:
-
-{\setstretch{1.0}
-\begin{Verbatim}[fontsize=\small, frame=single]
-maximum of series (500) reached for a single query  
-\end{Verbatim}
-}
-
-Die offizielle Dokumentation und die verschiedenen Foren konnten uns keine endgültige Lösung mit der neuesten Version von Loki (2.8.2) bieten. Die verschiedenen Kombinationen in der Konfigurationsdatei von Loki führten immer zum selben Ergebnis. Zum Zeitpunkt unserer Arbeit (19.5.2022) haben wir versucht, über das GitHub-Forum Kontakt mit dem Grafana Loki-Team aufzunehmen, um mögliche Lösungsansätze zu finden.
-
-Mit der Verwendung der Version 2.4.1 konnten wir die oben genannte Situation teilweise lösen. Unsere Abfragen wurden erfolgreich gesendet und die Diagramme wurden generiert. Der folgende Ausschnitt der Loki-Konfiguration in Tabelle \ref{tab:KonfigLoki} half dabei, die Leistungsparameter der Anwendung zu definieren:
-
-%für diesen testlauf diese konfig aus diesem und diesem grund
-% acceot old logs, because our is from april
-% max intesitty
+In der nächsten Tabelle, \ref{tab:KonfigLoki}, zeigen wir einen Konfigurationsausschnitt von Loki, die wir anpassen mussten, damit unsere Logdateien verarbeitet werden könnten. Diese Konfiguration wurde mithilfe der offizielen Dokumentation \citep{Grafana_ConfigLoki} und des offizielen Forumsbeitrags von Grafana Loki \citep{githubforum} gestaltet.
 
 \begin{table}[H]
   \setstretch{1}
-  \begin{tabularx}{\textwidth}{|p{7cm}|X|}
+  \begin{tabularx}{\textwidth}{|m{6cm}|X|}
   \hline
-  \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\ \hline
-  \textbf{limits\_config:} & Festlegung der Aufnahmerate; \\
-  \hphantom{10}reject\_old\_samples: true & Aufnahme von alten Proben;\\ 
-  \hphantom{10}reject\_old\_samples\_max\_age: 168h & Aufnahme von alten Proben, wenn sie älter als dieser Wert sind;\\
-  \hphantom{10}ingestion\_rate\_mb: 1024 & Aufnahmerate in Megabyte pro Sekunde;\\ 
-  \hphantom{10}ingestion\_burst\_size\_mb: 1024 & Aufnahmerate bei einer einzigen Weiterleitung in Megabyte; \\ 
-  \hphantom{10}ingestion\_rate\_strategy: local &  Aufnahmerate wird entweder \quotes{local} definiert oder auf \quotes{global} aufgeteilt;  \\ 
-  \hphantom{10}per\_stream\_rate\_limit: 12MB & Aufnahmerate in Byte pro Sekunde und pro Stream; \\ 
-  \hphantom{10}max\_query\_series: 100000 & Maximale Anzahl von einzelnen Serien pro Abfrage; \\ 
-  \hphantom{10}max\_query\_parallelism: 32 & Maximale Anzahl von parallelen Abfragen; \\ 
-  \hphantom{10}split\_queries\_by\_interval: 24h & Trennung von Abfragen nach einem definierten Intervall;;\\ 
-  \hphantom{10}max\_query\_length: 0h & Grenze für die Ausführungszeit. Dadurch wird eine Überlastung der Rechenkapazität vermieden; \\ 
-  \bottomrule
+  \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
+  \hline
+  \textbf{query\_range:} & Bezieht sich auf Abfrage und Ergebnis von Inhalt des Logdateien in spezifischen Zeitspanne. \\
+  \hphantom{te}parallelise\_shardable\_queries: true & Der Abfrage-Prozess findet parallel statt.\\ \hline
+
+  \textbf{frontend:} & Dieser Block bezieht sich auf Abfrage in \gls{frontend}-Ebene. \\
+  \hphantom{te}max\_outstanding\_per\_tenant: 10000 & Anzahl von erlaubten  ausstehenden Abfrage. Um Leistung zu gewinnen, sagten wir, dass ein einzelner Nutzer, diese Anzahl von ausstehenden Anfrage hat. In einer produktiven Umgebung ist dieser Wert von der Rechenkapazität abhängig.\\ \hline
+
+  \textbf{querier:} & Festelegung der Verarbeitung von Abfrage \\ 
+  \hphantom{te}max\_concurrent: 2048 & Anzahl der gleichzeitigen Abfragen, die verarbeitet werden. \\ \hline
+
   \end{tabularx}
 \end{table}
 
 \begin{table}[H]
   \setstretch{1}
-  \begin{tabularx}{\textwidth}{|b{7cm}|X|}
+  \begin{tabularx}{\textwidth}{|m{6cm}|X|}
   \hline
-  \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\ \hline
-  \textbf{querier:} & Einstellung für die Abfrage; \\ 
-  \hphantom{10}max\_concurrent: 2048 & Anzahl der gleichzeitigen Abfragen;\\ \hline
-  \textbf{frontend:} & Einstellung für die Abfrage im \gls{frontend};\\
-  \hphantom{10}compress\_responses: true &Komprimierung der \gls{http}-Antworten;\\
-  \hphantom{10}scheduler\_worker\_concurrency: 20 &  Anzahl der gleichzeitigen Abfragen, die verarbeitet werden; \\  \hline
-  \textbf{table\_manager:} & Verwaltung der Vorratsdatenspeicherung;\\ 
-  \hphantom{10}retention\_deletes\_enabled: false & Löschen von Tabellen in der Datenbank;\\ 
-  \hphantom{10}retention\_period 360s & Tabellen werden gelöscht, wenn sie älter als dieser Wert sind;\\ \hline
+  \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
+  \hline
+
+  \textbf{limits\_config:} & Festlegung der Aufnahmerate und Nutzung von Ressourcen. \\ 
+  \hphantom{te}reject\_old\_samples: false & Ermöglicht die Aufnahme von alten Logdateien, was in unserem Fall notwendig ist, da unsere Datei von April 2022 ist. \\ 
+  \hphantom{te}split\_queries\_by\_interval: 15m & Trennung von Abfragen nach einem definierten Intervall. Jeder Intervall wird gleichzeitig ausgeführt \\ 
+  \hphantom{te}max\_query\_parallelism: 32 & Maximale Anzahl von parallelen Abfragen, die gleichzeitig ausgeführt werden.  \\ \hline
+  
   \end{tabularx}
-  \caption[Konfigurationsausschnitt für Loki]
-  {Konfigurationsausschnitt für Loki}
+  \caption[Konfigurationsausschnitt von Loki]
+  {Konfigurationsausschnitt von Loki}
   \label{tab:KonfigLoki}
 \end{table}
 
-Trotz dieser Situation waren wir in der Lage, eine allgemeine Warnmeldung für eine hohe Anzahl von fehlgeschlagenen Anmeldeversuchen zu implementieren. Diese Warnmeldung ermöglicht es uns, potenzielle Sicherheitsbedrohungen zu erkennen und angemessen darauf zu reagieren.
+%In einer Zeitspane von 1.5.2024 und 22.4.2025 zeigt uns Grafana folgende Graphiken
 
-
-
-% \newpage
-% \newgeometry{right=30mm, left=30mm} 
-% \thispagestyle{lscape}
-% \begin{landscape}
-%    Nach manuellen Aktualiserung sah unsere Graphik so aus:
-%     \begin{figure}[H]
-%        % \centering
-%         \centerline{\includegraphics[width=1.8\textwidth]{assets/unserssh}}
-%         %\includegraphics[width=1.2\textwidth]{assets/5.4.2_1_Abb.jpeg}
-%         \caption[Ausgabe in Grafana von unseren \gls{ssh} Logdateien]
-%         {Ausgabe in Grafana von unseren \gls{ssh} Logdateien}
-%         \label{fig:Unserssh}
-%         \centering
-%     \end{figure} 
-% \end{landscape}
-% \restoregeometry
-
-
+% unsere Warnmeldung
+% unsere Grafik

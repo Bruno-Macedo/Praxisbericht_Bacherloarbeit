@@ -133,7 +133,8 @@ Unten befindet sich die angepasste Konfigurationsdateien \citep{Polinowski_PGL}:
         action: keep
         stages:
         - regex:
-            expression:  '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2})*'
+            expression:  '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}
+                          :\d{2}:\d{2})*'
         - timestamp:
             source: time
             format: RFC822Z #"Jan _2 15:04:05"
