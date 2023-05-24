@@ -16,17 +16,17 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
 
     \hphantom{te}- match: \newline
     \hphantom{tex}selector: '\{job=``sshlogs''\}' \newline
-    \hphantom{tex} action: keep \newline & Nur Logzeilen mit diesem \quotes{label} werden modifiziert und dessen Inhalt wird beibehalten. Alternativ gibt es \quotes{drop}, um diesen Inhalt zu löschen. \\
+    \hphantom{tex}action: keep \newline & Nur Logzeilen mit diesem \quotes{label} werden modifiziert und dessen Inhalt wird beibehalten. Alternativ gibt es \quotes{drop}, um diesen Inhalt zu löschen. \\
 
     \hphantom{tex}\textbf{stages:}  \newline
     \hphantom{tex}- regex: \newline
-    \hphantom{text}expression:  \verb|`^(?P<time>[A-Za-z]|
-                 \verb|{3}\s{1,2}\d{1,2}\s|
-                 \verb|\d{2}:\d{2}:\d{2})*'| \newline
+    \hphantom{texten}expression: \verb|`^(?P<time>|
+          \verb|[A-Za-z]{3}\s{1,2}\d{1,2}| \newline
+          \verb|\s\d{2}:\d{2}:\d{2})*'| \newline
     \hphantom{tex}- timestamp: \newline
-    \hphantom{text}source: time \newline
-    \hphantom{text}format: ``Jan \_2 15:04:05'' \newline
-    \hphantom{text}location: \quotes{Europe/Berlin} & Promtail bietet verschiedene Typen von \quotes{stages}, um die Logzeile zu bearbeiten. Diese werden nacheinander verarbeitet. Wir benutzen die \quotes{stages} \gls{RegExp} und dann \quotes{timestamp}. Der erste liest den Zeitstempel aus der \gls{ssh}-Logdatei aus, damit der zweite ihn verarbeiten und zu der von uns ausgewählten Format umwandeln kann. Schließlich speichert Loki den Zeitstempel der Zeile de Logdatei und nicht denen von des Hochladen in Loki. \\
+    \hphantom{texten}source: time \newline
+    \hphantom{texten}format: ``Jan \_2 15:04:05'' \newline
+    \hphantom{texten}location: \quotes{Europe/Berlin} & Promtail bietet verschiedene Typen von \quotes{stages}, um die Logzeile zu bearbeiten. Diese werden nacheinander verarbeitet. Wir benutzen die \quotes{stages} \gls{RegExp} und dann \quotes{timestamp}. Der erste liest den Zeitstempel aus der \gls{ssh}-Logdatei aus, damit der zweite ihn verarbeiten und zu der von uns ausgewählten Format umwandeln kann. Schließlich speichert Loki den Zeitstempel der Zeile de Logdatei und nicht denen von des Hochladen in Loki. \\
     \hline
     \textbf{decompression} \newline
     \hphantom{te}enabled: true \newline
@@ -43,12 +43,12 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
   \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
   \hline
   \textbf{static\_configs:} \newline
-  \hphantom{te}- targets: \newline
+  - targets: \newline
   \hphantom{te}- loki \newline
   \hphantom{te}labels: \newline
-  \hphantom{te}job: sshlogs \newline
-  \hphantom{te}instance: \gls{Endpoint}-Name \newline
-  \hphantom{te}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Datei im System an.\\
+  \hphantom{text}job: sshlogs \newline
+  \hphantom{text}instance: \gls{Endpoint}-Name \newline
+  \hphantom{text}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Datei im System an.\\
   \hline
   \end{tabularx}
   \caption[Konfigurationsausschnitt von Promtail]

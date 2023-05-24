@@ -262,22 +262,23 @@ Für die Einrichtung haben wir sowohl offizielle Dokumentation von Grafana als a
 %Für spezifische Versionen oder weitere Einstellungen bietet die Dokumentation umfangreiche Möglichkeiten an \citep{GrafanaLoki_run}.
 
 Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen, da wir hier nur eine Instanz von Promtail verwendeten.  Für unsere Arbeit nahmen wir die folgenden Versionen von den Anwendungen:
+
 \begin{table}[h]
    \centering
    \setstretch{1.2}
-   \begin{tabular}{|c|c|c|}
+   \begin{tabular}{|c|c|}
    \hline
-   \textbf{Anwendung}  & \textbf{Angewandte Version} & \textbf{Neuste Version}    \\ \hline
-   Grafana             & \cellcolor{green!25}9.5.2   & \cellcolor{green!25}9.5.2 \\ \hline
-   Loki                & \cellcolor{green!25}2.8.2   & \cellcolor{red!25}2.4.1 \\ \hline
-   Promtail            & \cellcolor{green!25}2.8.2    & \cellcolor{green!25}2.8.2\\ \hline
+   \textbf{Anwendung}  & \textbf{Angewandte Version}  \\ \hline
+   Grafana             & \cellcolor{green!25}9.5.2    \\ \hline
+   Loki                & \cellcolor{green!25}2.8.2    \\ \hline
+   Promtail            & \cellcolor{green!25}2.8.2    \\ \hline
    \end{tabular}
    \caption[Verwendete Versionen der Anwendungen]
    {Verwendete Versionen der Anwendungen \\Quelle: \citep{Grafana_Version} und \citep{GrafanaLoki_Version}}
    \label{tab:Versions}
 \end{table}
 
-Die Entscheidung, eine ältere Version für Loki zu wählen, basierte auf Recherchen im offiziellen Forum von Grafana Loki. Viele Nutzer berichteten von Problemen mit ihren Abfragen. In verschiedenen Kommentaren wurde vorgeschlagen, einige Werte in der Konfigurationsdatei von Loki anzupassen, um die Leistung der Anwendung zu verbessern. Diese Lösungen waren für die meisten Forenteilnehmer jedoch erfolglos. Die Mehrheit der Teilnehmer gab außerdem an, dass Versionen über 2.4.1 dasselbe Problem aufweisen, weshalb sie die Version 2.4.1 verwendet haben \citep{githubforum}.
+% Die Entscheidung, eine ältere Version für Loki zu wählen, basierte auf Recherchen im offiziellen Forum von Grafana Loki. Viele Nutzer berichteten von Problemen mit ihren Abfragen. In verschiedenen Kommentaren wurde vorgeschlagen, einige Werte in der Konfigurationsdatei von Loki anzupassen, um die Leistung der Anwendung zu verbessern. Diese Lösungen waren für die meisten Forenteilnehmer jedoch erfolglos. Die Mehrheit der Teilnehmer gab außerdem an, dass Versionen über 2.4.1 dasselbe Problem aufweisen, weshalb sie die Version 2.4.1 verwendet haben \citep{githubforum}.
 
 \newpage
 \newgeometry{right=30mm, left=30mm}

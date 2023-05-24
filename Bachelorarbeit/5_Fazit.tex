@@ -1,5 +1,6 @@
-\section{Fazit}
+\section{Zusammenfassung}
 
+\subsection{Diskussion der Ergebnisse}
 In dieser Arbeit haben wir versucht, mithilfe von Grafana, Loki und Promtail eine \gls{SIEM}-Lösung zu emulieren, um Überwachungsmechanismen anhand von Logdateien zu erstellen. In der folgenden Tabelle zeigen wir die Rolle jedes verwendeten Tools bei der Erreichung unseres Ziels:
 
 \begin{table}[h]
@@ -18,47 +19,43 @@ In dieser Arbeit haben wir versucht, mithilfe von Grafana, Loki und Promtail ein
     \label{tab:VerewendeteTools}
 \end{table}
 
-Wir stellen fest, dass die verwendeten Tools trotz einiger Einschränkungen eine kosteneffektive Möglichkeit bieten, ein Überwachungssystem zu implementieren. Die Methoden zur Erkennung von Angriffen lassen sich anhand der \glsfirst{ttp} der \gls{mitre} Matrix definieren. Nach der Auswahl eines Angriffs erstellen wir Regelwerke mit der Abfragesprache \gls{logql} in Loki, um Muster zu identifizieren, die auf den ausgewählten Angriff hindeuten. Diese Regelwerke werden dann verwendet, um Warnmeldungen über den Angriff zu generieren und zu versenden.
+Wir stellen fest, dass die verwendeten Tools eine kosteneffektive Möglichkeit bieten, ein Überwachungssystem zu implementieren. Die Methoden zur Erkennung von Angriffen lassen sich anhand der \glsfirst{ttp} der \gls{mitre} Matrix definieren. Nach der Auswahl eines Angriffs erstellen wir Regelwerke mit der Abfragesprache \gls{logql} in Loki, um Muster zu identifizieren, die auf den ausgewählten Angriff hindeuten. Diese Regelwerke werden dann verwendet, um Warnmeldungen über den Angriff zu generieren und zu versenden.
 
-Die Einschränkungen beziehen sich auf verschiedene Probleme in der neueren Version von Loki, die seit 2022 gemeldet wurden und für die bisher keine Lösung existiert.
 
 \subsection{Herausforderungen}
-Die korrekte Erstellung der Regelwerke stellt die größte Herausforderung bei dieser Implementierung dar. Um die Tools präzise anzuwenden, ist es entscheidend, die Regelwerke richtig zu entwickeln, um potenzielle Angriffe identifizieren zu können. Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen die Regelwerke so definiert werden, dass sie die relevanten Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können. Die Lernkurve für den Aufbau der richtigen Regelwerke kann eine große Herausforderung darstellen, wie auch in unserem Fall.
+Der korrekte Aufbau der Regesätze, die Beherrschung der vielen Funktionalitäten und Konfigurationen von Grafana, Loki und Promtail und die richtige Indexierung stellen die größte Herausforderung bei dieser Implementierung dar. Um die Tools präzise anzuwenden, ist es entscheidend, die Regesätze richtig zu entwickeln, um potenzielle Angriffe zu identifizieren und eine passende Konfiguration, um eine einwandreie Nutzung mit mehreren \glsplural{Endpoint} und Nutzer zu bekommen. 
 
-Die korrekte und präzise Indexierung spielt eine entscheidende Rolle für die Leistung der Anwendung. Die Verwendung vieler Labels erfordert eine hohe Rechenkapazität und kann auch zu fehlerhaften Ergebnissen führen, wie bei uns. Die Rechenkapazität muss ebenfalls angepasst werden, um sicherzustellen, dass die steigende Anzahl von Anfragen (siehe Abbildung \ref{fig:Eskalation_Labels} auf Seite \pageref{fig:Eskalation_Labels}) nicht zu Abstürzen führt.
+Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen die Regesätze so definiert werden, dass sie die relevanten Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können. Die Lernkurve für den Aufbau der richtigen Regelsatz kann eine große Herausforderung darstellen, wie auch in unserem Fall.
+
+Die richtige Einstellung gewährleistet eine fehhlerfreie Nutzung der Anwendungen und ermöglicht ihre Skalierbarkeit. Für diesen Fall können sowohl die offizielen Dokumentation als auch die offizielen Forumbeiträge dazu helfen, die Tools richtig zu konfigurieren.
+
+\quotes{Labels} haben auch eine wichtige Position bei Grafana, Loki und Promtail. Die korrekte und präzise Indexierung spielt eine entscheidende Rolle für die Leistung der Anwendung. Die Verwendung vieler Labels erfordert eine hohe Rechenkapazität und kann auch zu fehlerhaften Ergebnissen führen. Die Rechenkapazität muss ebenfalls angepasst werden, um sicherzustellen, dass die steigende Anzahl von Anfragen (siehe Abbildung \ref{fig:Eskalation_Labels} auf Seite \pageref{fig:Eskalation_Labels}) nicht zu Abstürzen führt.
 
 \subsection{Zukünftige Forschung}
-
-% Ausblick: Das Tool besser beherrschen / weitere Abfrage für ttp mitre
-% große System in cluster
-
-Die von uns definierten Regeln basieren auf statischen Elementen wie der \quotes{Anzahl von Anfragen}, dem \quotes{Zeitabstand zwischen Requests} und der \quotes{Anzahl von fehlgeschlagenen Anmeldeversuchen}. Moderne Angriffe haben jedoch auch einen dynamischen Aspekt, der sich an die Umgebung anpasst, insbesondere durch die fortschreitende Entwicklung von \glsfirst{KI} \citep{Guembe_AIHACKER}.
-
-\gls{KI} kann zur Automatisierung von Aufgaben oder zur effizienten Datenanalyse eingesetzt werden. Für die zukünftige Weiterentwicklung dieser Arbeit kann dieses Werkzeug eine große Unterstützung bieten, indem es performantere und effizientere Regelwerke vorschlägt, um die Log-Analyse effizienter und zuverlässiger zu gestalten. Dies würde dazu beitragen, einen sicheren Netzwerkverkehr zu gewährleisten.
-
-
-%Während \gls{KI} einerseits für die Automatisierung von Aufgaben oder für effiziente Datenanalyse verwendet wird, könnte sie auch für Cyberkriminalität genutzt werden. \gls{KI} ist am Ende nur ein Werkzeug, dessen Nutzung von den Absichten ihrer Benutzer abhängt.
-
-
-
-
-% % % Verschiedene Angriffstechniken lassen sich schneller und effizienter mit \gls{KI} durchführen. Die Nutzung von \gls{polyphomicMalware} ist ein Beispiel, wo weder Antivirus-Programme noch Log-Analyse-Tools einen normalen von einem abnormalen Ablauf unterscheiden können. Auch die Verkehrsanalyse kann durch \gls{KI} gefährdet sein, da Angriffe und normaler Verkehr ähnlich dargestellt werden können. Darüber hinaus kann \gls{KI} auch gegen Authentifizierungsverfahren eingesetzt werden, um beispielsweise Anmeldedaten schneller zu \gls{bruteforce} und/oder vorauszusehen \citep{Fritsch_AIcybersec}.
-
-% \newpage
-% Das folgende Diagramm zeigt, wo sich \gls{KI} bei Cyberangriffen anhand der\gls{CKC} integrieren lässt:
-
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.9\textwidth]{assets//CKC_AI.jpg}
-%     \caption[\gls{KI} in der \glsfirst{CKC}]
-%     {\gls{KI} in der \glsfirst{CKC}\\Quelle: \citep{Guembe_AIDiagrammAngriff}}
-%     \centering
-%  \end{figure}
+Dieser Arbeit ermöglicht eine Weiterentwicklugn in verschiedenen Bereichen:
  
+\begin{itemize}[noitemsep]
+    \item \textbf{Abdeckung vielen möglichen \glsplural{Cyberangriff}n mit neuen Regelsätze}:
+\end{itemize}
 
-% Um sicherzustellen, dass unsere Lösungen sich an diese neue und dynamische Realität anpassen können, können zukünftige Regelsätze mithilfe von \gls{KI} erstellt werden. Nachdem die meisten möglichen Angriffsflächen identifiziert wurden, sollten die Regeln die viele mögliche Szenarien abdecken.
+Mit der Nutzung der \glsfirst{ttp} der \gls{mitre} Matrix ist es mögliche Regelsätze in \gls{logql} für viele anderen \glsplural{Cyberangriff} aufzubauen. Neue Regelsätzen können eine umfangreiche Sicherheits für produktive Umgebung anbieten und ermöglichen die Erkennung weitere Angriffe.
 
-% Mit der rasanten Entwicklung von \gls{KI}, insbesondere während der Erstellung dieser Arbeit, können wir auch erwarten, dass sich sowohl Loki als auch Grafana bald mit verschiedenen \gls{opensource} \gls{plugin} integrieren lassen, die auch \gls{KI} unterstützen. Diese sollen dazu beitragen, die Loganalyse effizienter und zuverlässiger zu machen. All dies würde dabei helfen, einen sicheren Netzwerkverkehr zu gewährleisten.
+\begin{itemize}[noitemsep]
+    \item \textbf{Erkundung der Tools der \textit{\gls{GrafanaSystem}}}:
+\end{itemize}
 
+Die Tools um den \textit{\gls{GrafanaSystem}} bieten viele Möglichkeiten, um eine deutliche und präzise Beobachtbarkeit auf Systemen durchzuführen. Wenn kombiniert, ermöglichen sie eine umfangreiche und tiefe Analyse von \gls{pillarobservability}. Die kombinierte Implementierung in einer produktiven Umbegung kann dazu beitragen, die Sicherheit eines Systems zu verbessern, egal wie groß die Struktur skaliert.
 
+\begin{itemize}[noitemsep]
+    \item \textbf{Automatische Antworte auf mögliche \glsplural{Cyberangriff}n}:
+\end{itemize}
+
+Eine umfangreiche \gls{SIEM}-Lösung bietet laut \cite{Mohammed_NOC} die wichtigen Informatinen, um Angriffe zu erkennen. Der Sicherheitsarbeit bleibt jedoch nicht in der Erkennung, sondern verlangt Handlungen, um laufenden Angriffe zu stoppen oder potenziellen zu verhindern. Die Entwicklung oder die Integration von existierenden Tools, um automatisch gegen \glsplural{Cyberangriff} zu handeln, stellen auch eine mögliche Perspektive für zukünftige Recheche dar.
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Nutzung von \gls{KI}}:
+\end{itemize}
+
+Moderne Angriffe haben  heutzutage einen dynamischen Aspekt, der sich an die Umgebung anpasst, insbesondere durch die fortschreitende Entwicklung von \glsfirst{KI} \citep{Guembe_AIHACKER}. \gls{KI} kann zur Automatisierung von Aufgaben oder zur effizienten Datenanalyse eingesetzt werden. Für die zukünftige Weiterentwicklung dieser Arbeit kann dieses Werkzeug eine große Unterstützung bieten, indem es performantere und effizientere Regelwerke vorschlägt, um die Log-Analyse effizienter und zuverlässiger zu gestalten. 
+
+Diese Möglichkeiten zusammen oder getrennt könnten dazu beitragen, einen sicheren Netzwerkverkehr zu gewährleisten.
