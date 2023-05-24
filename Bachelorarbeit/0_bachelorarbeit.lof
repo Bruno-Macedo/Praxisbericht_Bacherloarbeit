@@ -8,29 +8,30 @@
 \contentsline {figure}{\numberline {8}{\ignorespaces Skalierbare Architektur von FortiSIEM}}{14}{figure.caption.20}%
 \contentsline {figure}{\numberline {9}{\ignorespaces Integration zwischen Elasticsearch, Logstash und Kibana}}{15}{figure.caption.21}%
 \contentsline {figure}{\numberline {10}{\ignorespaces Aufteilung der Funktionalitäten zwischen den Komponenten}}{16}{figure.caption.22}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Eskalation bei Verwendung von \glqq labels\grqq {}}}{19}{figure.caption.23}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Integration von Log-Quellen mit Promptail, Loki und Grafana}}{20}{figure.caption.24}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Aufbau unseres Arbeitslabors}}{24}{figure.caption.28}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung}}{25}{figure.caption.29}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Struktur der \gls {mitre} Matrix}}{26}{figure.caption.30}%
-\contentsline {figure}{\numberline {16}{\ignorespaces \glsfirst {ttp} für unseren Angriff}}{27}{figure.caption.31}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Darstellung von \textit {\gls {stuffing}}}}{29}{figure.caption.32}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Ausgabe von \textit {\gls {stuffing}} gegen Opfersystem1}}{30}{figure.caption.33}%
-\contentsline {figure}{\numberline {19}{\ignorespaces Ausgabe von \textit {\gls {stuffing}} gegen Opfersystem2}}{30}{figure.caption.34}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Darstellung von \textit {\gls {spraying}}}}{31}{figure.caption.35}%
-\contentsline {figure}{\numberline {21}{\ignorespaces Ausgabe von \textit {\gls {spraying}} in Kali Linux gegen Opfersystem1}}{32}{figure.caption.36}%
-\contentsline {figure}{\numberline {22}{\ignorespaces Ausgabe von \textit {\gls {spraying}} in Kali Linux gegen Opfersystem2}}{32}{figure.caption.37}%
-\contentsline {figure}{\numberline {23}{\ignorespaces Screenshot der Willkommensseite von Grafana Loki}}{34}{figure.caption.39}%
-\contentsline {figure}{\numberline {24}{\ignorespaces Kommunikation zwischen Grafana Agents, \gls {prometheus}, OpenTelemetry und \textit {\gls {GrafanaSystem}}}}{36}{figure.caption.40}%
-\contentsline {figure}{\numberline {25}{\ignorespaces Datenfluss zwischen \gls {opentelemetry} und die Tools von \textit {\gls {GrafanaSystem}}}}{37}{figure.caption.41}%
-\contentsline {figure}{\numberline {26}{\ignorespaces Allgemeiner Ablauf eines Anmeldungsverfahrens}}{38}{figure.caption.42}%
-\contentsline {figure}{\numberline {27}{\ignorespaces Beziehung zwischen \glqq instance\grqq {} und \glqq job\grqq {}}}{39}{figure.caption.44}%
-\contentsline {figure}{\numberline {28}{\ignorespaces Aufrufe des Inhalts der Logdateien nach bestimmten Labels}}{40}{figure.caption.45}%
-\contentsline {figure}{\numberline {29}{\ignorespaces Aufrufe des Inhalts der Logdateien mit \gls {logql}}}{40}{figure.caption.46}%
-\contentsline {figure}{\numberline {30}{\ignorespaces Feld in Grafana Loki für die manuelle die Eingabe des \gls {logql}-Codes}}{43}{figure.caption.49}%
-\contentsline {figure}{\numberline {31}{\ignorespaces \glqq Builder\grqq {} in Grafana Loki für nutzerfreundlichere Eingabe des \gls {logql}-Codes.}}{43}{figure.caption.50}%
-\contentsline {figure}{\numberline {32}{\ignorespaces Ausführliche Information über die Abfrage}}{44}{figure.caption.51}%
-\contentsline {figure}{\numberline {33}{\ignorespaces Ausgabe der Verarbeitung der \gls {ssh} Logdateien von Grafana Loki}}{45}{figure.caption.52}%
-\contentsline {figure}{\numberline {34}{\ignorespaces Ausführliche Darstellung der \gls {ssh} Logdateien von Grafana Loki}}{46}{figure.caption.53}%
-\contentsline {figure}{\numberline {35}{\ignorespaces E-Mail Warnmeldung von Grafana}}{49}{figure.caption.54}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Architektur von Loki}}{18}{figure.caption.23}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Eskalation bei Verwendung von \glqq labels\grqq {}}}{19}{figure.caption.24}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Integration von Log-Quellen mit Promptail, Loki und Grafana}}{20}{figure.caption.25}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Aufbau unseres Arbeitslabors}}{24}{figure.caption.29}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung}}{25}{figure.caption.30}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Struktur der \gls {mitre} Matrix}}{26}{figure.caption.31}%
+\contentsline {figure}{\numberline {17}{\ignorespaces \glsfirst {ttp} für unseren Angriff}}{27}{figure.caption.32}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Darstellung von \textit {\gls {stuffing}}}}{29}{figure.caption.33}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Ausgabe von \textit {\gls {stuffing}} gegen Opfersystem1}}{30}{figure.caption.34}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Ausgabe von \textit {\gls {stuffing}} gegen Opfersystem2}}{30}{figure.caption.35}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Darstellung von \textit {\gls {spraying}}}}{31}{figure.caption.36}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Ausgabe von \textit {\gls {spraying}} in Kali Linux gegen Opfersystem1}}{32}{figure.caption.37}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Ausgabe von \textit {\gls {spraying}} in Kali Linux gegen Opfersystem2}}{32}{figure.caption.38}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Screenshot der Willkommensseite von Grafana Loki}}{34}{figure.caption.40}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Kommunikation zwischen Grafana Agents, \gls {prometheus}, OpenTelemetry und \textit {\gls {GrafanaSystem}}}}{36}{figure.caption.41}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Datenfluss zwischen \gls {opentelemetry} und die Tools von \textit {\gls {GrafanaSystem}}}}{37}{figure.caption.42}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Allgemeiner Ablauf eines Anmeldungsverfahrens}}{38}{figure.caption.43}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Beziehung zwischen \glqq instance\grqq {} und \glqq job\grqq {}}}{39}{figure.caption.45}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Aufrufe des Inhalts der Logdateien nach bestimmten Labels}}{40}{figure.caption.46}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Aufrufe des Inhalts der Logdateien mit \gls {logql}}}{40}{figure.caption.47}%
+\contentsline {figure}{\numberline {31}{\ignorespaces Feld in Grafana Loki für die manuelle die Eingabe des \gls {logql}-Codes}}{43}{figure.caption.50}%
+\contentsline {figure}{\numberline {32}{\ignorespaces \glqq Builder\grqq {} in Grafana Loki für nutzerfreundlichere Eingabe des \gls {logql}-Codes.}}{43}{figure.caption.51}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Ausführliche Information über die Abfrage}}{44}{figure.caption.52}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Ausgabe der Verarbeitung der \gls {ssh} Logdateien von Grafana Loki}}{45}{figure.caption.53}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Ausführliche Darstellung der \gls {ssh} Logdateien von Grafana Loki}}{46}{figure.caption.54}%
+\contentsline {figure}{\numberline {36}{\ignorespaces E-Mail Warnmeldung von Grafana}}{49}{figure.caption.55}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

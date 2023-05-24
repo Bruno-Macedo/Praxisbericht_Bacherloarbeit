@@ -352,13 +352,19 @@ In der Webseite betont der Anbieter, dass Grafana die Zentralisierung und Zugang
 
 Grafana ist auch mit dem Logging Tool Loki und Promptail integriert. Promtail ist für Sammlungen der Logdateien und Weiterleitung an Loki zuständig während Loki sich um die Speicherung, Indexierung und Abfrage kümmert.
 
-Die Architektur von Loki besteht aus bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bilder. \gls{logql} 
+Die Architektur von Loki besteht aus folgenden Komponenten: \quotes{distributor}, \quotes{ingester} und \quotes{querier}, wie auf der Abbildung
+\ref{fig:Loki-Architektur} dargestellt:
 
-%https://grafana.com/blog/2018/12/12/loki-prometheus-inspired-open-source-logging-for-cloud-natives/
-
-bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
-bla bla bla bla bla bla bla bla bla Ingester, Distributor and Querier
-
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1\textwidth]{assets/LokiArchitektur.drawio.png}
+   \caption[Architektur von Loki]
+   {Architektur von Loki \cite{Grafana_LokiArchitektur2}}
+   \label{fig:Loki-Architektur}
+   \centering
+ \end{figure}
+ 
+Auf der Abbildung \ref{fig:Loki-Architektur} empfängt \quotes{distributor}  die Streams von den (1) \glsplural{Endpoint} und überprüft ihre Richtigkeit im Bezug auf den Zeitstempel und Länge der Logzeile. In dem \quotes{distributor} wird auch die Aufnahmenrate konfiguriert auch die Aufnahmenrate. Der \quotes{distributor} leitet die Streams zum (2) \quotes{ingester} weiter, wo dieser die Daten in kleinen Datenblöcken (3) speichert. Diese Daten werden wiederum in der Database (3) je nach \quotes{label} aufgenommen werden. Dieses Verfahren soll Skalierbarkeit und Fehlertoleranz ermöglichen. Schließlich beschäftigt sich der \quotes{querier} mit der Abfragen (4) in der \gls{abfragesprache} \gls{logql}. Der \quotes{querier} holt Daten sowohl von \quotes{ingester} als auch von der Database. Sobald dieses Verfahren fertig ist, kann Grafana \gls{frontend} nach diesen Daten \citep{Grafana_LokiArchitektur} und \citep{Grafana_LokiArchitektur2} fragen.
 
 Promptail wird an jeden \gls{Endpoint} installiert und er schickt als Stream zu Loki. Diese Streams werden dann in Loki mit Labels (Schlüssel-Wert-Paar) identifiziert. Jeder Stream bezieht sich auf eine Gruppe von Logdateien. Laut \cite{Grafana_fundamentals} bleibt der Inhalt der Logdateien ohne Indexierung, um Effizienz bei der Verwaltung des Inhalts zu gewinnen, im Vergleich zu anderen Tools, wie Elastic Stack, wo der gesammte Inhalt indexiert wird \citep{Anand_LokixELK}. Bei Loki werden die Metadata, wie Zeitstempel oder andere kundenspezifische Labels, dann indexiert.
 
@@ -456,10 +462,26 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
    niedrig                &
    hoch                   \\ \hline 
 
+
+
+
+
+
+ \end{tabular}
+\end{table}
+}
+
+{\setstretch{1}
+\begin{table}[H]
+   \centering
+\begin{tabular}{|m{5cm}|m{4.2cm}|>{\centering\arraybackslash}m{4.2cm}|}
+   \hline
+   \centering\textbf{Eigenschaft} & \centering\textbf{Grafana, Loki und Promtail} & \textbf{Kibana, Elasticsearch und Logstash} \\ \hline 
+
    Komplexität bei der Installation und Einstellung \citep{BetterStac_KG} & \centering 
    niedrig                &
    hoch                   \\ \hline 
-
+   
    Graphische Darstellung & \centering
    ja                     & 
    ja                     \\ \hline 
@@ -467,7 +489,6 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
    Dashboards und Graphik  & \centering
    ja                      & 
    ja                      \\ \hline 
-
    Eigene \gls{abfragesprache} & \centering
    abhängig von dier Datenquelle (Grafana), \gls{logql} (Loki) & 
    \gls{DSL}               \\ \hline 
@@ -487,20 +508,6 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
    Weiterleitung des Loginhalts & \centering
    nur an Promtail und an Loki (Promtail) &
    umfangreiche Integration mit anderen Tools (Logstash) \\ \hline
-
- \end{tabular}
- 
-\end{table}
-}
-
-{\setstretch{1}
-\begin{table}[H]
-   \centering
-\begin{tabular}{|m{5cm}|m{4.2cm}|>{\centering\arraybackslash}m{4.2cm}|}
-   \hline
-   \centering\textbf{Eigenschaft} & \centering\textbf{Grafana, Loki und Promtail} & \textbf{Kibana, Elasticsearch und Logstash} \\ \hline 
-
-
 
    Integrietes Tool für Generierung von Warnmeldungen \citep{Yigal_GrafanaKibanan} & \centering
    ja (Alerting) & 
