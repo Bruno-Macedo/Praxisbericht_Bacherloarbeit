@@ -25,11 +25,11 @@ Wir stellen fest, dass die verwendeten Tools eine kosteneffektive Möglichkeit b
 \subsection{Herausforderungen}
 Der korrekte Aufbau der Regesätze, die Beherrschung der vielen Funktionalitäten und Konfigurationen von Grafana, Loki und Promtail und die richtige Indexierung stellen die größte Herausforderung bei dieser Implementierung dar. Um die Tools präzise anzuwenden, ist es entscheidend, die Regesätze richtig zu entwickeln, um potenzielle Angriffe zu identifizieren und eine passende Konfiguration, um eine einwandreie Nutzung mit mehreren \glsplural{Endpoint} und Nutzer zu bekommen. 
 
-Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen die Regesätze so definiert werden, dass sie die relevanten Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können. Die Lernkurve für den Aufbau der richtigen Regelsatz kann eine große Herausforderung darstellen, wie auch in unserem Fall.
+Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen die Regesätze so definiert werden, dass sie die relevanten Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können. Die richtige nutzung von den Filterung Optionen von Promtail \quotes{scrape\_configs} ermöglicht die Extrahierung spezifisch Informationen und präzise \quotes{labels} zu genieren. Die Lernkurve für den Aufbau der richtigen Regelsatz kann eine große Herausforderung darstellen, wie auch in unserem Fall.
 
 Die richtige Einstellung gewährleistet eine fehhlerfreie Nutzung der Anwendungen und ermöglicht ihre Skalierbarkeit. Für diesen Fall können sowohl die offizielen Dokumentation als auch die offizielen Forumbeiträge dazu helfen, die Tools richtig zu konfigurieren.
 
-\quotes{Labels} haben auch eine wichtige Position bei Grafana, Loki und Promtail. Die korrekte und präzise Indexierung spielt eine entscheidende Rolle für die Leistung der Anwendung. Die Verwendung vieler Labels erfordert eine hohe Rechenkapazität und kann auch zu fehlerhaften Ergebnissen führen. Die Rechenkapazität muss ebenfalls angepasst werden, um sicherzustellen, dass die steigende Anzahl von Anfragen (siehe Abbildung \ref{fig:Eskalation_Labels} auf Seite \pageref{fig:Eskalation_Labels}) nicht zu Abstürzen führt.
+\quotes{Labels} haben auch eine wichtige Position bei Grafana, Loki und Promtail. Die korrekte und präzise Indexierung spielt eine entscheidende Rolle für die Leistung der Anwendung. Die Verwendung vieler  \quotes{labels} erfordert eine hohe Rechenkapazität und kann auch zu fehlerhaften Ergebnissen führen. Die Rechenkapazität muss ebenfalls angepasst werden, um sicherzustellen, dass die steigende Anzahl von Anfragen (siehe Abbildung \ref{fig:Eskalation_Labels} auf Seite \pageref{fig:Eskalation_Labels}) nicht zu Abstürzen führt.
 
 \subsection{Zukünftige Forschung}
 Dieser Arbeit ermöglicht eine Weiterentwicklugn in verschiedenen Bereichen:
@@ -38,24 +38,33 @@ Dieser Arbeit ermöglicht eine Weiterentwicklugn in verschiedenen Bereichen:
     \item \textbf{Abdeckung vielen möglichen \glsplural{Cyberangriff}n mit neuen Regelsätze}:
 \end{itemize}
 
-Mit der Nutzung der \glsfirst{ttp} der \gls{mitre} Matrix ist es mögliche Regelsätze in \gls{logql} für viele anderen \glsplural{Cyberangriff} aufzubauen. Neue Regelsätzen können eine umfangreiche Sicherheits für produktive Umgebung anbieten und ermöglichen die Erkennung weitere Angriffe.
+Mit der Nutzung der \glsfirst{ttp} der \gls{mitre} Matrix ist es mögliche Regelsätze in \gls{logql} für viele anderen \glsplural{Cyberangriff} aufzubauen und dadurch Logdateien aus verschiedenen Systemen und Anwendungen zu verwenden. Die Nutzung von anderen Regelsätzen, die sich auf verschiedenen Angriffe beziehen, kann eine umfangreiche Sicherheit für produktive Umgebung anbieten, indem mehr \glsplural{usecases} gedeckt werden, um Angriffe zu erkennen.
+
 
 \begin{itemize}[noitemsep]
-    \item \textbf{Erkundung der Tools der \textit{\gls{GrafanaSystem}}}:
+    \item \textbf{Beherschung der Tools: Promtail, Loki und Grafana}:
 \end{itemize}
 
-Die Tools um den \textit{\gls{GrafanaSystem}} bieten viele Möglichkeiten, um eine deutliche und präzise Beobachtbarkeit auf Systemen durchzuführen. Wenn kombiniert, ermöglichen sie eine umfangreiche und tiefe Analyse von \gls{pillarobservability}. Die kombinierte Implementierung in einer produktiven Umbegung kann dazu beitragen, die Sicherheit eines Systems zu verbessern, egal wie groß die Struktur skaliert.
+Grafana, Loki und Promtail bieten in ihrer Konfiguration verschiedenen Möglichkeiten und Informationen von Logdateien zu extrahieren und zu filtern. Eine tiefe Beherrschung von \quotes{scrape\_configs} von Promtail trägt dazu bei, Logdateien zu erkennen und wichtige Informtionen direkt zu filtern, ohne das weitere Abfrage notwendig ist, indem auch Leistung gespart wird. Eine tiefe Kenntnisse in der \gls{abfragesprache} \gls{logql} hilft dabei, präzise und effizieren Abfrage aufzubauen, um präzise Grafiken und/oder Warnmeldung zu genieren. Die Beherrschung dieses Tool stellt auch eine mögliche und vielversprechende weitere Recherche dar:
+
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Umfangreiche Beobachtbarkeit mit den Tools der \textit{\gls{GrafanaSystem}}}:
+\end{itemize}
+
+Die Tools um den \textit{\gls{GrafanaSystem}} bieten viele Möglichkeiten, um eine deutliche und präzise Beobachtbarkeit eines Systems durchzuführen. Wenn kombiniert, ermöglichen sie eine holistische und tiefe Analyse von \gls{pillarobservability}. Die kombinierte Implementierung in einer produktiven Umbegung kann dazu beitragen, die Sicherheit eines Systems auch bei skalierbaren Umgebungen zu verbessern. Eine Recheche in dieser Richtung hat auch die Möglichkeit, positive Ergebnisse zu liefern.
+
 
 \begin{itemize}[noitemsep]
     \item \textbf{Automatische Antworte auf mögliche \glsplural{Cyberangriff}n}:
 \end{itemize}
 
-Eine umfangreiche \gls{SIEM}-Lösung bietet laut \cite{Mohammed_NOC} die wichtigen Informatinen, um Angriffe zu erkennen. Der Sicherheitsarbeit bleibt jedoch nicht in der Erkennung, sondern verlangt Handlungen, um laufenden Angriffe zu stoppen oder potenziellen zu verhindern. Die Entwicklung oder die Integration von existierenden Tools, um automatisch gegen \glsplural{Cyberangriff} zu handeln, stellen auch eine mögliche Perspektive für zukünftige Recheche dar.
+Eine umfangreiche \gls{SIEM}-Lösung bietet laut \cite{Mohammed_NOC} die wichtigen Informatinen, um Angriffe zu erkennen. Die Sicherheitsanalyse stoppt jedoch nicht in der Erkennung, sondern verlangt Handlungen, um laufenden Angriffe zu stoppen oder potenziellen zu verhindern. Die Entwicklung oder die Integration von existierenden Tools, um automatisch gegen \glsplural{Cyberangriff} zu handeln, stellen auch eine mögliche Perspektive für zukünftige Recheche dar.
 
 \begin{itemize}[noitemsep]
     \item \textbf{Nutzung von \gls{KI}}:
 \end{itemize}
 
-Moderne Angriffe haben  heutzutage einen dynamischen Aspekt, der sich an die Umgebung anpasst, insbesondere durch die fortschreitende Entwicklung von \glsfirst{KI} \citep{Guembe_AIHACKER}. \gls{KI} kann zur Automatisierung von Aufgaben oder zur effizienten Datenanalyse eingesetzt werden. Für die zukünftige Weiterentwicklung dieser Arbeit kann dieses Werkzeug eine große Unterstützung bieten, indem es performantere und effizientere Regelwerke vorschlägt, um die Log-Analyse effizienter und zuverlässiger zu gestalten. 
+Moderne Angriffe haben heutzutage einen dynamischen Aspekt, der sich an die Umgebung anpasst, insbesondere durch die fortschreitende Entwicklung von \glsfirst{KI} \citep{Guembe_AIHACKER}. \gls{KI} kann zur Automatisierung von Aufgaben oder zur effizienten Datenanalyse eingesetzt werden. Für die zukünftige Weiterentwicklung dieser Arbeit kann dieses Werkzeug eine große Unterstützung bieten, indem es performantere und effizientere Regelsätze vorschlägt, um die Log-Analyse effizienter und zuverlässiger zu gestalten. 
 
 Diese Möglichkeiten zusammen oder getrennt könnten dazu beitragen, einen sicheren Netzwerkverkehr zu gewährleisten.
