@@ -20,9 +20,10 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
 
     \hphantom{tex}\textbf{stages:}  \newline
     \hphantom{tex}- regex: \newline
-    \hphantom{texten}expression: \verb|`^(?P<time>|
-          \verb|[A-Za-z]{3}\s{1,2}\d{1,2}| \newline
-          \verb|\s\d{2}:\d{2}:\d{2})*'| \newline
+    %\verb|^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2}).*from.(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d))|
+    
+
+
     \hphantom{tex}- timestamp: \newline
     \hphantom{texten}source: time \newline
     \hphantom{texten}format: ``Jan \_2 15:04:05'' \newline

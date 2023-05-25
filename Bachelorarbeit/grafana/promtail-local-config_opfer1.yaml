@@ -18,11 +18,23 @@ scrape_configs:
       action: keep
       stages:
       - regex:
-          expression:  '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2})*'
+          # ORIGINAL expression:  '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2})*'
+          # V1 expression: '.*?time=(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2}).*sourceIP=(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d))'
+
+          #V2 expression: '^time=(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2}).*sourceIP=(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d))'
+
+          #V3 + expression: '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2}).*(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d))'
+
+          expression: '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2}).*from.(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d))'
+      - labels:
+          sourceIP: ${sourceIP}
       - timestamp:
-          source: time
           format: "Jan _2 15:04:05"
+          source: time
           location: "Europe/Berlin"
+
+ #Apr  8 15:21:41 test sshd[1726]: Failed password for test from 10.0.2.15 port 41262 ssh2 = detect failed password existing user + IP
+ # Apr 14 13:59:55 opfersystem2 sshd[1469]: Failed none for invalid user alice from 10.0.2.15 port 60996 ssh2 = detect invalid user + IP
   decompression:
     enabled: true
     initial_delay: 15s
