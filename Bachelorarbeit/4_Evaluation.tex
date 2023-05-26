@@ -12,27 +12,19 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
     \hline
     - job\_name: sshlogs & Definition des Names unseres \quotes{job} \\
     \hline
-    \textbf{pipeline\_stages:} & Hier können wir den Inhalt der Logzeile definieren, bevor wir es zu Loki schicken. \\
-
-    \hphantom{te}- match: \newline
-    \hphantom{tex}selector: '\{job=``sshlogs''\}' \newline
-    \hphantom{tex}action: keep \newline & Nur Logzeilen mit diesem \quotes{label} werden modifiziert und dessen Inhalt wird beibehalten. Alternativ gibt es \quotes{drop}, um diesen Inhalt zu löschen. \\
-
-    \hphantom{tex}\textbf{stages:}  \newline
-    \hphantom{tex}- regex: \newline
-    %\verb|^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2}).*from.(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d))|
-    
-
-
-    \hphantom{tex}- timestamp: \newline
-    \hphantom{texten}source: time \newline
-    \hphantom{texten}format: ``Jan \_2 15:04:05'' \newline
-    \hphantom{texten}location: \quotes{Europe/Berlin} & Promtail bietet verschiedene Typen von \quotes{stages}, um die Logzeile zu bearbeiten. Diese werden nacheinander verarbeitet. Wir benutzen die \quotes{stages} \gls{RegExp} und dann \quotes{timestamp}. Der erste liest den Zeitstempel aus der \gls{ssh}-Logdatei aus, damit der zweite ihn verarbeiten und zu der von uns ausgewählten Format umwandeln kann. Schließlich speichert Loki den Zeitstempel der Zeile de Logdatei und nicht denen von des Hochladen in Loki. \\
-    \hline
+   
     \textbf{decompression} \newline
     \hphantom{te}enabled: true \newline
     \hphantom{te}initial\_sleep: 10s \newline
     \hphantom{te}format: gz & Promtail kann verschiedene Komprimierungsformate verarbeiten, darunter auch .gz, welches wir in unserer Arbeit verwenden. Das Feld \textit{initial\_sleep} beschreibt das Intervall, bevor die Dekomprimierung beginnt. Dieses Feld kann nützlich sein, wenn komprimierte Dateien vorhanden sind, deren Komprimierungsvorgang jedoch noch nicht abgeschlossen ist. Das Feld \textit{format} gibt das Komprimierungsformat an \citep{Grafana_Promtail}. \\  \hline
+
+    \textbf{static\_configs:} \newline
+    - targets: \newline
+    \hphantom{te}- loki \newline
+    \hphantom{te}labels: \newline
+    \hphantom{text}job: sshlogs \newline
+    \hphantom{text}instance: \gls{Endpoint}-Name \newline
+    \hphantom{text}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Datei im System an.\\ \hline
 
     \end{tabularx}
 \end{table}
@@ -43,19 +35,45 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
   \hline
   \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
   \hline
-  \textbf{static\_configs:} \newline
-  - targets: \newline
-  \hphantom{te}- loki \newline
-  \hphantom{te}labels: \newline
-  \hphantom{text}job: sshlogs \newline
-  \hphantom{text}instance: \gls{Endpoint}-Name \newline
-  \hphantom{text}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Datei im System an.\\
+  
+  \textbf{pipeline\_stages:} & Hier können wir den Inhalt der Logzeile definieren, bevor wir es zu Loki schicken. \\
+
+  \hphantom{te}- match: \newline
+  \hphantom{tex}selector: '\{job=``sshlogs''\}' \newline
+  \hphantom{tex}action: keep \newline & Nur Logzeilen mit diesem \quotes{label} werden modifiziert und dessen Inhalt wird beibehalten. Alternativ gibt es \quotes{drop}, um diesen Inhalt zu löschen. \\   \hline
+
+  \hphantom{tex}\textbf{stages:}  \newline
+  \hphantom{tex}- regex: (\glsfirst{RegExp} am Ende dieser Tabelle)\newline
+  \hphantom{tex}- timestamp: \newline
+  \hphantom{texten}source: time \newline
+  \hphantom{texten}format: ``Jan \_2 15:04:05'' \newline
+  \hphantom{texten}location: \quotes{Europe/Berlin} & Promtail bietet verschiedene Typen von \quotes{stages} zur Bearbeitung von Logzeilen an. Diese \quotes{stages} werden nacheinander verarbeitet. In unserem Fall verwenden wir die \quotes{stages} \gls{RegExp}, \quotes{labels} und \quotes{Timestamp}.
+
+  Die erste \quotes{stage}, \gls{RegExp}, liest den Zeitstempel und die IP-Adresse aus der Logzeile. Sie ermöglicht es uns, bestimmte Muster in den Logzeilen zu erkennen und die relevanten Informationen zu extrahieren.
+  
+  Die zweite \quotes{stage}, \quotes{labels}, nutzt die zuvor gefundene IP-Adresse aus der ersten \quotes{stages} und erstellt ein neues Label. Dadurch können wir die Logzeilen basierend auf der IP-Adresse weiter kategorisieren und filtern.
+  
+  Die letzte \quotes{stage}, \quotes{Timestamp}, nimmt den Zeitstempel aus der Logzeile und speichert ihn in Loki. Dies sorgt dafür, dass das korrekte Datum der Logzeile in Grafana Loki angezeigt wird, anstatt das Datum des Hochladens in Grafana Loki.
+  
+  Durch die Verwendung dieser \quotes{stages} ermöglicht uns Promtail eine flexible und effiziente Bearbeitung der Logzeilen, um sie besser zu analysieren und visualisieren zu können \\
   \hline
+
   \end{tabularx}
   \caption[Konfigurationsausschnitt von Promtail]
   {Konfigurationsausschnitt von Promtail}
   \label{tab:KonfigPromtail}
 \end{table}
+
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+'^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2}).*from.(?P<source
+IP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\
+d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)
+\d))'
+\end{Verbatim}
+\label{lst:ReGex_ExtractLabel}
+%\caption[\gls{RegExp} für Extrahierung von Datum und IP-Adresse von Logzeile]
+}
 
 Unsere gesamte Einstellung für Promtail befindet sich im Anhang \ref{appendix:AngepasstGrafana} auf der Seite \pageref{appendix:AngepasstGrafana}.
 
@@ -76,26 +94,17 @@ In der nächsten Tabelle, \ref{tab:KonfigLoki}, zeigen wir einen Konfigurationsa
   \textbf{querier:} & Festelegung der Verarbeitung von Abfrage \\ 
   \hphantom{te}max\_concurrent: 2048 & Anzahl der gleichzeitigen Abfragen, die verarbeitet werden. \\ \hline
 
-  \end{tabularx}
-\end{table}
-
-\begin{table}[H]
-  \setstretch{1}
-  \begin{tabularx}{\textwidth}{|m{6cm}|X|}
-  \hline
-  \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
-  \hline
-
   \textbf{limits\_config:} & Festlegung der Aufnahmerate und Nutzung von Ressourcen. \\ 
   \hphantom{te}reject\_old\_samples: false & Ermöglicht die Aufnahme von alten Logdateien, was in unserem Fall notwendig ist, da unsere Datei von April 2022 ist. \\ 
   \hphantom{te}split\_queries\_by\_interval: 15m & Trennung von Abfragen nach einem definierten Intervall. Jeder Intervall wird gleichzeitig ausgeführt \\ 
   \hphantom{te}max\_query\_parallelism: 32 & Maximale Anzahl von parallelen Abfragen, die gleichzeitig ausgeführt werden.  \\ \hline
-  
+
   \end{tabularx}
   \caption[Konfigurationsausschnitt von Loki]
   {Konfigurationsausschnitt von Loki}
   \label{tab:KonfigLoki}
 \end{table}
+
 
 %In einer Zeitspane von 1.5.2024 und 22.4.2025 zeigt uns Grafana folgende Graphiken
 
