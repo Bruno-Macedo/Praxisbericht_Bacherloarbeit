@@ -1,6 +1,7 @@
 \section{Evaluation der Implementation mit echten Logdateien}
 In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. Hier hat unsere Logdateien ungefähr vier Megabyte 
 
+\subsection{Einstellungen von Promtail und Loki}
 Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Konfigurationen aus der offiziellen Dokumentation \citep{Grafana_ConfigPromtail}:
 \begin{table}[H]
     \setstretch{1}
@@ -97,7 +98,7 @@ In der nächsten Tabelle, \ref{tab:KonfigLoki}, zeigen wir einen Konfigurationsa
   \textbf{limits\_config:} & Festlegung der Aufnahmerate und Nutzung von Ressourcen. \\ 
   \hphantom{te}reject\_old\_samples: false & Ermöglicht die Aufnahme von alten Logdateien, was in unserem Fall notwendig ist, da unsere Datei von April 2022 ist. \\ 
   \hphantom{te}split\_queries\_by\_interval: 15m & Trennung von Abfragen nach einem definierten Intervall. Jeder Intervall wird gleichzeitig ausgeführt \\ 
-  \hphantom{te}max\_query\_parallelism: 32 & Maximale Anzahl von parallelen Abfragen, die gleichzeitig ausgeführt werden.  \\ \hline
+  \hphantom{te}max\_query\_parallelism: 32 & Maximale Anzahl von parallelen Abfragen.  \\ \hline
 
   \end{tabularx}
   \caption[Konfigurationsausschnitt von Loki]
@@ -105,8 +106,49 @@ In der nächsten Tabelle, \ref{tab:KonfigLoki}, zeigen wir einen Konfigurationsa
   \label{tab:KonfigLoki}
 \end{table}
 
+\subsection{Generierung von Graphiken}
+Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} starten und mithilfe des Musters von \cite{VoidQuark_sshlogs} Grafiken mit Informationen über \gls{ssh}-Verbindungen generieren. Mit der \gls{frontend}-Anwendung Grafana können wir Daten in verschiedenen Zeitspannen anzeigen und nach \quotes{labels} filtern. Als Beispiel zeigen wir in Abbildung \ref{fig:Zeistspanne_22.4} eine Grafik mit fehlgeschlagenen Anmeldeversuchen pro Nutzer am 22.4.2023:
 
-%In einer Zeitspane von 1.5.2024 und 22.4.2025 zeigt uns Grafana folgende Graphiken
+\newpage
+\newgeometry{right=30mm, left=30mm}
+\thispagestyle{lscape}
+\begin{landscape}
+    \begin{figure}[H]
+       % \centering
+        \centerline{\includegraphics[width=1.7\textwidth]{assets/Failed_pro_user.png}}
+        \caption[Grapische Darstellung von Anzahl fehlgeschlagenen Anmeldeversuche pro Nutzer vom 22.4.2023]
+        {Grapische Darstellung von Anzahl fehlgeschlagenen Anmeldeversuche pro Nutzer vom 22.4.2023}
+        \label{fig:Zeistspanne_22.4}
+        \centering
+    \end{figure}
+Aus der Abbildung \ref{fig:Zeistspanne_22.4} können wir ableiten, dass am 22.4.2022 möglicherweise ein \gls{bruteforce} stattgefunden hat. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
+\end{landscape}
+\restoregeometry
+
+\newpage
+\newgeometry{right=30mm, left=30mm}
+\thispagestyle{lscape}
+\begin{landscape}
+  Wir können weitere Filter anwenden, um beispielsweise zu zeigen, zu welchen Uhrzeiten die meisten Versuche stattgefunden haben, wie auf der Graphik \ref{fig:Zeistfenster_22.4}:
+    \begin{figure}[H]
+       % \centering
+        \centerline{\includegraphics[width=1.6\textwidth]{assets/activityperhour.png}}
+        \caption[Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am 22.4.2023]
+        {Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am 22.4.2023}
+        \label{fig:Zeistfenster_22.4}
+        \centering
+    \end{figure}
+  Die Abbildung \ref{fig:Zeistfenster_22.4} zeigt, dass die meisten Versuche zwischen 16:00 und 17:30 Uhr stattgefunden haben.
+\end{landscape}
+\restoregeometry
+
+Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren und darzustellen. Die Nutzungsmöglichkeiten sind praktisch unbegrenzt und hängen von der Kreativität des Benutzers sowie den Anforderungen der jeweiligen Situation ab.
+
+\subsection{Generierung von Warnmeldungen}
 
 % unsere Warnmeldung
 % unsere Grafik
+
+% fucking alerts
+
+%https://computingforgeeks.com/run-elastic-stack-elk-on-docker/

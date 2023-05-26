@@ -5,7 +5,7 @@ In diesem Kapitel geht es um die Implementierung und den Aufbau von Grafana, um 
    \centering
    \includegraphics[width=1\textwidth]{assets/Arbeitslabor.jpg}
    \caption[Aufbau unseres Arbeitslabors]
-   {Aufbau unseres Arbeitslabors \\Quelle: Eigene Quelle}
+   {Aufbau unseres Arbeitslabors}
    \label{fig:Arbeitslabor}
    \centering
 \end{figure}
@@ -19,7 +19,7 @@ Der gezielte Ablauf unserer Arbeit ist in der Abbildung \ref{fig:Ablauf_grafana2
    \centering
    \includegraphics[width=1\textwidth]{assets/Ablauf_grafana2.jpg}
    \caption[Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung]
-   {Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung \\ Quelle: Eigene Quelle und \citep{Grafana_loki}}
+   {Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung}
    \label{fig:Ablauf_grafana2}
    \centering
 \end{figure}
@@ -46,7 +46,7 @@ Die \gls{mitre} Matrix ist auf \glsfirst{ttp} basiert. Angriffe, Gegenmaßnahmen
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Mitre_structure.drawio.png}
    \caption[Struktur der \gls{mitre} Matrix]
-   {Struktur der \gls{mitre} Matrix \\Quelle: Eigene Quelle und \citep{Mitre_Started}}
+   {Struktur der \gls{mitre} Matrix laut \cite{Mitre_Started}}
    \label{fig:ttp}
    \centering
 \end{figure}
@@ -93,7 +93,7 @@ Die nächste Abbildung, \ref{fig:Unser_ttp}, zeigt den Umfang unseres Implementa
    \centering
    \includegraphics[width=0.7\textwidth]{assets/T1110.drawio.png}
    \caption[\glsfirst{ttp} für unseren Angriff]
-   {\glsfirst{ttp} für unseren Angriff \\Quelle: Eigene Quelle und \citep{Mitre_t1110}}
+   {\glsfirst{ttp} für unseren Angriff laut \cite{Mitre_t1110}}
    \label{fig:Unser_ttp}
    \centering
 \end{figure}
@@ -193,7 +193,7 @@ Unser nächster Angriff, \gls{spraying}, ist in der Abbildung \ref{fig:spraying}
    \centering
    \includegraphics[width=0.9\textwidth]{assets/Spraying.jpg}
    \caption[Darstellung von \textit{\gls{spraying}}]
-   {Darstellung von \textit{\gls{spraying}}\\Quelle: Eigene Quelle und \citep{Swathi_spraxy}}
+   {Darstellung von \textit{\gls{spraying}} laut \cite{Swathi_spraxy}}
    \label{fig:spraying}
    \centering
 \end{figure}
@@ -274,7 +274,7 @@ Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \
    Promtail            & \cellcolor{green!25}2.8.2    \\ \hline
    \end{tabular}
    \caption[Verwendete Versionen der Anwendungen]
-   {Verwendete Versionen der Anwendungen \\Quelle: \citep{Grafana_Version} und \citep{GrafanaLoki_Version}}
+   {Verwendete Versionen der Anwendungen laut \cite{Grafana_Version} und \cite{GrafanaLoki_Version}}
    \label{tab:Versions}
 \end{table}
 
@@ -290,7 +290,7 @@ Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \
         \centerline{\includegraphics[width=1.5\textwidth]{assets/Installation_Grafana.png}}
         %\includegraphics[width=1.2\textwidth]{assets/5.4.2_1_Abb.jpeg}
         \caption[Screenshot der Willkommensseite von Grafana Loki]
-        {Screenshot der Willkommensseite von Grafana Loki\\Quelle: Eigene Quelle und \citep{Grafana_Logs}}
+        {Screenshot der Willkommensseite von Grafana Loki}
         \label{fig:grafana_welcome}
         \centering
     \end{figure}
@@ -324,7 +324,7 @@ Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwisc
    \centering
    \includegraphics[width=0.7\textwidth]{assets/GrafanaAgents.drawio.png}
    \caption[Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \textit{\gls{GrafanaSystem}}]
-   {Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \textit{\gls{GrafanaSystem}}\\Quelle: \citep{Grafana_Agents}}
+   {Kommunikation zwischen Grafana Agents, \gls{prometheus}, OpenTelemetry und \textit{\gls{GrafanaSystem}} laut \cite{Grafana_Agents}}
    \label{fig:GrafAgents}
    \centering
 \end{figure}
@@ -342,7 +342,7 @@ Die folgende Abbildung stellt das Kommunikationsverfahren zwischen \gls{opentele
    \centering
    \includegraphics[width=0.8\textwidth]{assets/OpenTelemtry.png}
    \caption[Datenfluss zwischen \gls{opentelemetry} und die Tools von \textit{\gls{GrafanaSystem}}]
-   {Datenfluss zwischen \gls{opentelemetry} und \textit{\gls{GrafanaSystem}}\\Quelle: \citep{Grafana_WhatOpentelemetry}}
+   {Datenfluss zwischen \gls{opentelemetry} und \textit{\gls{GrafanaSystem}} laut \cite{Grafana_WhatOpentelemetry}}
    \label{fig:UsingOpenTelemetry}
    \centering
 \end{figure}
@@ -358,7 +358,7 @@ Ein \gls{bruteforce} lässt sich durch eine hohe Anzahl der fehlgeschlagenen Anm
    \centering
    \includegraphics[width=0.8\textwidth]{assets/Anmeldeverfahren.drawio.png}
    \caption[Allgemeiner Ablauf eines Anmeldungsverfahrens]
-   {Allgemeiner Ablauf eines Anmeldungsverfahrens \\Quelle: Eigene Quelle und \citep{Selvaganesh_SplunkBruteForce}}
+   {Allgemeiner Ablauf eines Anmeldungsverfahrens laut \cite{Selvaganesh_SplunkBruteForce}}
    \label{fig:Aktivitaetsdiagramm_Anmeldung}
    \centering
 \end{figure}
@@ -389,7 +389,7 @@ Verarbeirtung der Log-Einträge in Loki und Quellcode für die Generierung von G
    \hline
    \end{tabularx}
    \caption[Elementen eines Regelsätzes in Grafana Loki]
-   {Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+   {Elementen eines Regelsätzes in Grafana Loki laut \cite{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
 
 
@@ -502,7 +502,7 @@ Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen:
    \hline
    \end{tabularx}
    \caption[Elementen eines Regelsätzes in Grafana Loki]
-   {Elementen eines Regelsätzes in Grafana Loki \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+   {Elementen eines Regelsätzes in Grafana Loki laut \cite{VoidQuark_sshlogs} und \cite{Setter_Logfmt}}
 \end{table}
 
 
@@ -569,7 +569,7 @@ Die Regelsätze in Grafana Loki können sowohl \textbf{manuell} im Menü \quotes
    \centering
    \includegraphics[width=0.85\textwidth]{assets/manuellerCodeLoki.png}
    \caption[Feld in Grafana Loki für die manuelle die Eingabe des \gls{logql}-Codes]
-   {Feld in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes. \\ Quelle: \citep{VoidQuark_sshlogs}}
+   {Feld in Grafana Loki für manuelle die Eingabe des \gls{logql}-Codes}
    \label{fig:Loki_Code}
    \centering
 \end{figure}
@@ -578,7 +578,7 @@ Die Regelsätze in Grafana Loki können sowohl \textbf{manuell} im Menü \quotes
    \centering
    \includegraphics[width=0.85\textwidth]{assets/klickibuntyGrafana.png}
    \caption[\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes.]
-   {\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes. Quelle: \citep{VoidQuark_sshlogs}}
+   {\quotes{Builder} in Grafana Loki für nutzerfreundlichere Eingabe des \gls{logql}-Codes}
    \label{fig:Loki_Builder}
    \centering
 \end{figure}
@@ -589,7 +589,7 @@ Beide Optionen bieten die Möglichkeit, eine Erklärung zur Abfrage anzuzeigen, 
    \centering
    \includegraphics[width=1\textwidth]{assets/erklaerungLoki.png}
    \caption[Ausführliche Information über die Abfrage]
-   {Ausführliche Information über die Abfrage\\Quelle: \citep{Grafana_QueryEditor}}
+   {Ausführliche Information über die Abfrage}
    \label{fig:Loki_CodeInformation}
    \centering
 \end{figure}

@@ -1,9 +1,3 @@
-sum by (username) (count_over_time({job=~"sshlogs"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [2m]))
+sum by (username) (count_over_time({$label_name=~"$label_value", job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed .* user" | pattern `<_> user <username> <_> port` | __error__="" [$__interval]))
 
-
-sum by (username) (count_over_time({job=~"sshlogs"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))
-
-sum by (username) (count_over_time({job=~"sshlogs", filename="auth.log.2"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))
-
-
-sum by (username) (count_over_time({job=~"sshlogs", filename="/opt/auth.log.2.gz"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))
+sum by (username) (count_over_time({$label_name=~"$label_value", job=~"$job", instance=~"$instance"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))
