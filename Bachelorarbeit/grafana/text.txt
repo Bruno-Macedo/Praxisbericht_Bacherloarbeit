@@ -1,3 +1,24 @@
-sum by (username) (count_over_time({$label_name=~"$label_value", job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed .* user" | pattern `<_> user <username> <_> port` | __error__="" [$__interval]))
+sum by (username) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed .* user" | pattern `<_> user <username> <_> port` | __error__="" [$__interval]))
 
-sum by (username) (count_over_time({$label_name=~"$label_value", job=~"$job", instance=~"$instance"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))
+
+sum by (username) (count_over_time({job=~"sshlogs"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))
+
+
+Too many failed connection from  
+{{ $label.sourceIP }}
+
+count by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" |~".* from .*" | pattern `<_> from <ip> port` | __error__="" [5m]))
+
+count by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" !~".* from .*" | pattern `<_> user <_> <ip> port` | __error__="" [5m]))
+
+
+https://grafana.com/docs/grafana/latest/alerting/alerting-rules/create-grafana-managed-rule/
+
+IPAddress
+
+count by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" |~".* from .*" | pattern `<_> from <ip> port` | __error__="" [$__interval]))
+
+count by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" !~".* from .*" | pattern `<_> user <_> <ip> port` | __error__="" [$__interval]))
+
+
+/.*from.(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)

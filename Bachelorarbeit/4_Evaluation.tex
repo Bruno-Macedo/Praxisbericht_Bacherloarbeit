@@ -144,7 +144,48 @@ Aus der Abbildung \ref{fig:Zeistspanne_22.4} können wir ableiten, dass am 22.4.
 
 Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren und darzustellen. Die Nutzungsmöglichkeiten sind praktisch unbegrenzt und hängen von der Kreativität des Benutzers sowie den Anforderungen der jeweiligen Situation ab.
 
+Die Graphiken wurden mit folgenden Abfragen generiert:
+
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+sum by (username) (count_over_time({ job=~"sshlogs"} |="sshd[" |~": 
+Invalid|: Connection closed by authenticating user|: Failed .* 
+user" | pattern `<_> user <username> <_> port` | __error__="" 
+[$__interval]))
+
+sum by (username) (count_over_time({job=~"sshlogs"}|="sshd[" |=": 
+Failed" !~"invalid user" | pattern `<_> for <username> from <_> 
+port` | __error__="" [$__interval]))
+\end{Verbatim}
+}
+
 \subsection{Generierung von Warnmeldungen}
+
+Mithilfe der oben gezeighten Abfragen generieren wir auch unsere Warnmeldung mit dem Alerting Tool von Grafana.
+
+Warnmeldungen dienen hauptsächlich der Echtzeitanalyse. Da unsere Logdateien jedoch aus den Monaten März und April 2023 stammen, verschoben wir die Daten in die entsprechenden Monate, um \quotes{Echtzeit} -Daten für die Analyse zu simulieren. Dies ermöglicht uns, aktuelle Warnungen und Alarme basierend auf den verschobenen Daten zu generieren.
+
+\begin{center}
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+                           Mar ===> Apr | März ====> April
+                           Apr ===> May | April ===> May
+                     26 Apr ===> 27 May | 26 April ===> 27 May
+\end{Verbatim}
+}
+\end{center}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{assets/OurAlert.png}
+  \caption[E-Mail Warnmeldung von Grafana]
+  {E-Mail Warnmeldung von Grafana}
+  \centering
+\end{figure}
+
+%Das Alerting Tool von Grafana ist nicht so benutzerfreundlich, wenn es darum geht, die \quotes{labels} in der Nachrichten der Warnmeldung hinzufügen. Obwohl die offiziele Dokumentation ein Beispieldie Nachricht in den Warnmeldungen zu schreiben. 
+
 
 % unsere Warnmeldung
 % unsere Grafik
