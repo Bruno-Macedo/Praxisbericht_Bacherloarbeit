@@ -107,7 +107,7 @@ In der nächsten Tabelle, \ref{tab:KonfigLoki}, zeigen wir einen Konfigurationsa
 \end{table}
 
 \subsection{Generierung von Graphiken}
-Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} starten und mithilfe des Musters von \cite{VoidQuark_sshlogs} Grafiken mit Informationen über \gls{ssh}-Verbindungen generieren. Mit der \gls{frontend}-Anwendung Grafana können wir Daten in verschiedenen Zeitspannen anzeigen und nach \quotes{labels} filtern. Als Beispiel zeigen wir in Abbildung \ref{fig:Zeistspanne_22.4} eine Grafik mit fehlgeschlagenen Anmeldeversuchen pro Nutzer am 22.4.2023:
+Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} starten und mithilfe des Musters von \cite{VoidQuark_sshlogs} Grafiken mit Informationen über \gls{ssh}-Verbindungen generieren. Mit der \gls{frontend}-Anwendung Grafana können wir Daten in verschiedenen Zeitspannen anzeigen und nach \quotes{labels} filtern. Als Beispiel zeigen wir in Abbildung \ref{fig:1_Anmeldung_BenutzerName} eine Grafik mit fehlgeschlagenen Anmeldeversuchen pro Nutzer am 22.4.2023:
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -118,10 +118,10 @@ Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} star
         \centerline{\includegraphics[width=1.7\textwidth]{assets/Failed_pro_user.png}}
         \caption[Grapische Darstellung von Anzahl fehlgeschlagenen Anmeldeversuche pro Nutzer vom 22.4.2023]
         {Grapische Darstellung von Anzahl fehlgeschlagenen Anmeldeversuche pro Nutzer vom 22.4.2023}
-        \label{fig:Zeistspanne_22.4}
+        \label{fig:1_Anmeldung_BenutzerName}
         \centering
     \end{figure}
-Aus der Abbildung \ref{fig:Zeistspanne_22.4} können wir ableiten, dass am 22.4.2022 möglicherweise ein \gls{bruteforce} stattgefunden hat. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
+Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2022 möglicherweise ein \gls{bruteforce} stattgefunden hat. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
 \end{landscape}
 \restoregeometry
 
@@ -129,23 +129,45 @@ Aus der Abbildung \ref{fig:Zeistspanne_22.4} können wir ableiten, dass am 22.4.
 \newgeometry{right=30mm, left=30mm}
 \thispagestyle{lscape}
 \begin{landscape}
-  Wir können weitere Filter anwenden, um beispielsweise zu zeigen, zu welchen Uhrzeiten die meisten Versuche stattgefunden haben, wie auf der Graphik \ref{fig:Zeistfenster_22.4}:
+  Wir können weitere Filter anwenden, um beispielsweise zu zeigen, zu welchen Uhrzeiten die meisten Versuche stattgefunden haben, wie auf der Graphik \ref{fig:2_Anmeldung_BenutzerName}:
     \begin{figure}[H]
        % \centering
         \centerline{\includegraphics[width=1.6\textwidth]{assets/activityperhour.png}}
         \caption[Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am 22.4.2023]
         {Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am 22.4.2023}
-        \label{fig:Zeistfenster_22.4}
+        \label{fig:2_Anmeldung_BenutzerName}
         \centering
     \end{figure}
-  Die Abbildung \ref{fig:Zeistfenster_22.4} zeigt, dass die meisten Versuche zwischen 16:00 und 17:30 Uhr stattgefunden haben.
+  Die Abbildung \ref{fig:2_Anmeldung_BenutzerName} zeigt, dass die meisten Versuche zwischen 16:00 und 17:30 Uhr stattgefunden haben.
 \end{landscape}
 \restoregeometry
 
 Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren und darzustellen. Die Nutzungsmöglichkeiten sind praktisch unbegrenzt und hängen von der Kreativität des Benutzers sowie den Anforderungen der jeweiligen Situation ab.
 
-Die Graphiken wurden mit folgenden Abfragen generiert:
+Die Graphiken \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:2_Anmeldung_BenutzerName} wurden mit folgenden Abfragen generiert:
 
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+sum by (username) (count_over_time({ job=~"sshlogs"} |="sshd[" |~": 
+Invalid|: Connection closed by authenticating user|: Failed .* 
+user" | pattern `<_> user <username> <_> port` | __error__="" 
+[$__interval]))
+
+sum by (username) (count_over_time({job=~"sshlogs"}|="sshd[" |=": 
+Failed" !~"invalid user" | pattern `<_> for <username> from <_> 
+port` | __error__="" [$__interval]))
+\end{Verbatim}
+}
+
+Die folgenden beiden Abbildungen, \ref{1_Anmeldung_IP} und \ref{2_Anmeldung_IP}, zeigen die IP-Adresse, von der Anmeldeversuche unternommen wurde.
+
+
+
+
+
+
+
+Die Abfragen für die vorherigen Abbildungen \ref{1_Anmeldung_IP} und \ref{2_Anmeldung_IP} lauten wie folgt:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
 sum by (username) (count_over_time({ job=~"sshlogs"} |="sshd[" |~": 
@@ -170,19 +192,22 @@ Warnmeldungen dienen hauptsächlich der Echtzeitanalyse. Da unsere Logdateien je
 \begin{Verbatim}[frame=single]
                            Mar ===> Apr | März ====> April
                            Apr ===> May | April ===> May
-                     26 Apr ===> 27 May | 26 April ===> 27 May
+                     26 Apr ===> 28 May | 26 April ===> 28 May
 \end{Verbatim}
 }
 \end{center}
 
-
+Die nächste Abbildung, \ref{fig:unsereWarnmeldung1}, zeigt eine Warnmeldung 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{assets/OurAlert.png}
-  \caption[E-Mail Warnmeldung von Grafana]
-  {E-Mail Warnmeldung von Grafana}
+  \caption[Warnmeldung E-Mail Warnmeldung von Grafana aus unseren Logdateien]
+  {Warnmeldung E-Mail Warnmeldung von Grafana aus unseren Logdateien}
   \centering
+  \label{fig:unsereWarnmeldung1}
 \end{figure}
+
+Die Quelleadresse des fehlgeschlagenen Anmeldeversuchs können wir anhand der Warnmeldung erkennen.
 
 %Das Alerting Tool von Grafana ist nicht so benutzerfreundlich, wenn es darum geht, die \quotes{labels} in der Nachrichten der Warnmeldung hinzufügen. Obwohl die offiziele Dokumentation ein Beispieldie Nachricht in den Warnmeldungen zu schreiben. 
 
