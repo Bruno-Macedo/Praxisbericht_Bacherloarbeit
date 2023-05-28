@@ -1,5 +1,7 @@
 \section{Evaluation der Implementation mit echten Logdateien}
-In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. Hier hat unsere Logdateien ungefähr vier Megabyte 
+In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. 
+
+%Hier hat unsere Logdateien ungefähr vier Megabyte 
 
 \subsection{Einstellungen von Promtail und Loki}
 Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Konfigurationen aus der offiziellen Dokumentation \citep{Grafana_ConfigPromtail}:
@@ -25,7 +27,7 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
     \hphantom{te}labels: \newline
     \hphantom{text}job: sshlogs \newline
     \hphantom{text}instance: \gls{Endpoint}-Name \newline
-    \hphantom{text}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Datei im System an.\\ \hline
+    \hphantom{text}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Logdateien im System an.\\ \hline
 
     \textbf{pipeline\_stages:} & Hier können wir den Inhalt der Logzeile definieren, bevor wir es zu Loki schicken. \\
 
@@ -57,9 +59,9 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
   
   Die zweite \quotes{stage}, \quotes{labels}, nutzt die zuvor gefundene IP-Adresse aus der ersten \quotes{stages} und erstellt ein neues Label. Dadurch können wir die Logzeilen basierend auf der IP-Adresse weiter kategorisieren und filtern.
   
-  Die letzte \quotes{stage}, \quotes{Timestamp}, nimmt den Zeitstempel aus der Logzeile und speichert ihn in Loki. Dies sorgt dafür, dass das korrekte Datum der Logzeile in Grafana Loki angezeigt wird, anstatt das Datum des Hochladens in Grafana Loki.
+  Die letzte \quotes{stage}, \quotes{Timestamp}, nimmt den Zeitstempel aus der Logzeile und speichert ihn in Loki. Dies sorgt dafür, dass das Datum der Logzeile in Grafana Loki angezeigt wird, anstatt das Datum des Hochladens in Loki.
   
-  Durch die Verwendung dieser \quotes{stages} ermöglicht uns Promtail eine flexible und effiziente Bearbeitung der Logzeilen, um sie besser zu analysieren und visualisieren zu können \\
+  Durch die Verwendung dieser \quotes{stages} ermöglicht uns Promtail eine flexible und effiziente Bearbeitung der Logzeilen, um sie besser zu analysieren und zu visualisieren\\
   \hline
 
   \end{tabularx}
@@ -81,7 +83,7 @@ d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)
 
 Unsere gesamte Einstellung für Promtail befindet sich im Anhang \ref{appendix:AngepasstGrafana} auf der Seite \pageref{appendix:AngepasstGrafana}.
 
-In der nächsten Tabelle, \ref{tab:KonfigLoki}, zeigen wir einen Konfigurationsausschnitt von Loki, die wir anpassen mussten, damit unsere Logdateien verarbeitet werden könnten. Diese Konfiguration wurde mithilfe der offizielen Dokumentation \citep{Grafana_ConfigLoki} und des offizielen Forumsbeitrags von Grafana Loki \citep{githubforum} gestaltet.
+In der Tabelle \ref{tab:KonfigLoki} zeigen wir einen Konfigurationsausschnitt von Loki, die wir anpassen mussten, um unsere Logdateien verarbeiten zu lassen. Diese Konfiguration wurde mithilfe der offizielen Dokumentation \citep{Grafana_ConfigLoki} und des offizielen Forumsbeitrags von Grafana Loki \citep{githubforum} gestaltet.
 
 \begin{table}[H]
   \setstretch{1}
@@ -147,7 +149,7 @@ Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_Benutzer
         \label{fig:1_Anmeldung_BenutzerName}
         \centering
     \end{figure}
-Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass am \quotes{22.5.2022} möglicherweise ein \gls{bruteforce} stattgefunden hat. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
+Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2022 möglicherweise ein \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
 \end{landscape}
 \restoregeometry
 
@@ -164,7 +166,7 @@ Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass 
         \label{fig:2_Anmeldung_BenutzerName}
         \centering
     \end{figure}
-  Die Abbildung \ref{fig:2_Anmeldung_BenutzerName} zeigt, dass die meisten Versuche zwischen 16:00 und 17:30 Uhr stattgefunden haben.
+  Die Abbildung \ref{fig:2_Anmeldung_BenutzerName} zeigt, dass die meisten Versuche zwischen 16:00 und 17:30 Uhr stattfanden.
 \end{landscape}
 \restoregeometry
 
@@ -202,15 +204,15 @@ count by (ip) (count_over_time({job=~"sshlogs"}
         \centering
     \end{figure}
 
-Aus Abbildung \ref{fig:1_Anmeldung_IPAdresse} können wir die IP-Adressen identifizieren, von denen die meisten fehlgeschlagenen Anmeldeversuche zwischen dem \quotes{21.5.2023} und dem \quotes{22.5.2022} stammen.
+Aus Abbildung \ref{fig:1_Anmeldung_IPAdresse} können wir die IP-Adressen identifizieren, von denen die meisten fehlgeschlagenen Anmeldeversuche zwischen dem 21.4.2023 und dem 22.4.2022 stammen.
 \end{landscape}
 \restoregeometry
 
 \subsection{Generierung von Warnmeldungen}
 
-Mithilfe der oben gezeighten Abfragen generieren wir auch unsere Warnmeldung mit dem Alerting Tool von Grafana.
+Mithilfe der oben gezeigten Abfragen generieren wir auch unsere Warnmeldung mit Alerting von Grafana.
 
-Warnmeldungen dienen hauptsächlich der Echtzeitanalyse. Da unsere Logdateien jedoch aus den Monaten März und April 2023 stammen, verschoben wir die Daten in die entsprechenden Monate, um \quotes{Echtzeit}-Daten für die Analyse zu simulieren. Dies ermöglicht uns, aktuelle Warnungen und Alarme basierend auf den verschobenen Daten zu generieren.
+Warnmeldungen dienen hauptsächlich der Echtzeitanalyse. Da unsere Logdateien jedoch aus den Monaten März und April 2023 stammen, verschoben wir die Daten in die entsprechenden Monate, um \quotes{Echtzeit}-Daten für die Analyse zu simulieren. Dies ermöglicht uns, aktuelle Warnungen und Alarme basierend auf den verschobenen Daten zu generieren. Wir haben unsere Logdateien so angepasst.
 
 \begin{center}
 {\setstretch{1.0}
@@ -240,7 +242,7 @@ sum by (Source_IP) (count_over_time({job=~"sshlogs"}
 Aus dieser Abfrage finden wir heraus, wie viele fehlgeschlagene Anmeldeversuche pro IP-Adresse es gibt. Mit einem Zeitfenster von einer Woche lösen wir immer dann eine Meldung aus, wenn dieser Wert größer als fünf ist. Fünf ist ein von uns ausgewählter Wert. 
 
 \newpage
-In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung assieht und wir können auch die Quelladresse des fehlgeschlagenen Anmeldeversuchs erkennen:  
+In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung aussieht. wir können auch die Quelladresse des fehlgeschlagenen Anmeldeversuchs erkennen:  
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{assets/OurAlert.png}
