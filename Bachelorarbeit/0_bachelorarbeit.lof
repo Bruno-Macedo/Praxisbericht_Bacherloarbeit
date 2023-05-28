@@ -2,15 +2,15 @@
 \contentsline {figure}{\numberline {2}{\ignorespaces Allgemeine Struktur von \gls {SIEM}}}{5}{figure.caption.14}%
 \contentsline {figure}{\numberline {3}{\ignorespaces Allgemeine Informationsfluss von \gls {SIEM}}}{6}{figure.caption.15}%
 \contentsline {figure}{\numberline {4}{\ignorespaces Allgemeine Informationsfluss von Splunk}}{8}{figure.caption.16}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Integration zwischen den Modulen von Prelude }}{10}{figure.caption.17}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen und Datenverarbeitung}}{11}{figure.caption.18}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Architekturdiagramm von AlienVault \gls {USM}}}{12}{figure.caption.19}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Architekturdiagramm von AlienVault \gls {USM}}}{10}{figure.caption.17}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Integration zwischen den Modulen von Prelude }}{12}{figure.caption.18}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen und Datenverarbeitung}}{13}{figure.caption.19}%
 \contentsline {figure}{\numberline {8}{\ignorespaces Skalierbare Architektur von FortiSIEM}}{14}{figure.caption.20}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Integration zwischen Elasticsearch, Logstash und Kibana}}{15}{figure.caption.21}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Aufteilung der Funktionalitäten zwischen den Komponenten}}{16}{figure.caption.22}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Integration zwischen Elasticsearch, Logstash und Kibana}}{16}{figure.caption.21}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Aufteilung der Funktionalitäten zwischen den Komponenten}}{17}{figure.caption.22}%
 \contentsline {figure}{\numberline {11}{\ignorespaces Architektur von Loki}}{18}{figure.caption.23}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Eskalation bei Verwendung von \glqq labels\grqq {}}}{19}{figure.caption.24}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Integration von Log-Quellen mit Promptail, Loki und Grafana}}{20}{figure.caption.25}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Eskalation bei Verwendung von \glqq labels\grqq {}}}{20}{figure.caption.24}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Integration von Log-Quellen mit Promptail, Loki und Grafana}}{21}{figure.caption.25}%
 \contentsline {figure}{\numberline {14}{\ignorespaces Aufbau unseres Arbeitslabors}}{24}{figure.caption.29}%
 \contentsline {figure}{\numberline {15}{\ignorespaces Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung}}{25}{figure.caption.30}%
 \contentsline {figure}{\numberline {16}{\ignorespaces Struktur der \gls {mitre} Matrix}}{26}{figure.caption.31}%
