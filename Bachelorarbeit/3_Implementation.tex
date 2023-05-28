@@ -151,11 +151,10 @@ Die Abbildung \ref{fig:stuffing} zeigt, wie das \gls{stuffing} abläuft:
 
 In diesem Angriff versucht der Angreifer sich mit einem Konto anzumelden, indem er mit vielen Passwörter aus dem Wörterbuch probiert, bis eins richtige gefunden ist. Es können mehrere Anmeldungsversuche geschickt werden, bis eine von denen funktioniert.
 
-\newpage
 \gls{stuffing} wurde mit folgendem Kommando durchgeführt \citep{kali_hydra}:
 %Verbatim
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
+\begin{Verbatim}[fontsize=\small,frame=single]
 hydra -l [Benutzername] -P rockyou.txt [Opfersystem] ssh -V -t 4
 
 # Erklärung
@@ -188,6 +187,7 @@ Die Abbildungen \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_
 
 Auf den Abbildungen \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_Opfer2} sehen wir in rot markiert, dass der Angriff den Benutzernamen \quotes{test} im Opfersystem1 und \quotes{Administrator} Opfersystem2 zielt. In grün werden die verschiedenen Passwörter aus \gls{rockyou}-Wörterbuch verwendet. Auf der Abbildung \ref{fig:Ausgabe_Stuffing_Opfer2} wird das gefundene Passwört grün geschrieben.
 
+\newpage
 Unser nächster Angriff, \gls{spraying}, ist in der Abbildung \ref{fig:spraying} dargestellt:
 \begin{figure}[H]
    \centering
@@ -210,6 +210,7 @@ hydra -L username2.txt -P passwoerter.txt [Opfersystem2] ssh -V -t 4
 
 In diesem Fall gehen wir davon aus, dass der Angreifer einige oder alle Benutzernamen bereits kennt. Da bei diesem Angriff weniger Anmeldeversuche pro Nutzer durchgeführt werden, verwenden wir eine selbst erstellte Datei mit weniger Passwörtern als die \gls{rockyou}-Datei. Unsere Datei enthält die am häufigsten verwendeten Passwörter in Deutschland \citep{silicon_passwort}.
 
+\newpage
 Die Abbildungen \ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2} zeigen die Ausgabe von \gls{spraying}:
 \begin{figure}[H]
    \centering
@@ -520,9 +521,10 @@ Schließlich sieht der Regelsatz so aus:
 
 {\setstretch{1.0}
 \begin{Verbatim}[fontsize=\small, commandchars=\\\{\}, frame=single]
-sum by(add) (rate({job="\textit{JOBNAME}", instance=~"$instance"} |= '\textbf{\textcolor{red}{sshd}}[' |= ':
-\textbf{\textcolor{red}{Failed}}' !~ '\textbf{\textcolor{red}{invalid user}}' !~ '\textbf{\textcolor{red}{Legitimer_Nutzer}}' !~ '\textbf{\textcolor{red}{Legitime_Adresse}}' |
-pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from  <\textbf{\textcolor{blue}{Quelladresse}}> port <_>' [$__range]))
+sum by(add) (rate({job="\textit{JOBNAME}", instance=~"$instance"} 
+|= '\textbf{\textcolor{red}{sshd}}['
+|= ':\textbf{\textcolor{red}{Failed}}' !~ '\textbf{\textcolor{red}{invalid user}}' !~ '\textbf{\textcolor{red}{Legitimer_Nutzer}}' !~ '\textbf{\textcolor{red}{Legitime_Adresse}}' 
+| pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from <\textbf{\textcolor{blue}{Quelladresse}}> port <_>' [$__range]))
 \end{Verbatim}
 }
 
@@ -542,24 +544,6 @@ WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>' [\$__range]))
 \end{Verbatim}
 }
 
-% {\setstretch{1.0}
-% \begin{Verbatim}[fontsize=\small, commandchars=\\\{\}, frame=single]
-
-% # Ergebnis wird mithilfe von \gls{logql} aus der Logdatei extrahiert.
-% Ergebnis = Operation (GesuchterWert) (Operation(label1="LabelWert", label2="Label2Wert") |= 'Gesuchte Inhalt im Logdatei' | !'Inhalt im Logdatei ausschliessen' | Regulärer Ausdrucke | pattern '<_> WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>' [$__range]))
-
-% # FehlVersuche = Festgelegter Anzahl von fehlgeschlagenen Anmeldungsversuchen
-% für das Triggern von Warnmeldung
-
-% # \quotes{Operation} bezieht sich auf die Funktionen in Logql, z.B. für Aufsummierung,
-% Mittelwert.
-
-% \textit{while} Ergebnis < FehlVersuche
-%    weiterBeobachten\(\)
-% WarnmeldungTriggern\(\)
-
-% \end{Verbatim}
-% }
 
 \newpage
 \subsection{Hinzufügen der Regelsätze Grafana Loki}
@@ -644,19 +628,6 @@ pattern '<_> for <Benutzername> from  <Quelladresse> port <_>' [$__range]))'
 \end{landscape}
 \restoregeometry
 
-% \thispagestyle{lscape}
-% \begin{landscape}
-%    Das nächste Bild gibt ausführliche Informationen der Logdateien:
-%    \begin{center}
-%       \begin{figure}[H]
-%          \centering
-%          \includegraphics[width=1.3\textwidth]{assets/GrafanaLoki_sshDetailed.png}.
-%          \caption[Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki]
-%          {Ausführliche Darstellung der \gls{ssh} Logdateien von Grafana Loki\\Quelle: Eigene Quelle and \citep{VoidQuark_sshlogs}}
-%          \centering
-%       \end{figure}
-%    \end{center}
-% \end{landscape}
 
 \subsection{Einrichtung der Warnmeldungen in Grafana}
 In den vorherigen Teilen dieser Arbeit haben wir uns damit auseinandergesetzt, Grafana so einzurichten, dass wir schließlich eine Lösung ähnlich einer \gls{SIEM} erhalten. Von unseren ursprünglichen Ziele haben wir bereits Folgendes erreicht:
@@ -717,21 +688,24 @@ Die Warnmeldungen können direkt in der \gls{GUI} von Grafana konfiguriert werde
 Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}} von Grafana für fehlgeschlagene Anmeldeversuche. Wir haben die oben genannten Elemente definiert und die folgenden Regelsätze verwendet \citep{VoidQuark_sshlogs}:
 
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
+\begin{Verbatim}[frame=single,fontsize=\small]
 # (A) Anzahl von fehlgeschlagenen Anmeldeversuche für existierenden
 Benutzernamen:
-sum by (username) (count_over_time({$label_name=~"$label_value",
-job=~"$job", instance=~"$instance"} |="sshd[" |~": Invalid|:
-Connection closed by authenticating user|: Failed .* user" |
-pattern '<_> user <username> <_> port' | __error__=""
-[$__interval]))
+sum by (username) (count_over_time({job=~"sshlogs"} 
+|="sshd[" 
+|~": Invalid
+|:Connection closed by authenticating user
+|: Failed .* user" 
+|pattern '<_> user <username> <_> port'
+| __error__=""[$__interval]))
 
 # (B) Anzahl von Fehlgeschlagenen Anmeldeversuche für nicht
 existierenden Benutzernamen:
-sum by (username) (count_over_time({$label_name=~"$label_value",
-job=~"$job", instance=~"$instance"} |="sshd[" |=": Failed" !~"invalid
-user" | pattern '<_> for <username> from <_> port' | __error__=""
-[$__interval]))
+sum by (username) (count_over_time({job=~"sshlogs"} 
+|="sshd[" 
+|=": Failed" !~"invalid user" 
+| pattern '<_> for <username> from <_> port'
+| __error__=""[$__interval]))
 
 # Wenn die Anzahl von (A) oder von (B) größer als fünf ist, dann wird
 die Warnmeldung als E-Mail an dem Ziel geschickt.

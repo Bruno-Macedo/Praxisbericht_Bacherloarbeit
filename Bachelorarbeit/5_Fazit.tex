@@ -1,4 +1,4 @@
-\section{Zusammenfassung}
+\section{Fazit}
 
 \subsection{Diskussion der Ergebnisse}
 In dieser Arbeit haben wir versucht, mithilfe von Grafana, Loki und Promtail eine \gls{SIEM}-Lösung zu emulieren, um Überwachungsmechanismen anhand von Logdateien zu erstellen. In der folgenden Tabelle zeigen wir die Rolle jedes verwendeten Tools bei der Erreichung unseres Ziels:
@@ -23,7 +23,7 @@ Wir stellen fest, dass die verwendeten Tools eine kosteneffektive Möglichkeit b
 
 
 \subsection{Herausforderungen}
-Der korrekte Aufbau der Regesätze, die Beherrschung der vielen Funktionalitäten und Konfigurationen von Grafana, Loki und Promtail und die richtige Indexierung stellen die größte Herausforderung bei dieser Implementierung dar. Um die Tools präzise anzuwenden, ist es entscheidend, die Regesätze richtig zu entwickeln, um potenzielle Angriffe zu identifizieren und eine passende Konfiguration, um eine einwandreie Nutzung mit mehreren \glsplural{Endpoint} und Nutzer zu bekommen. 
+Der korrekte Aufbau der Regesätze, die Beherrschung der vielen Funktionalitäten und Konfigurationen der Tools stellen die größte Herausforderung bei dieser Implementierung dar. Um die Anwendungen präzise zu benutzen, ist es entscheidend, die Regesätze richtig zu entwickeln, um potenzielle Angriffe zu identifizieren und eine passende Konfiguration, um eine einwandreie Nutzung mit mehreren \glsplural{Endpoint} und Nutzer zu bekommen. 
 
 Da Logdateien aus produktiven Umgebungen eine große Menge an Informationen enthalten, müssen die Regesätze so definiert werden, dass sie die relevanten Informationen wie IP-Adresse, Portnummer, Zeitfenster und Zeitabstände zwischen Anfragen filtern und nach Angriffsmustern kategorisieren können. Die richtige nutzung von den Filterung Optionen von Promtail \quotes{scrape\_configs} ermöglicht die Extrahierung spezifisch Informationen und präzise \quotes{labels} zu genieren. Die Lernkurve für den Aufbau der richtigen Regelsatz kann eine große Herausforderung darstellen, wie auch in unserem Fall.
 

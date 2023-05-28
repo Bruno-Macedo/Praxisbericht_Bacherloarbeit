@@ -27,6 +27,13 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
     \hphantom{text}instance: \gls{Endpoint}-Name \newline
     \hphantom{text}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Datei im System an.\\ \hline
 
+    \textbf{pipeline\_stages:} & Hier können wir den Inhalt der Logzeile definieren, bevor wir es zu Loki schicken. \\
+
+    \hphantom{te}- match: \newline
+    \hphantom{tex}selector: '\{job=``sshlogs''\}' \newline
+    \hphantom{tex}action: keep \newline & Nur Logzeilen mit diesem \quotes{label} werden modifiziert und dessen Inhalt wird beibehalten. Alternativ gibt es \quotes{drop}, um diesen Inhalt zu löschen. \\   \hline
+
+
     \end{tabularx}
 \end{table}
 
@@ -37,11 +44,7 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
   \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
   \hline
   
-  \textbf{pipeline\_stages:} & Hier können wir den Inhalt der Logzeile definieren, bevor wir es zu Loki schicken. \\
 
-  \hphantom{te}- match: \newline
-  \hphantom{tex}selector: '\{job=``sshlogs''\}' \newline
-  \hphantom{tex}action: keep \newline & Nur Logzeilen mit diesem \quotes{label} werden modifiziert und dessen Inhalt wird beibehalten. Alternativ gibt es \quotes{drop}, um diesen Inhalt zu löschen. \\   \hline
 
   \hphantom{tex}\textbf{stages:}  \newline
   \hphantom{tex}- regex: (\glsfirst{RegExp} am Ende dieser Tabelle)\newline
@@ -106,8 +109,31 @@ In der nächsten Tabelle, \ref{tab:KonfigLoki}, zeigen wir einen Konfigurationsa
   \label{tab:KonfigLoki}
 \end{table}
 
+\newpage
 \subsection{Generierung von Graphiken}
-Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} starten und mithilfe des Musters von \cite{VoidQuark_sshlogs} Grafiken mit Informationen über \gls{ssh}-Verbindungen generieren. Mit der \gls{frontend}-Anwendung Grafana können wir Daten in verschiedenen Zeitspannen anzeigen und nach \quotes{labels} filtern. Als Beispiel zeigen wir in Abbildung \ref{fig:1_Anmeldung_BenutzerName} eine Grafik mit fehlgeschlagenen Anmeldeversuchen pro Nutzer am 22.4.2023:
+Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} starten und mithilfe des Musters von \cite{VoidQuark_sshlogs} Grafiken mit Informationen über \gls{ssh}-Verbindungen generieren. Mit der \gls{frontend}-Anwendung Grafana können wir Daten in verschiedenen Zeitspannen anzeigen und nach \quotes{labels} filtern. 
+
+Für unsere Graphiken wollen wir die Anzahl von fehlgeschlagenen Anmeldeversuchen pro Benutzername ableiten. Dafür benutzen wir folgende Abfrage: 
+
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+sum by (username) (count_over_time({ job=~"sshlogs"} 
+|="sshd[" 
+|~": Invalid
+|: Connection closed by authenticating user
+|: Failed .* user" 
+| pattern `<_> user <username> <_> port` 
+| __error__="" [$__interval]))
+
+sum by (username) (count_over_time({job=~"sshlogs"}
+|="sshd[" 
+|=": Failed" !~"invalid user" 
+| pattern `<_> for <username> from <_> port` 
+| __error__="" [$__interval]))
+\end{Verbatim}
+}
+
+Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:2_Anmeldung_BenutzerName} dargestellt:
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -116,12 +142,12 @@ Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} star
     \begin{figure}[H]
        % \centering
         \centerline{\includegraphics[width=1.7\textwidth]{assets/Failed_pro_user.png}}
-        \caption[Grapische Darstellung von Anzahl fehlgeschlagenen Anmeldeversuche pro Nutzer vom 22.4.2023]
-        {Grapische Darstellung von Anzahl fehlgeschlagenen Anmeldeversuche pro Nutzer vom 22.4.2023}
+        \caption[Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro Benutzername]
+        {Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro Benutzername}
         \label{fig:1_Anmeldung_BenutzerName}
         \centering
     \end{figure}
-Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2022 möglicherweise ein \gls{bruteforce} stattgefunden hat. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
+Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass am \quotes{22.5.2022} möglicherweise ein \gls{bruteforce} stattgefunden hat. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
 \end{landscape}
 \restoregeometry
 
@@ -132,9 +158,9 @@ Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass 
   Wir können weitere Filter anwenden, um beispielsweise zu zeigen, zu welchen Uhrzeiten die meisten Versuche stattgefunden haben, wie auf der Graphik \ref{fig:2_Anmeldung_BenutzerName}:
     \begin{figure}[H]
        % \centering
-        \centerline{\includegraphics[width=1.6\textwidth]{assets/activityperhour.png}}
-        \caption[Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am 22.4.2023]
-        {Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am 22.4.2023}
+        \centerline{\includegraphics[width=1.5\textwidth]{assets/activityperhour.png}}
+        \caption[Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am \quotes{22.5.2022}]
+        {Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am \quotes{22.5.2022}}
         \label{fig:2_Anmeldung_BenutzerName}
         \centering
     \end{figure}
@@ -142,72 +168,91 @@ Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass 
 \end{landscape}
 \restoregeometry
 
-Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren und darzustellen. Die Nutzungsmöglichkeiten sind praktisch unbegrenzt und hängen von der Kreativität des Benutzers sowie den Anforderungen der jeweiligen Situation ab.
 
-Die Graphiken \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:2_Anmeldung_BenutzerName} wurden mit folgenden Abfragen generiert:
-
+Die nächste Abbildung, \ref{fig:1_Anmeldung_IPAdresse}, soll die Anzahl von fehlgeschlagene Anmeldeversuche pro IP-Adresse zeigen. Die benutzten Abfragen lauten wie folgt:
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-sum by (username) (count_over_time({ job=~"sshlogs"} |="sshd[" |~": 
-Invalid|: Connection closed by authenticating user|: Failed .* 
-user" | pattern `<_> user <username> <_> port` | __error__="" 
-[$__interval]))
+count by (ip) (count_over_time({job=~"sshlogs"} 
+|="sshd[" 
+|~": Invalid
+|: Connection closed by authenticating user
+|: Failed .* user" 
+| pattern `<_> from <ip> port` 
+| __error__="" [$__interval]))
 
-sum by (username) (count_over_time({job=~"sshlogs"}|="sshd[" |=": 
-Failed" !~"invalid user" | pattern `<_> for <username> from <_> 
-port` | __error__="" [$__interval]))
+count by (ip) (count_over_time({job=~"sshlogs"} 
+|="sshd[" 
+|=": Failed" !~"invalid user" 
+| pattern `<_> from <ip> port` 
+| __error__="" [$__interval]))
 \end{Verbatim}
 }
 
-Die folgenden beiden Abbildungen, \ref{1_Anmeldung_IP} und \ref{2_Anmeldung_IP}, zeigen die IP-Adresse, von der Anmeldeversuche unternommen wurde.
 
+\newpage
+\newgeometry{right=30mm, left=30mm}
+\thispagestyle{lscape}
+\begin{landscape}
+    \begin{figure}[H]
+       % \centering
+        \centerline{\includegraphics[width=1.6\textwidth]{assets/Failed_pro_ip.png}}
+        \caption[Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro IP-Adresse]
+        {Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro IP-Adresse}
+        \label{fig:1_Anmeldung_IPAdresse}
+        \centering
+    \end{figure}
 
-
-
-
-
-
-Die Abfragen für die vorherigen Abbildungen \ref{1_Anmeldung_IP} und \ref{2_Anmeldung_IP} lauten wie folgt:
-{\setstretch{1.0}
-\begin{Verbatim}[frame=single]
-sum by (username) (count_over_time({ job=~"sshlogs"} |="sshd[" |~": 
-Invalid|: Connection closed by authenticating user|: Failed .* 
-user" | pattern `<_> user <username> <_> port` | __error__="" 
-[$__interval]))
-
-sum by (username) (count_over_time({job=~"sshlogs"}|="sshd[" |=": 
-Failed" !~"invalid user" | pattern `<_> for <username> from <_> 
-port` | __error__="" [$__interval]))
-\end{Verbatim}
-}
+Aus Abbildung \ref{fig:1_Anmeldung_IPAdresse} können wir die IP-Adressen identifizieren, von denen die meisten fehlgeschlagenen Anmeldeversuche zwischen dem \quotes{21.5.2023} und dem \quotes{22.5.2022} stammen.
+\end{landscape}
+\restoregeometry
 
 \subsection{Generierung von Warnmeldungen}
 
 Mithilfe der oben gezeighten Abfragen generieren wir auch unsere Warnmeldung mit dem Alerting Tool von Grafana.
 
-Warnmeldungen dienen hauptsächlich der Echtzeitanalyse. Da unsere Logdateien jedoch aus den Monaten März und April 2023 stammen, verschoben wir die Daten in die entsprechenden Monate, um \quotes{Echtzeit} -Daten für die Analyse zu simulieren. Dies ermöglicht uns, aktuelle Warnungen und Alarme basierend auf den verschobenen Daten zu generieren.
+Warnmeldungen dienen hauptsächlich der Echtzeitanalyse. Da unsere Logdateien jedoch aus den Monaten März und April 2023 stammen, verschoben wir die Daten in die entsprechenden Monate, um \quotes{Echtzeit}-Daten für die Analyse zu simulieren. Dies ermöglicht uns, aktuelle Warnungen und Alarme basierend auf den verschobenen Daten zu generieren.
 
 \begin{center}
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single]
-                           Mar ===> Apr | März ====> April
-                           Apr ===> May | April ===> May
-                     26 Apr ===> 28 May | 26 April ===> 28 May
+                    Mar ===> Apr | März ====> April
+                    Apr ===> May | April ===> May
+              26 Apr ===> 27 May | 26 April ===> 27 May
 \end{Verbatim}
 }
 \end{center}
 
-Die nächste Abbildung, \ref{fig:unsereWarnmeldung1}, zeigt eine Warnmeldung 
+Für unsere Warnmeldung benutzten wir folgende Abfrage:
+\begin{center}
+{\setstretch{1.0}
+\begin{Verbatim}[frame=single]
+sum by (Source_IP) (count_over_time({job=~"sshlogs"} 
+|="sshd[" 
+|~": Invalid
+|:Connection closed by authenticating user
+|: Failed .* user" 
+| pattern `<_> from <Source_IP> port` 
+| __error__="" [5m]))
+\end{Verbatim}
+}
+\end{center}
+
+Aus dieser Abfrage finden wir heraus, wie viele fehlgeschlagene Anmeldeversuche pro IP-Adresse es gibt. Mit einem Zeitfenster von einer Woche lösen wir immer dann eine Meldung aus, wenn dieser Wert größer als fünf ist. Fünf ist ein von uns ausgewählter Wert. 
+
+\newpage
+In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung assieht und wir können auch die Quelladresse des fehlgeschlagenen Anmeldeversuchs erkennen:  
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{assets/OurAlert.png}
-  \caption[Warnmeldung E-Mail Warnmeldung von Grafana aus unseren Logdateien]
-  {Warnmeldung E-Mail Warnmeldung von Grafana aus unseren Logdateien}
+  \includegraphics[width=0.6\textwidth]{assets/OurAlert.png}
+  \caption[Warnmeldung von Grafana über fehlgeschlagenen \gls{ssh}-Anmeldeversuch]
+  {Warnmeldung von Grafana über fehlgeschlagenen \gls{ssh}-Anmeldeversuch}
   \centering
   \label{fig:unsereWarnmeldung1}
 \end{figure}
 
-Die Quelleadresse des fehlgeschlagenen Anmeldeversuchs können wir anhand der Warnmeldung erkennen.
+\subsection{Zusammenfassung}
+
+Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren, darzustellen und Warnmeldungen zu generieren. Die Nutzungsmöglichkeiten sind praktisch unbegrenzt und hängen von der Kreativität des Benutzers sowie den Anforderungen der jeweiligen Situation ab.
 
 %Das Alerting Tool von Grafana ist nicht so benutzerfreundlich, wenn es darum geht, die \quotes{labels} in der Nachrichten der Warnmeldung hinzufügen. Obwohl die offiziele Dokumentation ein Beispieldie Nachricht in den Warnmeldungen zu schreiben. 
 
