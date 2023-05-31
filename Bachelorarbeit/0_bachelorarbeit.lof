@@ -34,8 +34,10 @@
 \contentsline {figure}{\numberline {34}{\ignorespaces Ausgabe der Verarbeitung der \gls {ssh} Logdateien von Grafana Loki}}{45}{figure.caption.53}%
 \contentsline {figure}{\numberline {35}{\ignorespaces Ausführliche Darstellung der \gls {ssh} Logdateien von Grafana Loki}}{46}{figure.caption.54}%
 \contentsline {figure}{\numberline {36}{\ignorespaces E-Mail Warnmeldung von Grafana}}{49}{figure.caption.55}%
-\contentsline {figure}{\numberline {37}{\ignorespaces Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro Benutzername}}{54}{figure.caption.59}%
-\contentsline {figure}{\numberline {38}{\ignorespaces Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am \glqq 22.5.2022\grqq {}}}{55}{figure.caption.60}%
-\contentsline {figure}{\numberline {39}{\ignorespaces Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro IP-Adresse}}{57}{figure.caption.61}%
-\contentsline {figure}{\numberline {40}{\ignorespaces Warnmeldung von Grafana über fehlgeschlagenen \gls {ssh}-Anmeldeversuch}}{59}{figure.caption.62}%
+\contentsline {figure}{\numberline {37}{\ignorespaces Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am \glqq 22.5.2023\grqq {}}}{54}{figure.caption.59}%
+\contentsline {figure}{\numberline {38}{\ignorespaces Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro Benutzername}}{56}{figure.caption.60}%
+\contentsline {figure}{\numberline {39}{\ignorespaces Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro Benutzername}}{57}{figure.caption.61}%
+\contentsline {figure}{\numberline {40}{\ignorespaces Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro IP-Adresse}}{59}{figure.caption.62}%
+\contentsline {figure}{\numberline {41}{\ignorespaces Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro IP-Adresse}}{60}{figure.caption.63}%
+\contentsline {figure}{\numberline {42}{\ignorespaces Warnmeldung von Grafana über fehlgeschlagenen \gls {ssh}-Anmeldeversuch}}{62}{figure.caption.64}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -20,15 +20,9 @@ services:
     container_name: Opfersystem1
     volumes:
       - ${PWD}/promtail-local-config_opfer1.yaml:/etc/promtail/promtail-config.yaml
-      - ${PWD}/temp/:/opt/
-      #- ${PWD}/ssh.log:/opt/ssh.log
-      #- ${PWD}/ssh1.log:/opt/ssh1.log
-      #- ${PWD}/ssh2.log:/opt/ssh2.log
-      #- ${PWD}/temp/auth.log.1.gz:/opt/auth.log.1.gz
-      #- ${PWD}/temp/auth.log.2.gz:/opt/auth.log.2.gz
+      - ${PWD}/temp2/:/opt/
     command: -config.file=/etc/promtail/promtail-config.yaml 
              -config.expand-env=true 
-             #-querier.max-outstanding-requests-per-tenant= 2048
     networks:
       - loki
 

@@ -1,5 +1,5 @@
 \section{Evaluation der Implementation mit echten Logdateien}
-In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. 
+In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. Diese Logdateien wurden zwischen März und April 2023 aufgenommen und sie bestehen aus vier Dateien mit insgesamt 40 Megabyte. Wir benutzen diese Logdateien, um mögliche Angriffe auf diesem System der Hochschule zu detektieren.
 
 % logdatei hat folgende zeiträume, 
 % wie groß die Datei sind
@@ -9,10 +9,7 @@ In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse vo
 
 % wann gab es Anmeldung??
 
-
-%Hier hat unsere Logdateien ungefähr vier Megabyte 
-
-\subsection{Einstellungen von Promtail und Loki}
+ \subsection{Einstellungen von Promtail und Loki}
 Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Konfigurationen aus der offiziellen Dokumentation \citep{Grafana_ConfigPromtail}:
 \begin{table}[H]
     \setstretch{1}
@@ -123,34 +120,49 @@ In der Tabelle \ref{tab:KonfigLoki} zeigen wir einen Konfigurationsausschnitt vo
 \newpage
 \subsection{Generierung von Graphiken}
 Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} starten und mithilfe des Musters von \cite{VoidQuark_sshlogs} Grafiken mit Informationen über \gls{ssh}-Verbindungen generieren. Mit der \gls{frontend}-Anwendung Grafana können wir Daten in verschiedenen Zeitspannen anzeigen und nach \quotes{labels} filtern. 
-
-Für unsere Graphiken wollen wir die Anzahl von fehlgeschlagenen Anmeldeversuchen pro Benutzername ableiten. Dafür benutzen wir folgende Abfrage: 
+ 
+Für unsere ersten Graphiken wollen wir die Anzahl von fehlgeschlagenen Anmeldeversuchen pro Benutzername ableiten. Dafür benutzen wir folgende Abfrage:
 
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
-sum by (username) (count_over_time({ job=~"sshlogs"} 
-|="sshd[" 
-|~": Invalid
-|: Connection closed by authenticating user
-|: Failed .* user" 
-| pattern `<_> user <username> <_> port` 
+\begin{Verbatim}[fontsize=\small,commandchars=\\\{\},frame=single]
+count by (username) (count_over_time(\{job=~"sshlogs"\} 
+|="\textbf{\textcolor{red}{sshd[}}"
+|~"\textbf{\textcolor{red}{: Invalid |: Connection closed by authenticating user |  Failed .* user}}"
+|="\textbf{\textcolor{blue}{pattern `<_> user <username> <_> port`}}"
 | __error__="" [$__interval]))
 
-sum by (username) (count_over_time({job=~"sshlogs"}
-|="sshd[" 
-|=": Failed" !~"invalid user" 
-| pattern `<_> for <username> from <_> port` 
+
+count by (username) (count_over_time(\{job=~"sshlogs"\}
+|="\textbf{\textcolor{red}{sshd[}}"
+|="\textbf{\textcolor{red}{: Failed" !~"invalid user}}"
+|="\textbf{\textcolor{blue}{pattern `<_> user <username> <_> port`}}"
 | __error__="" [$__interval]))
 \end{Verbatim}
 }
 
-% diese graphik hier genieriert, aus der Log, gefiltert
-% zweiter Graphik besser als erster
-% besser erklären was man sieht, weniger Interpretation.
-% Interaktiv mit Grafana zu beschäftigen
-% Alerting ist unabängig, aber traägt dazu bei.
+\textcolor{red}{Die rot markierten Elemente} in der Abfrage zeigen die Wort-Kombinationen, nach denen wir im Loginhalt suchen. \textcolor{blue}{Die blau markierten Elemente} extrahieren ein spezifisches Muster aus dem Loginhalt, in diesem Fall den verwendeten Benutzernamen aus der Logzeile. Die erste Abfrage zielt darauf ab, gezielt fehlgeschlagene Anmeldeversuche zu extrahieren, während die zweite Abfrage fehlgeschlagene Anmeldeversuche mit nicht existierenden Benutzernamen verknüpft. Beide Abfragen führen eine Aufzählung (\textit{sum by}) der gefundenen Zeilen durch.
 
-Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:2_Anmeldung_BenutzerName} dargestellt:
+Die generierte Graphik ist auf der Abbildung \label{fig:2_Anmeldung_BenutzerName} dargestellt. Sie zeigt die Aktivität in einer Zeitspanne von 24 Stunden:
+
+\newpage
+\newgeometry{right=30mm, left=30mm}
+\thispagestyle{lscape}
+\begin{landscape}
+    \begin{figure}[H]
+       % \centering
+        \centerline{\includegraphics[width=1.5\textwidth]{assets/activityperhour.png}}
+        \caption[Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am \quotes{22.5.2023}]
+        {Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am 22.4.2023}
+        \label{fig:2_Anmeldung_BenutzerName}
+        \centering
+    \end{figure}
+\end{landscape}
+\restoregeometry
+
+Aus der Abbildung \ref{fig:2_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2023 möglicherweise ein \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Wir können auch sehen, dass es am 22.4.2023 zwischen 16:00 und 17:30 Uhr die meisten Versuche stattfanden und dass der Angreifer am öftesten mit dem Benutzer \quotes{root} versuchte, sich anzumelden. Da es auch andere viele Benutzernamen gibt, können wir auch davon ausgehen, dass der Angreifer auch Wörterbucher für verschiedenen gängige Benutzername-Passwort Kombinationen verwendete.
+
+
+Für unsere nächsten Graphiken wollen wir eine Aufsummierung der  fehlgeschlagenen Anmeldeversuchen pro Benutzername am 22.4.2023 ableiten. Wir benutzen dieselben Regesätze, wie vorher, aber anstelle von (\textit{sum by}), verwenden wir (\textit{count by}) Funktion von \gls{logql}. Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} dargestellt:
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -164,54 +176,35 @@ Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_Benutzer
         \label{fig:1_Anmeldung_BenutzerName}
         \centering
     \end{figure}
-Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2023 möglicherweise ein \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
 \end{landscape}
 \restoregeometry
-% beschreiben, ganz den ganzen Tag
-% Spekulieren, es kann sein, dass etwas über den Tag bla bla bla passiert ist.
-% Screenshot besser mit dem DATUM 22.4
-
-% woher kommen diese beiden Zahlen
-
-% Balken zuerst + Pizza
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
 \thispagestyle{lscape}
 \begin{landscape}
-  Wir können weitere Filter anwenden, um beispielsweise zu zeigen, zu welchen Uhrzeiten die meisten Versuche stattgefunden haben, wie auf der Graphik \ref{fig:2_Anmeldung_BenutzerName}:
     \begin{figure}[H]
        % \centering
-        \centerline{\includegraphics[width=1.5\textwidth]{assets/activityperhour.png}}
-        \caption[Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am \quotes{22.5.2023}]
-        {Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am 22.4.2023}
-        \label{fig:2_Anmeldung_BenutzerName}
+        \centerline{\includegraphics[width=1.7\textwidth]{assets/Failed_pro_user2.png}}
+        \caption[Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro Benutzername]
+        {Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro Benutzername}
+        \label{fig:1_Anmeldung_BenutzerNameOhneRoot}
         \centering
     \end{figure}
-  Die Abbildung \ref{fig:2_Anmeldung_BenutzerName} zeigt, dass die meisten Versuche zwischen 16:00 und 17:30 Uhr stattfanden.
 \end{landscape}
 \restoregeometry
 
+Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} stellen wir fest, dass es am 22.4.2023 einen potenziellen \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 9.691 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 158 Versuche mit \quotes{admin}. 
 
-Die nächste Abbildung, \ref{fig:1_Anmeldung_IPAdresse}, soll die Anzahl von fehlgeschlagene Anmeldeversuche pro IP-Adresse zeigen. Die benutzten Abfragen lauten wie folgt:
+Grafana bietet auch eine interaktive Möglichkkeit, die Graphik darzustellen, sodass man Elementen ein- und ausblenden kann. Auf der Abbildung \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} bledeten wir den Benutzername \quotes{root} aus, um eine andere Darstellung anzubieten.
+
+Die nächsten Abbildungen, \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194}, zeigen die Anzahl von fehlgeschlagene Anmeldeversuche pro IP-Adresse. In der Abbildung \ref{fig:1_Anmeldung_IPAdresseOhne194} wurde die meiste verwendete IP-Adresse ausgeblendet. Wir benutzen die vorherige Abfrage mit dem Unterschied, dass unser \textcolor{blue}{\quotes{Pattern}} eine IP-Adresse herausfiltern soll:
+
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
-count by (ip) (count_over_time({job=~"sshlogs"} 
-|="sshd[" 
-|~": Invalid
-|: Connection closed by authenticating user
-|: Failed .* user" 
-| pattern `<_> from <ip> port` 
-| __error__="" [$__interval]))
-
-count by (ip) (count_over_time({job=~"sshlogs"} 
-|="sshd[" 
-|=": Failed" !~"invalid user" 
-| pattern `<_> from <ip> port` 
-| __error__="" [$__interval]))
+\begin{Verbatim}[fontsize=\small,commandchars=\\\{\},frame=single]
+|="\textbf{\textcolor{blue}{pattern `<_> from <ip> port` }}"
 \end{Verbatim}
 }
-
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -225,17 +218,33 @@ count by (ip) (count_over_time({job=~"sshlogs"}
         \label{fig:1_Anmeldung_IPAdresse}
         \centering
     \end{figure}
+\end{landscape}
+\restoregeometry
 
-Aus Abbildung \ref{fig:1_Anmeldung_IPAdresse} können wir die IP-Adressen identifizieren, von denen die meisten fehlgeschlagenen Anmeldeversuche zwischen dem 21.4.2023 und dem 22.4.2023 stammen.
+\newpage
+\newgeometry{right=30mm, left=30mm}
+\thispagestyle{lscape}
+\begin{landscape}
+    \begin{figure}[H]
+       % \centering
+        \centerline{\includegraphics[width=1.6\textwidth]{assets/Failed_pro_ip2.png}}
+        \caption[Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro IP-Adresse]
+        {Kuchendiagramm von Anzahl fehlgeschlagenen Anmeldeversuche pro IP-Adresse}
+        \label{fig:1_Anmeldung_IPAdresseOhne194}
+        \centering
+    \end{figure}
 \end{landscape}
 \restoregeometry
 
 % Pro IP - Balken
+Aus Abbildung \ref{fig:1_Anmeldung_IPAdresse} können wir die IP-Adressen identifizieren, von denen die meisten fehlgeschlagenen Anmeldeversuche am 22.4.2023 stammen. Da es verschiedenen IP-Adresse verwendeten wurden, können wir davon ausgehen, dass der potenzieller Angreifer versuchte, unnauffällig zu bleiben. 
 
+%Die nächste Graphik, \ref{fig:1_Anmeldung_IPAdressecount}, zeigt die vorherige Aktivität in einer Zeitspanne von 24 Stunden, dafür benutzen wir die Funktion  (\textit{count by}) Funktion von \gls{logql}:
 
 \subsection{Generierung von Warnmeldungen}
+% Alerting ist unabängig, aber traägt dazu bei.
 
-Mithilfe der oben gezeigten Abfragen generieren wir auch unsere Warnmeldung mit Alerting von Grafana.
+Mithilfe der oben gezeigten Abfragen generieren wir auch Warnmeldungen mit dem Alerting-Tool von Grafana. Grafana bietet neben Grafiken und anderen visuellen Darstellungen auch eine eigenständige Funktion für das Alerting. Das bedeutet, dass das Alerting-Tool unabhängig von der Visualisierungsfunktionalität von Grafana funktioniert. In der Praxis ist es möglich, Loki allein für Abfragen und Speicherung zu verwenden und Grafana ausschließlich für die Generierung von Warnmeldungen.
 
 Warnmeldungen dienen hauptsächlich der Echtzeitanalyse. Da unsere Logdateien jedoch aus den Monaten März und April 2023 stammen, verschoben wir die Daten in die entsprechenden Monate, um \quotes{Echtzeit}-Daten für die Analyse zu simulieren. Dies ermöglicht uns, aktuelle Warnungen und Alarme basierend auf den verschobenen Daten zu generieren. Wir haben unsere Logdateien so angepasst.
 
@@ -268,7 +277,6 @@ Aus dieser Abfrage finden wir heraus, wie viele fehlgeschlagene Anmeldeversuche 
 
 %Begründen, weil OWASP empfehlen Versuche pro Minuten
 
-\newpage
 In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung aussieht. wir können auch die Quelladresse des fehlgeschlagenen Anmeldeversuchs erkennen:  
 \begin{figure}[H]
   \centering
@@ -283,7 +291,7 @@ In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung a
 
 Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren, darzustellen und Warnmeldungen zu generieren. 
 
-%Die Nutzungsmöglichkeiten sind praktisch unbegrenzt und hängen von der Kreativität des Benutzers sowie den Anforderungen der jeweiligen Situation ab.
+
 
 % Zusammenfassung 
 

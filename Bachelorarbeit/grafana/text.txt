@@ -21,4 +21,12 @@ count by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connect
 count by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" !~".* from .*" | pattern `<_> user <_> <ip> port` | __error__="" [$__interval]))
 
 
+
+================
+sum by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" |~".* from .*" | pattern `<_> from <ip> port` | __error__="" [$__range]))
+sum by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" !~".* from .*" | pattern `<_> user <_> <ip> port` | __error__="" [$__range]))
+
+
+
+
 /.*from.(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)
