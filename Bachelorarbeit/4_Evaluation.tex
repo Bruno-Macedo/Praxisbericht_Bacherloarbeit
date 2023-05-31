@@ -1,6 +1,15 @@
 \section{Evaluation der Implementation mit echten Logdateien}
 In diesem Abschnitt präsentieren wir unsere Implementierung für die Analyse von \gls{ssh}-Logdateien der Hochschule. 
 
+% logdatei hat folgende zeiträume, 
+% wie groß die Datei sind
+% offline aufgeladen
+% daten interpretieren
+% testsetup, erfolgreiche Angriffe, deshalb sinn diese Daten anzuschauen.
+
+% wann gab es Anmeldung??
+
+
 %Hier hat unsere Logdateien ungefähr vier Megabyte 
 
 \subsection{Einstellungen von Promtail und Loki}
@@ -101,7 +110,7 @@ In der Tabelle \ref{tab:KonfigLoki} zeigen wir einen Konfigurationsausschnitt vo
   \hphantom{te}max\_concurrent: 2048 & Anzahl der gleichzeitigen Abfragen, die verarbeitet werden. \\ \hline
 
   \textbf{limits\_config:} & Festlegung der Aufnahmerate und Nutzung von Ressourcen. \\ 
-  \hphantom{te}reject\_old\_samples: false & Ermöglicht die Aufnahme von alten Logdateien, was in unserem Fall notwendig ist, da unsere Datei von April 2022 ist. \\ 
+  \hphantom{te}reject\_old\_samples: false & Ermöglicht die Aufnahme von alten Logdateien, was in unserem Fall notwendig ist, da unsere Datei von April 2023 ist. \\ 
   \hphantom{te}split\_queries\_by\_interval: 15m & Trennung von Abfragen nach einem definierten Intervall. Jeder Intervall wird gleichzeitig ausgeführt \\ 
   \hphantom{te}max\_query\_parallelism: 32 & Maximale Anzahl von parallelen Abfragen.  \\ \hline
 
@@ -135,6 +144,12 @@ sum by (username) (count_over_time({job=~"sshlogs"}
 \end{Verbatim}
 }
 
+% diese graphik hier genieriert, aus der Log, gefiltert
+% zweiter Graphik besser als erster
+% besser erklären was man sieht, weniger Interpretation.
+% Interaktiv mit Grafana zu beschäftigen
+% Alerting ist unabängig, aber traägt dazu bei.
+
 Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:2_Anmeldung_BenutzerName} dargestellt:
 
 \newpage
@@ -149,9 +164,16 @@ Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_Benutzer
         \label{fig:1_Anmeldung_BenutzerName}
         \centering
     \end{figure}
-Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2022 möglicherweise ein \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
+Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2023 möglicherweise ein \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.330 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 142 Versuche mit \quotes{admin}.
 \end{landscape}
 \restoregeometry
+% beschreiben, ganz den ganzen Tag
+% Spekulieren, es kann sein, dass etwas über den Tag bla bla bla passiert ist.
+% Screenshot besser mit dem DATUM 22.4
+
+% woher kommen diese beiden Zahlen
+
+% Balken zuerst + Pizza
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -161,8 +183,8 @@ Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} können wir ableiten, dass 
     \begin{figure}[H]
        % \centering
         \centerline{\includegraphics[width=1.5\textwidth]{assets/activityperhour.png}}
-        \caption[Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am \quotes{22.5.2022}]
-        {Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am \quotes{22.5.2022}}
+        \caption[Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am \quotes{22.5.2023}]
+        {Balkendiagramm Darstellung der fehlgeschlagenen Anmeldeversuche in einem Zeitfenster von 24 Stunden am 22.4.2023}
         \label{fig:2_Anmeldung_BenutzerName}
         \centering
     \end{figure}
@@ -204,9 +226,12 @@ count by (ip) (count_over_time({job=~"sshlogs"}
         \centering
     \end{figure}
 
-Aus Abbildung \ref{fig:1_Anmeldung_IPAdresse} können wir die IP-Adressen identifizieren, von denen die meisten fehlgeschlagenen Anmeldeversuche zwischen dem 21.4.2023 und dem 22.4.2022 stammen.
+Aus Abbildung \ref{fig:1_Anmeldung_IPAdresse} können wir die IP-Adressen identifizieren, von denen die meisten fehlgeschlagenen Anmeldeversuche zwischen dem 21.4.2023 und dem 22.4.2023 stammen.
 \end{landscape}
 \restoregeometry
+
+% Pro IP - Balken
+
 
 \subsection{Generierung von Warnmeldungen}
 
@@ -241,6 +266,8 @@ sum by (Source_IP) (count_over_time({job=~"sshlogs"}
 
 Aus dieser Abfrage finden wir heraus, wie viele fehlgeschlagene Anmeldeversuche pro IP-Adresse es gibt. Mit einem Zeitfenster von einer Woche lösen wir immer dann eine Meldung aus, wenn dieser Wert größer als fünf ist. Fünf ist ein von uns ausgewählter Wert. 
 
+%Begründen, weil OWASP empfehlen Versuche pro Minuten
+
 \newpage
 In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung aussieht. wir können auch die Quelladresse des fehlgeschlagenen Anmeldeversuchs erkennen:  
 \begin{figure}[H]
@@ -254,7 +281,12 @@ In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung a
 
 \subsection{Zusammenfassung}
 
-Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren, darzustellen und Warnmeldungen zu generieren. Die Nutzungsmöglichkeiten sind praktisch unbegrenzt und hängen von der Kreativität des Benutzers sowie den Anforderungen der jeweiligen Situation ab.
+Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren, darzustellen und Warnmeldungen zu generieren. 
+
+%Die Nutzungsmöglichkeiten sind praktisch unbegrenzt und hängen von der Kreativität des Benutzers sowie den Anforderungen der jeweiligen Situation ab.
+
+% Zusammenfassung 
+
 
 %Das Alerting Tool von Grafana ist nicht so benutzerfreundlich, wenn es darum geht, die \quotes{labels} in der Nachrichten der Warnmeldung hinzufügen. Obwohl die offiziele Dokumentation ein Beispieldie Nachricht in den Warnmeldungen zu schreiben. 
 
@@ -265,3 +297,4 @@ Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren, darzustellen 
 % fucking alerts
 
 %https://computingforgeeks.com/run-elastic-stack-elk-on-docker/
+
