@@ -273,9 +273,7 @@ sum by (Source_IP) (count_over_time({job=~"sshlogs"}
 }
 \end{center}
 
-Aus dieser Abfrage finden wir heraus, wie viele fehlgeschlagene Anmeldeversuche pro IP-Adresse es gibt. Mit einem Zeitfenster von einer Woche lösen wir immer dann eine Meldung aus, wenn dieser Wert größer als fünf ist. Fünf ist ein von uns ausgewählter Wert. 
-
-%Begründen, weil OWASP empfehlen Versuche pro Minuten
+Aus dieser Abfrage ermitteln wir die Anzahl der fehlgeschlagenen Anmeldeversuche pro IP-Adresse. Mit einem Zeitfenster von einer Woche lösen wir eine Meldung aus, wenn diese Anzahl den Wert 50 überschreitet. Diese Schwelle haben wir gemäß der Empfehlung von \cite{NIST_Passwort} festgelegt.
 
 In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung aussieht. wir können auch die Quelladresse des fehlgeschlagenen Anmeldeversuchs erkennen:  
 \begin{figure}[H]
@@ -287,22 +285,14 @@ In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung a
   \label{fig:unsereWarnmeldung1}
 \end{figure}
 
+\newpage
 \subsection{Zusammenfassung}
+Grafana und ihre integrierten Tools bieten zahlreiche Möglichkeiten, um Daten zu kombinieren, darzustellen und Warnmeldungen zu generieren. Um jedoch die volle Kontrolle und Flexibilität zu nutzen und gezielte Informationen aus den Logdaten zu extrahieren und sie in Grafiken oder Warnmeldungen zu nutzen, ist es wichtig, die \gls{abfragesprache} \gls{logql} effektiv einzusetzen, um präzise Abfragen zu erstellen. Diese Präzision ermöglicht es, Logdaten nach bestimmten Kriterien zu filtern, sie zu kombinieren, Aggregationen durchzuführen und weitere Transformationen vorzunehmen.
 
-Grafana bietet zahlreiche Möglichkeiten, um Daten zu kombinieren, darzustellen und Warnmeldungen zu generieren. 
-
-
-
-% Zusammenfassung 
+Ein gründliches Verständnis von Promtail und Loki hilft dabei, die Konfiguration und das Mapping der Logdaten richtig durchzuführen, um nur die erforderlichen Informationen zu extrahieren und zu indizieren. Dadurch wird sichergestellt, dass die Anwendungen effizient arbeiten und die Logabfrage schnell und genau erfolgt.
 
 
-%Das Alerting Tool von Grafana ist nicht so benutzerfreundlich, wenn es darum geht, die \quotes{labels} in der Nachrichten der Warnmeldung hinzufügen. Obwohl die offiziele Dokumentation ein Beispieldie Nachricht in den Warnmeldungen zu schreiben. 
 
-
-% unsere Warnmeldung
-% unsere Grafik
-
-% fucking alerts
 
 %https://computingforgeeks.com/run-elastic-stack-elk-on-docker/
 
