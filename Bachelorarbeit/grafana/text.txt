@@ -16,16 +16,45 @@ https://grafana.com/docs/grafana/latest/alerting/alerting-rules/create-grafana-m
 
 IPAddress
 
-count by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" |~".* from .*" | pattern `<_> from <ip> port` | __error__="" [$__interval]))
+count by (Source_IP) (count_over_time({job=~"sshlogs"} 
+|="sshd[" 
+|~": Invalid|: Connection closed by authenticating user|: Failed" 
+|~".* from .*" 
+| pattern `<_> from <Source_IP> port` 
+| __error__="" [$__interval]))
+
+
 
 count by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" !~".* from .*" | pattern `<_> user <_> <ip> port` | __error__="" [$__interval]))
 
 
+====USERNAME ====
+================ BAR ==========
+sum by (username) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed .* user" | pattern `<_> user <username> <_> port` | __error__="" [$__interval]))
 
-================
-sum by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" |~".* from .*" | pattern `<_> from <ip> port` | __error__="" [$__range]))
-sum by (ip) (count_over_time({job=~"sshlogs"} |="sshd[" |~": Invalid|: Connection closed by authenticating user|: Failed" !~".* from .*" | pattern `<_> user <_> <ip> port` | __error__="" [$__range]))
+sum by (username) (count_over_time({job=~"sshlogs"} |="sshd[" |=": Failed" !~"invalid user" | pattern `<_> for <username> from <_> port` | __error__="" [$__interval]))
+================ Pizza ==========
+sum by (username) (count_over_time({job=~"sshlogs"}
+|="sshd["
+|~": Invalid |: Connection closed by authenticating user | Failed .* user"
+| pattern `<_> user <username> <_> port`
+| __error__="" [30m]))
 
+sum by (username) (count_over_time({job=~"sshlogs"}
+|="sshd["
+|=": Failed" !~"invalid user"
+| pattern `<_> user <username> <_> port`
+| __error__="" [30m]))
+
+====USERNAME ====
+count by (ip) (count_over_time({job=~"sshlogs"} 
+|="sshd[" 
+|=": Accepted" 
+| pattern `<_> Accepted <_> for <_> from <ip> port <_>` 
+| pattern `<_> user <username> <_> port`
+| __error__="" [$__interval]))
+
+====IP ====
 
 
 

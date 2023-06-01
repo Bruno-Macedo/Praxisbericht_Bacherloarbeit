@@ -112,8 +112,6 @@ Die nächste Abbildung, \ref{fig:Allgemein_Splunk}, zeigt ein zusammenfassendes 
    \centering
 \end{figure}
 
-%Auf der Abbildung \ref{fig:Allgemein_Splunk} haben wir unten die \glsplural{Endpoint}, dessen Logdateien von Splunk und seine \glsplural{plugin} und Funktionalitäten verarbeitet und analysiert werden.
-
 Auf der Abbildung \ref{fig:Allgemein_Splunk} haben wir links die \glsplural{Endpoint}, dessen Logdateien von Splunk und seine \glsplural{plugin} und Funktionalitäten (rechts) verarbeitet und analysiert werden. Das Konzept von Splunk lässt sich von der Idee formulieren, dass verschiedenen und unabhängige Funktionalitäten zusammenarbeiten \citep{Splunk_platform}.
 
 Wie in anderen Tools, funktioniert die Bedrohungserkennung mithilfe von Regelsätzen, die aus \glsplural{usecases} entstehen. Laut der Dokumentation existieren sie in folgenden Szenarien: Überwachung, Untersuchung und Erkennung. Die Software ist sowohl mit \gls{mitre} Matrix als auch mit \glsfirst{CKC} für die Gestaltung ihrer Erkennungsregel integriert \citep{Splunk_usecases}.
@@ -259,8 +257,6 @@ Die nächste Abbildung, \ref{fig:Intregation_ELK}, stellt die Architektur von El
    \label{fig:Intregation_ELK}
    \centering
 \end{figure}
-
-
 
 Die Beats auf der Abbildung sind an der \glsplural{Endpoint} installiert und leiten Daten entweder zu Elasticsearch (a) oder zu Logstash (b) weiter. In Elasticsearch werden die Daten nach Muster mithilfe der Abfragesprache \glsfirstplural{DSL} gesucht. In Logstash werden die Daten verarbeitet, gespeichert und weitergeleitet. Schließlich stellt Kibana die Daten graphisch über die \gls{GUI} dar\citep{Jain_LMELK}.
 

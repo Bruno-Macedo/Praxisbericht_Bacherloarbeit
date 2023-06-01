@@ -128,19 +128,18 @@ Für unsere ersten Graphiken wollen wir die Anzahl von fehlgeschlagenen Anmeldev
 count by (username) (count_over_time(\{job=~"sshlogs"\} 
 |="\textbf{\textcolor{red}{sshd[}}"
 |~"\textbf{\textcolor{red}{: Invalid |: Connection closed by authenticating user |  Failed .* user}}"
-|="\textbf{\textcolor{blue}{pattern `<_> user <username> <_> port`}}"
+| \textbf{\textcolor{blue}{pattern `<_> user <username> <_> port`}}
 | __error__="" [$__interval]))
-
 
 count by (username) (count_over_time(\{job=~"sshlogs"\}
 |="\textbf{\textcolor{red}{sshd[}}"
 |="\textbf{\textcolor{red}{: Failed" !~"invalid user}}"
-|="\textbf{\textcolor{blue}{pattern `<_> user <username> <_> port`}}"
+| \textbf{\textcolor{blue}{pattern `<_> user <username> <_> port`}}
 | __error__="" [$__interval]))
 \end{Verbatim}
 }
 
-\textcolor{red}{Die rot markierten Elemente} in der Abfrage zeigen die Wort-Kombinationen, nach denen wir im Loginhalt suchen. \textcolor{blue}{Die blau markierten Elemente} extrahieren ein spezifisches Muster aus dem Loginhalt, in diesem Fall den verwendeten Benutzernamen aus der Logzeile. Die erste Abfrage zielt darauf ab, gezielt fehlgeschlagene Anmeldeversuche zu extrahieren, während die zweite Abfrage fehlgeschlagene Anmeldeversuche mit nicht existierenden Benutzernamen verknüpft. Beide Abfragen führen eine Aufzählung (\textit{sum by}) der gefundenen Zeilen durch.
+\textcolor{red}{Die rot markierten Elemente} in der Abfrage zeigen die Wort-Kombinationen, nach denen wir im Loginhalt suchen. \textcolor{blue}{Die blau markierten Elemente} extrahieren ein spezifisches Muster aus dem Loginhalt, in diesem Fall den wollen Benutzernamen aus der Logzeile auslesen. Die erste Abfrage zielt darauf ab, gezielt fehlgeschlagene Anmeldeversuche zu extrahieren, während die zweite Abfrage fehlgeschlagene Anmeldeversuche mit nicht existierenden Benutzernamen verknüpft. Beide Abfragen führen eine Aufzählung (\textit{sum by}) der gefundenen Zeilen durch.
 
 Die generierte Graphik ist auf der Abbildung \label{fig:2_Anmeldung_BenutzerName} dargestellt. Sie zeigt die Aktivität in einer Zeitspanne von 24 Stunden:
 
@@ -194,7 +193,7 @@ Für unsere nächsten Graphiken wollen wir eine Aufsummierung der  fehlgeschlage
 \end{landscape}
 \restoregeometry
 
-Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} stellen wir fest, dass es am 22.4.2023 einen potenziellen \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 9.691 Versuche mit dem Benutzernamen \quotes{root}, 307 Versuche mit \quotes{user} und 158 Versuche mit \quotes{admin}. 
+Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} stellen wir fest, dass es am 22.4.2023 einen potenziellen \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.781 Versuche mit dem Benutzernamen \quotes{root}, 324 Versuche mit \quotes{user} und 162 Versuche mit \quotes{admin}. 
 
 Grafana bietet auch eine interaktive Möglichkkeit, die Graphik darzustellen, sodass man Elementen ein- und ausblenden kann. Auf der Abbildung \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} bledeten wir den Benutzername \quotes{root} aus, um eine andere Darstellung anzubieten.
 
@@ -202,9 +201,22 @@ Die nächsten Abbildungen, \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeld
 
 {\setstretch{1.0}
 \begin{Verbatim}[fontsize=\small,commandchars=\\\{\},frame=single]
-|="\textbf{\textcolor{blue}{pattern `<_> from <ip> port` }}"
+count by (username) (count_over_time(\{job=~"sshlogs"\} 
+|="\textbf{\textcolor{red}{sshd[}}"
+|~"\textbf{\textcolor{red}{: Invalid |: Connection closed by authenticating user |  Failed .* user}}"
+| \textbf{\textcolor{blue}{pattern `<_> from <Source_IP> port`}}
+| __error__="" [$__interval]))
+
+count by (username) (count_over_time(\{job=~"sshlogs"\}
+|="\textbf{\textcolor{red}{sshd[}}"
+|="\textbf{\textcolor{red}{: Failed" !~"invalid user}}"
+| \textbf{\textcolor{blue}{pattern `<_> from <Source_IP> port`}}
+| __error__="" [$__interval]))
 \end{Verbatim}
 }
+
+% Pro IP - Balken
+Aus Abbildungen \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194} identifizieren wir die IP-Adressen, von denen die meisten fehlgeschlagenen Anmeldeversuche am 22.4.2023 stammen. Da es verschiedenen IP-Adresse verwendeten wurden, können wir davon ausgehen, dass der potenzieller Angreifer versuchte, unnauffällig zu bleiben. 
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -236,8 +248,7 @@ Die nächsten Abbildungen, \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeld
 \end{landscape}
 \restoregeometry
 
-% Pro IP - Balken
-Aus Abbildung \ref{fig:1_Anmeldung_IPAdresse} können wir die IP-Adressen identifizieren, von denen die meisten fehlgeschlagenen Anmeldeversuche am 22.4.2023 stammen. Da es verschiedenen IP-Adresse verwendeten wurden, können wir davon ausgehen, dass der potenzieller Angreifer versuchte, unnauffällig zu bleiben. 
+
 
 %Die nächste Graphik, \ref{fig:1_Anmeldung_IPAdressecount}, zeigt die vorherige Aktivität in einer Zeitspanne von 24 Stunden, dafür benutzen wir die Funktion  (\textit{count by}) Funktion von \gls{logql}:
 
@@ -273,9 +284,8 @@ sum by (Source_IP) (count_over_time({job=~"sshlogs"}
 }
 \end{center}
 
-Aus dieser Abfrage ermitteln wir die Anzahl der fehlgeschlagenen Anmeldeversuche pro IP-Adresse. Mit einem Zeitfenster von einer Woche lösen wir eine Meldung aus, wenn diese Anzahl den Wert 50 überschreitet. Diese Schwelle haben wir gemäß der Empfehlung von \cite{NIST_Passwort} festgelegt.
+Aus dieser Abfrage ermitteln wir die Anzahl der fehlgeschlagenen Anmeldeversuche pro IP-Adresse. Mit einem Zeitfenster von einer Woche lösen wir eine Meldung aus, wenn diese Anzahl den Wert von fünf überschreitet. Diese Schwelle legten wir gemäß der Empfehlung von \cite{RedHat_Passwort} für die Nutzung von \gls{ssh}-Servern mit dem Tool \gls{fail2ban} fest. In Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmeldung aussieht. Zudem können wir die Quelladresse des fehlgeschlagenen Anmeldeversuchs erkennen.
 
-In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung aussieht. wir können auch die Quelladresse des fehlgeschlagenen Anmeldeversuchs erkennen:  
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{assets/OurAlert.png}
@@ -284,6 +294,9 @@ In der Abbildung \ref{fig:unsereWarnmeldung1} zeigen wir, wie eine Warnmendung a
   \centering
   \label{fig:unsereWarnmeldung1}
 \end{figure}
+
+Aus Abbildung \ref{fig:unsereWarnmeldung1} können wir sehen, dass das extrahierte Pattern zum \quotes{Label} geworden ist. Dieses kann dann verwendet werden, um den Textnachrichten in den Warnmeldungen zu schreiben.
+
 
 \newpage
 \subsection{Zusammenfassung}
