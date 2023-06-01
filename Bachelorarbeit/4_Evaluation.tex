@@ -141,7 +141,7 @@ count by (username) (count_over_time(\{job=~"sshlogs"\}
 
 \textcolor{red}{Die rot markierten Elemente} in der Abfrage zeigen die Wort-Kombinationen, nach denen wir im Loginhalt suchen. \textcolor{blue}{Die blau markierten Elemente} extrahieren ein spezifisches Muster aus dem Loginhalt, in diesem Fall den wollen Benutzernamen aus der Logzeile auslesen. Die erste Abfrage zielt darauf ab, gezielt fehlgeschlagene Anmeldeversuche zu extrahieren, während die zweite Abfrage fehlgeschlagene Anmeldeversuche mit nicht existierenden Benutzernamen verknüpft. Beide Abfragen führen eine Aufzählung (\textit{sum by}) der gefundenen Zeilen durch.
 
-Die generierte Graphik ist auf der Abbildung \label{fig:2_Anmeldung_BenutzerName} dargestellt. Sie zeigt die Aktivität in einer Zeitspanne von 24 Stunden:
+Die generierte Graphik ist auf der Abbildung \ref{fig:2_Anmeldung_BenutzerName} dargestellt. Sie zeigt die Aktivität in einer Zeitspanne von 24 Stunden:
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
