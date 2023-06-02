@@ -19,7 +19,7 @@ In dem Universum des \gls{SOC} mischen sich verschiedene Begriffe, die manchmal 
    \centering
 \end{figure}
 
-Oben auf dem Bild, sehen wir, dass es zwei wichtige Datenquelle gibt, auf der linken Seite sind die Logdateien der \glsplural{Endpoint} und auf der rechten Seite die Informationen, um Anomalie zu erkennen. Nur der linken Seite stellt ein Log-Analyse-Tool dar. Mit der Nutzung der Elemente der rechten Seite, werden die Daten verarbeitet, um Muster zu erkennen und Information herauszuholen. Diese Zusammenarbeit repräsentiert eine \gls{SIEM}-Lösung, die als Ergebnis ein oder mehreren Berichten und/oder Graphik ausgeben kann. \cite{Granadillo_SIEM} teilt ein \gls{SIEM} in unabhängige Blöcke auf, wo jeder Block eine spezifische Funktion hat. Diese Blöcke und die Richtung der Information werden in der Abbildung \ref{fig:SIEM_Allg_Informationsfluss} dargestellt:
+Oben auf dem Bild, sehen wir, dass es zwei wichtige Datenquelle gibt, auf der linken Seite sind die Logdateien der \glsplural{Endpoint}n und auf der rechten Seite die Informationen, um Anomalie zu erkennen. Nur der linken Seite stellt ein Log-Analyse-Tool dar. Mit der Nutzung der Elemente der rechten Seite, werden die Daten verarbeitet, um Muster zu erkennen und Information herauszuholen. Diese Zusammenarbeit repräsentiert eine \gls{SIEM}-Lösung, die als Ergebnis ein oder mehreren Berichten und/oder Graphik ausgeben kann. \cite{Granadillo_SIEM} teilt ein \gls{SIEM} in unabhängige Blöcke auf, wo jeder Block eine spezifische Funktion hat. Diese Blöcke und die Richtung der Information werden in der Abbildung \ref{fig:SIEM_Allg_Informationsfluss} dargestellt:
 
 
 % \textbf{\textcolor{red}{Graphik selbst bauen}}
@@ -66,10 +66,10 @@ In der Abbildung \ref{fig:SIEM_Allg_Informationsfluss} sehen wir den Information
 %    \centering
 % \end{figure}
 
-Aus bisheriger Abbildung stellen wir fest, dass \gls{SIEM} das Ergebnis der Integration von zwei wichtigen Komponenten ist, Datensammlung und Verarbeitung. Das Ziel dieser Software ist es die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereichen, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} eine gesetzliche vorgegeben \citep{Jog_SIEM}. In Deutschland verpflichtet das \gls{IT-Sicherheitsgesetz 2.0} die Anwendungen solcher Lösungen, um Schädigung der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log-Analyse-Tools sind seinerseits Tools zu der Speicherung, Anpassung, Bewertung und Darstellung von Logdateien, ohne dass sie sich auf die Sicherheitsebenen fokussieren.
+Aus der bisherigen Abbildung, \ref{fig:SIEM_Allg_Informationsfluss}, stellen wir fest, dass \gls{SIEM} das Ergebnis der Integration von zwei wichtigen Komponenten ist, Datensammlung und Verarbeitung. Das Ziel dieser Software ist es die automatische Analyse zu ermöglichen, indem Daten kombiniert und bewertet werden können. In vielen Bereichen, wie Finanzen (\glsfirst{PCDISS}), Gesundheitswesen (\glsfirst{HIPAA}), sind \glsplural{SIEM} eine gesetzliche vorgegeben \citep{Jog_SIEM}. In Deutschland verpflichtet das \gls{IT-Sicherheitsgesetz 2.0} die Anwendungen solcher Lösungen, um Schädigung der \glsfirst{CIA} zu verhindern \citep{BSI_ITSG}. Log-Analyse-Tools sind seinerseits Tools zu der Speicherung, Anpassung, Bewertung und Darstellung von Logdateien, ohne dass sie sich auf die Sicherheitsebenen fokussieren.
 
 \subsection{Existierende SIEMs Lösungen und Log-Analyse-Tools}
-Die existierenden \glsplural{SIEM} und Log-Analyse-Tools werden in \textit{\gls{Proprietary}} und \textit{\gls{opensource}} getrennt. In folgenden Abschnitten präsentieren wir das \textit{\gls{Proprietary}}e Tool Splunk, um einen Maßstab für unsere Auswahl über Funktionalität zu definieren und analysieren zusätzlich  folgende Tools: %\glsplural{SIEM} und Log-Analyse-Tools:
+Wir trennen hier die existierenden \glsplural{SIEM} und Log-Analyse-Tools in \textit{\gls{Proprietary}} und \textit{\gls{opensource}}. In folgenden Abschnitten präsentieren wir das \textit{\gls{Proprietary}}e Tool Splunk, um einen Maßstab für unsere Auswahl über Funktionalität zu definieren und analysieren zusätzlich  folgende Tools: %\glsplural{SIEM} und Log-Analyse-Tools:
 
 \begin{itemize}[noitemsep]
    \item AlienVault \glsfirst{OSSIM} %(nein)+
@@ -92,7 +92,7 @@ Splunk, von dem gleichnamigen Unternehmen, wurde 2003 in den USA auf dem Markt g
 
 Die Architektur und der Informationsfluss von Splunk unterscheidet sich nicht von der oben dargestellten Struktur in der Abbildung \ref{fig:SIEM_Allg_Struktur} und Abbildung \ref{fig:SIEM_Allg_Informationsfluss}. Da es sich hier um eine proprietäre Lösung handelt, lässt sich Splunk mit anderen Funktionalitäten verwalten und erweitern.
 
-Die nächste Abbildung, \ref{fig:Allgemein_Splunk}, zeigt ein zusammenfassendes Diagramm über den Umfang des Informationsflusses von Splunk laut \cite{Splunk_platform}:
+Die Abbildung \ref{fig:Allgemein_Splunk} zeigt ein zusammenfassendes Diagramm über den Umfang des Informationsflusses von Splunk laut \cite{Splunk_platform}:
 
 % % \begin{figure}[H]
 % %    \centering
@@ -188,7 +188,7 @@ Die Abbildung \ref{fig:Module_preludes} zeigt die Integration verschiedener Modu
 %    \centering
 % \end{figure}
 
-Aus der Abbildung und der Dokumentation können wir folgenden Informationsfluss erkennen - die Daten werden von Endanwendung generiert und zum Loganalyzer (Prelude \glsfirst{LML}) (1) geschickt, wo sie normalisiert und bewertet werden Für die Logs, wo es verdächtige Werte nach dem vordefinierten Regelsätze in \gls{LML} gibt, werden Warnmeldungen generiert. Diese Meldungen werden zum Manager Module (2) weitergeleitet. Der Manager kann auch Daten von \gls{IDS} mithilfe von Sensoren empfangen (1), die an den \glsplural{Endpoint} installiert sind, um Events zu analysieren und zum Manager zu schicken. Die Daten werden in der Database gespeichert (3) und auch zum Correlator weitergeleitet (4), wo dieser nach einem Zusammenhang zwischen anderen Daten sucht. Das Ergebnis von Correlator wird wieder zum Manager (5) geschickt und danach zu der Datenbank (6). Schließlich stehen die Berichte in dem \gls{GUI} (7) zur Verfügung \citep{Prelude_Doc}.
+Aus der Abbildung \ref{{fig:Module_preludes}} und der offizielen Dokumentation können wir folgenden Informationsfluss erkennen - die Daten werden von Endanwendung generiert und zum Loganalyzer (Prelude \glsfirst{LML}) (1) geschickt, wo sie normalisiert und bewertet werden Für die Logs, wo es verdächtige Werte nach dem vordefinierten Regelsätze in \gls{LML} gibt, werden Warnmeldungen generiert. Diese Meldungen werden zum Manager Module (2) weitergeleitet. Der Manager kann auch Daten von \gls{IDS} mithilfe von Sensoren empfangen (1), die an den \glsplural{Endpoint} installiert sind, um Events zu analysieren und zum Manager zu schicken. Die Daten werden in der Database gespeichert (3) und auch zum Correlator weitergeleitet (4), wo dieser nach einem Zusammenhang zwischen anderen Daten sucht. Das Ergebnis von Correlator wird wieder zum Manager (5) geschickt und danach zu der Datenbank (6). Schließlich stehen die Berichte in dem \gls{GUI} (7) zur Verfügung \citep{Prelude_Doc}.
 
 Die Architektur der Anwendung ermöglicht sowohl einen zentralisierten als auch einen dezentralisierten Aufbau, wie auf der Abbildung \ref{fig:Prelude_erweitert} gezeigt wird. In der ersten funktioniert Prelude als zentral und empfängt Daten von verschiedenen Datenquelle und in den zweiten gibt es mehrere sogenannten \quotes{Branches} von Preludes, dessen Manager sich miteinander verbunden sind, damit das Ergebnisse sich in einem \gls{GUI} darstellen lassen \citep{Prelude_MU}.
 
@@ -196,12 +196,12 @@ Die Architektur der Anwendung ermöglicht sowohl einen zentralisierten als auch 
    \centering
    \includegraphics[width=1\textwidth]{assets/Branch_Prelude.drawio.png}
    \caption[Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen und Datenverarbeitung]
-   {Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen Datenverarbeitung}
+   {Erweiterte Architektur von Prelude mit dezentralisierten Datenquellen Datenverarbeitung laut \cite{Prelude_MU}}
    \label{fig:Prelude_erweitert}
    \centering
 \end{figure}
 
-\cite{Grammatikis_Prelude} hat Preludes, AlienVault und Cyberoam iView anhand technischer und nutzerfreundlicher Kriterien zu verglichen. Von diesn Kriterien nennen wir folgende \citep{Grammatikis_Prelude}:
+\cite{Grammatikis_Prelude} verglicht Preludes, AlienVault und Cyberoam iView anhand technischer und nutzerfreundlicher Kriterien. Von diesn Kriterien nennen wir folgende \citep{Grammatikis_Prelude}:
 
 \begin{itemize}[noitemsep]
    \item \textbf{technische Kriterien}
@@ -258,19 +258,19 @@ Die nächste Abbildung, \ref{fig:Intregation_ELK}, stellt die Architektur von El
    \centering
 \end{figure}
 
-Die Beats auf der Abbildung sind an der \glsplural{Endpoint} installiert und leiten Daten entweder zu Elasticsearch (a) oder zu Logstash (b) weiter. In Elasticsearch werden die Daten nach Muster mithilfe der Abfragesprache \glsfirstplural{DSL} gesucht. In Logstash werden die Daten verarbeitet, gespeichert und weitergeleitet. Schließlich stellt Kibana die Daten graphisch über die \gls{GUI} dar\citep{Jain_LMELK}.
+Die Beats auf der Abbildung \ref{fig:Intregation_ELK} sind an der \glsplural{Endpoint}n installiert und leiten Daten entweder zu Elasticsearch (a) oder zu Logstash (b) weiter. In Elasticsearch werden die Daten nach Muster mithilfe der Abfragesprache \glsfirstplural{DSL} gesucht. In Logstash werden die Daten verarbeitet, gespeichert und weitergeleitet. Schließlich stellt Kibana die Daten graphisch über die \gls{GUI} dar\citep{Jain_LMELK}.
 
 \cite{Advani_elkstakc} recherchiert über die Log Analyse-Funktionalitäten von Elastic Stack und die Unterstützung bei Normalisierung und Indexierung von Daten für eine lesbare Ausgabe. Die Skalierbarkeit wurde in der Studie von \cite{Wang_elkwifi} erwähnt, wo Elastic Stack für Wi-Fi Logging eingesetzt wurde.
 
 Die offizielle Dokumentation von Elastic Stack beschreibt, dass die Anwendung folgende Funktionalitäten besitzt \citep{elastic_docs}:
 
 \begin{itemize}[noitemsep]
-   \item Datensuche, -Normalisierung, -Analyse und
+   \item Datensuche, -Normalisierung und -Analyse
    \item Speicherung
    \item visuelle Ausgabe
 \end{itemize}
 
-Die nächste Abbildung, \ref{fig:ElasticKomponenten} zeigt laut der offiziellen Dokumentation die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
+Die Abbildung \ref{fig:ElasticKomponenten} zeigt laut der offiziellen Dokumentation die Aufteilung der Funktionalitäten pro Element von Elastic Stack:
 
 \begin{figure}[H]
    \centering
@@ -315,9 +315,9 @@ Die Architektur von Loki besteht aus den folgenden Komponenten: \quotes{distribu
    \centering
  \end{figure}
  
-Auf der Abbildung \ref{fig:Loki-Architektur} empfängt \quotes{distributor}  die Streams von den (1) \glsplural{Endpoint} und überprüft ihre Richtigkeit in Bezug auf den Zeitstempel und Länge der Logzeile. In dem \quotes{distributor} wird auch die Aufnahmenrate konfiguriert. Der \quotes{distributor} leitet die Streams zum (2) \quotes{ingester} weiter, wo er die Daten in kleinen Datenblöcken (3) speichert. Diese Daten werden wiederum in der Database (3) je nach \quotes{label} aufgenommen werden. Dieses Verfahren soll Skalierbarkeit und Fehlertoleranz ermöglichen. Schließlich beschäftigt sich der \quotes{querier} mit den Abfragen (4) in der \gls{abfragesprache} \gls{logql}. Der \quotes{querier} holt Daten sowohl von \quotes{ingester} als auch von der Database. Sobald dieses Verfahren fertig ist, kann Grafana \gls{frontend} nach diesen Daten fragen \citep{Grafana_LokiArchitektur} und \citep{Grafana_LokiArchitektur2}.
+Auf der Abbildung \ref{fig:Loki-Architektur} empfängt \quotes{distributor}  die Streams von den (1) \glsplural{Endpoint} und überprüft ihre Richtigkeit in Bezug auf den Zeitstempel und Länge der Logzeile. In dem \quotes{distributor} wird auch die Aufnahmenrate konfiguriert. Der \quotes{distributor} leitet die Streams zum (2) \quotes{ingester} weiter, wo er die Daten in kleinen Datenblöcken (3) speichert. Diese Daten werden wiederum in der Database (3) je nach \quotes{Label} aufgenommen. Dieses Verfahren soll Skalierbarkeit und Fehlertoleranz ermöglichen. Schließlich beschäftigt sich der \quotes{querier} mit den Abfragen (4) in der \gls{abfragesprache} \gls{logql}. Der \quotes{querier} holt Daten sowohl von \quotes{ingester} als auch von der Database. Sobald dieses Verfahren fertig ist, kann Grafana \gls{frontend} nach diesen Daten fragen \citep{Grafana_LokiArchitektur} und \citep{Grafana_LokiArchitektur2}.
 
-Promptail wird an jeden \gls{Endpoint} installiert und schickt den Inhalt der Logdateien als Stream zu Loki. Diese Streams werden dann in Loki mit Labels (Schlüssel-Wert-Paar) identifiziert. Jeder Stream ist ein Teil des Inhalts der Logdateien. Laut \cite{Grafana_fundamentals} bleibt der Stream ohne Indexierung, um Effizienz bei der Verwaltung des Inhalts zu gewinnen. Im Vergleich zu anderen Tools, wie Elastic Stack, wird der gesamte Inhalt indexiert \citep{Anand_LokixELK}. Bei Loki werden nur die Metadaten, wie Zeitstempel oder andere kundenspezifische Labels, dann indexiert.
+Promptail wird an jedem \gls{Endpoint} installiert und schickt den Inhalt der Logdateien als Stream zu Loki. Diese Streams werden dann in Loki mit \quotes{Labels} (Schlüssel-Wert-Paar) identifiziert. Jeder Stream ist ein Teil des Inhalts der Logdateien. Laut \cite{Grafana_fundamentals} bleibt der Stream ohne Indexierung, um Effizienz bei der Verwaltung des Inhalts zu gewinnen. Im Vergleich zu anderen Tools, wie Elastic Stack, wird der gesamte Inhalt indexiert \citep{Anand_LokixELK}. Bei Loki werden nur die Metadaten, wie Zeitstempel oder andere kundenspezifische \quotes{Labels}, dann indexiert.
 
 Für eine optimale Nutzung von Grafana wird es empfohlen, wenig \quotes{labels} zu benutzen, um eine Eskalation des Speicherbedarfs zu vermeiden \cite{Grafana_labels}. Die Abbildung \ref{fig:Eskalation_Labels} zeigt den Eskalationseffekt, der durch die Nutzung von \quotes{labels} entsteht:
 
@@ -461,6 +461,6 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
 \end{table}
 }
 
-Grafana erfüllt die folgende Voraussetzungen für unsere Auswahl: 100\% \gls{opensource}, integriertes Alerting Tool und breiter Kompatibilität (außer Promtail). Da Grafana nicht spezifisch für Logdateien konzipiert wurde \citep{Yigal_GrafanaKibanan}, verlangt die Einstellung spezifische Anpassungen, unseren Bedürfnissen vollständig zu erfüllen.
+Grafana erfüllt die folgende Voraussetzungen für unsere Auswahl: 100\% \gls{opensource}, integriertes Alerting Tool und breiter Kompatibilität (außer Promtail). Da Grafana nicht spezifisch für den Sicherheitsbereich konzipiert wurde \citep{Yigal_GrafanaKibanan}, verlangt die Implementierung besonders Beobachtung, um unseren Bedürfnissen vollständig zu erfüllen.
 
 In den nächsten Kapiteln beschäftigen wir mit der Integration dieser Tools, um eine ähnliche \gls{SIEM} Lösung zu präsentieren. Wir beschreiben auch, wie \glsplural{Cyberangriff} anhand der \glsfirst{ttp} der \gls{mitre} Matrix erkennt werden können. Für die Generierung der Logdateien mit Angriffsmustern in ihren Inhalten simulieren wir zwei \glsplural{Cyberangriff}. Danach beschäftigen wir uns mit der Installation, Einstellungen und Sammlungen von Logdateien in Promtail, Grafana und Loki. Nachdem die Grundfunktionalitäten eingerichtet sind und einwandfrei funktionieren, untersuchen wir Regelsätze für die Erkennung und Warnmeldung von potenziellen Angriffen. Schließlich überprüfen wir unseren Aufbau anhand spezifischer Logdateien aus der Hochschule Worms. Unser Ziel ist Grafana, Loki und Promtail so einzustellen, dass es in der Lage ist, die Muster dieser \glsplural{Cyberangriff} zu erkennen und darüber zu berichten.

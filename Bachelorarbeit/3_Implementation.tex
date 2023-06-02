@@ -179,7 +179,7 @@ Aus der Abbildung \ref{fig:spraying} sehen wir, dass bei \gls{spraying} weniger 
 
 Für diesen Angriff benutzen wir folgendes Kommando:
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
+\begin{Verbatim}[frame=single,fontsize=\small]
 hydra -L username2.txt -P passwoerter.txt [Opfersystem2] ssh -V -t 4
 -L: Auswahl der Datei mit gefunden Benutzernamen
 \end{Verbatim}
@@ -342,7 +342,7 @@ Verarbeitung der Log-Einträge in Loki und Quellcode für die Generierung von Gr
 %https://grafana.com/docs/loki/latest/fundamentals/labels/
 %https://prometheus.io/docs/concepts/jobs_instances/
 
-Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zwei Labels \quotes{instance} und \quotes{job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{instance} bezeichnet. Eine oder mehrere \quotes{instances} werden einem \quotes{job} zugewiesen. \quotes{Jobs} beziehen sich auf die Vearbeitung des Inhalts der Logdateien nach dem spezifizierten Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{instance} werden in einem \quotes{job} eingepackt, wo sie nach den gleichen Regeln verarbeitet werden. Zusätzliche \quotes{Labels} können auch definiert werden \citep{Prometheus_JobInstance}. Das folgende Diagramm, \ref{fig:Labels_GrafanaLoki}, stellt die Beziehung zwischen dieser beiden \quotes{Labels} dar:
+Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zwei \quotes{Labels} \quotes{instance} und \quotes{job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{instance} bezeichnet. Eine oder mehrere \quotes{instances} werden einem \quotes{job} zugewiesen. \quotes{Jobs} beziehen sich auf die Vearbeitung des Inhalts der Logdateien nach dem spezifizierten Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{instance} werden in einem \quotes{job} eingepackt, wo sie nach den gleichen Regeln verarbeitet werden. Zusätzliche \quotes{Labels} können auch definiert werden \citep{Prometheus_JobInstance}. Das folgende Diagramm, \ref{fig:Labels_GrafanaLoki}, stellt die Beziehung zwischen dieser beiden \quotes{Labels} dar:
 
 \begin{figure}[H]
    \centering
@@ -354,13 +354,13 @@ Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} 
 \end{figure}
 
 \newpage
-Der Inhalt Logdateien kann dann in Grafana nach den definierten Labels aufgerufen werden, wie auf der folgenden Abbildung \ref{fig:screenshot_labels} dargestellt:
+Der Inhalt Logdateien kann dann in Grafana nach den definierten \quotes{Labels} aufgerufen werden, wie auf der folgenden Abbildung \ref{fig:screenshot_labels} dargestellt:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/Grafana_labels.png}
-   \caption[Aufrufe des Inhalts der Logdateien nach bestimmten Labels]
-   {Aufrufe des Inhalts der Logdateien nach bestimmten Labels}
+   \caption[Aufrufe des Inhalts der Logdateien nach bestimmten \quotes{Labels}]
+   {Aufrufe des Inhalts der Logdateien nach bestimmten \quotes{Labels}}
    \label{fig:screenshot_labels}
    \centering
 \end{figure}
@@ -383,7 +383,7 @@ In dem nächsten Abschnitt beschreiben wir, wie diese Regel in \gls{logql} gesch
 In diesem Abschnitt fassen wir zusammen, wie eine Abfrage in \gls{logql} für eine Logdatei mit \gls{ssh} Einträgen aussieht. Für ausführliche Informationen über den Aufbau der Abfrage verweisen wir die offizielle Dokumentation, auf die diese Erklärung basiert ist \citep{Grafana_logql}. Unsere Logdatei enthält unter anderem folgende Zeile:
 
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
+\begin{Verbatim}[frame=single,fontsize=\small]
 14 14:05:30 opfersystem2 sshd[1698]: Failed password for administrator
 from 10.0.2.15 port 58036 ssh2
 \end{Verbatim}
@@ -392,7 +392,7 @@ from 10.0.2.15 port 58036 ssh2
 Um fehlgeschlagene Anmeldeversuche zu erkennen, extrahieren wir folgende Felder aus den \gls{ssh}-Logdateien. Wir verwenden diese Information, um gleiche Events zu erkennen und deren Anzhal festzustellen.
 
 {\setstretch{1.0}
-\begin{Verbatim}[commandchars=\\\{\},frame=single]
+\begin{Verbatim}[commandchars=\\\{\},frame=single,fontsize=\small]
 14 14:05:30 opfersystem2 \textbf{\textcolor{red}{sshd[}}1698]: \textbf{\textcolor{red}{Failed}} password for \textbf{\textcolor{blue}{administrator}}
 from \textbf{\textcolor{blue}{10.0.2.15}} port 58036 ssh2
 \end{Verbatim}
@@ -469,7 +469,8 @@ Schließlich sieht der Regelsatz so aus:
 sum by(add) (rate({job="\textit{JOBNAME}", instance=~"$instance"} 
 |= '\textbf{\textcolor{red}{sshd}}['
 |= ':\textbf{\textcolor{red}{Failed}}' !~ '\textbf{\textcolor{red}{invalid user}}' !~ '\textbf{\textcolor{red}{Legitimer_Nutzer}}' !~ '\textbf{\textcolor{red}{Legitime_Adresse}}' 
-| pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from <\textbf{\textcolor{blue}{Quelladresse}}> port <_>' [$__range]))
+| pattern '<_> for <\textbf{\textcolor{blue}{Benutzername}}> from <\textbf{\textcolor{blue}{Quelladresse}}> port <_>'
+| \_\_error \_\_="" [\$__range]))
 \end{Verbatim}
 }
 
@@ -479,13 +480,17 @@ sum by(add) (rate({job="\textit{JOBNAME}", instance=~"$instance"}
 %    {Aufbau der Regelsätze in Grafana Loki für \gls{ssh} Logdateien \\Quelle: Eigene Quelle, \citep{VoidQuark_sshlogs} und \citep{Grafana_logql}}
 % \end{table}
 
-Eine allgemeine Erkennungsregel in \gls{logql} würde so aussehen:
+Eine allgemeine Erkennungsregel in \gls{logql} kann so aussehen:
 {\setstretch{1.0}
-\begin{Verbatim}[frame=single]
-Ergebnis = Operation (GesuchterWert) (Operation(label1="LabelWert",
-label2="Label2Wert") |= 'Gesuchte Inhalt in der Logdatei' | !'Inhalt im
-Logdatei ausschliessen' | Regulärer Ausdrucke | pattern '<_>
-WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>' [\$__range]))
+\begin{Verbatim}[frame=single,fontsize=\small]
+Operation (GesuchterWert) (Operation(label1="LabelWert", 
+label2="Label2Wert") 
+|= 'Gesuchte Inhalt in der Logdatei' 
+| !'Inhalt im
+Logdatei ausschliessen'
+| Regulärer Ausdrucke 
+| pattern '<_> WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>'
+| \_\_error \_\_="" [\$__range]))
 \end{Verbatim}
 }
 
@@ -602,41 +607,32 @@ In dieser Arbeit versuchen wir unser Warnmeldungs-System mithilfe von Alerting v
 \end{enumerate}
 }
 
-Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}} von Grafana für fehlgeschlagene Anmeldeversuche. Wir haben die oben genannten Elemente definiert und die folgenden Regelsätze verwendet \citep{VoidQuark_sshlogs}:
+Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}} von Grafana für fehlgeschlagene Anmeldeversuche für existierenden (A) und nicht existierenden (B) Benutzername. Wenn dieser Wert größer als fünf ist, dann wird eine E-Mail mit der Wanrmeldung geschickt. Wir definierten die oben genannten Elemente definiert (komplete Konfiguration im Anhang \ref{appendix:Warnmedungskonfiguration}) und verwendeten die folgenden Regelsätze  \citep{VoidQuark_sshlogs}. Die generierte Warnmeldung ist auf der Abbildung \ref{fig:ErsteWarnmeldung} dargestellt.
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single,fontsize=\small]
-# (A) Anzahl von fehlgeschlagenen Anmeldeversuche für existierenden
-Benutzernamen:
+# (A)
 sum by (username) (count_over_time({job=~"sshlogs"} 
 |="sshd[" 
-|~": Invalid
-|:Connection closed by authenticating user
-|: Failed .* user" 
+|~": Invalid |: nConnection closed by authenticating user |: Failed .* user" 
 |pattern '<_> user <username> <_> port'
 | __error__=""[$__interval]))
 
-# (B) Anzahl von Fehlgeschlagenen Anmeldeversuche für nicht
-existierenden Benutzernamen:
+# (B) 
 sum by (username) (count_over_time({job=~"sshlogs"} 
 |="sshd[" 
 |=": Failed" !~"invalid user" 
 | pattern '<_> for <username> from <_> port'
 | __error__=""[$__interval]))
-
-# Wenn die Anzahl von (A) oder von (B) größer als fünf ist, dann wird
-die Warnmeldung als E-Mail an dem Ziel geschickt.
 \end{Verbatim}
 }
 
-Im Anhang \ref{appendix:Warnmedungskonfiguration} befindet sich die Konfigurationsdatei für unsere Warnmeldung.
-
-Nachdem alles korrekt konfiguriert wurde, haben wir die folgende E-Mail erhalten:
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.7\textwidth]{assets/GrafanaWarnmeldung.png}
-   \caption[E-Mail Warnmeldung von Grafana]
-   {E-Mail Warnmeldung von Grafana}
+   \includegraphics[width=0.6\textwidth]{assets/GrafanaWarnmeldung.png}
+   \caption[Generierte Warnmeldung von Grafana wurde per E-Mail geschickt]
+   {Generierte Warnmeldung von Grafana wurde per E-Mail geschickt}
+   \label{fig:ErsteWarnmeldung}
    \centering
 \end{figure}
 
