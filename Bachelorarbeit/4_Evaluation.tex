@@ -121,7 +121,7 @@ In der Tabelle \ref{tab:KonfigLoki} zeigen wir einen Konfigurationsausschnitt vo
 \subsection{Generierung von Graphiken}
 Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} starten und mithilfe des Musters von \cite{VoidQuark_sshlogs} Grafiken mit Informationen über \gls{ssh}-Verbindungen generieren. Mit der \gls{frontend}-Anwendung Grafana können wir Daten in verschiedenen Zeitspannen anzeigen und nach \quotes{Labels} filtern. 
  
-Für unsere ersten Graphiken wollen wir die Anzahl von fehlgeschlagenen Anmeldeversuchen pro Benutzername ableiten. Dafür benutzen wir folgende Abfrage:
+Für unsere ersten Grafiken wollen wir die Anzahl von fehlgeschlagenen Anmeldeversuchen pro Benutzername ableiten. Dafür benutzen wir folgende Abfrage:
 
 {\setstretch{1.0}
 \begin{Verbatim}[fontsize=\small,commandchars=\\\{\},frame=single]
@@ -141,7 +141,7 @@ count by (username) (count_over_time(\{job=~"sshlogs"\}
 
 \textcolor{red}{Die rot markierten Elemente} in der Abfrage zeigen die Wort-Kombinationen, nach denen wir im Loginhalt suchen. \textcolor{blue}{Die blau markierten Elemente} extrahieren ein spezifisches Muster aus dem Loginhalt, in diesem Fall den wollen Benutzernamen aus der Logzeile auslesen. Die erste Abfrage zielt darauf ab, gezielt fehlgeschlagene Anmeldeversuche zu extrahieren, während die zweite Abfrage fehlgeschlagene Anmeldeversuche mit nicht existierenden Benutzernamen verknüpft. Beide Abfragen führen eine Aufzählung (\textit{sum by}) der gefundenen Zeilen durch.
 
-Die generierte Graphik ist auf der Abbildung \ref{fig:2_Anmeldung_BenutzerName} dargestellt. Sie zeigt die Aktivität in einer Zeitspanne von 24 Stunden:
+Die generierte Grafik ist auf der Abbildung \ref{fig:2_Anmeldung_BenutzerName} dargestellt. Sie zeigt die Aktivität in einer Zeitspanne von 24 Stunden:
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -158,10 +158,10 @@ Die generierte Graphik ist auf der Abbildung \ref{fig:2_Anmeldung_BenutzerName} 
 \end{landscape}
 \restoregeometry
 
-Aus der Abbildung \ref{fig:2_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2023 möglicherweise ein \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Wir können auch sehen, dass es am 22.4.2023 zwischen 16:00 und 17:30 Uhr die meisten Versuche stattfanden und dass der Angreifer am öftesten mit dem Benutzer \quotes{root} versuchte, sich anzumelden. Da es auch andere viele Benutzernamen gibt, können wir auch davon ausgehen, dass der Angreifer auch Wörterbucher für verschiedenen gängige Benutzername-Passwort Kombinationen verwendete.
+Aus der Abbildung \ref{fig:2_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2023 möglicherweise ein \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Wir können auch sehen, dass am 22.4.2023 zwischen 16:00 und 17:30 Uhr die meisten Versuche stattfanden und dass der Angreifer am öftesten mit dem Benutzer \quotes{root} versuchte, sich anzumelden. Da es auch andere viele Benutzernamen gibt, können wir auch davon ausgehen, dass der Angreifer auch Wörterbucher für verschiedenen gängige Benutzername-Passwort Kombinationen verwendete.
 
 
-Für unsere nächsten Graphiken wollen wir eine Aufsummierung der  fehlgeschlagenen Anmeldeversuchen pro Benutzername am 22.4.2023 ableiten. Wir benutzen dieselben Regesätze, wie vorher, aber anstelle von (\textit{sum by}), verwenden wir (\textit{count by}) Funktion von \gls{logql}. Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} dargestellt:
+Für unsere nächsten Grafiken wollen wir eine Aufsummierung der fehlgeschlagenen Anmeldeversuche pro Benutzername am 22.4.2023 ableiten. Wir benutzen dieselben Regelsätze wie vorher, aber anstelle von (\textit{sum by}), verwenden wir (\textit{count by}) Funktion von \gls{logql}. Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} dargestellt:
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -193,11 +193,11 @@ Für unsere nächsten Graphiken wollen wir eine Aufsummierung der  fehlgeschlage
 \end{landscape}
 \restoregeometry
 
-Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} stellen wir fest, dass es am 22.4.2023 einen potenziellen \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.781 Versuche mit dem Benutzernamen \quotes{root}, 324 Versuche mit \quotes{user} und 162 Versuche mit \quotes{admin}. 
+Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} stellen wir fest, dass am 22.4.2023 einen potenziellen \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Zum Beispiel gab es 10.781 Versuche mit dem Benutzernamen \quotes{root}, 324 Versuche mit \quotes{user} und 162 Versuche mit \quotes{admin}. 
 
-Grafana bietet auch eine interaktive Möglichkkeit, die Graphik darzustellen, sodass man Elementen ein- und ausblenden kann. Auf der Abbildung \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} bledeten wir den Benutzername \quotes{root} aus, um eine andere Darstellung anzubieten.
+Grafana bietet auch eine interaktive Möglichkkeit, die Grafik darzustellen, sodass man Elemente ein- und ausblenden kann. Auf der Abbildung \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} blendeten wir den Benutzername \quotes{root} aus, um eine andere Darstellung anzubieten.
 
-Die nächsten Abbildungen, \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194}, zeigen die Anzahl von fehlgeschlagene Anmeldeversuche pro IP-Adresse. In der Abbildung \ref{fig:1_Anmeldung_IPAdresseOhne194} wurde die meiste verwendete IP-Adresse ausgeblendet. Wir benutzen die vorherige Abfrage mit dem Unterschied, dass unser \textcolor{blue}{\quotes{Pattern}} eine IP-Adresse herausfiltern soll:
+Die nächsten Abbildungen, \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194}, zeigen die Anzahl von fehlgeschlagenen Anmeldeversuchen pro IP-Adresse. In der Abbildung \ref{fig:1_Anmeldung_IPAdresseOhne194} wurde die meist verwendete IP-Adresse ausgeblendet. Wir benutzen die vorherige Abfrage mit dem Unterschied, dass unser \textcolor{blue}{\quotes{Pattern}} eine IP-Adresse herausfiltern soll:
 
 {\setstretch{1.0}
 \begin{Verbatim}[fontsize=\small,commandchars=\\\{\},frame=single]
@@ -216,7 +216,7 @@ count by (username) (count_over_time(\{job=~"sshlogs"\}
 }
 
 % Pro IP - Balken
-Aus Abbildungen \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194} identifizieren wir die IP-Adressen, von denen die meisten fehlgeschlagenen Anmeldeversuche am 22.4.2023 stammen. Da es verschiedenen IP-Adresse verwendeten wurden, können wir davon ausgehen, dass der potenzieller Angreifer versuchte, unnauffällig zu bleiben. 
+Aus Abbildungen \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194} identifizieren wir die IP-Adressen, von denen die meisten fehlgeschlagenen Anmeldeversuche am 22.4.2023 stammen. Da verschiedene IP-Adresse verwendeten wurden, können wir davon ausgehen, dass der potenzieller Angreifer versuchte, unnauffällig zu bleiben. 
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -257,7 +257,7 @@ Aus Abbildungen \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdres
 
 Mithilfe der oben gezeigten Abfragen generieren wir auch Warnmeldungen mit dem Alerting-Tool von Grafana. Grafana bietet neben Grafiken und anderen visuellen Darstellungen auch eine eigenständige Funktion für das Alerting. Das bedeutet, dass das Alerting-Tool unabhängig von der Visualisierungsfunktionalität von Grafana funktioniert. In der Praxis ist es möglich, Loki allein für Abfragen und Speicherung zu verwenden und Grafana ausschließlich für die Generierung von Warnmeldungen.
 
-Warnmeldungen dienen hauptsächlich der Echtzeitanalyse. Da unsere Logdateien jedoch aus den Monaten März und April 2023 stammen, verschoben wir die Daten in die entsprechenden Monate, um \quotes{Echtzeit}-Daten für die Analyse zu simulieren. Dies ermöglicht uns, aktuelle Warnungen und Alarme basierend auf den verschobenen Daten zu generieren. Wir haben unsere Logdateien so angepasst.
+Warnmeldungen dienen hauptsächlich der Echtzeitanalyse. Da unsere Logdateien jedoch aus den Monaten März und April 2023 stammen, verschieben wir die Daten in die entsprechenden Monate, um \quotes{Echtzeit}-Daten für die Analyse zu simulieren. Dies ermöglicht uns, aktuelle Warnungen und Alarme basierend auf den verschobenen Daten zu generieren. Wir haben unsere Logdateien so angepasst.
 
 \begin{center}
 {\setstretch{1.0}
@@ -295,7 +295,7 @@ Aus dieser Abfrage ermitteln wir die Anzahl der fehlgeschlagenen Anmeldeversuche
   \label{fig:unsereWarnmeldung1}
 \end{figure}
 
-Aus Abbildung \ref{fig:unsereWarnmeldung1} können wir sehen, dass das extrahierte Pattern zum \quotes{Label} geworden ist. Dieses kann dann verwendet werden, um den Textnachrichten in den Warnmeldungen zu schreiben.
+Aus Abbildung \ref{fig:unsereWarnmeldung1} können wir sehen, dass das extrahierte Pattern zum \quotes{Label} geworden ist. Dieses kann dann verwendet werden, um eine Textnachrichte in die Warnmeldungen zu schreiben.
 
 
 \newpage
