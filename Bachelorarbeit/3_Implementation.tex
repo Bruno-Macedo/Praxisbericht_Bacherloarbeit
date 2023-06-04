@@ -25,7 +25,7 @@ Der gezielte Ablauf unserer Arbeit ist in der Abbildung \ref{fig:Ablauf_grafana2
 \end{figure}
 
 \subsection{Angriffserkennung anhand der Mitre ATT\&CK Matrix}
-Es gibt verschiedene Methoden und Frameworks, die von \gls{SOC}-Teams verwendet wird, um \glsplural{Cyberangriff} zu vermeiden, zu erkennen und zu unterbrechen.  Da sich die Richtlinien und Schwerpunkte dieser Frameworks und Methoden unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, entschieden wir uns für die \gls{mitre} Matrix, insbesondere da dieses Framework auch in Splunk integriert ist.
+Es gibt verschiedene Methoden und Frameworks, die von \gls{SOC}-Teams verwendet werden, um \glsplural{Cyberangriff} zu vermeiden, zu erkennen und zu unterbrechen.  Da sich die Richtlinien und Schwerpunkte dieser Frameworks und Methoden unterscheiden können und somit unterschiedliche Anforderungen an den Aufbau unserer Struktur stellen könnten, entschieden wir uns für die \gls{mitre} Matrix, insbesondere da dieses Framework auch in Splunk integriert ist.
 
 Die \gls{mitre} Matrix hat folgenden Zwecke \citep{Mitre_Started}:
 
@@ -38,7 +38,7 @@ Die \gls{mitre} Matrix hat folgenden Zwecke \citep{Mitre_Started}:
 \end{itemize}
 }
 
-Die Matrix ermöglichen Unternehmen und \gls{SOC}-Teams umfassende Möglichkeiten, um ihre Ressourcen zu schützen und ihr Fachwissen im Bereich der \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. In dieser Arbeit konzentrieren wir uns auf die Entwicklung und Implementierung einer Methode zur automatischen Erkennung und Analyse von Angriffstechniken in Grafana.
+Die Matrix ermöglicht Unternehmen und \gls{SOC}-Teams umfassende Möglichkeiten, um ihre Ressourcen zu schützen und ihr Fachwissen im Bereich der \gls{Cybersicherheit} zu erweitern \citep{Hazel_howtousemitre}. In dieser Arbeit konzentrieren wir uns auf die Entwicklung und Implementierung einer Methode zur automatischen Erkennung und Analyse von Angriffstechniken in Grafana.
 
 Die \gls{mitre} Matrix ist auf \glsfirst{ttp} basiert. Angriffe, Gegenmaßnahmen und Erkennung werden nach \gls{ttp} definiert. Die Matrix besteht aus 14 Taktiken, zu denen jeweils Techniken gehören, die wiederum in Sub-Techniken unterteilt sind. Jede Sub-Technik wird mit Beispielen, Härtungsmaßnahmen und Erkennungsregeln beschrieben. Die Abbildung \ref{fig:ttp} zeigt, wie die \gls{ttp} aufgebaut werden:
 
@@ -81,7 +81,7 @@ Die Abbildung \ref{fig:Unser_ttp} zeigt anhand der \gls{mitre} Matrix den Umfang
 In diesem Abschnitt konzentrieren wir uns auf die folgenden Punkte:
 
 \begin{enumerate}[noitemsep]
-   \item Einrichtung von \glsplural{vm} für die Opfersystemen und den Angreifer
+   \item Einrichtung von \glsplural{vm} für das Opfersystem und den Angreifer
    \item Simulation der Angriffe zur Erzeugung von Logdateien
    \item Installation und Konfiguration von Grafana, Loki und Promtail in \gls{container}
    \item Weiterleitung der Logdateien an Grafana
@@ -92,7 +92,7 @@ In diesem Abschnitt konzentrieren wir uns auf die folgenden Punkte:
 \subsubsection{Einrichtung der \glsplural{vm} für Opfersystem und Angreifen}
 Die beiden \glsplural{vm} sind eine \quotes{\gls{kali} \glsfirst{vm}} und \quotes{\gls{ubuntu} Server 22.04.2} mit standardmäßigen Einstellungen. Beide Maschinen wurden entsprechend ihrer jeweiligen Dokumentation installiert \citep{kali_vm} und \citep{Ubuntu_server}.
 
-Für das Opfersystem haben wir uns für die Passwörter \quotes{qwertz} und \quotes{password} entschieden, da sie laut einer Umfrage von \cite{silicon_passwort} zu den zehn am häufigsten verwendeten Passwörtern in Deutschlandgehören gehören. Für die Durchführung des \gls{spraying} haben wir folgende Benutzername-Passwort Kombinationen erstellt:
+Für das Opfersystem haben wir uns für die Passwörter \quotes{qwertz} und \quotes{password} entschieden, da sie laut einer Umfrage von \cite{silicon_passwort} zu den zehn am häufigsten verwendeten Passwörtern in Deutschland gehören. Für die Durchführung des \gls{spraying} haben wir folgende Benutzername-Passwort Kombinationen erstellt:
 
 {\setstretch{1.0}
 \begin{lstlisting}[frame=single]
@@ -114,7 +114,7 @@ Für den Angriff verwenden wir folgende Tools:
 \end{itemize}
 }
 
-In diesem Szenario sendet \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche an das Opfersystem, um eine \gls{ssh}-Verbindung herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir die bekannte \gls{rockyou}-Wörterbuch.
+In diesem Szenario sendet \gls{hydra} gleichzeitig mehrere Authentifizierungsversuche an das Opfersystem, um eine \gls{ssh}-Verbindung herzustellen. Das Tool verwendet ein sogenanntes Wörterbuch mit verschiedenen Einträgen, die als Passwörter dienen. Für unseren Test benutzen wir das bekannte \gls{rockyou}-Wörterbuch.
 
 Die Abbildung \ref{fig:stuffing} zeigt, wie das \gls{stuffing} abläuft:
 \begin{figure}[H]
@@ -126,7 +126,7 @@ Die Abbildung \ref{fig:stuffing} zeigt, wie das \gls{stuffing} abläuft:
    \centering
 \end{figure}
 
-In diesem Angriff versucht der Angreifer sich mit einem Konto anzumelden, indem er mit vielen Passwörter aus dem Wörterbuch probiert, bis eins richtige gefunden ist. Es können mehrere Anmeldungsversuche geschickt werden, bis eine von denen funktioniert.
+In diesem Angriff versucht der Angreifer sich mit einem Konto anzumelden, indem er mit vielen Passwörtern aus dem Wörterbuch probiert, bis ein richtiges gefunden wurde. Es können mehrere Anmeldungsversuche geschickt werden, bis eine von denen funktioniert.
 
 \gls{stuffing} wurde mit folgendem Kommando durchgeführt \citep{kali_hydra}:
 %Verbatim
@@ -175,7 +175,7 @@ Unser nächster Angriff, \gls{spraying}, ist in der Abbildung \ref{fig:spraying}
    \centering
 \end{figure}
 
-Aus der Abbildung \ref{fig:spraying} sehen wir, dass bei \gls{spraying} weniger Passwörter im Vergleich zum \gls{stuffing} verwendet werden. In diesem Fall werden gegen mögliche viele existierenden Benutzername versucht. Hier will der Angreifer Kontosperrungen vermeiden und gegenüber Sicherheitsmaßnamen Unauffällig bleiben.
+Aus der Abbildung \ref{fig:spraying} sehen wir, dass bei \gls{spraying} weniger Passwörter im Vergleich zum \gls{stuffing} verwendet werden. In diesem Fall werden gegen mögliche viele existierenden Benutzername versucht. Hier will der Angreifer Kontosperrungen vermeiden und gegenüber Sicherheitsmaßnamen unauffällig bleiben.
 
 Für diesen Angriff benutzen wir folgendes Kommando:
 {\setstretch{1.0}
@@ -213,10 +213,10 @@ Die Abbildungen \ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2} zeigen d
 
 \newpage
 \subsubsection{Installation und Einrichtung von Grafana, Loki und Promtail}
-Für die Einrichtung haben wir sowohl offizielle Dokumentation von Grafana als auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. In den Anhängen \ref{appendix:orgGrafana} und \ref{appendix:AngepasstGrafana} befindensich die heruntergeladene originale Konfigurationsdatei und die an unsere Umgebung angepasst. Diese Dateien benutzten wir für die Installation, Einstellung und Verwendung der Applikationen in \glsplural{container}.
+Für die Einrichtung haben wir sowohl offizielle Dokumentation von Grafana als auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. In den Anhängen \ref{appendix:orgGrafana} und \ref{appendix:AngepasstGrafana} befinden sich die heruntergeladene originale Konfigurationsdatei und die an unsere Umgebung angepasst. Diese Dateien benutzten wir für die Installation, Einstellung und Verwendung der Applikationen in \glsplural{container}.
 
 
-Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen, da wir hier nur eine Instanz von Promtail verwendeten.  Für unsere Arbeit nahmen wir die folgenden Versionen von den Anwendungen:
+Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen, da wir hier nur eine Instanz von Promtail verwendeten. Für unsere Arbeit nahmen wir die folgenden Versionen von den Anwendungen:
 
 \begin{table}[h]
    \centering
@@ -251,7 +251,7 @@ Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \
 \restoregeometry
 
 \subsubsection{Weiterleitung der Logdateien zu Grafana}
-Grafana Loki bietet interne und externe Möglichkeiten Logdateien zu empfangen. Die internen beziehen sich auf Grafana Tools, während die externe unabhängige Methode von Grafana benutzen:
+Grafana Loki bietet interne und externe Möglichkeiten Logdateien zu empfangen. Die internen beziehen sich auf Grafana Tools, während die externen unabhängige Methoden von Grafana benutzen:
 
 \begin{enumerate}[noitemsep]
    \item \textbf{interne Methode}:
@@ -266,12 +266,12 @@ Grafana Loki bietet interne und externe Möglichkeiten Logdateien zu empfangen. 
    \end{enumerate}
 \end{enumerate}
 
-In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdateien nur zu Loki oder zu anderen Promtail-Instanz schicken \citep{Grafana_Promtail}. Die Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} auf der Seite \pageref{fig:Integration_Loki_Promtail_Grafana} zeigt diese beschriebene Struktur.
+In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} läuft. Diese Instanz sendet die von uns ausgewählten Logdateien an Grafana und verarbeitet alle Dateien innerhalb eines sogenannten \quotes{jobs}. Promtail kann Logdateien nur zu Loki oder zu anderen Promtail-Instanzen schicken \citep{Grafana_Promtail}. Die Abbildung \ref{fig:Integration_Loki_Promtail_Grafana} auf der Seite \pageref{fig:Integration_Loki_Promtail_Grafana} zeigt diese beschriebene Struktur.
 
 In einer produktiven Umgebung ist die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. Während Promtail Logdatei nur zu Loki schickt, kann Grafana Agents Logdateien zu \gls{prometheus}, OpenTelemetry und zu Tools von \textit{\gls{GrafanaSystem}}, wie \gls{mimir}, \gls{tempo}, \gls{phlare}, Loki und Grafana integriert werden \citep{Grafana_Agents}.
 
 \newpage
-Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwischen Grafana Agents und die integrierten Tools:
+Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwischen Grafana Agents und den integrierten Tools:
 
 \begin{figure}[H]
    \centering
@@ -282,9 +282,9 @@ Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwisc
    \centering
 \end{figure}
 
-Der Kommunikationsfluss bei Grafana Agents funktioniert ähnlich, wie bei Promtail. Die \glsplural{Endpoint} (links), wo die Agents installiert sind, schicken die Logdateien zu den kompatiblen Tools (mitte), die sich wiederum mit Grafana (rechts) kommunizieren.
+Der Kommunikationsfluss bei Grafana Agents funktioniert ähnlich, wie bei Promtail. Die \glsplural{Endpoint} (links), wo die Agents installiert sind, schicken die Logdateien zu den kompatiblen Tools (mitte), die wiederum mit Grafana (rechts) kommunizieren.
 
-Die Sendung des Inhalts der Logdateien findet auch mithilfe von Grafana Loki \gls{http} \textbf{\gls{API}} statt. In diesem Fall werden die Zeile der Logdateien und nicht der Datei zum \gls{Endpoint} von Loki mit \gls{http} POST-Anfrage geschickt.
+Die Sendung des Inhalts der Logdateien findet auch mithilfe von Grafana Loki \gls{http} \textbf{\gls{API}} statt. In diesem Fall werden die Zeilen der Logdateien und nicht der Datei zum \gls{Endpoint} von Loki mit \gls{http} POST-Anfrage geschickt.
 
 Die nächste Möglichkeit, Logdateien zu Grafana zu übertragen ist mithilfe von \textbf{\gls{opentelemetry}}. \gls{opentelemetry} ist ein \gls{opensource} Tool, um Logdateien zu empfangen \citep{Grafana_opentelemetry}. Die Integration mit Grafana erfolgt über die Nutzung von \glsplural{API}. Der \textit{Collector} läuft in derselben Umgebung wie Grafana Loki, damit er die Logdateien empfangen und verarbeiten kann. Die \textit{Agents} laufen auf jedem \glsplural{Endpoint} und kommunizieren mit dem \textit{Collector}.
 
@@ -305,7 +305,7 @@ Auf der linken Seite der Abbildung \ref{fig:UsingOpenTelemetry} haben wir die ve
 
 \newpage
 \subsection{Aufbau der Erkennungsregel für den ausgewählten Angriff}
-Ein \gls{bruteforce} lässt sich durch eine hohe Anzahl der fehlgeschlagenen Anmeldeversuche erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir betrachten eine Situation, in der keine Gegenmaßnahmen wie Kontosperre nach \textit{n} beliebigen Versuchen oder \glsfirst{mfa}, implementiert sind. Die folgende Abbildung, \ref{fig:Aktivitaetsdiagramm_Anmeldung}, stellt einen allgemeinen Ablauf eines Anmeldungsverfahrens dar:
+Ein \gls{bruteforce} lässt sich durch eine hohe Anzahl der fehlgeschlagenen Anmeldeversuche erkennen \citep{Selvaganesh_SplunkBruteForce}. Wir betrachten eine Situation, in der keine Gegenmaßnahmen wie Kontosperre nach \textit{n} beliebigen Versuchen oder \glsfirst{mfa}, implementiert sind. Die folgende Abbildung, \ref{fig:Aktivitaetsdiagramm_Anmeldung}, stellt einen allgemeinen Ablauf eines Anmeldeverfahrens dar:
 
 \begin{figure}[H]
    \centering
@@ -316,7 +316,7 @@ Ein \gls{bruteforce} lässt sich durch eine hohe Anzahl der fehlgeschlagenen Anm
    \centering
 \end{figure}
 
-Grafana bietet ein Konfigurationsmuster für die Eingabe und Darstellung von \gls{ssh} Events an. In dieser Konfiguration sind bereits Regesätze für die
+Grafana bietet ein Konfigurationsmuster für die Eingabe und Darstellung von \gls{ssh} Events an. In dieser Konfiguration sind bereits Regelsätze für die
 Verarbeitung der Log-Einträge in Loki und Quellcode für die Generierung von Grafiken in Grafana. Diese Konfigurationsdatei ermöglicht eine umfassende Analyse dieser Daten \citep{VoidQuark_sshlogs}. Die geschickten Logdateien werden mithilfe der folgenden Elemente gelesen und verarbeitet:
 
 \begin{table}[H]
@@ -342,7 +342,7 @@ Verarbeitung der Log-Einträge in Loki und Quellcode für die Generierung von Gr
 %https://grafana.com/docs/loki/latest/fundamentals/labels/
 %https://prometheus.io/docs/concepts/jobs_instances/
 
-Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zwei \quotes{Labels} \quotes{instance} und \quotes{job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{instance} bezeichnet. Eine oder mehrere \quotes{instances} werden einem \quotes{job} zugewiesen. \quotes{Jobs} beziehen sich auf die Vearbeitung des Inhalts der Logdateien nach dem spezifizierten Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{instance} werden in einem \quotes{job} eingepackt, wo sie nach den gleichen Regeln verarbeitet werden. Zusätzliche \quotes{Labels} können auch definiert werden \citep{Prometheus_JobInstance}. Das folgende Diagramm, \ref{fig:Labels_GrafanaLoki}, stellt die Beziehung zwischen dieser beiden \quotes{Labels} dar:
+Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zwei \quotes{Labels} \quotes{instance} und \quotes{job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{instance} bezeichnet. Eine oder mehrere \quotes{instances} werden einem \quotes{job} zugewiesen. \quotes{Jobs} beziehen sich auf die Vearbeitung des Inhalts der Logdateien nach den spezifizierten Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{instance} werden in einem \quotes{job} eingepackt, wo sie nach den gleichen Regeln verarbeitet werden. Zusätzliche \quotes{Labels} können auch definiert werden \citep{Prometheus_JobInstance}. Das folgende Diagramm, \ref{fig:Labels_GrafanaLoki}, stellt die Beziehung zwischen dieser beiden \quotes{Labels} dar:
 
 \begin{figure}[H]
    \centering
@@ -607,7 +607,7 @@ In dieser Arbeit versuchen wir unser Warnmeldungs-System mithilfe von Alerting v
 \end{enumerate}
 }
 
-Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}} von Grafana für fehlgeschlagene Anmeldeversuche für existierenden (A) und nicht existierenden (B) Benutzername. Wenn dieser Wert größer als fünf ist, dann wird eine E-Mail mit der Wanrmeldung geschickt. Wir definierten die oben genannten Elemente definiert (komplete Konfiguration im Anhang \ref{appendix:Warnmedungskonfiguration}) und verwendeten die folgenden Regelsätze  \citep{VoidQuark_sshlogs}. Die generierte Warnmeldung ist auf der Abbildung \ref{fig:ErsteWarnmeldung} dargestellt.
+Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}} von Grafana für fehlgeschlagene Anmeldeversuche für existierenden (A) und nicht existierenden (B) Benutzernamen. Wenn dieser Wert größer als fünf ist, dann wird eine E-Mail mit der Wanrmeldung geschickt. Wir definierten die oben genannten Elemente (komplete Konfiguration im Anhang \ref{appendix:Warnmedungskonfiguration}) und verwendeten die folgenden Regelsätze  \citep{VoidQuark_sshlogs}. Die generierte Warnmeldung ist auf der Abbildung \ref{fig:ErsteWarnmeldung} dargestellt.
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single,fontsize=\small]
