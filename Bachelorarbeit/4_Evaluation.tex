@@ -78,10 +78,9 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single,fontsize=\small]
-'^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2}).*from.(?P<source
-IP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\
-d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)
-\d))'
+'^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d{2}).*from.(?P<sourceIP>(?:
+25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0
+-5]|?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d))'
 \end{Verbatim}
 \label{lst:ReGex_ExtractLabel}
 %\caption[\gls{RegExp} für Extrahierung von Datum und IP-Adresse von Logzeile]

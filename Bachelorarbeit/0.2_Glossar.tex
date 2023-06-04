@@ -2,8 +2,6 @@
     name={Abfragesprache},
     description={oder \textit{Query Language} funktioniert wie ein Filter für die Suche nach spezifischen Daten in einer Datenbank \citep{at_query}}}
 
-
-
 \newglossaryentry{API2}{
     name=\glslink{API}{Application Programming Interface(\gls{API})},
     description={bezieht sich auf Code und Regeln, die die Kommunikation zwischen verschiedenen Anwendungen ermöglichen. In diesem Fall kann eine Anwendung eine Anfrage an eine andere Anwendung senden, um Daten zu holen oder zu senden \citep{ibm_api}}}
@@ -16,10 +14,6 @@
     see=[Glossary:]{\gls{API2}}, 
     description=\glslink{API2}{Application Programming Interface (API)}}
 % =====
-
-\newglossaryentry{frontend} {
-    name={Frontend},
-    description={bezieht sich auf die Benutzeroberfläche und die Elementen, mit denen die Benutzer direkt interagieren \citep{at_query}}}
 
 \newglossaryentry{backend} {
     name={Backend},
@@ -47,11 +41,6 @@
     description={ist eine Open-Source-Plattform zur Verwaltung und Weiterverarbeitung von Sicherheitsvorfällen. Es fungiert als Analyse-Engine, indem es Informationen sammelt und je nach Fall Antworten oder Aktionen durchführt. Cortex kann eigenständig oder in Kombination mit anderen Tools verwendet werden \citep{TheHive}}   
 }
 
-\newglossaryentry{Cyberangriff} {
-    name={Cyberangriff},
-    plural={Cyberangriffe},
-    description={Angriffe über Cyberspace. Solche Angriffe zielen darauf ab, Unternehmen und ihre Infrastrukturen zu zerstören, zu lähmen, zu kontrollieren oder die Integrität ihrer Daten zu stehlen oder zu manipulieren \citep{NIST_CyberAttack}}}
-
 % here goes to the description
 \newglossaryentry{CIA2}{
     name=\glslink{CIA}{Confidentiality, Integrity and Availability (\gls{CIA})},
@@ -66,19 +55,10 @@
     description=\glslink{CIA2}{Confidentiality, Integrity and Availability}}
 % =====
 
-% here goes to the description
-\newglossaryentry{ttp2}{
-    name=\glslink{ttp}{Taktiken, Techniken, Prozeduren (\gls{ttp})},
-    description={beschreiben in der Mittre ATT\&CK Matrix Verhalten, Methode un Mustern bei Cyberangriffe \citep{Maymi_ttp}}}
-
-% here goes to the acronym
-\newglossaryentry{ttp}{
-    type=\acronymtype,
-    name=TTP,
-    first={Taktiken, Techniken, Prozeduren (TTP)\glsadd{ttp2}},
-    see=[Glossary:]{\gls{ttp2}}, 
-    description=\glslink{ttp2}{Taktiken, Techniken, Prozeduren}}
-% =====
+\newglossaryentry{Cyberangriff} {
+    name={Cyberangriff},
+    plural={Cyberangriffe},
+    description={Angriffe über Cyberspace. Solche Angriffe zielen darauf ab, Unternehmen und ihre Infrastrukturen zu zerstören, zu lähmen, zu kontrollieren oder die Integrität ihrer Daten zu stehlen oder zu manipulieren \citep{NIST_CyberAttack}}}
 
 % here goes to the description
 \newglossaryentry{CKC2}{
@@ -98,15 +78,62 @@
     name={Cybersicherheit},
     description={ - Diese Domäne umfasst Kenntnisse und Methoden für den Schutz, die Prävention und Wiederherstellung von elektronischen Kommunikationsmitteln und deren Inhalten. Dabei konzentriert sie sich auf deren Verfügbarkeit, Integrität, Authentizität, Vertraulichkeit und Nichtabstreitbarkeit. \citep{NIST_CyberAttack}}}
 
+\newglossaryentry{DLS2}{
+    name=\glslink{DSL}{Domain Specific Language (\gls{DSL})},
+    description={Abfragesprache von Elasticsearch für die Kommunikation mit der Databank. Diese Abfragesprache hat zwei verschiedene Typen: \quotes{Leaf} für die Suche nach spezifischen Muster und \quotes{Compound} für die logische Kombination von mehrere Abfrage \citep{elastic_DSL}}}
+
+\newglossaryentry{DSL}{
+    type=\acronymtype,
+    name=DSL,
+    first={Query Domain Specific Language (Query DSL) \glsadd{DLS2}},
+    see=[Glossary:]{\gls{DLS2}}, 
+    description=\glslink{DLS2}{Query Domain Specific Language}}
+% =====
+    
 \newglossaryentry{Endpoint} {
     name={Endpunkt},
     plural={Endpunkte},
     description={bezieht sich auf Geräte oder Systeme, die mit dem Netzwerk verbunden sind. Diese können z.B. Handys, Servers, Computers, Sensoren sein \citep{Microsoft_Endpoint}}}
 
+
 \newglossaryentry{fail2ban} {
     name={Fail2ban},
     description={ist ein Intrusion Prevetion Tool, das gegen Brute-Force Angriffe schützt, indem Logdateien analyisiert und verdächtige IP-Adresse blockiert.\citep{Fail2ban}}   
 }
+
+\newglossaryentry{falsch positiv} {
+    name={Falsch Positiv},
+    description={ist eine Warnmeldung einer nicht vorhandenen Verwundbarkeit \citep{NIST_FP}}}
+
+\newglossaryentry{FPO}{
+    type=\acronymtype,
+    name=FPO,
+    first={Fachspezifische Prüfungsordnung (FPO)\glsadd{FPO}},
+    see=[Glossary:]{\gls{FPO}}, 
+    description=\glslink{FPO}{Fachspezifische Prüfungsordnung}}
+
+\newglossaryentry{frontend} {
+    name={Frontend},
+    description={bezieht sich auf die Benutzeroberfläche und die Elementen, mit denen die Benutzer direkt interagieren \citep{at_query}}}
+
+\newglossaryentry{GrafanaSystem} {
+    name={Grafana Ecosystem},
+    description={beinhalt die Tools Loki, Grafana, \gls{tempo}, \gls{mimir} und \gls{phlare} \citep{Grafana_Agents}}   
+}
+
+%===========
+\newglossaryentry{GUI2}{
+    name=\glslink{GUI}{grafische Benutzeroberfläche (\gls{GUI})},
+    description={ - Es handelt sich dabei um eine visuelle Schnittstelle, die es dem Benutzer ermöglicht, mit Anwendungen mittels Symbolen und grafischen Elementen zu interagieren. Im Gegensatz dazu verwendet die textbasierte Benutzeroberfläche (CLI) Befehlszeilen und Texteingabe zur Steuerung von Anwendungen \citep{Fu_GUI}}}
+
+% here goes to the acronym
+\newglossaryentry{GUI}{
+    type=\acronymtype,
+    name=GUI,
+    first={grafische Benutzeroberfläche (GUI)\glsadd{GUI2}},
+    see=[Glossary:]{\gls{GUI2}}, 
+    description=\glslink{GUI2}{grafische Benutzeroberfläche}}
+% =====
 
 \newglossaryentry{hash} {
     name={Hashwerte},
@@ -127,7 +154,6 @@
     description=\glslink{http2}{Hypertext Transfer Protocol}}
 % =====
 
-
 \newglossaryentry{IDS}{
     type=\acronymtype,
     name=IDS,
@@ -136,27 +162,7 @@
     see=[Glossary:]{\gls{IDS}}, 
     description=\glslink{IDS}{Intrusion Detection System}}
 
-\newglossaryentry{IT-Sicherheitsgesetz 2.0} {
-    name={Zweites Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme},
-    description={ist das zweite Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme wurde im Jahr 2021 als verabschiedetes Bundesgesetz zur Erhöhung der Sicherheit von informationstechnischen Systemen besonders von den kritischen Infrastrukturen \citep{Harmes_ITSG}}}
 
-\newglossaryentry{falsch positiv} {
-    name={Falsch Positiv},
-    description={ist eine Warnmeldung einer nicht vorhandenen Verwundbarkeit \citep{NIST_FP}}}
-
-%===========
-\newglossaryentry{GUI2}{
-    name=\glslink{GUI}{grafische Benutzeroberfläche (\gls{GUI})},
-    description={ - Es handelt sich dabei um eine visuelle Schnittstelle, die es dem Benutzer ermöglicht, mit Anwendungen mittels Symbolen und grafischen Elementen zu interagieren. Im Gegensatz dazu verwendet die textbasierte Benutzeroberfläche (CLI) Befehlszeilen und Texteingabe zur Steuerung von Anwendungen \citep{Fu_GUI}}}
-
-% here goes to the acronym
-\newglossaryentry{GUI}{
-    type=\acronymtype,
-    name=GUI,
-    first={grafische Benutzeroberfläche (GUI)\glsadd{GUI2}},
-    see=[Glossary:]{\gls{GUI2}}, 
-    description=\glslink{GUI2}{grafische Benutzeroberfläche}}
-% =====
 \newglossaryentry{IPS}{
     type=\acronymtype,
     name=IPS,
@@ -164,17 +170,6 @@
     plural={IPSs}
     see=[Glossary:]{\gls{IPS}}, 
     description=\glslink{IPS}{Intrusion Prevention System}}
-
-\newglossaryentry{FPO}{
-    type=\acronymtype,
-    name=FPO,
-    first={Fachspezifische Prüfungsordnung (FPO)\glsadd{FPO}},
-    see=[Glossary:]{\gls{FPO}}, 
-    description=\glslink{FPO}{Fachspezifische Prüfungsordnung}}
-
-\newglossaryentry{hydra} {
-    name={Hydra},
-    description={ist eine Open Source Tool für Brute-Force Angriffe \citep{kali_hydra}}}
 
 %=====
 \newglossaryentry{HIPAA2}{
@@ -188,6 +183,10 @@
     see=[Glossary:]{\gls{HIPAA2}}, 
     description=\glslink{HIPAA2}{Health Insurance Portability and Accountability Act}}
 % =====
+
+\newglossaryentry{hydra} {
+    name={Hydra},
+    description={ist eine Open Source Tool für Brute-Force Angriffe \citep{kali_hydra}}}
 
 % here goes to the description
 \newglossaryentry{json2}{
@@ -219,24 +218,20 @@
     see=[Glossary:]{\gls{KI2}}, 
     description=\glslink{KI2}{Künstliche Intelligenz}}
 
+\newglossaryentry{pillarobservability} {
+    name={Log- und Messdaten und Ablaufverfolgung},
+    description={sind drei große Datenquelle für die Überwachung eines Systems und spiele eine wesentliche Rolle in der Beobachtbarkeit. Logdateien speichern Ereignisse oder Aktionen, die in einem System stattfinden. Messdaten zeigen quantifizierte Daten, wie Aufnahmerate oder Anzahl von verwendeten Resource. Ablaufverfolgung beschäftigt sich mit dem Informationsfluss bei der Ausführung einer Anwendung  \citep{Tozzi_Pillars}}}
+
+\newglossaryentry{LML}{
+    type=\acronymtype,
+    name=LML,
+    first={Log Monitoring Lackey (LML)\glsadd{LML}},
+    see=[Glossary:]{\gls{LML}}, 
+    description=\glslink{LML}{Log Monitoring Lackey}}
+
 \newglossaryentry{logql} {
     name={LogQL},
     description={ist eine für Grafana Loki entwickelte Abfragesprache. Sie wird verwendet, um Logdateien zu zusammenzustellen \citep{Grafana_logql}}}
-
-% here goes to the description
-\newglossaryentry{mfa2}{
-    name=\glslink{mfa}{Multi-Faktor-Authentisierung (\gls{mfa})},
-    description={bezeichnet ein Authentifizierungsverfahren, bei dem mindestens zwei unabhängige Komponenten zur Identitätsprüfung verwendet werden, um eine höhere Sicherheit zu gewährleisten. Zum Beispiel kann ein Benutzer aufgefordert werden, sich mit einem Passwort und einem Fingerabdruck oder einem Token und/oder einer Gesichtserkennung zu authentifizieren \citep{Ibrokhimov_MFA}}}
-
-% here goes to the acronym
-\newglossaryentry{mfa}{
-    type=\acronymtype,
-    name=MFA,
-    first={Multi-Faktor-Authentisierung (MFA)\glsadd{mfa2}},
-    see=[Glossary:]{\gls{mfa2}}, 
-    description=\glslink{mfa2}{Multi-Faktor-Authentisierung}}
-% =====
-
 
 %=====
 \newglossaryentry{ML2}{
@@ -255,24 +250,25 @@
     name={Mitre ATT\&CK},
     description={Abkürzung für \textit{Adversarial Tactics, Techniques and Common Knowledge}. Es bezieht sich auf eine weltweit zugängliche Wissensbasis mit detaillierter Beschreibung, Klassifizierung und Bekämpfung von verschiedenen Angriffstechniken \citep{Mitre_Definition}}}
 
-\newglossaryentry{GrafanaSystem} {
-    name={Grafana Ecosystem},
-    description={beinhalt die Tools Loki, Grafana, \gls{tempo}, \gls{mimir} und \gls{phlare} \citep{Grafana_Agents}}   
-}
 
 \newglossaryentry{mimir} {
     name={Mimir},
     description={ist ein in Grafana integriertes Tool, das ähnlich wie Grafana Loki funktioniert. Es ermgölicht skalierbare Dateispeicherung, Bearbeitung und Abfrage mit der Abfragesprache LogQl \citep{Grafana_mimir}}   
 }
 
-\newglossaryentry{tempo} {
-    name={Tempo},
-    description={ist ein Tool von Grafana Ecosystem, das sich für die Unterscheidung und Erkennung von Prozessen beschäftigt, dieses Verfahren heißt verteilte Rückverfolgung \citep{Grafana_tempo} und \citep{DevInsider_DistributedTracing}}   
-}
-\newglossaryentry{phlare} {
-    name={Phlare},
-    description={ist auch ein Tool vom Grafana Ecosystem, das sich mit der Sammlung und der Analyse von Daten über die Leistung von Anwendung beschäftigt \citep{Grafana_Phlare} und \citep{Salinger_Profiling}}   
-}
+% here goes to the description
+\newglossaryentry{mfa2}{
+    name=\glslink{mfa}{Multi-Faktor-Authentisierung (\gls{mfa})},
+    description={bezeichnet ein Authentifizierungsverfahren, bei dem mindestens zwei unabhängige Komponenten zur Identitätsprüfung verwendet werden, um eine höhere Sicherheit zu gewährleisten. Zum Beispiel kann ein Benutzer aufgefordert werden, sich mit einem Passwort und einem Fingerabdruck oder einem Token und/oder einer Gesichtserkennung zu authentifizieren \citep{Ibrokhimov_MFA}}}
+
+% here goes to the acronym
+\newglossaryentry{mfa}{
+    type=\acronymtype,
+    name=MFA,
+    first={Multi-Faktor-Authentisierung (MFA)\glsadd{mfa2}},
+    see=[Glossary:]{\gls{mfa2}}, 
+    description=\glslink{mfa2}{Multi-Faktor-Authentisierung}}
+% =====
 
 %=====
 \newglossaryentry{NIST2}{
@@ -287,19 +283,19 @@
     description=\glslink{NIST2}{National Institute of Standards and Technology}}
 % =====
 
-\newglossaryentry{OTX}{
-    type=\acronymtype,
-    name=OTX,
-    first={Open Threat Exchange(OTX)\glsadd{OTX}},
-    see=[Glossary:]{\gls{OTX}}, 
-    description=\glslink{OTX}{Open Threat Exchange}}
+%=====
+\newglossaryentry{NOC2}{
+    name=\glslink{NOC}{Network Operations Center (\gls{NOC})},
+    description={ist ein zentralisierter Bereich eines Unternehmens, der für die Überwachung und Verwaltung von Netzwerkaktivitäten verantwortlich ist. \citep{Mohammed_NOC}}}
 
-\newglossaryentry{LML}{
+\newglossaryentry{NOC}{
     type=\acronymtype,
-    name=LML,
-    first={Log Monitoring Lackey (LML)\glsadd{LML}},
-    see=[Glossary:]{\gls{LML}}, 
-    description=\glslink{LML}{Log Monitoring Lackey}}
+    name=NOC,
+    first={Network Operations Center (NOC)\glsadd{NOC2}},
+    see=[Glossary:]{\gls{NOC2}}, 
+    description=\glslink{NOC2}{Network Operations Center}}
+% =====
+
 
 \newglossaryentry{opensource} {
     name={Open Source},
@@ -313,19 +309,33 @@
     description=\glslink{OSSIM}{Open Source Security Information Management}}
 
 %=====
-\newglossaryentry{DLS2}{
-    name=\glslink{DSL}{Query Domain Specific Language (\gls{DSL})},
-    description={Abfragesprache von Elasticsearch für die Kommunikation mit der Databank. Diese Abfragesprache hat zwei verschiedene Typen: \quotes{Leaf} für die Suche nach spezifischen Muster und \quotes{Compound} für die logische Kombination von mehrere Abfrage \citep{elastic_DSL}}}
 
-\newglossaryentry{DSL}{
+\newglossaryentry{opentelemetry} {
+    name={OpenTelemetry},
+    description={ist eine Sammlung von Tools zu Generierung, Sammlung und Exportierung von Messdaten, auch telemetrische Daten genannt. Das Tool besteht aus \textit{Agents} und \textit{Collectors}. Der Agent wird auf jedem Endpunkt installiert, um Daten zu sammeln. Der Collector empfängt die Daten und leitet sie weiter \citep{Grafana_opentelemetry}, \citep{OpenTelemetry_opentelemetry} und \citep{Hoefling_telemetry}}}
+
+
+\newglossaryentry{OTX}{
     type=\acronymtype,
-    name=DSL,
-    first={Query Domain Specific Language (Query DSL) \glsadd{DLS2}},
-    see=[Glossary:]{\gls{DLS2}}, 
-    description=\glslink{DLS2}{Query Domain Specific Language}}
-% =====
-    
+    name=OTX,
+    first={Open Threat Exchange(OTX)\glsadd{OTX}},
+    see=[Glossary:]{\gls{OTX}}, 
+    description=\glslink{OTX}{Open Threat Exchange}}
 
+%=====
+\newglossaryentry{owasp2}{
+    name=\glslink{OWASP}{Open Web Application Security Project (\gls{owasp})},
+    description={ist eine Non-Profit-Organisation, die sich auf die Gewährleistung der Sicherheit im Umgang mit Webanwendungen konzentriert. Die Organisation verbreitet Open-Source-Informationen über sichere Entwicklung, Dokumentation, Best Practices für sicheren Umgang im Internet und Bildung \citep{owasp}}
+}
+
+\newglossaryentry{owasp}{
+    type=\acronymtype,
+    name=OWASP,
+    first={Open Web Application Security Project (OWASP)\glsadd{owasp}},
+    see=[Glossary:]{\gls{owasp2}}, 
+    description=\glslink{owasp2}{Open Web Application Security Project}
+}
+%=====
 
 \newglossaryentry{spraying} {
     name={Password Spraying},
@@ -348,62 +358,30 @@
     description=\glslink{PCIDSS2}{Payment Card Industry Data Security Standard}}
 % =====
 
-\newglossaryentry{polyphomicMalware} {
-    name={Polymorphe Malware},
-    description={sind Schadprogramme, deren Signatur sich ständig ändern, um nicht von Anti-Malware-Systemen erkannt zu werden \citep{Syuhada_Polymorphic}}   
-    }
-
-%=====
-\newglossaryentry{NOC2}{
-    name=\glslink{NOC}{Network Operations Center (\gls{NOC})},
-    description={ist ein zentralisierter Bereich eines Unternehmens, der für die Überwachung und Verwaltung von Netzwerkaktivitäten verantwortlich ist. \citep{Mohammed_NOC}}}
-
-\newglossaryentry{NOC}{
-    type=\acronymtype,
-    name=NOC,
-    first={Network Operations Center (NOC)\glsadd{NOC2}},
-    see=[Glossary:]{\gls{NOC2}}, 
-    description=\glslink{NOC2}{Network Operations Center}}
-% =====
-
-%=====
-\newglossaryentry{owasp2}{
-    name=\glslink{OWASP}{Open Web Application Security Project (\gls{owasp})},
-    description={ist eine Non-Profit-Organisation, die sich auf die Gewährleistung der Sicherheit im Umgang mit Webanwendungen konzentriert. Die Organisation verbreitet Open-Source-Informationen über sichere Entwicklung, Dokumentation, Best Practices für sicheren Umgang im Internet und Bildung \citep{owasp}}
+\newglossaryentry{phlare} {
+    name={Phlare},
+    description={ist auch ein Tool vom Grafana Ecosystem, das sich mit der Sammlung und der Analyse von Daten über die Leistung von Anwendung beschäftigt \citep{Grafana_Phlare} und \citep{Salinger_Profiling}}   
 }
-
-\newglossaryentry{owasp}{
-    type=\acronymtype,
-    name=OWASP,
-    first={Open Web Application Security Project (OWASP)\glsadd{owasp}},
-    see=[Glossary:]{\gls{owasp2}}, 
-    description=\glslink{owasp2}{Open Web Application Security Project}
-}
-%=====
-
-\newglossaryentry{opentelemetry} {
-    name={OpenTelemetry},
-    description={ist eine Sammlung von Tools zu Generierung, Sammlung und Exportierung von Messdaten, auch telemetrische Daten genannt. Das Tool besteht aus \textit{Agents} und \textit{Collectors}. Der Agent wird auf jedem Endpunkt installiert, um Daten zu sammeln. Der Collector empfängt die Daten und leitet sie weiter \citep{Grafana_opentelemetry}, \citep{OpenTelemetry_opentelemetry} und \citep{Hoefling_telemetry}}}
-
-
-\newglossaryentry{pillarobservability} {
-    name={Log- und Messdaten und Ablaufverfolgung},
-    description={sind drei große Datenquelle für die Überwachung eines Systems und spiele eine wesentliche Rolle in der Beobachtbarkeit. Logdateien speichern Ereignisse oder Aktionen, die in einem System stattfinden. Messdaten zeigen quantifizierte Daten, wie Aufnahmerate oder Anzahl von verwendeten Resource. Ablaufverfolgung beschäftigt sich mit dem Informationsfluss bei der Ausführung einer Anwendung  \citep{Tozzi_Pillars}}}
 
 \newglossaryentry{plugin} {
     name={Plugin},
     plural={Plugins},
     description={sind optionale Software-Komponenten, die weitere Funktionalitäten zu einer Anwendung hinzufügen \citep{ITS_Network}}}
 
+\newglossaryentry{polyphomicMalware} {
+    name={Polymorphe Malware},
+    description={sind Schadprogramme, deren Signatur sich ständig ändern, um nicht von Anti-Malware-Systemen erkannt zu werden \citep{Syuhada_Polymorphic}}   
+    }
+
 \newglossaryentry{port} {
     name={Portnummer},
     plural={Ports},
     description={ist eine numerische Identifikation eines Dienstes oder einer Verbindung. Es handelt sich um eine logische Adressierung, die zur Identifikation eines oder mehrerer Prozesse verwendet wird \citep{Tanenbaum_CN}}}
-
+   
 \newglossaryentry{prometheus} {
     name={Prometheus},
     description={ist ein Open-Source-Tool der Firma SoundCloud. Es dient der Überwachung und Erstellung von Warnmeldungen, die auf der Grundlage von vordefinierten Regeln konfiguriert werden \citep{Prometheus_doc}}}
-
+    
 \newglossaryentry{Proprietary} {
     name={Proprietär},
     plural={Proprietäre},
@@ -426,13 +404,23 @@
     name={Rockyou},
     description={ist eine Textdatei mit über 8 Milliarden Passwörtern im Klartext. Diese Datei stammt aus einem Angriff gegen Yahoo im Jahr 2009 und wird seitdem ständig aktualisier \citep{Mikalauskas_rockyou}}}
 
-\newglossaryentry{SIEM}{
+    %=====
+\newglossaryentry{Schwachstelle} {
+    name={Schwachstelle},
+    plural={Schwachstellen},
+    description={Schwäche eines Systems \citep{Wendzel_IS}}}
+    
+\newglossaryentry{ssh2}{
+    name=\glslink{ssh}{Secure Shell Protocol(\gls{ssh})},
+    description={ist ein Netzwerkprotokoll, das eine verschlüsselte Verbindung zwischen Endpunkten bietet. SSH wird meistens für die Fernadministration von Computern verwendet. Dieses Protokoll ermöglicht die Erstellung einer sicheren Verbindung in einer unsicheren Umgebung \citep{Wendzel_IS}}}
+
+\newglossaryentry{ssh}{
     type=\acronymtype,
-    name=SIEM,
-    first={Security Information and Event Management (SIEM)\glsadd{SIEM}},
-    plural={SIEMs},
-    see=[Glossary:]{\gls{SIEM}}, 
-    description=\glslink{SIEM}{Security Information and Event Management}}
+    name=SSH,
+    first={Secure Shell Protocol (SSH)\glsadd{ssh2}},
+    see=[Glossary:]{\gls{ssh2}}, 
+    description=\glslink{ssh2}{Secure Shell Protocol}}
+% =====
 
 \newglossaryentry{SEM}{
     type=\acronymtype,
@@ -450,6 +438,14 @@
     see=[Glossary:]{\gls{SIM}}, 
     description=\glslink{SIM}{Security Information Management}}
 
+\newglossaryentry{SIEM}{
+    type=\acronymtype,
+    name=SIEM,
+    first={Security Information and Event Management (SIEM)\glsadd{SIEM}},
+    plural={SIEMs},
+    see=[Glossary:]{\gls{SIEM}}, 
+    description=\glslink{SIEM}{Security Information and Event Management}}
+    
 %=====
 \newglossaryentry{SOC2}{
     name=\glslink{SOC}{Security Operations Center (\gls{SOC})},
@@ -462,33 +458,30 @@
     see=[Glossary:]{\gls{SOC2}}, 
     description=\glslink{SOC2}{Security Operations Center}}
 % =====
+   
+% here goes to the description
+\newglossaryentry{ttp2}{
+    name=\glslink{ttp}{Taktiken, Techniken, Prozeduren (\gls{ttp})},
+    description={beschreiben in der Mittre ATT\&CK Matrix Verhalten, Methode un Mustern bei Cyberangriffe \citep{Maymi_ttp}}}
 
-\newglossaryentry{Schwachstelle} {
-    name={Schwachstelle},
-    plural={Schwachstellen},
-    description={Schwäche eines Systems \citep{Wendzel_IS}}}
-
-%=====
-\newglossaryentry{ssh2}{
-    name=\glslink{ssh}{Secure Shell Protocol(\gls{ssh})},
-    description={ist ein Netzwerkprotokoll, das eine verschlüsselte Verbindung zwischen Endpunkten bietet. SSH wird meistens für die Fernadministration von Computern verwendet. Dieses Protokoll ermöglicht die Erstellung einer sicheren Verbindung in einer unsicheren Umgebung \citep{Wendzel_IS}}}
-
-\newglossaryentry{ssh}{
+% here goes to the acronym
+\newglossaryentry{ttp}{
     type=\acronymtype,
-    name=SSH,
-    first={Secure Shell Protocol (SSH)\glsadd{ssh2}},
-    see=[Glossary:]{\gls{ssh2}}, 
-    description=\glslink{ssh2}{Secure Shell Protocol}}
+    name=TTP,
+    first={Taktiken, Techniken, Prozeduren (TTP)\glsadd{ttp2}},
+    see=[Glossary:]{\gls{ttp2}}, 
+    description=\glslink{ttp2}{Taktiken, Techniken, Prozeduren}}
 % =====
+
+\newglossaryentry{tempo} {
+    name={Tempo},
+    description={ist ein Tool von Grafana Ecosystem, das sich für die Unterscheidung und Erkennung von Prozessen beschäftigt, dieses Verfahren heißt verteilte Rückverfolgung \citep{Grafana_tempo} und \citep{DevInsider_DistributedTracing}}   
+}
+
 
 \newglossaryentry{ubuntu} {
     name={Ubuntu},
     description={ist eine Linux-Distribution, die oft für Server, Clients und Internet of Things (IoT) verwendet wird \citep{Ubuntu_ubuntu}}}
-
-\newglossaryentry{usecases} {
-    name={Use Cases},
-    plural={Uses Cases},
-    description={sind narrative Beschreibungen der Interaktionen zwischen Systemen und Benutzern. Sie dienen der Anforderungserhebung für ein System \citep{Savic_UseCase}}}
 
 \newglossaryentry{USM}{
     type=\acronymtype,
@@ -496,6 +489,12 @@
     first={Unified Security Management (USM)\glsadd{USM}},
     see=[Glossary:]{\gls{USM}}, 
     description=\glslink{USM}{Unified Security Management}}
+
+\newglossaryentry{usecases} {
+    name={Use Cases},
+    plural={Uses Cases},
+    description={sind narrative Beschreibungen der Interaktionen zwischen Systemen und Benutzern. Sie dienen der Anforderungserhebung für ein System \citep{Savic_UseCase}}}
+
 
 \newglossaryentry{Verwundbarkeit} {
     name={Verwundbarkeit},
@@ -522,7 +521,9 @@
     description={Webhooks funktionieren ähnlich wie APIs, ohne dass die Client-Seite nach Aktualisierungen fragen muss. Bei Webhooks sendet der Server die Aktualisierung, sobald sie verfügbar ist. Die Kommunikation findet in Echtzeit statt \citep{Tas_webhook}}}
 
 
-
+\newglossaryentry{IT-Sicherheitsgesetz 2.0} {
+    name={Zweites Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme},
+    description={ist das zweite Gesetz zur Erhöhung der Sicherheit informationstechnischer Systeme wurde im Jahr 2021 als verabschiedetes Bundesgesetz zur Erhöhung der Sicherheit von informationstechnischen Systemen besonders von den kritischen Infrastrukturen \citep{Harmes_ITSG}}}
 
 
 % \newglossaryentry{Schwachstelle} {

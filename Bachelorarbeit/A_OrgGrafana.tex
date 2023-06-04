@@ -1,13 +1,8 @@
 \section{Originalle Einstellungsdateien}\label{appendix:orgGrafana}
 
-Unten befindet sich die originalle Konfigurationsdateien \citep{GrafanaLoki_run}:
-
-\begin{itemize}[noitemsep]
-    \item \textbf{Loki}: Speicherung, Verarbeitung und Abfrage des Inhalts der Logdateien
-\end{itemize}
-
+\subsection{Loki}
 {\setstretch{0.5}
-\begin{Verbatim}[frame=single]
+\begin{Verbatim}[frame=single,fontsize=\small]
     auth_enabled: false
 
     server:
@@ -48,10 +43,7 @@ Unten befindet sich die originalle Konfigurationsdateien \citep{GrafanaLoki_run}
 \end{Verbatim}
 }
 
-\newpage
-\begin{itemize}[noitemsep]
-    \item \textbf{Promtail}: Sammlung, Hinzufügen von \quotes{labels} und Weiterletung an Loki des Inhalts der Logdateien,
-\end{itemize}
+\subsection{Promtail}
 
 {\setstretch{0.5}
 \begin{Verbatim}[frame=single]

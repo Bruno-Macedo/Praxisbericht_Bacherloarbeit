@@ -9,7 +9,7 @@
 \contentsline {figure}{\numberline {9}{\ignorespaces Integration zwischen Elasticsearch, Logstash und Kibana}}{16}{figure.caption.21}%
 \contentsline {figure}{\numberline {10}{\ignorespaces Aufteilung der Funktionalitäten zwischen den Komponenten}}{17}{figure.caption.22}%
 \contentsline {figure}{\numberline {11}{\ignorespaces Architektur von Loki}}{18}{figure.caption.23}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Eskalation bei Verwendung von \glqq labels\grqq {}}}{20}{figure.caption.24}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Eskalation bei Verwendung von \glqq Labels\grqq {}}}{20}{figure.caption.24}%
 \contentsline {figure}{\numberline {13}{\ignorespaces Integration von Log-Quellen mit Promptail, Loki und Grafana}}{21}{figure.caption.25}%
 \contentsline {figure}{\numberline {14}{\ignorespaces Aufbau unseres Arbeitslabors}}{24}{figure.caption.29}%
 \contentsline {figure}{\numberline {15}{\ignorespaces Erwarteter Ablauf der Sammlung der Logdateien bis zur Warnmeldung}}{25}{figure.caption.30}%

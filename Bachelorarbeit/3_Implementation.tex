@@ -213,7 +213,7 @@ Die Abbildungen \ref{fig:spraying_opfer1} und \ref{fig:spraying_opfer2} zeigen d
 
 \newpage
 \subsubsection{Installation und Einrichtung von Grafana, Loki und Promtail}
-Für die Einrichtung haben wir sowohl offizielle Dokumentation von Grafana als auch auf externe Quellen zurückgegriffen, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. In den Anhängen \ref{appendix:orgGrafana} und \ref{appendix:AngepasstGrafana} befinden sich die heruntergeladene originale Konfigurationsdatei und die an unsere Umgebung angepasst. Diese Dateien benutzten wir für die Installation, Einstellung und Verwendung der Applikationen in \glsplural{container}.
+Für die Einrichtung griffen wir sowohl offizielle Dokumentation von Grafana als auch auf externe Quellen zurück, um die Einstellungen an unsere Umgebung anzupassen \citep{Polinowski_PGL}. In den Anhängen \ref{appendix:orgGrafana} und \ref{appendix:AngepasstGrafana} befinden sich die heruntergeladene originale Konfigurationsdatei von \cite{GrafanaLoki_run} und die an unsere Umgebung angepasst. Diese Dateien benutzten wir für die Installation, Einstellung und Verwendung der Applikationen in \glsplural{container}.
 
 
 Für diesen ersten Test wurden die Logdateien des Opfersystems manuell auf den \gls{container} übertragen, da wir hier nur eine Instanz von Promtail verwendeten. Für unsere Arbeit nahmen wir die folgenden Versionen von den Anwendungen:
@@ -490,7 +490,7 @@ label2="Label2Wert")
 Logdatei ausschliessen'
 | Regulärer Ausdrucke 
 | pattern '<_> WortImLogDatei <GesuchterInhalt> WortImLogDatei <_>'
-| \_\_error \_\_="" [\$__range]))
+| __error __="" [$__range]))
 \end{Verbatim}
 }
 
@@ -614,9 +614,9 @@ Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}
 # (A)
 sum by (username) (count_over_time({job=~"sshlogs"} 
 |="sshd[" 
-|~": Invalid |: nConnection closed by authenticating user |: Failed .* user" 
+|~": Invalid |: Connection closed by authenticating user |: Failed .* user" 
 |pattern '<_> user <username> <_> port'
-| __error__=""[$__interval]))
+| __error__="" [$__interval]))
 
 # (B) 
 sum by (username) (count_over_time({job=~"sshlogs"} 

@@ -30,7 +30,7 @@ Zu unsere initialen Ziele:
 \end{itemize}
 }
 
-sagen, dass die \gls{mitre} Matrix umfangreiche Informationen anbietet, um präzise Regelsätze zu generieren. 
+können wir sagen, dass die \gls{mitre} Matrix umfangreiche Informationen anbietet, um präzise Regelsätze zu generieren. 
 
 \subsection{Herausforderungen}
 Zu unserem primären Ziel können wir sagen, dass die \gls{mitre}-Matrix umfangreiche Informationen bietet, um zielgerichtete Regelsätze zu generieren. Die Erstellung dieser Regelsätze kann jedoch eine der größten Herausforderungen bei der Implementierung darstellen, da die Verwendung der Abfragesprache \gls{logql} viel Zeit in Anspruch nehmen kann. Sobald diese Hürde jedoch überwunden ist, ist es möglich, präzise Regelsätze zu erstellen, um potenzielle Angriffe zu identifizieren. Die Lernkurve für den Aufbau der richtigen Regelsätze kann eine große Herausforderung darstellen, wie auch in unserem Fall.
@@ -41,7 +41,8 @@ Die zweite große Herausforderung bestand darin, die richtigen Einstellungen und
 
 Die korrekte Konfigurierung von Promtail, besonders von \quotes{scrape\_configs}, begünstigt die Extrahierung spezifischer Informationen und die Generierung präziser \quotes{Labels}. Das Verständnis über die vielfältigen Funktionalitäten von Grafana trägt dazu bei, dass die ausgegebenen Daten die notwendigen Informationen enthalten, um den Entscheidungsprozess zu erleichtern. Die richtigen Einstellungen gewährleisten eine fehlerfreie Nutzung der Anwendungen und erleichtert ihre Skalierbarkeit. In diesem Fall können sowohl die offizielle Dokumentation als auch die offiziellen Forenbeiträge dazu beitragen, die Tools richtig zu konfigurieren.
 
-Letztendlich sind \quotes{Labels} auch wichtige Elemente bei Grafana, Loki und Promtail. Die korrekte und präzise Indizierung spielt eine entscheidende Rolle für die Leistung der Anwendung. Die Verwendung vieler \quotes{Labels} erfordert eine hohe Rechenkapazität und kann auch zu fehlerhaften Ergebnissen führen. Die Rechenkapazität muss ebenfalls angepasst werden, um sicherzustellen, dass die steigende Anzahl von Anfragen (siehe Abbildung \ref{fig:Eskalation_Labels} auf Seite \pageref{fig:Eskalation_Labels}) nicht zu Abstürzen führt.
+\newpage
+Letztendlich sind \quotes{Labels} wichtige Elemente bei Grafana, Loki und Promtail. Die richtige Indizierung spielt eine entscheidende Rolle für die Leistung der Anwendung. Die Verwendung vieler \quotes{Labels} erfordert hohe Rechenkapazität und kann auch zu fehlerhaften Ergebnissen führen. Die Rechenkapazität muss ebenfalls angepasst werden, um Abstürzen wegen steigenden Anfragen (siehe Abbildung \ref{fig:Eskalation_Labels} auf Seite \pageref{fig:Eskalation_Labels}) zu vermeiden.
 
 \subsection{Zukünftige Forschung}
 Dieser Arbeit ermöglicht eine Weiterentwicklugn in verschiedenen Bereichen:

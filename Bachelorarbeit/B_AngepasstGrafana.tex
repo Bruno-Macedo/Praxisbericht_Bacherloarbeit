@@ -1,170 +1,119 @@
-\section{Angepasste Einstellungsdateien von Grafana}\label{appendix:AngepasstGrafana}
+\section{Angepasste Einstellungsdateien}\label{appendix:AngepasstGrafana}
 
-Unten befindet sich die angepasste Konfigurationsdateien \citep{Polinowski_PGL}:
+Unten befindet sich die angepassten Konfigurationsdateien \citep{Polinowski_PGL}:
 
-\begin{itemize}[noitemsep]
-    \item \textbf{Loki}
-\end{itemize}
-
+\subsection{Loki}
 {\setstretch{0.5}
-\begin{Verbatim}[frame=single]
-  auth_enabled: false
+\begin{Verbatim}[frame=single,fontsize=\small]
+auth_enabled: false
 
-  server:
-    http_listen_port: 3100
-    grpc_listen_port: 9096
-  
-  ingester:
-    wal:
-      enabled: true
-      dir: /tmp/wal
-    config:
-      max_block_size: 67108864
-      max_uncompressed_block_size: 67108864
-      chunk_size: 1048576
-    lifecycler:
-      address: 127.0.0.1
-      ring:
-        kvstore:
-          store: inmemory
-        replication_factor: 1
-      final_sleep: 0s
-    chunk_idle_period: 1h       
-    # Any chunk not receiving new logs in this time will be flushed
-    max_chunk_age: 1h           
-    # All chunks will be flushed when they hit this age, default is 1h
-    chunk_target_size: 1048576  
-    # Loki will attempt to build chunks up to 1.5MB, flushing first if
-    chunk_idle_period or max_chunk_age is reached first
-    chunk_retain_period: 30s    
-    # Must be greater than index read cache TTL if using an index cache
-    (Default index read cache TTL is 5m)
-    max_transfer_retries: 0    
-    # Chunk transfers disabled
-  
-  schema_config:
-    configs:
-      - from: 2020-10-24
-        store: boltdb-shipper
-        object_store: filesystem
-        schema: v11
-        index:
-          prefix: index_
-          period: 24h
-  
-  storage_config:
-    boltdb_shipper:
-      active_index_directory: /tmp/loki/boltdb-shipper-active
-      cache_location: /tmp/loki/boltdb-shipper-cache
-      cache_ttl: 24h         
-      # Can be increased for faster performance over longer query 
-      periods, uses more disk space
-      shared_store: filesystem
+server:
+  http_listen_port: 3100
+  grpc_listen_port: 9096
+
+common:
+  instance_addr: 127.0.0.1
+  path_prefix: /tmp/loki
+  storage:
     filesystem:
-      directory: /tmp/loki/chunks
-  
-  compactor:
-    working_directory: /tmp/loki/boltdb-shipper-compactor
-    shared_store: filesystem
-  
-  limits_config:
-    reject_old_samples: true
-    reject_old_samples_max_age: 168h
-    ingestion_rate_mb: 1024
-    ingestion_burst_size_mb: 1024
-    ingestion_rate_strategy: local
-    per_stream_rate_limit: 12MB
-    max_query_series: 100000
-    max_query_parallelism: 32
-    split_queries_by_interval: 24h
-    max_query_length: 0h
-  
-  querier:
-    max_concurrent: 2048
-  
-  frontend:
-    compress_responses: true
-    scheduler_worker_concurrency: 20
-  
-  query_range:
-    parallelise_shardable_queries: false
-  
-  table_manager:
-    retention_deletes_enabled: false
-    retention_period: 360s
-  
-  ruler:
-    storage:
-      type: local
-      local:
-        directory: /tmp/loki/rules
-    rule_path: /loki/rules-temp
-    alertmanager_url: http://localhost:9093
-    ring:
-      kvstore:
-        store: inmemory
-    enable_api: true
-\end{Verbatim}
-}
+      chunks_directory: /tmp/loki/chunks
+      rules_directory: /tmp/loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
 
-\begin{itemize}[noitemsep]
-    \item \textbf{Promtail} 
-\end{itemize}
+query_range:
+  parallelise_shardable_queries: true
+  results_cache:
+    cache:
+      embedded_cache:
+        enabled: true
+        max_size_mb: 100
 
-{\setstretch{0.5}
-\begin{Verbatim}[frame=single]
-  ---
-  server:
-    http_listen_port: 9080
-    grpc_listen_port: 0
-  
-  positions:
-    filename: /tmp/positions.yaml
-  
-  clients:
-    - url: http://loki:3100/loki/api/v1/push
-      tenant_id: tenant1
-  
-  scrape_configs:
-  - job_name: sshlogs
-    pipeline_stages:
-    - match:
-        selector: '{job="sshlogs"}'
-        action: keep
-        stages:
-        - regex:
-        expression: '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d
-        {2}).*from.(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:
-        25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]
-        |)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d))'
-    - labels:
-        sourceIP: ${sourceIP}
-    - timestamp:
-        format: "Jan _2 15:04:05"
-        source: time
-        location: "Europe/Berlin"
-    decompression:
-      enabled: true
-      initial_delay: 15s
-      format: gz
-    static_configs:
-    - targets:
-        - loki
-      labels:
-        job: sshlogs
-        #env: voidquart
-        instance: Opfersystem1
-        __path__: /opt/*.gz
+frontend:
+  max_outstanding_per_tenant: 10000
+
+limits_config:
+  reject_old_samples: false
+  split_queries_by_interval: 15m
+  max_query_parallelism: 32
+
+querier:
+  max_concurrent: 2048
+query_scheduler:
+  max_outstanding_requests_per_tenant: 10000
+
+schema_config:
+  configs:
+    - from: 2020-10-24
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
+
+ruler:
+  alertmanager_url: http://localhost:9093  
 \end{Verbatim}
 }
 
 \newpage
-\begin{itemize}[noitemsep]
-    \item \textbf{Docker Compose Datei} 
-\end{itemize}
+\subsection{Promtail}
 
 {\setstretch{0.5}
-\begin{Verbatim}[frame=single]
+\begin{Verbatim}[frame=single,fontsize=\small]
+---
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+    tenant_id: tenant1
+
+scrape_configs:
+- job_name: sshlogs
+  pipeline_stages:
+  - match:
+      selector: '{job="sshlogs"}'
+      action: keep
+      stages:
+      - regex:
+      expression: '^(?P<time>[A-Za-z]{3}\s{1,2}\d{1,2}\s\d{2}:\d{2}:\d
+      {2}).*from.(?P<sourceIP>(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:
+      25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]
+      |)\d)\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9]|)\d))'
+  - labels:
+      sourceIP: ${sourceIP}
+  - timestamp:
+      format: "Jan _2 15:04:05"
+      source: time
+      location: "Europe/Berlin"
+  decompression:
+    enabled: true
+    initial_delay: 15s
+    format: gz
+  static_configs:
+  - targets:
+      - loki
+    labels:
+      job: sshlogs
+      #env: voidquart
+      instance: Opfersystem1
+      __path__: /opt/*.gz
+\end{Verbatim}
+}
+
+\newpage
+\subsection{Docker Compose Datei}
+
+{\setstretch{0.5}
+\begin{Verbatim}[frame=single,fontsize=\small]
   version: "3"
 
   networks:

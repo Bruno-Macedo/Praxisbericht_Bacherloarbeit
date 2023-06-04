@@ -188,7 +188,7 @@ Die Abbildung \ref{fig:Module_preludes} zeigt die Integration verschiedener Modu
 %    \centering
 % \end{figure}
 
-Aus der Abbildung \ref{{fig:Module_preludes}} und der offizielen Dokumentation können wir folgenden Informationsfluss erkennen - die Daten werden von der Endanwendung generiert und zum Loganalyzer (Prelude \glsfirst{LML}) (1) geschickt, wo sie normalisiert und bewertet werden. Für die Logs, wo es verdächtige Werte nach den vordefinierten Regelsätzen in \gls{LML} gibt, werden Warnmeldungen generiert. Diese Meldungen werden zum Manager Module (2) weitergeleitet. Der Manager kann auch Daten von \gls{IDS} mithilfe von Sensoren empfangen (1), die an den \glsplural{Endpoint} installiert sind, um Events zu analysieren und zum Manager zu schicken. Die Daten werden in der Database gespeichert (3) und auch zum Correlator weitergeleitet (4), wo dieser nach einem Zusammenhang zwischen anderen Daten sucht. Das Ergebnis von Correlator wird wieder zum Manager (5) geschickt und danach zu der Datenbank (6). Schließlich stehen die Berichte in der \gls{GUI} (7) zur Verfügung \citep{Prelude_Doc}.
+Aus der Abbildung \ref{fig:Module_preludes} und der offizielen Dokumentation können wir folgenden Informationsfluss erkennen - die Daten werden von der Endanwendung generiert und zum Loganalyzer (Prelude \glsfirst{LML}) (1) geschickt, wo sie normalisiert und bewertet werden. Für die Logs, wo es verdächtige Werte nach den vordefinierten Regelsätzen in \gls{LML} gibt, werden Warnmeldungen generiert. Diese Meldungen werden zum Manager Module (2) weitergeleitet. Der Manager kann auch Daten von \gls{IDS} mithilfe von Sensoren empfangen (1), die an den \glsplural{Endpoint} installiert sind, um Events zu analysieren und zum Manager zu schicken. Die Daten werden in der Database gespeichert (3) und auch zum Correlator weitergeleitet (4), wo dieser nach einem Zusammenhang zwischen anderen Daten sucht. Das Ergebnis von Correlator wird wieder zum Manager (5) geschickt und danach zu der Datenbank (6). Schließlich stehen die Berichte in der \gls{GUI} (7) zur Verfügung \citep{Prelude_Doc}.
 
 Die Architektur der Anwendung ermöglicht sowohl einen zentralisierten als auch einen dezentralisierten Aufbau, wie auf der Abbildung \ref{fig:Prelude_erweitert} gezeigt wird. In der ersten funktioniert Prelude als zentral und empfängt Daten von verschiedenen Datenquellen und in den zweiten gibt es mehrere sogenannte \quotes{Branches} von Preludes, dessen Manager sich miteinander verbunden sind, damit das Ergebnisse sich in einer \gls{GUI} darstellen lässt \citep{Prelude_MU}.
 
@@ -238,7 +238,7 @@ Laut dem Anbieter hat FortiSIEM eine robuste Integration mit anderen Tools und l
    \centering
 \end{figure}
 
-Auf der linken Seite der Abbildung \ref{fig:FortiSIEM} haben wir eine einfache Struktur, wo die Logdatei zu dem \quotes{Supervisor} geschickt ist. Diese ist für die Analyse und Darstellung der Daten zuständig. Wenn die Architektur skaliert (mitte), kommen die \quotes{Collectors}. Diese tragen dazu bei, die Skalierbarkeit zu unterstützen, da sie Logdateien aus verschiedenen Quellen empfangen und normalisieren. Auf weitere Erweiterung des Tools (rechts) kommen dann die \quotes{Workers}, die die Datenanalyse durchführen und für die Database zuständig ist \citep{Fortinet_Key}.
+Auf der linken Seite der Abbildung \ref{fig:FortiSIEM} haben wir eine einfache Struktur, wo die Logdatei zum \quotes{Supervisor} geschickt ist. Diese ist für die Analyse und Darstellung der Daten zuständig. Wenn die Architektur skaliert (mitte), kommen die \quotes{Collectors}. Diese tragen dazu bei, die Skalierbarkeit zu unterstützen, da sie Logdateien aus verschiedenen Quellen empfangen und normalisieren. Auf weitere Erweiterung (rechts) sind dann die \quotes{Workers}, die die Datenanalyse durchführen und für die Database zuständig ist \citep{Fortinet_Key}.
 
 In der wissenschaftlichen Literatur sagt \cite{Ramires_fortsiem}, dass FortiSIEM eine schnelle Erkennung von Angriffen bietet und über \glsfirst{NOC} Funktionalität verfügt, wie Netzmanagement. Wie andere \glspl{SIEM} Lösungen, biete FortiSIEM die folgenden Funktionalitäten: Datensammlung und Normalisierung, Daten Zusammenhang, Generierung von Berichten, Warnmeldungen, Datenauswertung.
 
@@ -319,13 +319,14 @@ Auf der Abbildung \ref{fig:Loki-Architektur} empfängt \quotes{distributor}  die
 
 Promptail wird an jedem \gls{Endpoint} installiert und schickt den Inhalt der Logdateien als Stream zu Loki. Diese Streams werden dann in Loki mit \quotes{Labels} (Schlüssel-Wert-Paar) identifiziert. Jeder Stream ist ein Teil des Inhalts der Logdateien. Laut \cite{Grafana_fundamentals} bleibt der Stream ohne Indexierung, um Effizienz bei der Verwaltung des Inhalts zu gewinnen. Im Vergleich zu anderen Tools, wie Elastic Stack, wird der gesamte Inhalt indexiert \citep{Anand_LokixELK}. Bei Loki werden nur die Metadaten, wie Zeitstempel oder andere kundenspezifische \quotes{Labels}, dann indexiert.
 
-Für eine optimale Nutzung von Grafana wird es empfohlen, wenig \quotes{labels} zu benutzen, um eine Eskalation des Speicherbedarfs zu vermeiden \cite{Grafana_labels}. Die Abbildung \ref{fig:Eskalation_Labels} zeigt den Eskalationseffekt, der durch die Nutzung von \quotes{labels} entsteht:
+\newpage
+Für eine optimale Nutzung von Grafana wird es empfohlen, wenig \quotes{Labels} zu benutzen, um eine Eskalation des Speicherbedarfs zu vermeiden \cite{Grafana_labels}. Die Abbildung \ref{fig:Eskalation_Labels} zeigt den Eskalationseffekt, der durch die Nutzung von \quotes{Labels} entsteht:
 
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{assets/labelstream.png}
-   \caption[Eskalation bei Verwendung von \quotes{labels}]
-   {Eskalation bei Verwendung von \quotes{labels} laut \cite{Grafana_labels}}
+   \caption[Eskalation bei Verwendung von \quotes{Labels}]
+   {Eskalation bei Verwendung von \quotes{Labels} laut \cite{Grafana_labels}}
    \label{fig:Eskalation_Labels}
    \centering
  \end{figure}
@@ -334,9 +335,7 @@ Auf Abbildung \ref{fig:Eskalation_Labels} haben wir vier Ebenen. Die erste ist d
 
 {\setstretch{1.0}
 \begin{Verbatim}[commandchars=\\\{\},frame=single]
-Labels = 3
-Anfrage = 3
-HTTP-Antworte = 3
+Labels = 3, Anfrage = 3, HTTP-Antworte = 3
 Total Streams = Labels x Anfrage x HTTP-Antworte
 Total Streams = 3 x 3 x 3
 Total Streams = 27
@@ -366,6 +365,7 @@ Promtail kann aber Logdateien nur zur Grafana Loki oder zu einer anderen Promtai
 Die wissenschaftliche Literatur über Grafana konzentriert sich eher auf die Anwendung des Tools für die grafische Darstellung von Daten als für ihre Nutzung in dem Sicherheitsbereich. Eine Recherche von \cite{Manases_grafananetwork} wollte das Ergebnis von der Überwachung von Cloud-basierten Systemen, von Netzwerkaktivitäten und von Netzwerkverkehr mithilfe von Grafana darstellen.
 Die wissenschaftliche Recherche über die Implementierung und Integration von Grafana mit anderen Tools zum Sicherheitszweck ist neu und bietet deshalb viele Perspektiven für die Weiterentwicklung an.
 
+\newpage
 \subsection{Auswahlkriterien}
 Der Erwerb einer \gls{SIEM} Lösung würde wahrscheinlich die Anforderungen dieser wissenschaftlichen Arbeit decken. Da solche Lösungen meistens (oder alle) \gls{Proprietary} und kostenpflichtig sind, legten wir als Auswahlkriterium fest, dass die Anwendungen für unsere Arbeit \gls{opensource} sein müssen. Von allen analysierten Tools sind die Kombinationen Grafana, Loki, Promtail und Kibana, Elasticsearch, Logstash  am geeignetsten für unsere Auswahl. In der Tabelle \ref{tab:Vergleich_GrafanaELK} vergleichen wir beide dieser Konbinationen \citep{Anand_LokixELK}:
 
@@ -428,17 +428,8 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
    \cellcolor{green!25}nur Metadata \newline (Loki)        &
    \cellcolor{red!25}vollständig (Elasticsearch) \\ \hline 
 
-   Dekomprimierung von Datei & \centering
-   \cellcolor{green!25}ja (Promtail)             &
-   \cellcolor{green!25}ja (Logstash)             \\ \hline 
 
-   Integration mit anderen Database Tools & \centering
-   \cellcolor{green!25}ja                         & 
-   \cellcolor{red!25}nur mit Elasticsearch      \\ \hline
 
-   Weiterleitung des Loginhalts & \centering
-   \cellcolor{red!25}nur an Promtail und an Loki (Promtail) &
-   \cellcolor{green!25}umfangreiche Integration mit anderen Tools (Logstash) \\ \hline
 
  \end{tabular}
 \end{table}
@@ -450,6 +441,18 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
 \begin{tabular}{|m{5cm}|m{4.2cm}|>{\centering\arraybackslash}m{4.2cm}|}
    \hline
    \centering\textbf{Eigenschaft} & \centering\textbf{Grafana, Loki und Promtail} & \textbf{Kibana, Elasticsearch und Logstash} \\ \hline 
+
+   Dekomprimierung von Datei & \centering
+   \cellcolor{green!25}ja (Promtail)             &
+   \cellcolor{green!25}ja (Logstash)             \\ \hline 
+
+   Integration mit anderen Database Tools & \centering
+   \cellcolor{green!25}ja                         & 
+   \cellcolor{red!25}nur mit Elasticsearch      \\ \hline
+
+   Weiterleitung des Loginhalts & \centering
+   \cellcolor{red!25}nur an Promtail und an Loki (Promtail) &
+   \cellcolor{green!25}umfangreiche Integration mit anderen Tools (Logstash) \\ \hline
 
    Integrietes Tool für Generierung von Warnmeldungen \citep{Yigal_GrafanaKibanan} & \centering
    \cellcolor{green!25}ja (Alerting) & 
