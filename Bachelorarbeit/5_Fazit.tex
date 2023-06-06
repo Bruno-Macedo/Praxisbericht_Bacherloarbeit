@@ -10,7 +10,7 @@ In dieser Arbeit emulierten wir, mithilfe von Grafana, Loki und Promtail eine \g
     \hline
     \textbf{Tool}    & \textbf{Funktionalität}         \\ \hline
     Promtail         & Datensammlung                   \\ \hline
-    Loki             & Normalisierung und Vearbeitung  \\ \hline
+    Loki             & Normalisierung und Verarbeitung  \\ \hline
     Grafana          & Berichts- und Grafikgenerierung \\ \hline
     Grafana:Alerting & Generierung von Warnmeldungen   \\ \hline
     \end{tabular}
@@ -45,13 +45,13 @@ Die korrekte Konfigurierung von Promtail, besonders von \quotes{scrape\_configs}
 Letztendlich sind \quotes{Labels} wichtige Elemente bei Grafana, Loki und Promtail. Die richtige Indizierung spielt eine entscheidende Rolle für die Leistung der Anwendung. Die Verwendung vieler \quotes{Labels} erfordert hohe Rechenkapazität und kann auch zu fehlerhaften Ergebnissen führen. Die Rechenkapazität muss ebenfalls angepasst werden, um Abstürzen wegen steigenden Anfragen (siehe Abbildung \ref{fig:Eskalation_Labels} auf Seite \pageref{fig:Eskalation_Labels}) zu vermeiden.
 
 \subsection{Zukünftige Forschung}
-Dieser Arbeit ermöglicht eine Weiterentwicklugn in verschiedenen Bereichen:
+Dieser Arbeit ermöglicht eine Weiterentwicklung in verschiedenen Bereichen:
  
 \begin{itemize}[noitemsep]
     \item \textbf{Abdeckung vielen möglichen \glsplural{Cyberangriff}n mit neuen Regelsätze und Dashboards}:
 \end{itemize}
 
-Mit der Nutzung der \glsfirst{ttp} der \gls{mitre} Matrix ist es möglich, Regelsätze in \gls{logql} für andere \glsplural{Cyberangriff} aufzubauen und dadurch Logdateien aus verschiedenen Systemen und Anwendungen zu verwenden. Mit anderen Regelsätzen ist es möglich umfassende Sicherheit für produktive Umgebungen zu bieten, indem mehr \glsplural{usecases} abgedeckt werden, um Angriffe zu erkennen. Zur Unterstützung bietet Grafana in ihrer offizielen Webseite bereits kundenspezifische Dashboards an, die verwendet und an die jeweilige Situation angepasst werden können.
+Mit der Nutzung der \glsfirst{ttp} der \gls{mitre} Matrix ist es möglich, Regelsätze in \gls{logql} für andere \glsplural{Cyberangriff} aufzubauen und dadurch Logdateien aus verschiedenen Systemen und Anwendungen zu verwenden. Mit anderen Regelsätzen ist es möglich umfassende Sicherheit für produktive Umgebungen zu bieten, indem mehr \glsplural{usecases} abgedeckt werden, um Angriffe zu erkennen. Zur Unterstützung bietet Grafana in ihrer offiziellen Webseite bereits kundenspezifische Dashboards an, die verwendet und an die jeweilige Situation angepasst werden können.
 
 \begin{itemize}[noitemsep]
     \item \textbf{Beherschung der Tools: Promtail, Loki und Grafana}:

@@ -162,7 +162,7 @@ Die Abbildungen \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_
    \centering
 \end{figure}
 
-Auf den Abbildungen \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_Opfer2} sehen wir in rot markiert, dass der Angriff den Benutzernamen \quotes{test} im Opfersystem1 und \quotes{Administrator} Opfersystem2 zielt. In grün werden die verschiedenen Passwörter aus \gls{rockyou}-Wörterbuch verwendet. Auf der Abbildung \ref{fig:Ausgabe_Stuffing_Opfer2} wird das gefundene Passwört grün geschrieben.
+Auf den Abbildungen \ref{fig:Ausgabe_Stuffing_Opfer1} und \ref{fig:Ausgabe_Stuffing_Opfer2} sehen wir in rot markiert, dass der Angriff den Benutzernamen \quotes{test} im Opfersystem1 und \quotes{Administrator} Opfersystem2 zielt. In grün werden die verschiedenen Passwörter aus \gls{rockyou}-Wörterbuch verwendet. Auf der Abbildung \ref{fig:Ausgabe_Stuffing_Opfer2} wird das gefundene Passwort grün geschrieben.
 
 \newpage
 Unser nächster Angriff, \gls{spraying}, ist in der Abbildung \ref{fig:spraying} dargestellt:
@@ -271,7 +271,7 @@ In unserer Arbeit verwenden wir \textbf{Promtail}, der in einem \gls{container} 
 In einer produktiven Umgebung ist die Installation von \textbf{Grafana Agents} auf jedem \gls{Endpoint} eine andere Lösung, um Grafana Loki mit Logdateien zu füllen. Während Promtail Logdatei nur zu Loki schickt, kann Grafana Agents Logdateien zu \gls{prometheus}, OpenTelemetry und zu Tools von \textit{\gls{GrafanaSystem}}, wie \gls{mimir}, \gls{tempo}, \gls{phlare}, Loki und Grafana integriert werden \citep{Grafana_Agents}.
 
 \newpage
-Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationfluss zwischen Grafana Agents und den integrierten Tools:
+Die nächste Abbildung, \ref{fig:GrafAgents}, zeigt den Kommunikationsfluss zwischen Grafana Agents und den integrierten Tools:
 
 \begin{figure}[H]
    \centering
@@ -334,15 +334,15 @@ Verarbeitung der Log-Einträge in Loki und Quellcode für die Generierung von Gr
       Logfmt & Extraktion von Schlüssel:Wert Paar der Logdateien \\
    \hline
    \end{tabularx}
-   \caption[Elementen eines Regelsätz in Grafana Loki]
-   {Elementen eines Regelsätz in Grafana Loki laut \cite{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
+   \caption[Elementen eines Regelsatz in Grafana Loki]
+   {Elementen eines Regelsatz in Grafana Loki laut \cite{VoidQuark_sshlogs} und \citep{Setter_Logfmt}}
 \end{table}
 
 
 %https://grafana.com/docs/loki/latest/fundamentals/labels/
 %https://prometheus.io/docs/concepts/jobs_instances/
 
-Für jedes Angriffszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zwei \quotes{Labels} \quotes{instance} und \quotes{job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{instance} bezeichnet. Eine oder mehrere \quotes{instances} werden einem \quotes{job} zugewiesen. \quotes{Jobs} beziehen sich auf die Vearbeitung des Inhalts der Logdateien nach den spezifizierten Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{instance} werden in einem \quotes{job} eingepackt, wo sie nach den gleichen Regeln verarbeitet werden. Zusätzliche \quotes{Labels} können auch definiert werden \citep{Prometheus_JobInstance}. Das folgende Diagramm, \ref{fig:Labels_GrafanaLoki}, stellt die Beziehung zwischen dieser beiden \quotes{Labels} dar:
+Für jedes Angriffsszenario benutzen wir spezifische Regeln, die mit \gls{logql} aufgebaut sind. Die Filterung findet mithilfe von zwei \quotes{Labels} \quotes{instance} und \quotes{job} statt. In Promtail wird jeder \gls{Endpoint} als \quotes{instance} bezeichnet. Eine oder mehrere \quotes{instances} werden einem \quotes{job} zugewiesen. \quotes{Jobs} beziehen sich auf die Vearbeitung des Inhalts der Logdateien nach den spezifizierten Regeln, in unserem Fall, Überprüfung von \gls{ssh}-Logdateien. Diese Struktur stammt aus dem Tool \gls{prometheus}. Alle unsere \quotes{instance} werden in einem \quotes{job} eingepackt, wo sie nach den gleichen Regeln verarbeitet werden. Zusätzliche \quotes{Labels} können auch definiert werden \citep{Prometheus_JobInstance}. Das folgende Diagramm, \ref{fig:Labels_GrafanaLoki}, stellt die Beziehung zwischen dieser beiden \quotes{Labels} dar:
 
 \begin{figure}[H]
    \centering
@@ -389,7 +389,7 @@ from 10.0.2.15 port 58036 ssh2
 \end{Verbatim}
 }
 
-Um fehlgeschlagene Anmeldeversuche zu erkennen, extrahieren wir folgende Felder aus den \gls{ssh}-Logdateien. Wir verwenden diese Information, um gleiche Events zu erkennen und deren Anzhal festzustellen.
+Um fehlgeschlagene Anmeldeversuche zu erkennen, extrahieren wir folgende Felder aus den \gls{ssh}-Logdateien. Wir verwenden diese Information, um gleiche Events zu erkennen und deren Anzahl festzustellen.
 
 {\setstretch{1.0}
 \begin{Verbatim}[commandchars=\\\{\},frame=single,fontsize=\small]
@@ -447,8 +447,8 @@ Wir teilen die Abfrage unten mit, um ihre Bestandteile besser zu verstehen:
    & Die Wörter \quotes{Benutzername} und \quotes{Quelladresse} dienen als \quotes{Patterns} dazu, einen Benutzernamen und eine Quelle IP-Adresse aus der Logzeile zu extrahieren. Die Platzhalter \quotes{<\_>} sind unbenannte Elemente, die in diesem Fall auf die Einträge \quotes{password} und \gls{port} in der Zeile verweisen. \\
    \hline
    \end{tabularx}
-   \caption[Elementen eines Regelsätz in Grafana Loki]
-   {Elementen eines Regelsätz in Grafana Loki laut \cite{VoidQuark_sshlogs} und \cite{Setter_Logfmt}}
+   \caption[Elementen eines Regelsatz in Grafana Loki]
+   {Elementen eines Regelsatz in Grafana Loki laut \cite{VoidQuark_sshlogs} und \cite{Setter_Logfmt}}
 \end{table}
 
 
@@ -607,7 +607,7 @@ In dieser Arbeit versuchen wir unser Warnmeldungs-System mithilfe von Alerting v
 \end{enumerate}
 }
 
-Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}} von Grafana für fehlgeschlagene Anmeldeversuche für existierenden (A) und nicht existierenden (B) Benutzernamen. Wenn dieser Wert größer als fünf ist, dann wird eine E-Mail mit der Wanrmeldung geschickt. Wir definierten die oben genannten Elemente (komplete Konfiguration im Anhang \ref{appendix:Warnmedungskonfiguration}) und verwendeten die folgenden Regelsätze  \citep{VoidQuark_sshlogs}. Die generierte Warnmeldung ist auf der Abbildung \ref{fig:ErsteWarnmeldung} dargestellt.
+Für unseren ersten Test erstellen wir Warnmeldungen über die \textbf{\gls{GUI}} von Grafana für fehlgeschlagene Anmeldeversuche für existierenden (A) und nichtexistierenden (B) Benutzernamen. Wenn dieser Wert größer als fünf ist, dann wird eine E-Mail mit der Wanrmeldung geschickt. Wir definierten die oben genannten Elemente (komplete Konfiguration im Anhang \ref{appendix:Warnmedungskonfiguration}) und verwendeten die folgenden Regelsätze \citep{VoidQuark_sshlogs}. Die generierte Warnmeldung ist auf der Abbildung \ref{fig:ErsteWarnmeldung} dargestellt.
 
 {\setstretch{1.0}
 \begin{Verbatim}[frame=single,fontsize=\small]

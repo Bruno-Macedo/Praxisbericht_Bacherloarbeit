@@ -33,7 +33,7 @@ Die Extrahierung des Inhalts der Logdateien erfolgt im Promtail mit folgenden Ko
     \hphantom{te}labels: \newline
     \hphantom{text}job: sshlogs \newline
     \hphantom{text}instance: \gls{Endpoint}-Name \newline
-    \hphantom{text}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{Labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zur Logdateien im System an.\\ \hline
+    \hphantom{text}\_\_path\_\_: /var/log/**.gz & Das Feld \textit{targets} bezieht sich auf die Kommunikation mit der Loki-Instanz. Das Feld \textit{Labels} zeigt an, unter welcher Bezeichnung der Inhalt dieser Datei in Loki aufgerufen werden kann. \textit{\_\_path\_\_} gibt den Pfad zu den Logdateien im System an.\\ \hline
 
     \textbf{pipeline\_stages:} & Hier können wir den Inhalt der Logzeile definieren, bevor wir es zu Loki schicken. \\
 
@@ -96,18 +96,18 @@ In der Tabelle \ref{tab:KonfigLoki} zeigen wir einen Konfigurationsausschnitt vo
   \hline
   \multicolumn{1}{|c|}{\textbf{Konfigurationsfeld}} & \multicolumn{1}{|c|}{\textbf{Beschreibung}} \\
   \hline
-  \textbf{query\_range:} & Bezieht sich auf Abfrage und Ergebnis von Inhalt des Logdateien in spezifischen Zeitspanne. \\
+  \textbf{query\_range:} & Bezieht sich auf Abfrage und Ergebnis von Inhalt der Logdateien in spezifischen Zeitspanne. \\
   \hphantom{te}parallelise\_shardable\_queries: true & Der Abfrage-Prozess findet parallel statt.\\ \hline
 
   \textbf{frontend:} & Dieser Block bezieht sich auf Abfrage in \gls{frontend}-Ebene. \\
-  \hphantom{te}max\_outstanding\_per\_tenant: 10000 & Anzahl von erlaubten  ausstehenden Abfrage. Um Leistung zu gewinnen, sagten wir, dass ein einzelner Nutzer, diese Anzahl von ausstehenden Anfrage hat. In einer produktiven Umgebung ist dieser Wert von der Rechenkapazität abhängig.\\ \hline
+  \hphantom{te}max\_outstanding\_per\_tenant: 10000 & Anzahl von erlaubten ausstehenden Abfrage. Um Leistung zu gewinnen, sagten wir, dass ein einzelner Nutzer, diese Anzahl von ausstehenden Anfragen hat. In einer produktiven Umgebung ist dieser Wert von der Rechenkapazität abhängig.\\ \hline
 
   \textbf{querier:} & Festelegung der Verarbeitung von Abfrage \\ 
   \hphantom{te}max\_concurrent: 2048 & Anzahl der gleichzeitigen Abfragen, die verarbeitet werden. \\ \hline
 
   \textbf{limits\_config:} & Festlegung der Aufnahmerate und Nutzung von Ressourcen. \\ 
   \hphantom{te}reject\_old\_samples: false & Ermöglicht die Aufnahme von alten Logdateien, was in unserem Fall notwendig ist, da unsere Datei von April 2023 ist. \\ 
-  \hphantom{te}split\_queries\_by\_interval: 15m & Trennung von Abfragen nach einem definierten Intervall. Jeder Intervall wird gleichzeitig ausgeführt \\ 
+  \hphantom{te}split\_queries\_by\_interval: 15m & Trennung von Abfragen nach einem definierten Intervall. Jedes Intervall wird gleichzeitig ausgeführt \\ 
   \hphantom{te}max\_query\_parallelism: 32 & Maximale Anzahl von parallelen Abfragen.  \\ \hline
 
   \end{tabularx}
@@ -138,7 +138,7 @@ count by (username) (count_over_time(\{job=~"sshlogs"\}
 \end{Verbatim}
 }
 
-\textcolor{red}{Die rot markierten Elemente} in der Abfrage zeigen die Wort-Kombinationen, nach denen wir im Loginhalt suchen. \textcolor{blue}{Die blau markierten Elemente} extrahieren ein spezifisches Muster aus dem Loginhalt, in diesem Fall den wollen Benutzernamen aus der Logzeile auslesen. Die erste Abfrage zielt darauf ab, gezielt fehlgeschlagene Anmeldeversuche zu extrahieren, während die zweite Abfrage fehlgeschlagene Anmeldeversuche mit nicht existierenden Benutzernamen verknüpft. Beide Abfragen führen eine Aufzählung (\textit{sum by}) der gefundenen Zeilen durch.
+\textcolor{red}{Die rot markierten Elemente} in der Abfrage zeigen die Wort-Kombinationen, nach denen wir im Loginhalt suchen. \textcolor{blue}{Die blau markierten Elemente} extrahieren ein spezifisches Muster aus dem Loginhalt, in diesem Fall den wollen Benutzernamen aus der Logzeile auslesen. Die erste Abfrage zielt darauf ab, gezielt fehlgeschlagene Anmeldeversuche zu extrahieren, während die zweite Abfrage fehlgeschlagene Anmeldeversuche mit nichtexistierenden Benutzernamen verknüpft. Beide Abfragen führen eine Aufzählung (\textit{sum by}) der gefundenen Zeilen durch.
 
 Die generierte Grafik ist auf der Abbildung \ref{fig:2_Anmeldung_BenutzerName} dargestellt. Sie zeigt die Aktivität in einer Zeitspanne von 24 Stunden:
 
@@ -196,7 +196,7 @@ Aus der Abbildung \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_Be
 
 Grafana bietet auch eine interaktive Möglichkkeit, die Grafik darzustellen, sodass man Elemente ein- und ausblenden kann. Auf der Abbildung \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} blendeten wir den Benutzername \quotes{root} aus, um eine andere Darstellung anzubieten.
 
-Die nächsten Abbildungen, \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194}, zeigen die Anzahl von fehlgeschlagenen Anmeldeversuchen pro IP-Adresse. In der Abbildung \ref{fig:1_Anmeldung_IPAdresseOhne194} wurde die meist verwendete IP-Adresse ausgeblendet. Wir benutzen die vorherige Abfrage mit dem Unterschied, dass unser \textcolor{blue}{\quotes{Pattern}} eine IP-Adresse herausfiltern soll:
+Die nächsten Abbildungen, \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194}, zeigen die Anzahl von fehlgeschlagenen Anmeldeversuchen pro IP-Adresse. In der Abbildung \ref{fig:1_Anmeldung_IPAdresseOhne194} wurde die meistverwendete IP-Adresse ausgeblendet. Wir benutzen die vorherige Abfrage mit dem Unterschied, dass unser \textcolor{blue}{\quotes{Pattern}} eine IP-Adresse herausfiltern soll:
 
 {\setstretch{1.0}
 \begin{Verbatim}[fontsize=\small,commandchars=\\\{\},frame=single]
@@ -215,7 +215,7 @@ count by (username) (count_over_time(\{job=~"sshlogs"\}
 }
 
 % Pro IP - Balken
-Aus Abbildungen \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194} identifizieren wir die IP-Adressen, von denen die meisten fehlgeschlagenen Anmeldeversuche am 22.4.2023 stammen. Da verschiedene IP-Adresse verwendeten wurden, können wir davon ausgehen, dass der potenzieller Angreifer versuchte, unnauffällig zu bleiben. 
+Aus Abbildungen \ref{fig:1_Anmeldung_IPAdresse} und \ref{fig:1_Anmeldung_IPAdresseOhne194} identifizieren wir die IP-Adressen, von denen die meisten fehlgeschlagenen Anmeldeversuche am 22.4.2023 stammen. Da verschiedene IP-Adresse verwendeten wurden, können wir davon ausgehen, dass der potenzielle Angreifer versuchte, unnauffällig zu bleiben. 
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
