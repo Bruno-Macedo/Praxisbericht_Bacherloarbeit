@@ -258,7 +258,7 @@ Die nächste Abbildung, \ref{fig:Intregation_ELK}, stellt die Architektur von El
    \centering
 \end{figure}
 
-Die Beats auf der Abbildung \ref{fig:Intregation_ELK} sind an der \glsplural{Endpoint}n installiert und leiten Daten entweder zu Elasticsearch (a) oder zu Logstash (b) weiter. In Elasticsearch werden die Daten nach Muster mithilfe der Abfragesprache \glsfirstplural{DSL} gesucht. In Logstash werden die Daten verarbeitet, gespeichert und weitergeleitet. Schließlich stellt Kibana die Daten graphisch über die \gls{GUI} dar\citep{Jain_LMELK}.
+Die Beats auf der Abbildung \ref{fig:Intregation_ELK} sind an der \glsplural{Endpoint}n installiert und leiten Daten entweder zu Elasticsearch (a) oder zu Logstash (b) weiter. In Elasticsearch werden die Daten nach Muster mithilfe der Abfragesprache \glsfirstplural{DSL} gesucht. In Logstash werden die Daten verarbeitet, gespeichert und weitergeleitet. Schließlich stellt Kibana die Daten grafisch über die \gls{GUI} dar\citep{Jain_LMELK}.
 
 \cite{Advani_elkstakc} recherchiert über die Log Analyse-Funktionalitäten von Elastic Stack und die Unterstützung bei Normalisierung und Indexierung von Daten für eine lesbare Ausgabe. Die Skalierbarkeit wurde in der Studie von \cite{Wang_elkwifi} erwähnt, wo Elastic Stack für Wi-Fi Logging eingesetzt wurde.
 
@@ -295,7 +295,7 @@ Die aufgeteilte Struktur auf der Abbildung \ref{fig:ElasticKomponenten} hat die 
 Die wissenschaftliche Publikation über Elastic Stack ist vielfältiger als bei anderen recherchierten Tools. Die Mehrheit von denen beschäftigen sich eher mit den Loging-Funktionalitäten als mit den \gls{SIEM}-Eigenschaften der Anwendung.
 
 \subsubsection{Grafana}
-Von allen recherchierten Lösungen ist Grafana die Einzige, die weder \gls{SIEM} noch Log-Analyse-Tools ist. Grafana wird als \gls{frontend} Plattform für Visualisierung von Daten beschrieben. Mit dem Tool ist es möglich Graphiken zu erstellen und Warnmeldungen zu generieren. Das Ziel der Anwendung ist, Informationen in einer einfachen und verständlichen Art und Weise zur Verfügung zu stellen \citep{redhat_grafana}.
+Von allen recherchierten Lösungen ist Grafana die Einzige, die weder \gls{SIEM} noch Log-Analyse-Tools ist. Grafana wird als \gls{frontend} Plattform für Visualisierung von Daten beschrieben. Mit dem Tool ist es möglich Grafiken zu erstellen und Warnmeldungen zu generieren. Das Ziel der Anwendung ist, Informationen in einer einfachen und verständlichen Art und Weise zur Verfügung zu stellen \citep{redhat_grafana}.
 
 Im Jahr 2014 wurde Grafana von der Firma Grafana Labs released. Ursprünglich sollte Grafana ein einfacheres Bearbeitungstool für Grafiken sein und ermöglichen, Datenanfragen unkomplizierter zu machen. Das Tool sollte auch  mithilfe von \glsplural{plugin} erweitert werden \citep{Oedegaard_historyGrafana}.
 
@@ -375,7 +375,7 @@ Der Erwerb einer \gls{SIEM} Lösung würde wahrscheinlich die Anforderungen dies
    \hline
    \multicolumn{1}{|c|}{\textbf{Grafana}} & \multicolumn{1}{|c|}{\textbf{Elastic Stack}} & \multicolumn{1}{|c|}{\textbf{Gemeisame Rolle}} \\
    \hline
-      Grafana & Kibana & \gls{frontend}, graphische Darstellung\\
+      Grafana & Kibana & \gls{frontend}, grafische Darstellung\\
    \hline
       Loki & Elasticsearch & \gls{backend}, Verarbeitung des Inhalts der Logdateien \\
    \hline
@@ -396,7 +396,7 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
    \hline
    \centering\textbf{Eigenschaft} & \centering\textbf{Grafana, Loki und Promtail} & \textbf{Kibana, Elasticsearch und Logstash} \\ 
    \hline 
-   Opensource                  & \centering
+   \gls{opensource}                  & \centering
    \cellcolor{green!25}ja & 
    \cellcolor{red!25}nicht im Elasticsearch \\ \hline
 
@@ -412,11 +412,11 @@ Die nächste Tabelle, \ref{tab:Unterschiede}, fasst die Unterschieden zwischen d
    \cellcolor{green!25}niedrig                &
    \cellcolor{red!25}hoch                   \\ \hline 
    
-   Graphische Darstellung & \centering
+   Grafische Darstellung & \centering
    \cellcolor{green!25}ja                     & 
    \cellcolor{green!25}ja                     \\ \hline 
 
-   Dashboards und Graphik  & \centering
+   Dashboards und Grafik  & \centering
    \cellcolor{green!25} ja                      & 
    \cellcolor{green!25} ja                      \\ \hline 
 

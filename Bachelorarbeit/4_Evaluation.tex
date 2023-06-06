@@ -117,7 +117,7 @@ In der Tabelle \ref{tab:KonfigLoki} zeigen wir einen Konfigurationsausschnitt vo
 \end{table}
 
 \newpage
-\subsection{Generierung von Graphiken}
+\subsection{Generierung von Grafiken}
 Nachdem die Konfiguration fertig ist, können wir die \glsplural{container} starten und mithilfe des Musters von \cite{VoidQuark_sshlogs} Grafiken mit Informationen über \gls{ssh}-Verbindungen generieren. Mit der \gls{frontend}-Anwendung Grafana können wir Daten in verschiedenen Zeitspannen anzeigen und nach \quotes{Labels} filtern. 
  
 Für unsere ersten Grafiken wollen wir die Anzahl von fehlgeschlagenen Anmeldeversuchen pro Benutzername ableiten. Dafür benutzen wir folgende Abfrage:
@@ -160,7 +160,7 @@ Die generierte Grafik ist auf der Abbildung \ref{fig:2_Anmeldung_BenutzerName} d
 Aus der Abbildung \ref{fig:2_Anmeldung_BenutzerName} können wir ableiten, dass am 22.4.2023 möglicherweise ein \gls{bruteforce} stattfand. Dabei wurden gängige Benutzernamen verwendet, um Anmeldeversuche durchzuführen. Wir können auch sehen, dass am 22.4.2023 zwischen 16:00 und 17:30 Uhr die meisten Versuche stattfanden und dass der Angreifer am öftesten mit dem Benutzer \quotes{root} versuchte, sich anzumelden. Da es auch andere viele Benutzernamen gibt, können wir auch davon ausgehen, dass der Angreifer auch Wörterbucher für verschiedenen gängige Benutzername-Passwort Kombinationen verwendete.
 
 
-Für unsere nächsten Grafiken wollen wir eine Aufsummierung der fehlgeschlagenen Anmeldeversuche pro Benutzername am 22.4.2023 ableiten. Wir benutzen dieselben Regelsätze wie vorher, aber anstelle von (\textit{sum by}), verwenden wir (\textit{count by}) Funktion von \gls{logql}. Die generierten Graphiken sind auf den Abbildungen \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} dargestellt:
+Für unsere nächsten Grafiken wollen wir eine Aufsummierung der fehlgeschlagenen Anmeldeversuche pro Benutzername am 22.4.2023 ableiten. Wir benutzen dieselben Regelsätze wie vorher, aber anstelle von (\textit{sum by}), verwenden wir (\textit{count by}) Funktion von \gls{logql}. Die generierten Grafiken sind auf den Abbildungen \ref{fig:1_Anmeldung_BenutzerName} und \ref{fig:1_Anmeldung_BenutzerNameOhneRoot} dargestellt:
 
 \newpage
 \newgeometry{right=30mm, left=30mm}
@@ -298,7 +298,7 @@ Aus Abbildung \ref{fig:unsereWarnmeldung1} können wir sehen, dass das extrahier
 
 
 \newpage
-\subsection{Zusammenfassung}
+\subsection{Zusammenfassung der Evaluation}
 Grafana und ihre integrierten Tools bieten zahlreiche Möglichkeiten, um Daten zu kombinieren, darzustellen und Warnmeldungen zu generieren. Um jedoch die volle Kontrolle und Flexibilität zu nutzen und gezielte Informationen aus den Logdaten zu extrahieren und sie in Grafiken oder Warnmeldungen zu nutzen, ist es wichtig, die \gls{abfragesprache} \gls{logql} effektiv einzusetzen, um präzise Abfragen zu erstellen. Diese Präzision ermöglicht es, Logdaten nach bestimmten Kriterien zu filtern, sie zu kombinieren, Aggregationen durchzuführen und weitere Transformationen vorzunehmen.
 
 Ein gründliches Verständnis von Promtail und Loki hilft dabei, die Konfiguration und das Mapping der Logdaten richtig durchzuführen, um nur die erforderlichen Informationen zu extrahieren und zu indizieren. Dadurch wird sichergestellt, dass die Anwendungen effizient arbeiten und die Logabfrage schnell und genau erfolgt.

@@ -20,6 +20,8 @@ CMD [ "tail", "-f", "/dev/null" ]
 # docker compose build
 # docker compose up
 # docker exec f6362b753b0e ./latexcompile -g -r -b 0_bachelorarbeit.tex
+# docker exec 7ec29e4e763d ./latexcompile -g -r -b 0_bachelorarbeit.tex
+
 #  docker exec -it [ID]  /bin/bash
 
 #cp Bachelorarbeit/0_bachelorarbeit.pdf /mnt/c/Users/bruno/Dropbox/Estudos_Avancados/Angewandte_Informatik/Praxissemester_Bachelorarbeit/Macedo_da_Silva_Bruno_Bacherlorarbeit.pdf
