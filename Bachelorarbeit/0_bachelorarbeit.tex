@@ -27,6 +27,12 @@
 \begin{document}
   \pagenumbering{roman}
   \include{0.1_titelblat}
+
+  \pagestyle{empty}
+  \includepdf[pages=1, pagecommand={\thispagestyle{empty}}]{Selbststaendigkeitserklaerung.pdf}
+\pagestyle{plain} 
+  \setcounter{page}{2}  
+
   \begingroup
   \setstretch{1.5}
     \tableofcontents
